@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -7,7 +7,17 @@ import Login from './components/Login/Login';
 import useToken from './useToken';
 import logo from './misc/T_only.svg';
 
+
+
+
+
 function App() {
+
+  const openWidget = async () => {
+    <iframe src="https://www.google.com/webhp?igu=1"></iframe>
+  };
+  
+
   const { token, setToken } = useToken();
 
   if(!token) {
@@ -24,6 +34,9 @@ function App() {
           <Route path='/Preferences' element={<Preferences />} />
         </Routes>
       </BrowserRouter>
+      <button className="Terra-link" onClick={openWidget}>
+          Connect to Terra Terra
+      </button>
     </div>
   );
 }
