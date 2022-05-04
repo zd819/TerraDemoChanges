@@ -53,7 +53,7 @@ app.use(function(err, req, res, next) {
 // get a sessionId from terra for widget
 app.post('/newSession', (req, res) =>{
 
-  res.send(getSessionsId("123"));
+  res.send(getSessionsId(req.body.userId));
 
 });
 
@@ -76,8 +76,14 @@ function getSessionsId(userId){
 };
 
 
+app.post( '/terra_data', ( req, res ) => {
+  console.log( 'received webhook', req.body );
+  const terraPayload = req.body;
+  
+  console.log(terraPayload);
 
-
+  res.sendStatus( 200 );
+} );
 
 module.exports = app;
 
