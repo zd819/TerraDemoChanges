@@ -12,7 +12,7 @@ async function loginUser(credentials) {
    },
    body: JSON.stringify(credentials)
  })
-   .then(response => response.body);
+ .then(data => data.json())
 };
 
 export default function Login({ setToken }) {
