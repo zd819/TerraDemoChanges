@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,7 +50,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use('/login', loginRouter);
 
 //   console.log('login attempt');
 //   console.log(req);
