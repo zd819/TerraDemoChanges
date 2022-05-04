@@ -5,11 +5,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const logger = require('morgan');
 const request = require('request');
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
-const express = require('express');
+const loginRouter = require('./routes/login')
 const cors = require('cors');
 
 
@@ -51,11 +49,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
-});
+app.use('/login', loginRouter);
+
+//   console.log('login attempt');
+//   console.log(req);
+//   res.send({
+//     token: 'test123'
+//   });
+// });
 
 
 // get a sessionId from terra for widget
@@ -76,7 +77,7 @@ function getSessionsId(userId){
 
   request(options, function (error,res){
     //we get back json obj of user id status and session id. return that to front end
-    console.log(res.body);
+    console.log(res);
 
     return res;
   });

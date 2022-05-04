@@ -12,7 +12,13 @@ import logo from './misc/T_only.svg';
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
-
+async function PostID() {
+  return fetch('http://localhost:8080', {
+    method: 'POST',
+    body: JSON.stringify({reference_id: 'Dunno Yet'})
+  })
+    .then(data => data.json())
+ }
 
 function App() {
 
@@ -40,11 +46,11 @@ function App() {
           <Route path='/Preferences' element={<Preferences />} />
         </Routes>
       </BrowserRouter>
-      <button className="Terra-link" onClick={() => setShown(!shown)}>
+      <button className="Terra-link" onClick={PostID}>
           Connect to Terra Terra
       </button>
       {shown ?  <Iframe className='Widget' source= {terraURL+iD} /> : null}
-      
+
       <button className="Session-iD" onClick={() => setID(!showID)}>
           Get Session ID
       </button>
