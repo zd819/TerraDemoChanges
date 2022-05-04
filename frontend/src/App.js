@@ -43,11 +43,12 @@ function App() {
       <button className="Terra-link" onClick={() => setShown(!shown)}>
           Connect to Terra Terra
       </button>
-      {shown ?  <Iframe className='Widget' source= {verURL} /> : null}
+      {shown ?  <Iframe className='Widget' source= {terraURL+iD} /> : null}
+      
       <button className="Session-iD" onClick={() => setID(!showID)}>
           Get Session ID
       </button>
-      {shown ?  <h2> {iD}</h2> : null}
+      {showID ?  <h2> {iD}</h2> : null}
     </div>
   );
 }

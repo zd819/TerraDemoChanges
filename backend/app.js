@@ -9,6 +9,9 @@ const request = require('request');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const express = require('express');
+const cors = require('cors');
+
 
 // headers for widget containing our dev id and api key
 const apiHeaders = {"dev-id": "imperial-Ktod24UiJ6", "x-api-key": "03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10"};
@@ -18,6 +21,8 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,9 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-const testRouter = require('./routes/test.js');
-app.use('/test', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,6 +49,12 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
 });
 
 
@@ -82,8 +90,12 @@ app.post( '/terra_data', ( req, res ) => {
   
   console.log(terraPayload);
 
-  res.sendStatus( 200 );
+  res.sendStatus(200);
 } );
 
+
+
 module.exports = app;
+
+//app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
 
