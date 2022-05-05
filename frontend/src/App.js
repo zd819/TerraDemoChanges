@@ -5,7 +5,6 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Preferences/Preferences';
 import Login from './components/Login/Login';
 import Iframe from './components/Widget/IFrame.js'
-import PostTerra from './components/Widget/PostTerra.js'
 import useToken from './useToken';
 import logo from './misc/T_only.svg';
 
@@ -27,7 +26,6 @@ async function checkURL(){
 function App() {
 
   const [shown, setShown] = React.useState(false)
-  const [showID, setID] = React.useState(false)
   const verURL = 'https://api.tryterra.co/v2/auth/generateWidgetSession'
   const authURL = "https://api.tryterra.co/v2/auth/authenticateUser"
   const terraURL = "https://widget.tryterra.co/v2/"
@@ -44,14 +42,14 @@ function App() {
       <img src={logo} className="App-logo" alt="logo" />
       <BrowserRouter>
         <Routes>
-          <Route path='/Dashboard' element={<Dashboard />} />
-          <Route path='/Preferences' element={<Preferences />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Preferences" element={<Preferences />} />
         </Routes>
       </BrowserRouter>
       <button className="Terra-link" onClick={() => setShown(!shown)}>
-          Connect to Terra {checkURL}
+          Connect to Terra
       </button>
-      {shown ? <Iframe className='Widget' source ={getURL().url} /> : null}
+    
     </div>
   );
 }
