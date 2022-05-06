@@ -14,13 +14,15 @@ import logo from './misc/T_only.svg';
 async function getURL() {
   return fetch('http://localhost:8080/newSession', {
     method: 'POST',
-    headers: {userId: "DunnoYet"}
+    headers: {userid: 'DunnoYet'}
   })
     .then(data => data.json())
  }
 
 async function checkURL(){
-  console.log(getURL().url);
+  const response = getURL();
+  console.log(response);
+  return 'http://www.google.com';
 }
 
 function App() {
@@ -49,7 +51,7 @@ function App() {
       <button className="Terra-link" onClick={() => setShown(!shown)}>
           Connect to Terra
       </button>
-      {shown ? <Iframe className='Widget' source ={getURL().url} /> : null}
+      {shown ? <Iframe className='Widget' source ={checkURL()} /> : null}
     </div>
   );
 }
