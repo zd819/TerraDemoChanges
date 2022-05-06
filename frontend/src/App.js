@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import Iframe from './components/Widget/IFrame.js'
 import useToken from './useToken';
 import logo from './misc/T_only.svg';
+import Popup from './components/Widget/Popup.js'
 
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
@@ -19,21 +20,13 @@ async function getURL() {
     .then(data => data.json())
  }
 
-async function checkURL(){
-  const response = getURL();
-  console.log(response);
-  return 'http://www.google.com';
-}
+const handleClick = () => {
+  getURL()
+  .then((data) => {console.log(data); window.open(data.url)});
+};
 
 function App() {
-
-  const [shown, setShown] = React.useState(false)
-  const verURL = 'https://api.tryterra.co/v2/auth/generateWidgetSession'
-  const authURL = "https://api.tryterra.co/v2/auth/authenticateUser"
-  const terraURL = "https://widget.tryterra.co/v2/"
-
   const { token, setToken } = useToken();
-
   if(!token) {
     return <Login setToken={setToken} />
   }
@@ -48,10 +41,9 @@ function App() {
           <Route path="/Preferences" element={<Preferences />} />
         </Routes>
       </BrowserRouter>
-      <button className="Terra-link" onClick={() => setShown(!shown)}>
-          Connect to Terra
+      <button className="Terra-link" onClick={handleClick}>
+          Connect to Terra Terra
       </button>
-      {shown ? <Iframe className='Widget' source ={checkURL().url} /> : null}
     </div>
   );
 }

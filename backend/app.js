@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const logger = require('morgan');
-const request = require('request');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -40,6 +39,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  console.log('in error handler');
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
