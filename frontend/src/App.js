@@ -51,7 +51,7 @@ function App() {
       <button className="Terra-link" onClick={() => setShown(!shown)}>
           Connect to Terra
       </button>
-      {shown ? <Iframe className='Widget' source ={checkURL()} /> : null}
+      {shown ? <Iframe className='Widget' source ={checkURL().url} /> : null}
     </div>
   );
 }
