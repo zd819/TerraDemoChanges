@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
+const payloadRouter = require('./routes/terraPayload');
 
 const cors = require('cors');
 const app = express();
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
+app.use('/terraPayload', payloadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

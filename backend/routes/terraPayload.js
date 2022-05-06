@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.put('/', (req,res) => {
+router.post('/', (req,res) => {
 
-    if(res.)
+    console.log('received from terra');
+    console.log(req);
 
 });
 
