@@ -20,14 +20,6 @@ async function getURL() {
     .then(data => data.json())
  }
 
-async function getURL() {
-  return fetch('http://localhost:8080/newSession', {
-    method: 'POST',
-    headers: {userid: 'DunnoYet'}
-  })
-    .then(data => data.json())
- }
-
 const handleClick = () => {
   getURL()
   .then((data) => {console.log(data); window.open(data.url)});
