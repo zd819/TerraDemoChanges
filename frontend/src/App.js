@@ -48,7 +48,7 @@ function App() {
         <Routes>
           <Route path="/Preferences" element={<Preferences />} />
         </Routes>
-        {!dash ? <button className="Terra-link" onClick={() => { setDash(!dash);handleClick() } }>
+        {!dash ? <button className="Terra-link" onClick={() => { handleClick(); setDash(!dash) } }>
           Connect to Terra Terra {dash}
         </button> : null}    
       </BrowserRouter>
