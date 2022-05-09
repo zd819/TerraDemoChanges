@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
+const getDataRouter = require('./routes/getData');
 
 const cors = require('cors');
 const app = express();
@@ -32,6 +33,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
+app.use('/getData', getDataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,17 +51,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-app.post( '/terra_data', ( req, res ) => {
-  console.log( 'received webhook', req.body );
-  const terraPayload = req.body;
-  
-  console.log(terraPayload);
-
-  res.sendStatus(200);
-} );
-
 
 
 module.exports = app;
