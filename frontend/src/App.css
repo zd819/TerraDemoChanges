@@ -6,6 +6,10 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  display: block;
+  margin-left: 490px;
+  margin-right: auto;
+  text-align: center;
 }
 
 .Widget {
@@ -13,3 +17,11 @@
     text-align: center;
 }
 
+.Sidebar { 
+  display: 'flex';
+  height: '100vh';
+  overflow: 'scroll initial'
+
+}
+
+.Temp{display:flex; flex-direction:row;}

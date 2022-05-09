@@ -1,2 +1,9 @@
 backend/node_modules
 frontend/node_modules
+mysql/
+node_modules
+node_modules/.package-lock.json
+
+node_modules/.package-lock.json
+package-lock.json
+package.json
