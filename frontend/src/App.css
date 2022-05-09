@@ -24,4 +24,21 @@
 
 }
 
+.Name{
+  display: block;
+  margin-left: 360px;
+  margin-right: auto;
+  width: 50%;
+}
+
+.Small-Logo{
+  object-fit: cover;
+  display: block;
+  height: 50px;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
 .Temp{display:flex; flex-direction:row;}
+
+.Top-Layer{display:flex; flex-direction:row;}
