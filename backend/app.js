@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
-const getDataRouter = require('./routes/getData');
+const dataRouter = require('./routes/getData');
 
 const cors = require('cors');
 const app = express();
@@ -33,7 +33,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
-app.use('/getData', getDataRouter);
+app.use('/getData', dataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,6 +44,8 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   console.log('in error handler');
+  console.log(err);
+  console.log(req);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
