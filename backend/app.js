@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
@@ -29,7 +28,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
@@ -56,6 +54,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
-//app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
-

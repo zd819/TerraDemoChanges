@@ -1,0 +1,31 @@
+
+> on connection + auth of wearable
+    > check if we already have data if they have an account with us 
+
+    > pull data - process it 
+    > rank different data pools 
+        > evaluate different wearables for data they (can) provide
+        > volume of data
+        > importance 
+        > relevance (sleep > menstruation)
+    > decide which to send in correct form to front 
+
+> on getData req from front
+    > see if we have it 
+    > otherwise request some 
+
+
+> on receive data 
+    > process however we need 
+    > put in db 
+
+    > respond to frontend if there was an active request
+
+
+
+
+
+
+
+// figure out how to store data 
+// find averages to compare potentially 

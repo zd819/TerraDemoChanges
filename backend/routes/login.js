@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+// login handling
 router.post('/', (req, res) => {
-    console.log('login attempt');
+    console.log('Login Attempt');
     res.send(
         {
         token: 'test123'
