@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PollData from './PollData.js'
 
 async function getData() {
   return fetch('http://localhost:8080/getData', {
@@ -7,17 +8,21 @@ async function getData() {
     body: JSON.stringify({'datatype': 'athlete'})
   })
     .then()
- }
+}
 
  const healthData = () => {
   getData()
   .then((data) => {console.log(data); return data});
 };
 
+const ShowData = () => {
+  PollData()
+  .then((data) => {console.log(data)});
+};
 
 export default function Dashboard() {
   const [data, viewData ] = useState(false);
-
+  PollData();
   return(
     <div className="Dashboard">
       <h1 className="Title">Dashboard </h1>

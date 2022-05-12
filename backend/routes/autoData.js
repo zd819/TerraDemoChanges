@@ -1,18 +1,13 @@
+var express = require('express');
+var router = express.Router();
 
-/*
+router.get('/', function(req, res, next) {
 
-    sleep : 4;
-    calories : 3;
-    hr : 4;
+    const userId = req.header.userid;
+
     
 
 
-*/
+});
 
-
-function uhh() {
-
-
-
-
-};
+module.exports = router;
