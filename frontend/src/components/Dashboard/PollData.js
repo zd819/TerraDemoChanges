@@ -3,7 +3,7 @@ import getData from './testData.js'
 
 export default function PollData() {
 
-    const MINUTE_MS = 5000;
+    const MINUTE_MS = 1000;
 
     useEffect(() => {
     const interval = setInterval(() => {

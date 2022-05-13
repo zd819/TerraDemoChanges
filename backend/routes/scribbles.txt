@@ -27,5 +27,7 @@
 
 
 
+
+
 // figure out how to store data 
 // find averages to compare potentially 

@@ -46,7 +46,13 @@ const Mozaic = () =>{
 
 function App() {
 
-
+  // const location = useLocation();
+  
+  // useEffect(() => {
+  //   document.querySelector('html').style.scrollBehavior = 'auto'
+  //   window.scroll({ top: 0 })
+  //   document.querySelector('html').style.scrollBehavior = ''
+  // }, [location.pathname]); // triggered on route change
   
   const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
@@ -54,7 +60,7 @@ function App() {
   if(!token) {
     return <Login setToken={setToken} />
   }
-  if(!dash){
+  if(true){
       return(
       <div className="wrapper">
         <div className="Top-Layer">
@@ -77,12 +83,13 @@ function App() {
     )
   }
   else{
+    
     return(
-      <>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Routes>
           <Route exact path="/" element={<DashboardMoz />} />
-        </BrowserRouter>
-      </>
+        </Routes>
+      </BrowserRouter>
     )
 
   } 

@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   console.log('in error handler');
   console.log(err);
-  console.log(req);
+  console.log(req.body);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -66,24 +66,9 @@ const mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/my
     serverApi: ServerApiVersion.v1
   });
 
-// async function run() {
-//   try {
-//     await client.connect();
-//     const database = client.db("Terra");
-//     const collection = database.collection("users");
-//     const docCount = await collection.countDocuments({});
-//     console.log(docCount);
-//     // perform actions using client
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// 
-// run().catch(console.dir);
-
 global.db;
 global.usersDB;
+global.wearableDB;
 
 mongoClient.connect((err) => {
     
@@ -94,6 +79,7 @@ mongoClient.connect((err) => {
 
     db = mongoClient.db("Terra");
     usersDB = db.collections("users");
+    wearableDB = db.collections("wearable_data");
 
     console.log("Data Base Connected");
 
