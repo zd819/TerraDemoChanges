@@ -60,7 +60,7 @@ function App() {
   if(!token) {
     return <Login setToken={setToken} />
   }
-  if(true){
+  if(!dash){
       return(
       <div className="wrapper">
         <div className="Top-Layer">
@@ -85,11 +85,13 @@ function App() {
   else{
     
     return(
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<DashboardMoz />} />
-        </Routes>
-      </BrowserRouter>
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<DashboardMoz />} />
+          </Routes>
+        </BrowserRouter>
+      </>
     )
 
   } 
