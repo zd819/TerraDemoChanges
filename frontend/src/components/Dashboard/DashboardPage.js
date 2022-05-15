@@ -21,7 +21,7 @@ const ShowData = () => {
   .then((data) => {console.log(data)});
 };
 
-export default function Dashboard() {
+export default function DashboardOld() {
   const [data, viewData ] = useState(false);
   //getData();
   return(
