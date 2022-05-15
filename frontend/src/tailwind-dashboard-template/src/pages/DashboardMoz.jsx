@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
@@ -21,7 +22,7 @@ import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 
-const Dashboard = () => {
+function DashboardMoz(){
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -81,10 +82,12 @@ const Dashboard = () => {
         </main>
 
         <Banner />
-
+        {/* <Routes>
+            <Route path="/test" element={<DashboardCard03 />} />
+        </Routes> */}
       </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default DashboardMoz;

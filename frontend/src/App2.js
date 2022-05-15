@@ -5,7 +5,7 @@ import {
 import './tailwind-dashboard-template/src/css/style.scss';
 import './tailwind-dashboard-template/src/charts/ChartjsConfig';
 // Import pages
-import Dashboard from './tailwind-dashboard-template/src/pages/DashboardMoz';
+import DashboardMoz from './tailwind-dashboard-template/src/pages/DashboardMoz';
 
 
 
@@ -84,7 +84,7 @@ function App2() {
     return(
       <div>
           <Routes>
-            <Route exact path="/" element={<Dashboard />} />
+            <Route exact path="/" element={<DashboardMoz />} />
           </Routes>
       </div>
     )
