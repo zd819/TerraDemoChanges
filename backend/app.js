@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const fs = require('fs');
 const credentials = '../keys/mongo.pem'
-const mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', {
+global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', {
     sslKey: credentials,
     sslCert: credentials,
     serverApi: ServerApiVersion.v1
@@ -70,20 +70,20 @@ global.db;
 global.usersDB;
 global.wearableDB;
 
-mongoClient.connect((err) => {
+mongoClient.connect((err,clt) => {
     
     if(err) {
         conslotchange.log(err);
         throw err;
     }
 
-    db = mongoClient.db("Terra");
-    usersDB = db.collections("users");
-    wearableDB = db.collections("wearable_data");
+    db = clt.db("Terra");
+    users = db.collections("users");
+    wearable = db.collections("wearable_data");
 
     console.log("Data Base Connected");
 
-
+    db.close();
 });
 
 
