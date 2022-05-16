@@ -71,9 +71,6 @@ function App2() {
           <Sidebar className="Sidebar" />
           {dash ? <DashboardOld/> : <img src={logo} className="App-logo" alt="logo" />}    
         </div>
-          <Routes>
-            <Route path="/Dashboard" element={<DashboardApp />} />
-          </Routes>
           {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash) } }>
             Connect to Terra Terra
           </button> : null}   
@@ -84,7 +81,7 @@ function App2() {
     return(
       <div>
           <Routes>
-            <Route exact path="/" element={<DashboardMoz />} />
+            <Route exact path="/" element={<DashboardApp />} />
           </Routes>
       </div>
     )

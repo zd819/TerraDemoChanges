@@ -2,7 +2,7 @@
 
 function idk(body) {
 
-    const userId = body.user.user_id;
+    const wearable_id = body.user.user_id;
     const provider = body.user.provider;
 
     switch(body.type) {
@@ -40,7 +40,14 @@ function idk(body) {
         db = mongoClient.db("Terra");
         wearableDB = db.collections("wearable_data");
 
-        wearableDB.updateOne("")
+        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data" : body.data}}, function(err){
+            if(err) {
+                console.log(err);
+                
+            }
+            console.log("Sending Data to Mongo");
+
+        })
 
     });
     

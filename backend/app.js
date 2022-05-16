@@ -70,21 +70,21 @@ global.db;
 global.usersDB;
 global.wearableDB;
 
-mongoClient.connect((err,clt) => {
+// mongoClient.connect((err,clt) => {
     
-    if(err) {
-        conslotchange.log(err);
-        throw err;
-    }
+//     if(err) {
+//         conslotchange.log(err);
+//         throw err;
+//     }
 
-    db = clt.db("Terra");
-    users = db.collections("users");
-    wearable = db.collections("wearable_data");
+//     db = clt.db("Terra");
+//     users = db.collections("users");
+//     wearable = db.collections("wearable_data");
 
-    console.log("Data Base Connected");
+//     console.log("Data Base Connected");
 
-    db.close();
-});
+//     db.close();
+// });
 
 
 
