@@ -35,7 +35,7 @@ router.post('/', (req,res,next) => {
             users = db.collections("users");
             wearable = db.collections("wearable_data");
 
-            const wearable_provider_user = {provider : payload.body.provider, id: payload.body.user}
+            const wearable_provider_user = {provider : payload.body.user.provider, terra_id: payload.body.user.user_id}
             users.updateOne( {_id:payload.body.reference_id}, {$push: {wearable_id:wearable_provider_user}}, function(err, res) {
                 if (err) throw err;
                 console.log("added new wearable id and its provider name");
@@ -47,12 +47,13 @@ router.post('/', (req,res,next) => {
     }else {
 
         console.log("data received");
-
-        // wearableDB.update({"_id":payload.body.user.user_id}, {$push: {"data":payload.data}}, function(err){
-
-        //     console.log("send to mongo");
-
-        // });
+        const wearable_provider = payload.body.user.provider;
+        const wearable_id =  payload.body.user.user_id;
+        const wearable_data = payload.body.user.data;
+        users.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {wearable_id:wearable_data}}, function(err, res) {
+            if (err) throw err;
+            console.log("added data");
+        });
 
 
     };
