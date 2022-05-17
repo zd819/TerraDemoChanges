@@ -1,9 +1,7 @@
 
-
-function idk(body) {
+function handleData(body) {
 
     const wearable_id = body.user.user_id;
-    const provider = body.user.provider;
 
     switch(body.type) {
 
@@ -30,26 +28,22 @@ function idk(body) {
 
     }
 
-    mongoClient.connect((err) => {
-    
+    mongoClient.connect((err,client) => {    
         if(err) {
-            conslotchange.log(err);
+            console.log(err);
             throw err;
-        }
-    
-        db = mongoClient.db("Terra");
-        wearableDB = db.collections("wearable_data");
-
-        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data" : body.data}}, function(err){
+        }  
+        const db = client.db("Terra");
+        const wearableDB = db.collections("wearable_data");
+        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data" : body.data}}, function(err) {
             if(err) {
                 console.log(err);
-                
             }
             console.log("Sending Data to Mongo");
-
-        })
+            client.close();
+        });
 
     });
-    
-
 }
+
+module.exports = {handleData}
