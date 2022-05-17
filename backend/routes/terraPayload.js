@@ -4,16 +4,18 @@ const router = express.Router();
 // destination for terra webhook 
 router.post('/', (req,res,next) => {
 
-    const payload = req;
+    res.sendStatus(200);
+    const payload = req.body;
+    const type = payload.type;
     console.log('Payload From Terra');
-    console.log(payload.body);
-    console.log(payload.body.data);
+    console.log(payload);
+    console.log(payload.data);
 
     if(payload.status === "error") {
         // this is bad :/
         console.log("error oopsie");
-        console.log(payload.body.message);
-        next(createError(req.body));
+        console.log(payload.message);
+        next(createError(payload));
     };
 
     //check terra doc, auth message
@@ -21,39 +23,90 @@ router.post('/', (req,res,next) => {
     // store the data
     // connect to mongo
     // disconnect after storing
-    
-    if (payload.body.type === "auth") {
+
+    /*
+
+    if(data in payload === false) {
         
-        mongoClient.connect((err,clt) => {
+        // data
+
+
+    }
+
+
+        switch(type) {
+            
+            case 'auth':
+
+
+
+
+                break;
+            case 'deauth':
+                break;
+            case 'user_reauth':
+                break;
+            case 'auth_failure':
+                break;
+            case 'access_revoked'
+                break;
+            case 'connection_error':
+                break;
+            case 'google_no_datasource':
+                break;
+            case 'request_completed':
+                break;
+            case 'request_processing':
+                break;
+            case 'processing':
+                break;
+            default:
+
+        }
+
+    */
+    
+    if (type === "auth") {
+        
+        addUserWearable(payload.user);
+
+    }else if(type === "user_reauth"){
+
+        deleteUserWearable(payload.old_user);
+        addUserWearable(payload.new_user);
+
+    }else if(type === "deauth"){
+        
+        deleteUserWearable(payload.user);
+
+    }else {
+        
+        mongoClient.connect((err,client) => {
             
             if(err) {
-                conslotchange.log(err);
+                console.log(err);
                 throw err;
             }
 
-            db = clt.db("Terra");
-            users = db.collections("users");
-            wearable = db.collections("wearable_data");
+            const db = client.db("Terra");
+            const wearable = db.collection("wearable_data");
 
-            const wearable_provider_user = {provider : payload.body.user.provider, terra_id: payload.body.user.user_id}
-            users.updateOne( {_id:payload.body.reference_id}, {$push: {wearable_id:wearable_provider_user}}, function(err, res) {
+            console.log("data received");
+            const wearable_provider = payload.user.provider;
+            console.log(wearable_provider);
+            const wearable_id =  payload.user.user_id;
+            console.log(wearable_id);
+            const wearable_data = payload.data;
+            console.log(wearable_data);
+            wearable.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {data:wearable_data}}, function(err, res) {
                 if (err) throw err;
-                console.log("added new wearable id and its provider name");
+                console.log("added data");
+                client.close();
+                console.log("connection closed");
             });
 
-            db.close();
         });
-
-    }else {
-
-        console.log("data received");
-        const wearable_provider = payload.body.user.provider;
-        const wearable_id =  payload.body.user.user_id;
-        const wearable_data = payload.body.user.data;
-        users.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {wearable_id:wearable_data}}, function(err, res) {
-            if (err) throw err;
-            console.log("added data");
-        });
+        
 
 
     };
@@ -72,7 +125,6 @@ router.post('/', (req,res,next) => {
     //     });
     //   }
 
-    res.sendStatus(200);
     console.log('End of Handling Payload');
 
 
@@ -90,5 +142,29 @@ async function handleData(data) {
 
 };
 
+async function addUserWearable(user) {
+
+    mongoClient.connect((err,client) => {
+            
+        if(err) {
+            conslotchange.log(err);
+            throw err;
+        }
+
+        const db = client.db("Terra");
+        const users = db.collection("users");
+        const wearable = db.collection("wearable_data");
+
+        const wearable_provider_user = {provider : user.provider, terra_id: user.user_id}
+        users.updateOne( {_id:"user1"}, {$push: {wearable_id:wearable_provider_user}}, function(err, res) {
+            if (err) {
+                throw err;
+            }
+            console.log("added new wearable id and its provider name");
+            client.close();
+        });
+    });
+
+}
 
 module.exports = router;

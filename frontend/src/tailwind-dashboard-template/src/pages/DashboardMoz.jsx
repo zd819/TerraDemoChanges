@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
@@ -25,6 +27,7 @@ import Banner from '../partials/Banner';
 function DashboardMoz(){
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const test = [1,2,3,4,5,6,7];
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -69,9 +72,9 @@ function DashboardMoz(){
 
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
-
+              
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 />
+              <DashboardCard01  props = {test}/>
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 />
               {/* Line chart (Acme Professional) */}
