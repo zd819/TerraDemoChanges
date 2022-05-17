@@ -22,6 +22,7 @@ import smallLogo from './misc/Terralogo.png';
 import useInterval from './hooks/autoData.js'
 import useData from './components/Dashboard/PollData.js';
 import testData from './components/Dashboard/testData.js';
+import PollData from './components/Dashboard/PollData.js'
 
 
 //Either in the Widget.js or before we set shown to true, we must request
@@ -42,6 +43,11 @@ const HandleClick = () => {
 
 const Mozaic = () =>{
   window.open('http://localhost:3000/Dashboard')
+};
+
+const ShowData = () => {
+  PollData()
+  .then((data) => {console.log(data)});
 };
 
 function App2() {
@@ -71,7 +77,7 @@ function App2() {
           <Sidebar className="Sidebar" />
           {dash ? <DashboardOld/> : <img src={logo} className="App-logo" alt="logo" />}    
         </div>
-          {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash) } }>
+          {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash); } }>
             Connect to Terra Terra
           </button> : null}   
       </div>

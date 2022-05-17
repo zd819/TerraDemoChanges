@@ -5,9 +5,6 @@ import {
   useLocation
 } from 'react-router-dom';
 
-import './css/style.scss';
-
-import './charts/ChartjsConfig';
 
 // Import pages
 import DashboardMoz from './pages/DashboardMoz';

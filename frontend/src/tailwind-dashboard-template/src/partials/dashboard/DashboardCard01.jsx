@@ -7,8 +7,13 @@ import EditMenu from '../EditMenu';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard01() {
-
+function DashboardCard01(props) {
+  if(props == null){
+    console.log('Props NOT PASSED');
+  }else{
+    console.log('Props passed to Dashboard');
+    console.log(props);
+  }
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',

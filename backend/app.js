@@ -66,26 +66,6 @@ global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/m
     serverApi: ServerApiVersion.v1
   });
 
-global.db;
-global.usersDB;
-global.wearableDB;
-
-// mongoClient.connect((err,clt) => {
-    
-//     if(err) {
-//         conslotchange.log(err);
-//         throw err;
-//     }
-
-//     db = clt.db("Terra");
-//     users = db.collections("users");
-//     wearable = db.collections("wearable_data");
-
-//     console.log("Data Base Connected");
-
-//     db.close();
-// });
-
 
 
 
