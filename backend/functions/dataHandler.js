@@ -1,5 +1,5 @@
 
-function handleData(body) {
+async function handleData(body) {
 
     const wearable_id = body.user.user_id;
 
@@ -35,7 +35,7 @@ function handleData(body) {
         }  
         const db = client.db("Terra");
         const wearableDB = db.collections("wearable_data");
-        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data" : body.data}}, function(err) {
+        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data.$.nutrition" : body.data}}, function(err) {
             if(err) {
                 console.log(err);
             }

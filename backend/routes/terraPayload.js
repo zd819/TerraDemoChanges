@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dataHelp = require('../functions/dataHandler');
+const auth = require('../functions/auth');
 
 // destination for terra webhook 
 router.post('/', (req,res,next) => {
@@ -19,30 +20,27 @@ router.post('/', (req,res,next) => {
         next(createError(payload));
     };
 
-    /*
+    if(data in payload === true) {     
 
-    if(data in payload === true) {
-        
         dataHelp.handleData(payload);
-
-
+        
     }else {
 
         switch(type) {
             
             case 'auth':
-                addUserWearable(payload.user);
+                auth.addUserWearable(payload.user);
                 break;
             case 'deauth':
-                deleteUserWearable(payload.user);
+                auth.deleteUserWearable(payload.user);
                 break;
             case 'user_reauth':
-                deleteUserWearable(payload.old_user);
-                addUserWearable(payload.new_user);
+                auth.deleteUserWearable(payload.old_user);
+                auth.addUserWearable(payload.new_user);
                 break;
             case 'auth_failure':
                 break;
-            case 'access_revoked'
+            case 'access_revoked':
                 break;
             case 'connection_error':
                 break;
@@ -55,115 +53,54 @@ router.post('/', (req,res,next) => {
             case 'processing':
                 break;
             default:
-
         }
     }
 
-    */
     
-    if (type === "auth") {
+    
+    // if (type === "auth") {
         
-        addUserWearable(payload.user);
+    //     addUserWearable(payload.user);
 
-    }else if(type === "user_reauth"){
+    // }else if(type === "user_reauth"){
 
-        deleteUserWearable(payload.old_user);
-        addUserWearable(payload.new_user);
+    //     deleteUserWearable(payload.old_user);
+    //     addUserWearable(payload.new_user);
 
-    }else if(type === "deauth"){
+    // }else if(type === "deauth"){
         
-        deleteUserWearable(payload.user);
+    //     deleteUserWearable(payload.user);
 
-    }else {
+    // }else {
         
-        mongoClient.connect((err,client) => {
+    //     mongoClient.connect((err,client) => {
             
-            if(err) {
-                console.log(err);
-                throw err;
-            }
+    //         if(err) {
+    //             console.log(err);
+    //             throw err;
+    //         }
 
-            const db = client.db("Terra");
-            const wearable = db.collection("wearable_data");
+    //         const db = client.db("Terra");
+    //         const wearable = db.collection("wearable_data");
 
-            console.log("data received");
-            const wearable_provider = payload.user.provider;
-            console.log(wearable_provider);
-            const wearable_id =  payload.user.user_id;
-            console.log(wearable_id);
-            const wearable_data = payload.data;
-            console.log(wearable_data);
-            wearable.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {data:wearable_data}}, function(err, res) {
-                if (err) throw err;
-                console.log("added data");
-                client.close();
-                console.log("connection closed");
-            });
-
-        });
-        
-
-
-    };
-
-
-    // function toMongo(data){
-    //     client.connect(function(err, db) {
-    //       if (err) throw err;
-    //       var dbo = db.db("Terra");
-    //       dbo.collection("users").insertOne(data, function(err, res) {
-    //         if (err) throw err;
-    //         console.log("sending to mongo");
-    //         console.log(data);
-    //         db.close();
-    //       });
+    //         console.log("data received");
+    //         const wearable_provider = payload.user.provider;
+    //         console.log(wearable_provider);
+    //         const wearable_id =  payload.user.user_id;
+    //         console.log(wearable_id);
+    //         const wearable_data = payload.data;
+    //         console.log(wearable_data);
+    //         wearable.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {data:wearable_data}}, function(err, res) {
+    //             if (err) throw err;
+    //             console.log("added data");
+    //             client.close();
+    //             console.log("connection closed");
+    //         });
     //     });
-    //   }
+    // };
 
     console.log('End of Handling Payload');
-
-
 });
-
-async function addUserWearable(user) {
-    mongoClient.connect((err,client) => {          
-        if(err) {
-            console.log(err);
-            throw err;
-        }
-        const db = client.db("Terra");
-        const users = db.collection("users");
-        const wearable_provider_user = {provider : user.provider, terra_id: user.user_id}
-        users.updateOne( {_id:"user1"}, {$push: {wearable_id:wearable_provider_user}}, function(err, res) {
-            if (err) {
-                throw err;
-            }
-            console.log("Added new Terra User");
-            client.close();
-        });
-    });
-
-}
-
-async function deleteUserWearable(user) {
-    mongoClient.connect((err,client) => {            
-        if(err) {
-            console.log(err);
-            throw err;
-        }
-        const db = client.db("Terra");
-        const users = db.collection("users");
-        const wearable_provider_user = {provider : user.provider, terra_id: user.user_id}
-        users.updateOne( {_id:"user1"}, {$pull: {wearable_id:wearable_provider_user}}, function(err, res) {
-            if (err) {
-                throw err;
-            }
-            console.log("Deleted old user");
-            client.close();
-        });
-    });
-}
-
 
 
 module.exports = router;
