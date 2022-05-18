@@ -1,9 +1,9 @@
 
-async function handleData(body) {
+async function handleData(payload) {
 
-    const wearable_id = body.user.user_id;
+    const wearable_id = payload.user.user_id;
 
-    switch(body.type) {
+    switch(payload.type) {
 
         case 'athlete': 
             break;
@@ -22,10 +22,7 @@ async function handleData(body) {
         case 'activity':
             break;
 
-        default: // subscribed, bulk user info, user info, integrations
-            
-
-
+        default:
     }
 
     mongoClient.connect((err,client) => {    
@@ -34,8 +31,9 @@ async function handleData(body) {
             throw err;
         }  
         const db = client.db("Terra");
-        const wearableDB = db.collections("wearable_data");
-        wearableDB.updateOne({"_id":wearable_id}, {$push : {"data.$.nutrition" : body.data}}, function(err) {
+        const wearableDB = db.collection("wearable_data");
+        const loc = "data." + payload.type;
+        wearableDB.updateOne({"_id":wearable_id}, {$push : {[loc] : payload.data}}, function(err) {
             if(err) {
                 console.log(err);
             }

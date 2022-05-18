@@ -18,9 +18,12 @@ router.post('/', (req,res,next) => {
         console.log("error oopsie");
         console.log(payload.message);
         next(createError(payload));
+    }else if(payload.status === "not_available") {
+        console.log("Data not available from this wearable");
+        next(createError("Data not available from this wearable"));
     };
 
-    if(data in payload === true) {     
+    if(payload.hasOwnProperty('data')) {     
 
         dataHelp.handleData(payload);
         
@@ -52,7 +55,7 @@ router.post('/', (req,res,next) => {
                 break;
             case 'processing':
                 break;
-            default:
+            default:  // subscribed, bulk user info, user info, integrations;
         }
     }
 
