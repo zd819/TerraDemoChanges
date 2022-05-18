@@ -13,28 +13,6 @@ async function newSession(req, res) {
     res.send(await terra.generateWidgetSession(id, ["FITBIT","OURA","TRAININGPEAKS","WITHINGS","SUUNTO","PELOTON","ZWIFT","GARMIN","EIGHT","WAHOO","GOOGLE","POLAR","APPLE","FREESTYLELIBRE","TEMPO","IFIT","CONCEPT2"]
     ,'EN'));
 
-    
-    // headers for widget containing our dev id and api key
-    // const apiHeaders = {'dev-id': 'imperial-Ktod24UiJ6', 'x-api-key': '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10', 'Content-Type':'application/json'};
-
-    // const options = {
-    //     url: 'https://api.tryterra.co/v2/auth/generateWidgetSession',
-    //     data: JSON.stringify({'reference_id': id, 'language':'EN'}),       
-    //     headers: apiHeaders,
-    //     method: 'POST'      
-    //   };
-    
-    // axios(options)
-    //   .then(function(response){
-    //     console.log('Response from Terra');
-    //     res.send(response.data);
-    //   })
-    //   .catch(function(error){
-    //     console.log(error);
-    //     console.log('Axios Error');
-    //   })
-
-
 };
 
 

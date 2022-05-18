@@ -1,7 +1,4 @@
-
-async function handleData(payload) {
-
-    const wearable_id = payload.user.user_id;
+async function pullData(something) {
 
     mongoClient.connect((err,client) => {    
         if(err) {
@@ -13,7 +10,7 @@ async function handleData(payload) {
         const loc = "data." + payload.type;
         var items = 0;
         for(var i = 0; i < payload.data.length; i++){
-            wearableDB.updateOne({"_id":wearable_id, "provider":payload.user.provider}, {$push : {[loc] : payload.data[i]}}, function(err) {
+            wearableDB.updateOne({"_id":wearable_id}, {$pull : {[loc] : payload.data[i]}}, function(err) {
                 if(err) {
                     console.log(err);
                 }
@@ -26,5 +23,3 @@ async function handleData(payload) {
         }
     });
 }
-
-module.exports = {handleData}

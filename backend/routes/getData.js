@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     const apiHeaders = {'dev-id': 'imperial-Ktod24UiJ6', 'x-api-key': '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10', 'Content-Type':'application/json'};
     const url = "https://api.tryterra.co/v2/";    
     const options = {
-        url: "https://api.tryterra.co/v2/" + "athlete",
+        url: "https://api.tryterra.co/v2/" + "nutrition",
         data: JSON.stringify({}),       
         headers: apiHeaders,
         params: {"user_id": user_id[0], "start_date":"2018-11-07", "end_date":"2018-11-08"},
