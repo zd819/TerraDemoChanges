@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {
   Routes,
   Route,
-  useLocation
+  useLocation 
 } from 'react-router-dom';
 
 // Import pages
@@ -24,7 +24,8 @@ function DashboardApp() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<App2 />} />
+        <Route exact path="/*" element={<App2 />} />
+        <Route exact path="/Dashboard" element={<DashboardMoz />} />
       </Routes>
     </BrowserRouter>
   );

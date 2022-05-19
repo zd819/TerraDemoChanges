@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
   useLocation
 } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import './tailwind-dashboard-template/src/css/style.scss';
 import './tailwind-dashboard-template/src/charts/ChartjsConfig';
 // Import pages
@@ -66,8 +68,9 @@ function App2() {
   if(!token) {
     return <Login setToken={setToken} />
   }
-  if(!dash){
+  // if(!dash){
       return(
+        
       <div className="wrapper">
         <div className="Top-Layer">
           <h1 className = "Name">Terra Terra</h1>
@@ -75,23 +78,26 @@ function App2() {
         </div>
         <div className="Temp">
           <Sidebar className="Sidebar" />
-          {dash ? <DashboardOld/> : <img src={logo} className="App-logo" alt="logo" />}    
+          { <img src={logo} className="App-logo" alt="logo" />}    
         </div>
-          {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash); } }>
+          {/* {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash); } }>
             Connect to Terra Terra
-          </button> : null}   
+          </button> : null}    */}
+          <Link to="/Dashboard" className="btn btn-primary" onClick={() => { HandleClick(); setDash(!dash); } } >
+          Connect to Terra Terra
+          </Link>
       </div>
     )
-  }
-  else{ 
-    return(
-      <div>
-          <Routes>
-            <Route exact path="/" element={<DashboardApp />} />
-          </Routes>
-      </div>
-    )
-  } 
+  // }
+  // else{ 
+  //   return(
+  //     <div>
+  //         <Routes>
+  //           <Route exact path="/Dashboard" element={<DashboardMoz />} />
+  //         </Routes>
+  //     </div>
+  //   )
+  // } 
 };
 
 export default App2;
