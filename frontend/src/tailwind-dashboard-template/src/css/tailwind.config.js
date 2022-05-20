@@ -2,8 +2,9 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: [
-    './index.html',
-    './src/**/*.{js,jsx,ts,tsx}',
+    "./index.html",
+    "./src/tailwind-dashboard-template/src/**/*.{js,jsx,ts,tsx,html}",
+    "./node_modules/@org/packageName/**/*.{html,js,svelte,ts}"
   ],
   theme: {
     extend: {
