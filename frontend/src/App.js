@@ -8,7 +8,7 @@ import {
 
 // Import pages
 import App2 from './App2.js';
-import DashboardMoz from './tailwind-dashboard-template/src/pages/DashboardMoz';
+import DashboardMoz from './pages/DashboardMoz';
 
 function DashboardApp() {
 

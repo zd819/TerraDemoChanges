@@ -4,10 +4,10 @@ import {
 } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import './tailwind-dashboard-template/src/css/style.scss';
-import './tailwind-dashboard-template/src/charts/ChartjsConfig';
+import './css/style.scss';
+import './charts/ChartjsConfig';
 // Import pages
-import DashboardMoz from './tailwind-dashboard-template/src/pages/DashboardMoz';
+import DashboardMoz from './pages/DashboardMoz';
 
 
 
@@ -15,7 +15,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardOld from './components/Dashboard/DashboardPage';
 import Preferences from './components/Preferences/Preferences';
-import DashboardApp from './tailwind-dashboard-template/src/DashboardApp.jsx'
+import DashboardApp from './DashboardApp.jsx'
 import Login from './components/Login/Login';
 import Sidebar from './components/Sidebar/Sidebar.js';
 import useToken from './useToken';
