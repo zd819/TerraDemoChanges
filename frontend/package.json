@@ -10,6 +10,7 @@
     "cdbreact": "^1.5.1",
     "chart.js": "^3.7.1",
     "chartjs-adapter-moment": "^1.0.0",
+    "craco": "^0.0.3",
     "moment": "^2.29.1",
     "react-embedded-browser": "^0.1.1",
     "react-flatpickr": "^3.10.12",
@@ -21,9 +22,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "vite build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "dev": "vite",
     "preview": "vite preview"

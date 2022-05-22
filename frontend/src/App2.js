@@ -73,7 +73,9 @@ function App2() {
         
       <div className="wrapper">
         <div className="Top-Layer">
-          <h1 className = "Name">Terra Terra</h1>
+          <h1 className = "text-blue-400 font-extrabold">Terra Terra</h1>
+          {/* Adding the tailwind css: "text-blue-400 font-extrabold", doesnt work indicating tailwind 
+          isnt working as inteded, or installed correctly*/}
           <img src={smallLogo} className="Small-Logo" alt="smallLogo" />
         </div>
         <div className="Temp">
