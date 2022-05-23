@@ -32,11 +32,11 @@ import PollData from './components/Dashboard/PollData.js'
 //SessionID from the backend and append to terraURL
 
 async function getURL() {
-  return fetch('http://localhost:8080/newSession', {
+  return await fetch('http://localhost:8080/newSession', {
     method: 'POST',
-    headers: {"userId": 'DunnoYet'}
+    headers: {userId: 'DunnoYet'}
   })
-    .then(data => data)
+  .then(data => data.json())
  }
 
 //  async function generateID() {
@@ -49,7 +49,8 @@ async function getURL() {
 const HandleClick = () => {
   // var ID = generateID();
   getURL()
-  .then((data) => {console.log(data); window.open(data)});
+  .then((data) => {console.log(data); window.open(data.url)})
+  .catch((error) => console.log(error));
 };
 
 const Mozaic = () =>{
