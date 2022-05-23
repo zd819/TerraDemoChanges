@@ -10,7 +10,7 @@ import PollData from '../../components/Dashboard/PollData';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard01(props) {
-
+  // PollData();
   const [loadingIcon, setLoading ] = useState(false);
 
   if(props == null){
