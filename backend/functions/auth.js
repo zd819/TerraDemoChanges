@@ -7,7 +7,7 @@ async function deleteUserWearable(user) {
         const db = client.db("Terra");
         const users = db.collection("users");
         const wearable_provider_user = {provider : user.provider, terraId: user.user_id}
-        users.updateOne( {_id:"user1"}, {$pull: {wearable_id:wearable_provider_user}}, function(err, res) {
+        users.updateOne( {_id:"user1"}, {$pull: {wearableIds:wearable_provider_user}}, function(err, res) {
             if (err) {
                 throw err;
             }
@@ -26,8 +26,8 @@ async function addUserWearable(user) {
         }
         const db = client.db("Terra");
         const users = db.collection("users");
-        const wearable_provider_user = {provider : user.provider, terra_id: user.user_id}
-        users.updateOne( {_id:"user1"}, {$push: {wearable_id:wearable_provider_user}}, function(err, res) {
+        const wearable_provider_user = {provider : user.provider, terraId: user.user_id}
+        users.updateOne( {_id:"user1"}, {$push: {wearableIds:wearable_provider_user}}, function(err, res) {
             if (err) {
                 throw err;
             }

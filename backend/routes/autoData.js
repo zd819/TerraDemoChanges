@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dataModel = require('../functions/getRelevantDataModels');
-const getIds = require('../functions/getUserWearableIds');
+const getIds = require('../functions/getUserWearables');
 const reqData = require('../functions/requestDataTerra');
 
 router.get('/', function(req, res, next) {
@@ -10,8 +10,9 @@ router.get('/', function(req, res, next) {
     var oneMonthAgo = today;
     oneMonthAgo.setMonth(oneMonthAgo.getMonth()-1);
 
-    const userId = req.header.userid;
-    const userWearables = getIds.getIds(userId);
+    const userId = req.header.userId;
+    const userWearables = getIds.getUserWearables(userId)
+    
 
     for(var i = 0; i < userWearables.length; i++){
 
@@ -31,5 +32,7 @@ router.get('/', function(req, res, next) {
     res.sendStatus(200);
     
 });
+
+
 
 module.exports = router;
