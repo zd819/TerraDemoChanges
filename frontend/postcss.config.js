@@ -4,5 +4,5 @@ import tailwindConfig from 'src/tailwind-dashboard-template/src/css/tailwind.con
 
 
 export default {
-  plugins: [tailwind(tailwindConfig), autoprefixer],
+  plugins: [tailwind(tailwindConfig), autoprefixer, require('tailwindcss')],
 }
