@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Login.css';
+import TerraLogo from '../../images/terra_logo_dark copy.png';
 
 
 async function loginUser(credentials) {

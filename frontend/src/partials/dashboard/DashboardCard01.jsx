@@ -10,7 +10,7 @@ import PollData from '../../components/Dashboard/PollData';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard01(props) {
-
+  // PollData();
   const [loadingIcon, setLoading ] = useState(false);
 
   if(props == null){
@@ -87,12 +87,7 @@ function DashboardCard01(props) {
   };
 
   return (
-    <div>
-    {loadingIcon ? 
-       
-        <h1 className="Title">Dashboard 
-        </h1>  
-       : <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+ <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
@@ -126,9 +121,6 @@ function DashboardCard01(props) {
         <LineChart data={chartData} width={389} height={128} />
       </div>
     </div>
-
-  }
-  </div>
    );
 }
 

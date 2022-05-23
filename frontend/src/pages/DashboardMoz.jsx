@@ -50,15 +50,11 @@ function DashboardMoz(){
             {/* Dashboard actions */}
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
 
-              {/* Left: Avatars */}
-              <DashboardAvatars />
 
               {/* Right: Actions */}
               <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-                {/* Filter button */}
-                <FilterButton />
-                {/* Datepicker built with flatpickr */}
-                <Datepicker />
+                
+                
                 {/* Add view button */}
                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                     <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
@@ -67,7 +63,10 @@ function DashboardMoz(){
                     <span className="hidden xs:block ml-2">Add view</span>
                 </button>                
               </div>
-
+              {/* Filter button */}
+              <FilterButton />
+              {/* Datepicker built with flatpickr */}
+              <Datepicker />
             </div>
 
             {/* Cards */}
@@ -79,7 +78,7 @@ function DashboardMoz(){
               <DashboardCard02 />
               {/* Line chart (Acme Professional) */}
               <DashboardCard03 />
-                          </div>
+            </div>
 
           </div>
         </main>
