@@ -4,21 +4,28 @@ import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-01.svg';
 import EditMenu from '../EditMenu';
 import PollData from '../../components/Dashboard/PollData';
-//import { ConvertTime } from './../src/components/DataHandling/ConvertTime.js'
+import { ConvertTime } from '../../components/DataHandling/ConvertTime.js'
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard01(props) {
-  // PollData();
-  const [loadingIcon, setLoading ] = useState(false);
+function DashboardCard01() {
 
-  if(props == null){
-    console.log('Props NOT PASSED');
-  }else{
-    console.log('Props passed to Dashboard');
-    console.log(props);
-  }
+  const [loadingIcon, setLoading ] = useState(false);
+  // var payload =  PollData();
+  // var dataHealth = payload[0];
+  // setLoading(payload[1]);
+  // if(dataHealth == null){
+  //   setLoading(true);
+  // }
+  
+  
+  // if(props == null){
+  //   console.log('Props NOT PASSED');
+  // }else{
+  //   console.log('Props passed to Dashboard');
+  //   console.log(props);
+  // }
   // var newTimes = props.map(function(ConvertTime) { 
   //   ConvertTime.data = ConvertTime.data.split(','); 
   //   return e;

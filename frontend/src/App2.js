@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {sha1,sha256,sha384,sha512} from 'crypto-hash';
 import {
   useLocation
 } from 'react-router-dom';
@@ -30,16 +31,26 @@ import PollData from './components/Dashboard/PollData.js'
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
-async function getURL() {
+async function getURL(ID) {
+  console.log('The SHA256 ID is',ID);
   return fetch('http://localhost:8080/newSession', {
     method: 'POST',
-    headers: {userid: 'DunnoYet'}
+    headers: {userId: JSON.stringify({ID})}
   })
     .then(data => data.json())
  }
 
+ async function generateID() {
+   const current = new Date().toLocaleString();
+   const result = JSON.stringify(await sha256(current));
+   console.log(result);
+   return result;
+ }
+
 const HandleClick = () => {
-  getURL()
+  console.log('The SHA256 ID is',ID);
+  var ID = generateID();
+  getURL(ID)
   .then((data) => {console.log(data); window.open(data.url)});
 };
 
@@ -64,7 +75,6 @@ function App2() {
   
   const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
-
   if(!token) {
     return <Login setToken={setToken} />
   }

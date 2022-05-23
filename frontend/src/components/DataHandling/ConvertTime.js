@@ -6,8 +6,8 @@
 
 
 export default function ConvertTime(isoTime) {
-    const data = isoTime;
-    const normalTime = date.getDate() +'-' (date.getMonth()+1) +'-' date.getFullYear();//prints expected format.
+    const date = isoTime;
+    const normalTime = date.getDate() +'-' (date.getMonth()+1) ;//+'-' date.getFullYear();//prints expected format.
     console.log('Iso time :', date, 'to normal time : ', normalTime);
     return normalTime;
 

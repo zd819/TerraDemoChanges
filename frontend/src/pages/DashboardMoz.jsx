@@ -73,7 +73,7 @@ function DashboardMoz(){
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01  props = {test}/>
+              <DashboardCard01 />
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 />
               {/* Line chart (Acme Professional) */}
