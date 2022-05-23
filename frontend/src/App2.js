@@ -31,27 +31,25 @@ import PollData from './components/Dashboard/PollData.js'
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
-async function getURL(ID) {
-  console.log('The SHA256 ID is',ID);
+async function getURL() {
   return fetch('http://localhost:8080/newSession', {
     method: 'POST',
-    headers: {userId: JSON.stringify({ID})}
+    headers: {"userId": 'DunnoYet'}
   })
-    .then(data => data.json())
+    .then(data => data)
  }
 
- async function generateID() {
-   const current = new Date().toLocaleString();
-   const result = JSON.stringify(await sha256(current));
-   console.log(result);
-   return result;
- }
+//  async function generateID() {
+//    const current = new Date().toLocaleString();
+//    const result = JSON.stringify(await sha256(current));
+//    console.log(result);
+//    return result;
+//  }
 
 const HandleClick = () => {
-  console.log('The SHA256 ID is',ID);
-  var ID = generateID();
-  getURL(ID)
-  .then((data) => {console.log(data); window.open(data.url)});
+  // var ID = generateID();
+  getURL()
+  .then((data) => {console.log(data); window.open(data)});
 };
 
 const Mozaic = () =>{
