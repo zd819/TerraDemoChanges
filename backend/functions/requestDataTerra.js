@@ -1,3 +1,5 @@
+const axios = require('axios').default;
+
 async function requestData(input){
 
     const id = input.userId;
@@ -5,10 +7,8 @@ async function requestData(input){
     const endDate = input.endDate;
     const dataModel = input.dataModel
 
-    // const terra = new Terra('imperial-Ktod24UiJ6','03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10');
-    // terra.setCurrentUser(id);
-
     console.log("Requesting Terra Data");
+    console.log(input);
 
     // headers for widget containing our dev id and api key
     const apiHeaders = {'dev-id': 'imperial-Ktod24UiJ6', 'x-api-key': '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10', 'Content-Type':'application/json'};

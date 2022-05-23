@@ -1,4 +1,5 @@
-async function relevantDataModels(provider) {
+function relevantDataModels(provider) {
+    console.log("inside here");
 
     switch(provider) {
         case "FITBIT":
@@ -42,7 +43,7 @@ async function relevantDataModels(provider) {
     }
 }
 
-async function getDataPath(dataModel) {
+function getDataPath(dataModel) {
 
     switch(dataModel) {
         case 'athlete': 
