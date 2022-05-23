@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {sha1,sha256,sha384,sha512} from 'crypto-hash';
 import {
   useLocation
 } from 'react-router-dom';
@@ -33,14 +34,22 @@ import PollData from './components/Dashboard/PollData.js'
 async function getURL() {
   return fetch('http://localhost:8080/newSession', {
     method: 'POST',
-    headers: {userid: 'DunnoYet'}
+    headers: {"userId": 'DunnoYet'}
   })
-    .then(data => data.json())
+    .then(data => data)
  }
 
+//  async function generateID() {
+//    const current = new Date().toLocaleString();
+//    const result = JSON.stringify(await sha256(current));
+//    console.log(result);
+//    return result;
+//  }
+
 const HandleClick = () => {
+  // var ID = generateID();
   getURL()
-  .then((data) => {console.log(data); window.open(data.url)});
+  .then((data) => {console.log(data); window.open(data)});
 };
 
 const Mozaic = () =>{
@@ -64,7 +73,6 @@ function App2() {
   
   const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
-
   if(!token) {
     return <Login setToken={setToken} />
   }

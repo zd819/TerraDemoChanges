@@ -12,14 +12,3 @@ export default function ConvertTime(isoTime) {
     return normalTime;
 
 }
-
-
-
-
-
-
-
-
-
-
-
