@@ -1,55 +1,50 @@
-
 async function relevantDataModels(provider) {
 
     switch(provider) {
-
         case "FITBIT":
-            return ["nutrition"];
-            break;
+            return ["activity", "daily", "sleep", "body", "athlete"];
         case "OURA":
-            return ["sleep"];
-            break;
+            return ["sleep", "daily", "athlete"];
         case "TRAININGPEAKS":
-            break;
+            return ["activity", "body", "athlete"];
         case "WITHINGS":
-            break;
+            return ["activity", "sleep", "body"];
         case "SUUNTO":
-            break;
+            return ["activity", "daily"];
         case "PELOTON":
-            break;
+            return ["activity", "athlete"];
         case "ZWIFT": 
-            break;
+            return ["activity", "body", "athlete"];
         case "GARMIN":
-            break;
+            return ["nutrition", "activity", "daily", "sleep", "body", "athlete"];
         case "EIGHT":
-            break;
+            return ["sleep", "athlete"];
         case "WAHOO":
-            break;
+            return ["activity", "athlete"];
         case "GOOGLE":
-            break;
+            return ["activity", "daily", "sleep", "body", "athlete"];
         case "POLAR":
-            break;
+            return ["activity", "daily", "sleep", "body", "athlete"];
         case "APPLE":
-            break;
+            return ["activity", "daily", "sleep", "body", "athlete"];
         case "FREESTYLELIBRE":
-            break;
+            return ["body", "athlete"];
         case "TEMPO":
-            break;
+            return ["activity"];
         case "IFIT":
-            break;
+            return ["activity", "athlete"];
         case "CONCEPT2":
-            break;
-
+            return ["activity", "athlete"];
+        case "MYFITNESSPAL":
+            return ["nutrition"];
         default:
             return [];
     }
-
 }
 
-async function getRelevantPath(dataModel) {
+async function getDataPath(dataModel) {
 
     switch(dataModel) {
-
         case 'athlete': 
             break;
         case 'sleep':
@@ -59,6 +54,7 @@ async function getRelevantPath(dataModel) {
         case 'menstruation':
             break; 
         case 'nutrition':
+            
             break;
         case 'daily':
             break;
@@ -68,5 +64,6 @@ async function getRelevantPath(dataModel) {
             break;
         default:
     }
-
 }
+
+module.exports = {relevantDataModels, getDataPath};
