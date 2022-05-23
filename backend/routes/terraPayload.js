@@ -38,6 +38,7 @@ router.post('/', (req,res,next) => {
                 auth.deleteUserWearable(payload.user);
                 break;
             case 'user_reauth':
+                // need to delete old data / move it to new id in wearables collection
                 auth.deleteUserWearable(payload.old_user);
                 auth.addUserWearable(payload.new_user);
                 break;
@@ -58,49 +59,6 @@ router.post('/', (req,res,next) => {
             default:  // subscribed, bulk user info, user info, integrations;
         }
     }
-
-    
-    
-    // if (type === "auth") {
-        
-    //     addUserWearable(payload.user);
-
-    // }else if(type === "user_reauth"){
-
-    //     deleteUserWearable(payload.old_user);
-    //     addUserWearable(payload.new_user);
-
-    // }else if(type === "deauth"){
-        
-    //     deleteUserWearable(payload.user);
-
-    // }else {
-        
-    //     mongoClient.connect((err,client) => {
-            
-    //         if(err) {
-    //             console.log(err);
-    //             throw err;
-    //         }
-
-    //         const db = client.db("Terra");
-    //         const wearable = db.collection("wearable_data");
-
-    //         console.log("data received");
-    //         const wearable_provider = payload.user.provider;
-    //         console.log(wearable_provider);
-    //         const wearable_id =  payload.user.user_id;
-    //         console.log(wearable_id);
-    //         const wearable_data = payload.data;
-    //         console.log(wearable_data);
-    //         wearable.updateOne( {_id:wearable_id , provider: wearable_provider }, {$push: {data:wearable_data}}, function(err, res) {
-    //             if (err) throw err;
-    //             console.log("added data");
-    //             client.close();
-    //             console.log("connection closed");
-    //         });
-    //     });
-    // };
 
     console.log('End of Handling Payload');
 });

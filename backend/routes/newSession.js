@@ -4,16 +4,16 @@ const axios = require('axios').default;
 const { default: Terra } = require("terra-api");
 
 // Create a new session on terra api and return result to frontend
-async function newSession(req, res) {
+router.post('/', (req, res) => {
 
     const id = req.headers.userid;
-    const terra = new Terra('imperial-Ktod24UiJ6', '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10');
+    const terraApi = new Terra('imperial-Ktod24UiJ6', '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10');
     console.log("New Widget Session requested");
     console.log("User Id: " + id);
-    res.send(await terra.generateWidgetSession(id, ["FITBIT","OURA","TRAININGPEAKS","WITHINGS","SUUNTO","PELOTON","ZWIFT","GARMIN","EIGHT","WAHOO","GOOGLE","POLAR","APPLE","FREESTYLELIBRE","TEMPO","IFIT","CONCEPT2"]
-    ,'EN'));
+    terraApi.generateWidgetSession(id, ["FITBIT","OURA","TRAININGPEAKS","WITHINGS","SUUNTO","PELOTON","ZWIFT","GARMIN","EIGHT","WAHOO","GOOGLE","POLAR","APPLE","FREESTYLELIBRE","TEMPO","IFIT","CONCEPT2","MYFITNESSPAL"],'EN')
+    .then((s) => res.send(s))
+    .catch((e) => console.log(e));
+});
 
-};
 
-
-module.exports = newSession;
+module.exports = router;
