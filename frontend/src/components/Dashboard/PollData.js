@@ -7,7 +7,7 @@ export default function PollData() {
 
     useEffect(() => {
     const interval = setInterval(() => {
-//        console.log('Logs every second');
+        console.log('Logs every second');
         return getData();
     }, MINUTE_MS);
 

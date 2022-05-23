@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-01.svg';
 import EditMenu from '../EditMenu';
+import PollData from '../../components/Dashboard/PollData';
 //import { ConvertTime } from './../src/components/DataHandling/ConvertTime.js'
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard01(props) {
+
+  const [loadingIcon, setLoading ] = useState(false);
+
   if(props == null){
     console.log('Props NOT PASSED');
   }else{
@@ -83,7 +87,12 @@ function DashboardCard01(props) {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+    <div>
+    {loadingIcon ? 
+       
+        <h1 className="Title">Dashboard 
+        </h1>  
+       : <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
@@ -117,7 +126,10 @@ function DashboardCard01(props) {
         <LineChart data={chartData} width={389} height={128} />
       </div>
     </div>
-  );
+
+  }
+  </div>
+   );
 }
 
 export default DashboardCard01;
