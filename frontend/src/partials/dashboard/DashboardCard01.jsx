@@ -4,6 +4,9 @@ import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-01.svg';
 import EditMenu from '../EditMenu';
 import PollData from '../../components/Dashboard/PollData';
+// import getData from '../../components/Dashboard/testData.js'
+import axios from "axios";
+
 import { ConvertTime } from '../../components/DataHandling/ConvertTime.js'
 
 // Import utilities
@@ -11,8 +14,27 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard01() {
 
-  const [loadingIcon, setLoading ] = useState(false);
-  // var payload =  PollData();
+  const [isLoading, setLoading ] = useState(true);
+  const [Data, setData ] = useState();
+  useEffect(() => { // useEffect hook
+    setTimeout(() => { // simulate a delay
+    axios.get("https://pokeapi.co/api/v2/pokemon/1", {
+      headers: {
+        'Test-Header': 'test-value'
+      }
+    })
+    .then((response) => {
+    
+        console.log(response);
+        console.log("Requesting pokemon data");
+        // Get pokemon data
+        setData(response.data); //set pokemon state
+        setLoading(false); //set loading state
+      });
+     }, 8000);
+    }, []);
+
+  //var payload =  getData();
   // var dataHealth = payload[0];
   // setLoading(payload[1]);
   // if(dataHealth == null){
@@ -93,9 +115,23 @@ function DashboardCard01() {
     ],
   };
 
+  // { isLoading ? <div>
+  //   Loading the data {console.log("loading state")}
+  //   </div> : null}
+  
+  // if(isLoading){
+  //   <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+  //         <div className="px-5 pt-5">
+  //           Loading Health Data from MYFITNESSPAL
+  //         </div>
+  //   </div>
+  // }else{
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      <div className="px-5 pt-5">
+  { isLoading ? <div>
+    Loading the data {console.log("loading state")}
+    </div> :
+  <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
           <img src={Icon} width="32" height="32" alt="Icon 01" />
@@ -112,21 +148,23 @@ function DashboardCard01() {
             </li>
           </EditMenu>
         </header>
+        
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Health</h2>
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Health Data Analysis</div>
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
           <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div>
         </div>
-      </div>
+  </div>}
       {/* Chart built with Chart.js 3 */}
-      <div className="grow">
+       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         {/* {Here can use hooks to not render LineChart, but render loading icon} */}
         {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
       </div>
+    
     </div>
    );
 }
