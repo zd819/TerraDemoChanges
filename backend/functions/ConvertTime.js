@@ -5,10 +5,10 @@
 // conversion code : const d = new Date('2015-03-04T00:00:00.000Z');
 
 
-export default function ConvertTime(isoTime) {
-    const date = isoTime;
-    const normalTime = date.getDate() +'-' (date.getMonth()+1) ;//+'-' date.getFullYear();//prints expected format.
-    console.log('Iso time :', date, 'to normal time : ', normalTime);
-    return normalTime;
+// export default function ConvertTime(isoTime) {
+//     const date = isoTime;
+//     const normalTime = date.getDate() +'-' (date.getMonth()+1) ;//+'-' date.getFullYear();//prints expected format.
+//     console.log('Iso time :', date, 'to normal time : ', normalTime);
+//     return normalTime;
 
-}
+// }

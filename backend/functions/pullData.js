@@ -1,7 +1,12 @@
-async function pullData(something) {
+const findCalories = require('./formatData').findCalories
 
-    const startDate = something.startDate;
-    const endDate = something.endDate;
+function pullData(something, callback) {
+
+    const startDate = new Date(something.startDate).toISOString();
+    const endDate = new Date(something.endDate).toISOString();
+    const terraId = something.terraId;
+
+    console.log(startDate);
 
     mongoClient.connect((err,client) => {    
         if(err) {
@@ -10,14 +15,18 @@ async function pullData(something) {
         }  
         const db = client.db("Terra");
         const wearableDB = db.collection("wearable_data");
-        const loc = "data." + payload.type;
-        wearableDB.find({"_id":wearable_id}, {projection : {[loc] : payload.data[i]}}, function(err,result) {
-            
-            if(err) {
-                console.log(err);
+        wearableDB.aggregate( [ { $match : { $and: [ { "terraId" : terraId },
+                            { "data.metadata.start_time" : { $gte : startDate }},
+                            { "data.metadata.start_time" : { $lte : endDate }}]}}])
+                            .toArray((err,res) => {
+            client.close();
+            for(var i = 0; i < res.length; i++){
+                res[i] = findCalories(res[i]);
             }
-            console.log("Sending Data to Mongo");
-             client.close();
+
+            callback(res);
         });
     });
 }
+
+module.exports = {pullData}

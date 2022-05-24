@@ -24,3 +24,4 @@ async function getUserWearables(userId, callback) {
 }
 
 module.exports = {getUserWearables};
+

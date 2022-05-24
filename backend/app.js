@@ -11,6 +11,7 @@ const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
 const dataRouter = require('./routes/getData');
 const autoDataRouter = require('./routes/autoData');
+const mongoRouter = require('./routes/getFromMongo');
 
 const cors = require('cors');
 const app = express();
@@ -34,6 +35,7 @@ app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
 app.use('/getData', dataRouter);
 app.use('/autoData', autoDataRouter);
+app.use('/testing', mongoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

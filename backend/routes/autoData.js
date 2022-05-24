@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
     const userId = req.get('userId');
     // const userWearables = getIds.getUserWearables(userId);
     getIds.getUserWearables(userId, (userWearables) => {
-        console.log(userWearables);
         for(var i = 0; i < userWearables.length; i++){
             const dataModels = dataModel.relevantDataModels(userWearables[i].provider);
             const terraId = userWearables[i].terraId;
