@@ -1,10 +1,11 @@
 const findCalories = require('./formatData').findCalories
 
-function pullData(something, callback) {
+function pullData(vars, callback) {
 
-    const startDate = new Date(something.startDate).toISOString();
-    const endDate = new Date(something.endDate).toISOString();
-    const terraId = something.terraId;
+    const startDate = new Date(vars.startDate).toISOString();
+    const endDate = new Date(vars.endDate).toISOString();
+    const terraId = vars.terraId;
+    const type = vars.type
 
     console.log(startDate);
 
@@ -15,14 +16,14 @@ function pullData(something, callback) {
         }  
         const db = client.db("Terra");
         const wearableDB = db.collection("wearable_data");
-        wearableDB.aggregate( [ { $match : { $and: [ { "terraId" : terraId },
+        wearableDB.aggregate( [ { $match : { $and: [ 
+                            { "terraId" : terraId },
                             { "data.metadata.start_time" : { $gte : startDate }},
-                            { "data.metadata.start_time" : { $lte : endDate }}]}}])
-                            .toArray((err,res) => {
+                            { "data.metadata.start_time" : { $lte : endDate }},
+                            { "type" : type} 
+                            ]}}]).
+                            toArray( (err,res) => {
             client.close();
-            for(var i = 0; i < res.length; i++){
-                res[i] = findCalories(res[i]);
-            }
 
             callback(res);
         });

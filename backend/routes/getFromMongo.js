@@ -14,8 +14,12 @@ router.get('/', (req, res) => {
     pullData({
         startDate: body.startDate,
         endDate: body.endDate,
-        terraId: body.terraId
+        terraId: body.terraId,
+        type: body.type
     }, function(result){
+        for(var i = 0; i < res.length; i++){
+            result[i] = findCalories(result[i]);
+        }
         console.log(result);
         res.send(result);
     })

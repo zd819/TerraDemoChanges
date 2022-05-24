@@ -32,7 +32,7 @@ router.post('/', (req,res,next) => {
         switch(type) {
             
             case 'auth':
-                auth.addUserWearable(payload.user);
+                auth.addUserWearable(payload.user, payload.reference_id);
                 break;
             case 'deauth':
                 auth.deleteUserWearable(payload.user);

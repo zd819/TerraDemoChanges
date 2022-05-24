@@ -1,11 +1,11 @@
 const axios = require('axios').default;
 
-async function requestData(input){
+async function requestTerraData(input){
 
-    const id = input.userId;
+    const terraId = input.terraId;
     const startDate = input.startDate;
     const endDate = input.endDate;
-    const dataModel = input.dataModel
+    const type = input.type
 
     console.log("Requesting Terra Data");
     console.log(input);
@@ -17,7 +17,7 @@ async function requestData(input){
         url: url + dataModel,
         data: JSON.stringify({}),       
         headers: apiHeaders,
-        params: {"user_id": id, "start_date": startDate, "end_date": endDate},
+        params: {"user_id": terraId, "start_date": startDate, "end_date": endDate},
         method: "GET"      
       };
 
@@ -32,4 +32,4 @@ async function requestData(input){
       })
 }
 
-module.exports = {requestData};
+module.exports = {requestTerraData};

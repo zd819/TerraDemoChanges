@@ -1,1 +1,4 @@
-inconsistent use of userId, wearableId etc so unclear in seperate files
+inconsistent use of userId, wearableId etc so unclear in seperate files, 
+FROM NOW USE terraId WHEN REFERING TO WEARABLE IDS ETC AND userId IN REFERENCE TO OUR ID
+
+FIX SOME OF THE FUNCTIONS AND FILE / MODULE STUFF SO IT LOOKS NICER / MOVE SOME STUFF AROUND SO ROUTES IS CLEAN

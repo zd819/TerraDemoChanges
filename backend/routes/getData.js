@@ -1,37 +1,42 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios').default;
-const user_id = ['596be094-5daa-4962-bd60-0177c9439cec'];
+const requestTerraData = require('../functions/requestTerraData').requestTerraData
+const pullMongoData = require('../functions/pullData').pullData
+const dayDifference = require('../functions/timeHelpers').dayDifference
 
-
-// Create a new session on terra api and return result to frontend
+// checks mongo before requesting from terra if data doesnt exist.
 router.post('/', (req, res) => {
 
     console.log("Get Data Request");
-    const id = req.headers.userid;
-    const dataModel = req.headers.dataModel;
+    const startDate = req.startDate;
+    const terraId = req.terraId;
+    const endDate = req.endDate;
+    const type = req.type;
+     
+    const mongoData = pullMongoData({
+                        terraId : terraId,
+                        startDate : startDate,
+                        endDate : endDate,
+                        type : type
+                      });
+    
+    console.log(mongoData)
 
-    // headers for widget containing our dev id and api key
-    const apiHeaders = {'dev-id': 'imperial-Ktod24UiJ6', 'x-api-key': '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10', 'Content-Type':'application/json'};
-    const url = "https://api.tryterra.co/v2/";    
-    const options = {
-        url: "https://api.tryterra.co/v2/" + "nutrition",
-        data: JSON.stringify({}),       
-        headers: apiHeaders,
-        params: {"user_id": user_id[0], "start_date": "2018-11-07", "end_date": "2018-11-08"},
-        method: "GET"      
-      };
+    // if true incomplete data set between mongo and dates specified.
+    if(mongoData.length != dayDifference(startDate, endDate)){
 
-    axios(options)
-      .then(function(response){
-        console.log('Terra Response');
-        console.log(response.body);
-        res.send(response.data);
-      })
-      .catch(function(error){
-        console.log(error);
-        console.log('Axios Error');
-      })
+      requestTerraData({
+        terraId : terraId,
+        startDate : startDate,
+        endDate : endDate,
+        type : type
+      });
+      
+      // now we have to wait to get the data. need something to notify this process when its here so we can reply.
+    }
+
+
 
 });
 
