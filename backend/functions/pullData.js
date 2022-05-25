@@ -1,4 +1,3 @@
-const findCalories = require('./formatData').findCalories
 
 function pullData(vars, callback) {
 
@@ -6,8 +5,6 @@ function pullData(vars, callback) {
     const endDate = new Date(vars.endDate).toISOString();
     const terraId = vars.terraId;
     const type = vars.type
-
-    console.log(startDate);
 
     mongoClient.connect((err,client) => {    
         if(err) {

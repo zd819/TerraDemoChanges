@@ -6,7 +6,7 @@ const pullMongoData = require('../functions/pullData').pullData
 const dayDifference = require('../functions/timeHelpers').dayDifference
 
 // checks mongo before requesting from terra if data doesnt exist.
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
 
     console.log("Get Data Request");
     const startDate = req.startDate;
@@ -24,8 +24,11 @@ router.post('/', (req, res) => {
     console.log(mongoData)
 
     // if true incomplete data set between mongo and dates specified.
-    if(mongoData.length != dayDifference(startDate, endDate)){
+    if(mongoData.length == dayDifference(startDate, endDate)){
 
+    }else if(mongoData.length > dayDifference) {
+        // duplicate data entries
+    }else {
       requestTerraData({
         terraId : terraId,
         startDate : startDate,

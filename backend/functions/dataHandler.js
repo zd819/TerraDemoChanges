@@ -14,7 +14,7 @@ async function handleData(payload) {
         const wearableDB = db.collection("wearable_data");
         var items = 0;
         for(var i = 0; i < payload.data.length; i++){
-            wearableDB.insertOne({"terraId":terraId, "provider":prov, "type":type, "data": payload.data[i]}, function(err) {
+            wearableDB.updateOne({"terraId":terraId, "provider":prov, "type":type, "data": payload.data[i]}, function(err) {
                 if(err) {
                     console.log(err);
                 }

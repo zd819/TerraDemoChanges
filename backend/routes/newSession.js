@@ -5,7 +5,7 @@ const { default: Terra } = require("terra-api");
 
 // Create a new session on terra api and return result to frontend
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
 
     const id = req.get('userId');
     const terraApi = new Terra('imperial-Ktod24UiJ6', '03deeabbca244792bfb01a0883a4293e9a32cc863de7f7924e95af4b14089c10');
