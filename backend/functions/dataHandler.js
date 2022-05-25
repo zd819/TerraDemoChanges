@@ -1,3 +1,4 @@
+const findStartDate = require('./getRelevantDataModels').findStartDate
 
 async function handleData(payload) {
 
@@ -14,7 +15,11 @@ async function handleData(payload) {
         const wearableDB = db.collection("wearable_data");
         var items = 0;
         for(var i = 0; i < payload.data.length; i++){
-            wearableDB.updateOne({"terraId":terraId, "provider":prov, "type":type, "data": payload.data[i]}, function(err) {
+            const data = payload.data[i];
+            const startDate = findStartDate(type,data);
+            wearableDB.updateOne( {"terraId":terraId,"provider":prov,"type":type,"startDate":startDate},
+                                    {$set : {"terraId":terraId, "provider":prov, "type":type, "data": data, "startDate": startDate}}, 
+                                    {upsert:true}, function(err) {
                 if(err) {
                     console.log(err);
                 }
