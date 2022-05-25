@@ -6,34 +6,75 @@ import EditMenu from '../EditMenu';
 import PollData from '../../components/Dashboard/PollData';
 // import getData from '../../components/Dashboard/testData.js'
 import axios from "axios";
+import qs from 'qs';
 
 import { ConvertTime } from '../../components/DataHandling/ConvertTime.js'
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard01() {
+  
+  
 
+function DashboardCard01() {
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [Data, setData ] = useState();
-  useEffect(() => { // useEffect hook
-    setTimeout(() => { // simulate a delay
-    axios.get("https://pokeapi.co/api/v2/pokemon/1", {
-      headers: {
-        'Test-Header': 'test-value'
-      }
-    })
-    .then((response) => {
-    
-        console.log(response);
-        console.log("Requesting pokemon data");
-        // Get pokemon data
-        setData(response.data); //set pokemon state
-        setLoading(false); //set loading state
-      });
-     }, 8000);
-    }, []);
+  const [Date, setDate ] = useState();
+  const times = [];
+  const points = [];
 
+  const data = {
+    "startDate": "2022-05-17",
+    'endDate': '2022-05-24',
+    'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
+    'type': 'nutrition'
+  }
+  const options = {
+    url: "https://6777-82-69-42-98.eu.ngrok.io/testing",
+    headers: {'Content-Type':'application/json',
+    'userId': 'user1'},
+    data: JSON.stringify(data), 
+    method: 'GET'
+    };
+  
+  useEffect(() => { // useEffect hook
+      const loadPost = async () => {
+      // axios(options)
+      console.log("Getting Data");
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+        "Content-Type": "application/json",
+        "userID" : "user1", 
+        "startDate" : "2022-04-29",
+        "endDate": "2022-05-24", 
+        "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
+        "type": "nutrition", 
+      }}).then((res => res.json()))
+      .catch(function(error){
+          console.log(error);
+          console.log("Axios error");
+        });
+      // console.log(response.json());  
+      // console.log(response.at(0));
+      console.log(response); 
+      console.log(response[19].dataPoint);
+      console.log('Retreived Data')
+      for (let  user of response) {
+        console.log("Data :", user.date);
+        console.log("User Data :", user.dataPoint); 
+        times.push(user.date); 
+        points.push(user.dataPoint);
+      };
+      setData(points); //set Time state
+      setDate(times); //set Data state
+      setLoading(false); //set loading state
+      }
+      loadPost(); 
+      }, []);
+  console.log('Logged data', Data);
+  console.log('Logged DATES', Date);
   //var payload =  getData();
   // var dataHealth = payload[0];
   // setLoading(payload[1]);
@@ -54,38 +95,13 @@ function DashboardCard01() {
   // });
   // const newTimes2 = props.map(stringX => ConvertTime(stringX));
   
-  const firstTimeFrame = [
-    '12-01-2020', '01-01-2021', '02-01-2021',
-    '03-01-2021', '04-01-2021', '05-01-2021',
-    '06-01-2021', '07-01-2021', '08-01-2021',
-    '09-01-2021', '10-01-2021', '11-01-2021',
-    '12-01-2021', '01-01-2022', '02-01-2022',
-    '03-01-2022', '04-01-2022', '05-01-2022',
-    '06-01-2022', '07-01-2022', '08-01-2022',
-    '09-01-2022', '10-01-2022', '11-01-2022',
-    '12-01-2022', '01-01-2023',
-  ]
+  
   const chartData = {
-    labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
-      '06-01-2021', '07-01-2021', '08-01-2021',
-      '09-01-2021', '10-01-2021', '11-01-2021',
-      '12-01-2021', '01-01-2022', '02-01-2022',
-      '03-01-2022', '04-01-2022', '05-01-2022',
-      '06-01-2022', '07-01-2022', '08-01-2022',
-      '09-01-2022', '10-01-2022', '11-01-2022',
-      '12-01-2022', '01-01-2023',
-    ],
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        data: [
-          1000, 1500, 610, 504, 504, 504, 349,
-          349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349,
-          252, 423, 622, 470, 532,
-        ],
+        data: Data, 
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -157,13 +173,16 @@ function DashboardCard01() {
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}
+      { isLoading ? <div>
+    Loading the data {console.log("loading state")}
+    </div> :
        <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         {/* {Here can use hooks to not render LineChart, but render loading icon} */}
         {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
-      </div>
+      </div>}
     
     </div>
    );

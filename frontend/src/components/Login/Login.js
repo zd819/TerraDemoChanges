@@ -6,7 +6,7 @@ import TerraLogo from '../../images/terra_logo_dark copy.png';
 
 
 async function loginUser(credentials) {
- return fetch('http://localhost:8080/login', {
+ return fetch('https://6777-82-69-42-98.eu.ngrok.io/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'

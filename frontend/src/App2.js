@@ -31,9 +31,11 @@ import PollData from './components/Dashboard/PollData.js'
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
+const url = "https://6777-82-69-42-98.eu.ngrok.io"
+
 async function getURL() {
-  return await fetch('http://localhost:8080/newSession', {
-    method: 'POST',
+  return await fetch(url+'/newSession', {
+    method: 'GET',
     headers: {userId: 'DunnoYet'}
   })
   .then(data => data.json())
@@ -46,15 +48,12 @@ async function getURL() {
 //    return result;
 //  }
 
+
 const HandleClick = () => {
   // var ID = generateID();
   getURL()
   .then((data) => {console.log(data); window.open(data.url)})
   .catch((error) => console.log(error));
-};
-
-const Mozaic = () =>{
-  window.open('http://localhost:3000/Dashboard')
 };
 
 const ShowData = () => {
