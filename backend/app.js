@@ -24,8 +24,8 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '25mb'}));
+app.use(express.urlencoded({ extended: false, limit: '25mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -69,6 +69,15 @@ global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/m
   });
 
 
+global.dataRequest = 0;
+// 0 - Nothing going on rn
+// 1 - Processing
+// 2 - Process filled
+// 3 - Error of somesort
 
+//setting limit for express size limit
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 module.exports = app;

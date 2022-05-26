@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const dataHelp = require('../functions/dataHandler');
+const handlePayload = require('../functions/payloadHandler').handlePayload;
 const auth = require('../functions/auth');
 
 // destination for terra webhook 
@@ -25,7 +25,7 @@ router.post('/', (req,res,next) => {
 
     if(payload.hasOwnProperty('data')) {     
 
-        dataHelp.handleData(payload);
+        handlePayload(payload);
         
     }else {
 

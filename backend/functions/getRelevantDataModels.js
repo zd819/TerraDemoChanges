@@ -55,7 +55,6 @@ function getDataPath(dataModel) {
         case 'menstruation':
             break; 
         case 'nutrition':
-            
             break;
         case 'daily':
             break;
@@ -67,30 +66,5 @@ function getDataPath(dataModel) {
     }
 }
 
-function findStartDate(type,data) {
 
-
-    switch(type) {
-        case 'athlete': 
-            break;
-        case 'sleep':
-            break;
-        case 'body':
-            break;
-        case 'menstruation':
-            break; 
-        case 'nutrition':     
-            return data.metadata.start_time;
-            break;
-        case 'daily':
-            break;
-        case 'body':
-            break;
-        case 'activity':
-            break;
-        default:
-    }
-    
-}
-
-module.exports = {relevantDataModels, getDataPath, findStartDate};
+module.exports = {relevantDataModels, getDataPath};

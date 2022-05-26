@@ -1,8 +1,8 @@
 
 function pullData(vars, callback) {
 
-    const startDate = new Date(vars.startDate).toISOString();
-    const endDate = new Date(vars.endDate).toISOString();
+    const startDate = vars.startDate.toISOString();
+    const endDate = vars.endDate.toISOString();
     const terraId = vars.terraId;
     const type = vars.type
 
@@ -15,8 +15,8 @@ function pullData(vars, callback) {
         const wearableDB = db.collection("wearable_data");
         wearableDB.aggregate( [ { $match : { $and: [ 
                             { "terraId" : terraId },
-                            { "data.metadata.start_time" : { $gte : startDate }},
-                            { "data.metadata.start_time" : { $lte : endDate }},
+                            { "startDate" : { $gte : startDate }},
+                            { "startDate" : { $lte : endDate }},
                             { "type" : type} 
                             ]}}]).
                             toArray( (err,res) => {
