@@ -21,8 +21,9 @@ function DashboardCard01() {
   const [isLoading, setLoading ] = useState(true);
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
-  const times = [];
-  const points = [];
+  var times = [];
+  var points = [];
+  const terraData = []
 
   const data = {
     "startDate": "2022-05-17",
@@ -45,7 +46,7 @@ function DashboardCard01() {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         "userID" : "user1", 
         "startDate" : "2022-04-29",
         "endDate": "2022-05-24", 
@@ -58,15 +59,32 @@ function DashboardCard01() {
         });
       // console.log(response.json());  
       // console.log(response.at(0));
-      console.log(response); 
-      console.log(response[19].dataPoint);
+      console.log('Response is ',response); 
+      //console.log(response[19].dataPoint);
       console.log('Retreived Data')
       for (let  user of response) {
-        console.log("Data :", user.date);
-        console.log("User Data :", user.dataPoint); 
+        const splitDate = user.date.split('-');
+        console.log("Date :", user.date);
+        // console.log("THE DAY IS :", splitDate[0]);
+        // console.log("THE MONTH IS :", splitDate[1]);
+        // console.log("THE YEAR IS :", splitDate[2]);
+        //console.log("User Data :", user.dataPoint);
         times.push(user.date); 
         points.push(user.dataPoint);
       };
+      let sortedDescending = times.sort((a, b) => {
+        const aDate = a.split('-');
+        const bDate = b.split('-');
+        if(aDate[2]!=bDate[2]){
+          return aDate[2]-bDate[2];
+        }
+        else if(aDate[1]!=bDate[1]){
+          return aDate[1]-bDate[1];
+        }
+        else return aDate[0]-bDate[0];
+      });
+      console.log('Sorted dates', sortedDescending);
+      times = sortedDescending;
       setData(points); //set Time state
       setDate(times); //set Data state
       setLoading(false); //set loading state
