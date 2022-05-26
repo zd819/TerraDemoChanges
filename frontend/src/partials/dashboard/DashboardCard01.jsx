@@ -19,12 +19,14 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 function DashboardCard01() {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
+  const [calorieOver, setCalories ] = useState(false);
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
   const terraData = []
-
+  const green = "bg-green-500";
+  const yellow = "bg-yellow-500";
   const data = {
     "startDate": "2022-05-17",
     'endDate': '2022-05-24',
@@ -64,7 +66,10 @@ function DashboardCard01() {
       console.log('Retreived Data')
       for (let  user of response) {
         const splitDate = user.date.split('-');
-        console.log("Date :", user.date);
+        if(user.dataPoint> 3800){
+          setCalories(true);
+        }
+        //console.log("Date :", user.date);
         // console.log("THE DAY IS :", splitDate[0]);
         // console.log("THE MONTH IS :", splitDate[1]);
         // console.log("THE YEAR IS :", splitDate[2]);
@@ -72,9 +77,9 @@ function DashboardCard01() {
         times.push(user.date); 
         points.push(user.dataPoint);
       };
-      let sortedDescending = times.sort((a, b) => {
-        const aDate = a.split('-');
-        const bDate = b.split('-');
+      let sortedDescending = response.sort((a, b) => {
+        const aDate = a.date.split('-');
+        const bDate = b.date.split('-');
         if(aDate[2]!=bDate[2]){
           return aDate[2]-bDate[2];
         }
@@ -83,7 +88,7 @@ function DashboardCard01() {
         }
         else return aDate[0]-bDate[0];
       });
-      console.log('Sorted dates', sortedDescending);
+      //console.log('Sorted dates', sortedDescending);
       times = sortedDescending;
       setData(points); //set Time state
       setDate(times); //set Data state
@@ -91,7 +96,7 @@ function DashboardCard01() {
       }
       loadPost(); 
       }, []);
-  console.log('Logged data', Data);
+  //console.log('Logged data', Data);
   console.log('Logged DATES', Date);
   //var payload =  getData();
   // var dataHealth = payload[0];
@@ -113,7 +118,8 @@ function DashboardCard01() {
   // });
   // const newTimes2 = props.map(stringX => ConvertTime(stringX));
   
-  
+  const Over = "Too Many Calories Consumed";
+  const Under = "Good amount of Calories Consumed";
   const chartData = {
     labels: Date,
     datasets: [
@@ -187,7 +193,10 @@ function DashboardCard01() {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Health Data Analysis</div>
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div>
+          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
+            {calorieOver? Over : Under};
+            {console.log(green)}
+          </div>
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}
