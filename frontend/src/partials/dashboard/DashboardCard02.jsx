@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-02.svg';
@@ -9,6 +9,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard02() {
 
+  const [isLoading, setLoading ] = useState(true);
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -61,6 +62,9 @@ function DashboardCard02() {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+      { isLoading ? <div>
+    Please connect either FitBit, TrainingPeaks, or Withings {console.log("loading state")}
+    </div> :
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
@@ -84,12 +88,15 @@ function DashboardCard02() {
           <div className="text-3xl font-bold text-slate-800 mr-2">Past 3 Months</div>
           <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-14%</div>
         </div>
-      </div>
+      </div>}
       {/* Chart built with Chart.js 3 */}
+      { isLoading ? <div>
+     {console.log("loading state")}
+    </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
-      </div>
+      </div>}
     </div>
   );
 }
