@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
-import Icon from '../../images/icon-03.svg';
+import Icon from '../../images/icon-01.svg';
 import EditMenu from '../EditMenu';
 
 // Import utilities
@@ -78,8 +78,8 @@ function DashboardCard03() {
             </li>
           </EditMenu>
         </header>
-        <h2 className="text-lg font-semibold text-slate-800 mb-2">Nutrition</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Nutrition Data Analysis</div>
+        <h2 className="text-lg font-semibold text-slate-800 mb-2">Health</h2>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Health Data Analysis</div>
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">Past 3 Months</div>
           <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div>
