@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import './Login.css';
 import TerraLogo from '../../images/terra_logo_dark copy.png';
-
+import TerraAvatar from '../../images/user-avatar-32.png';
+import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 async function loginUser(credentials) {
  return fetch('https://6777-82-69-42-98.eu.ngrok.io/login', {
@@ -29,26 +30,32 @@ export default function Login({ setToken }) {
     setToken(token);
   }
 
+  
+ 
+
   return(
     
     
-    <div className="login-wrapper">
-    
-      <img src={TerraLogo} className="Terra-Logo" alt="TerraLogo" />
-      <h1 className = "text-blue-400 font-extrabold">Please Log In</h1>
+    <div className=" wrapper bg-blue-100">
+      <img src={TerraAvatar} width="100" height="100" className="Terra-Avatar wrapper" alt="TerraAvatar" />
+      
+      <h1 className = "text-blue-250 font-extrabold" >Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)}/>
+          <input type="text " onChange={e => setUserName(e.target.value)}/>
         </label>
         <div>
           <label>
-            <p>Password</p>
-            <input type="password" onChange={e => setPassword(e.target.value)}/>
+            <p>Password </p>
+            <input type=" password" onChange={e => setPassword(e.target.value)}/>
           </label>
         </div>
         <div>
-          <button type="submit">Submit</button>
+          <button type=" submit">Submit</button>
+        </div>
+        <div className="flex items-center truncate">
+        <img src={TerraLogo}  width="300" height="300" className="Terra-Logo " alt="TerraLogo" />
         </div>
       </form>
     </div>
