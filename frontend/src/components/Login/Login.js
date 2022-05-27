@@ -30,8 +30,12 @@ export default function Login({ setToken }) {
   }
 
   return(
+    
+    
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
+    
+      <img src={TerraLogo} className="Terra-Logo" alt="TerraLogo" />
+      <h1 className = "text-blue-400 font-extrabold">Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
