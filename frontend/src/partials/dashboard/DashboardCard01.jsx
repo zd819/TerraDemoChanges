@@ -28,7 +28,7 @@ function DashboardCard01() {
   const green = "bg-green-500";
   const yellow = "bg-yellow-500";
   const data = {
-    "startDate": "2022-05-17",
+    "startDate": "2022-04-29",
     'endDate': '2022-05-24',
     'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
     'type': 'nutrition'
@@ -61,9 +61,9 @@ function DashboardCard01() {
         });
       // console.log(response.json());  
       // console.log(response.at(0));
-      console.log('Response is ',response); 
-      //console.log(response[19].dataPoint);
-      console.log('Retreived Data')
+      // console.log('Response is ',response); 
+      // //console.log(response[19].dataPoint);
+      // console.log('Retreived Data')
       for (let  user of response) {
         const splitDate = user.date.split('-');
         if(user.dataPoint> 3800){
@@ -97,7 +97,7 @@ function DashboardCard01() {
       loadPost(); 
       }, []);
   //console.log('Logged data', Data);
-  console.log('Logged DATES', Date);
+  //console.log('Logged DATES', Date);
   //var payload =  getData();
   // var dataHealth = payload[0];
   // setLoading(payload[1]);
@@ -120,13 +120,19 @@ function DashboardCard01() {
   
   const Over = "Too Many Calories Consumed";
   const Under = "Good amount of Calories Consumed";
+  console.log('Logged DATES', Date);
   const chartData = {
     labels: Date,
     datasets: [
       // Indigo line
       {
-        data: Data, 
+        data: Data,
+        label: 'Calories Consumed',
         fill: true,
+        ticks: {
+          callback: function(value, index, ticks) {
+            return value + ' Kcal'  ;
+          }},
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
         borderWidth: 2,
@@ -169,7 +175,7 @@ function DashboardCard01() {
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
   { isLoading ? <div>
-    Loading the data {console.log("loading state")}
+    Loading the data
     </div> :
   <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
@@ -195,13 +201,12 @@ function DashboardCard01() {
           <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
           <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
             {calorieOver ? Over : Under};
-            {console.log(green)}
           </div>
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div>
-    Loading the data {console.log("loading state")}
+    Loading the data 
     </div> :
        <div className="grow">
         {/* Change the height attribute to adjust the chart height */}

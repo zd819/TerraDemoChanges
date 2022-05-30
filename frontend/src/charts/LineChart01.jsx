@@ -33,7 +33,11 @@ function LineChart01({
         },
         scales: {
           y: {
-            display: false,
+            ticks: {
+              callback: function(value, index, ticks) {
+                return value + ' Kcal'  ;
+              }},
+            display: true,
             beginAtZero: true,
           },
           x: {
@@ -49,7 +53,7 @@ function LineChart01({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              // label: (context) => formatValue(context.parsed.y),
             },
           },
           legend: {
