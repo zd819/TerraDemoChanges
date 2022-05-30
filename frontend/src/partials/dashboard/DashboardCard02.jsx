@@ -10,24 +10,26 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 function DashboardCard02() {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
-  const [sleepUnder, setSleep ] = useState(false);
+  const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
+  // const cdate = new Date().getDate();
+  // console.log('DATE', cdate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     // axios(options)
-    console.log("Getting Data");
+    console.log("Getting Activity Data");
     const response = await fetch(url, {
       method: 'GET',
       headers: {
       // "Content-Type": "application/json",
       "userID" : "user1", 
-      "startDate" : "2022-04-29",
-      "endDate": "2022-05-24", 
-      "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-      "type": "Daily", 
+      "startDate" : "2022-05-03",
+      "endDate": "2022-05-28", 
+      "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
+      "type": "daily", 
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -35,13 +37,13 @@ function DashboardCard02() {
       });
     // console.log(response.json());  
     // console.log(response.at(0));
-    // console.log('Response is ',response); 
+    console.log('Activity is ',response); 
     // //console.log(response[19].dataPoint);
     // console.log('Retreived Data')
     for (let  user of response) {
       const splitDate = user.date.split('-');
-      if(user.dataPoint> 3800){
-        setSleep(true);
+      if(user.dataPoint < 2500){
+        setActivity(true);
       }
       //console.log("Date :", user.date);
       // console.log("THE DAY IS :", splitDate[0]);
@@ -71,27 +73,15 @@ function DashboardCard02() {
     loadPost(); 
     }, []);
 
+
+  const Over = "Good Average Activity";
+  const Under = "Low Actiivity";  
   const chartData = {
-    labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
-      '06-01-2021', '07-01-2021', '08-01-2021',
-      '09-01-2021', '10-01-2021', '11-01-2021',
-      '12-01-2021', '01-01-2022', '02-01-2022',
-      '03-01-2022', '04-01-2022', '05-01-2022',
-      '06-01-2022', '07-01-2022', '08-01-2022',
-      '09-01-2022', '10-01-2022', '11-01-2022',
-      '12-01-2022', '01-01-2023',
-    ],
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        data: [
-          622, 622, 426, 471, 365, 365, 238,
-          324, 288, 206, 324, 324, 500, 409,
-          409, 273, 232, 273, 500, 570, 767,
-          808, 685, 767, 685, 685,
-        ],
+        data: Data,
         label: 'Calories Burned',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
@@ -126,7 +116,7 @@ function DashboardCard02() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       { isLoading ? <div>
-    Please connect either FitBit, TrainingPeaks, or Withings {console.log("loading state")}
+    Please connect a wearable which tracks Activity Data {console.log("loading state")}
     </div> :
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
@@ -147,7 +137,10 @@ function DashboardCard02() {
         </header>
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Performance</h2>
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Performance Data Analysis</div>
-        
+        <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
+        <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
+            {lowActivity ? Under : Over};
+          </div>
       </div>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div>

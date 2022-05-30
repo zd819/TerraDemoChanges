@@ -13,6 +13,7 @@ import DashboardMoz from './pages/DashboardMoz';
 
 
 import './App.css';
+// import HandleClick from './components/Login/newSession';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardOld from './components/Dashboard/DashboardPage';
 import Preferences from './components/Preferences/Preferences';
@@ -74,7 +75,13 @@ function App2() {
   const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
   if(!token) {
-    return <Login setToken={setToken} />
+    return (
+      <div className = "bg-red-100">
+        <h1 className = "bg-red-100">
+          <Login setToken={setToken} />
+        </h1>
+    </div>
+    )
   }
   // if(!dash){
       return(

@@ -1,11 +1,13 @@
+const url = "https://6777-82-69-42-98.eu.ngrok.io"
+
 async function getURL() {
-    const url = "https://localhost:8080/newSession"
-    return await fetch(url, {
-      method: 'GET',
-      headers: {userId: 'DunnoYet'}
-    })
-    .then(data => data.json())
-   }
+  return await fetch(url+'/newSession', {
+    method: 'GET',
+    headers: {userId: 'DunnoYet'}
+  })
+  .then(data => data.json())
+ }
+
   
   //  async function generateID() {
   //    const current = new Date().toLocaleString();
@@ -18,6 +20,6 @@ async function getURL() {
 export default function HandleClick(){
     console.log('WORKING1');
     getURL()
-    .then((data) => {console.log(data); console.log('WORKING2');window.open(data.url)})
+    .then((data) => {console.log(data);window.open(data.url)})
     .catch((error) => console.log(error));
   };
