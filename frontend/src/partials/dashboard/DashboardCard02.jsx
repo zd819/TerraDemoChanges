@@ -75,7 +75,7 @@ function DashboardCard02() {
 
 
   const Over = "Good Average Activity";
-  const Under = "Low Actiivity";  
+  const Under = "Low Activity";  
   const chartData = {
     labels: Date,
     datasets: [

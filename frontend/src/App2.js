@@ -13,7 +13,7 @@ import DashboardMoz from './pages/DashboardMoz';
 
 
 import './App.css';
-// import HandleClick from './components/Login/newSession';
+import HandleClick from './components/Login/newSession';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardOld from './components/Dashboard/DashboardPage';
 import Preferences from './components/Preferences/Preferences';
@@ -50,7 +50,7 @@ async function getURL() {
 //  }
 
 
-const HandleClick = () => {
+const HandleClick1 = () => {
   // var ID = generateID();
   getURL()
   .then((data) => {console.log(data); window.open(data.url)})
