@@ -28,7 +28,7 @@ function DashboardCard03() {
       "startDate" : "2022-04-29",
       "endDate": "2022-05-24", 
       "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-      "type": "Health", 
+      "type": "Sleep", 
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -92,6 +92,7 @@ function DashboardCard03() {
           289, 403, 554, 304, 289, 270, 134,
           270, 829, 344, 388, 364,
         ],
+        label: 'Hours slept',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -110,6 +111,7 @@ function DashboardCard03() {
           145, 145, 354, 260, 188, 188, 300,
           300, 282, 364, 660, 554,
         ],
+        label: 'Average',
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
         tension: 0,

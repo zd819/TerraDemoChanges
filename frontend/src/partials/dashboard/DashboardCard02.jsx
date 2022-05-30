@@ -27,7 +27,7 @@ function DashboardCard02() {
       "startDate" : "2022-04-29",
       "endDate": "2022-05-24", 
       "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-      "type": "Health", 
+      "type": "Daily", 
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -92,6 +92,7 @@ function DashboardCard02() {
           409, 273, 232, 273, 500, 570, 767,
           808, 685, 767, 685, 685,
         ],
+        label: 'Calories Burned',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -110,6 +111,7 @@ function DashboardCard02() {
           154, 273, 191, 191, 126, 263, 349,
           252, 423, 622, 470, 532,
         ],
+        label: 'Average',
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
         tension: 0,
