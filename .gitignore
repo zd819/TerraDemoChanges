@@ -9,3 +9,4 @@ package-lock.json
 package.json
 keys
 misc
+.DS_Store
