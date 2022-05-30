@@ -8,8 +8,69 @@ import EditMenu from '../EditMenu';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard02() {
-
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
+  const [sleepUnder, setSleep ] = useState(false);
+  const [Data, setData ] = useState();
+  const [Date, setDate ] = useState();
+  var times = [];
+  var points = [];
+  useEffect(() => { // useEffect hook
+    const loadPost = async () => {
+    // axios(options)
+    console.log("Getting Data");
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+      // "Content-Type": "application/json",
+      "userID" : "user1", 
+      "startDate" : "2022-04-29",
+      "endDate": "2022-05-24", 
+      "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
+      "type": "Daily", 
+    }}).then((res => res.json()))
+    .catch(function(error){
+        console.log(error);
+        console.log("Axios error");
+      });
+    // console.log(response.json());  
+    // console.log(response.at(0));
+    // console.log('Response is ',response); 
+    // //console.log(response[19].dataPoint);
+    // console.log('Retreived Data')
+    for (let  user of response) {
+      const splitDate = user.date.split('-');
+      if(user.dataPoint> 3800){
+        setSleep(true);
+      }
+      //console.log("Date :", user.date);
+      // console.log("THE DAY IS :", splitDate[0]);
+      // console.log("THE MONTH IS :", splitDate[1]);
+      // console.log("THE YEAR IS :", splitDate[2]);
+      //console.log("User Data :", user.dataPoint);
+      times.push(user.date); 
+      points.push(user.dataPoint);
+    };
+    let sortedDescending = response.sort((a, b) => {
+      const aDate = a.date.split('-');
+      const bDate = b.date.split('-');
+      if(aDate[2]!=bDate[2]){
+        return aDate[2]-bDate[2];
+      }
+      else if(aDate[1]!=bDate[1]){
+        return aDate[1]-bDate[1];
+      }
+      else return aDate[0]-bDate[0];
+    });
+    //console.log('Sorted dates', sortedDescending);
+    times = sortedDescending;
+    setData(points); //set Time state
+    setDate(times); //set Data state
+    setLoading(false); //set loading state
+    }
+    loadPost(); 
+    }, []);
+
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -31,6 +92,7 @@ function DashboardCard02() {
           409, 273, 232, 273, 500, 570, 767,
           808, 685, 767, 685, 685,
         ],
+        label: 'Calories Burned',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -49,6 +111,7 @@ function DashboardCard02() {
           154, 273, 191, 191, 126, 263, 349,
           252, 423, 622, 470, 532,
         ],
+        label: 'Average',
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
         tension: 0,

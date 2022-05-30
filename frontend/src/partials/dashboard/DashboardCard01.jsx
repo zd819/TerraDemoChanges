@@ -44,7 +44,7 @@ function DashboardCard01() {
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
       // axios(options)
-      console.log("Getting Data");
+      //console.log("Getting Data");
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -57,7 +57,7 @@ function DashboardCard01() {
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);
-          console.log("Axios error");
+          // console.log("Axios error");
         });
       // console.log(response.json());  
       // console.log(response.at(0));
@@ -120,7 +120,7 @@ function DashboardCard01() {
   
   const Over = "Too Many Calories Consumed";
   const Under = "Good amount of Calories Consumed";
-  console.log('Logged DATES', Date);
+  //console.log('Logged DATES', Date);
   const chartData = {
     labels: Date,
     datasets: [

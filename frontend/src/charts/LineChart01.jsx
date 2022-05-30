@@ -33,10 +33,10 @@ function LineChart01({
         },
         scales: {
           y: {
-            ticks: {
-              callback: function(value, index, ticks) {
-                return value + ' Kcal'  ;
-              }},
+            // ticks: {
+            //   callback: function(value, index, ticks) {
+            //     return value + ' Kcal'  ;
+            //   }},
             display: true,
             beginAtZero: true,
           },
