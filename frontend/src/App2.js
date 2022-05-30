@@ -76,10 +76,8 @@ function App2() {
   const [dash, setDash ] = useState(false);
   if(!token) {
     return (
-      <div className = "bg-red-100">
-        <h1 className = "bg-red-100">
-          <Login setToken={setToken} />
-        </h1>
+    <div className = "bg-red-100">
+      <Login setToken={setToken} />
     </div>
     )
   }
