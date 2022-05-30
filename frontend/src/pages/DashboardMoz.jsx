@@ -7,7 +7,7 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars';
-import FilterButton from '../partials/actions/FilterButton';
+
 import Datepicker from '../partials/actions/Datepicker';
 import DashboardCard01 from '../partials/dashboard/DashboardCard01';
 import DashboardCard02 from '../partials/dashboard/DashboardCard02';
@@ -64,8 +64,7 @@ function DashboardMoz(){
                 </button>                
               </div>
               {/* Filter button */}
-              <FilterButton />
-              {/* Datepicker built with flatpickr */}
+             
               <Datepicker />
             </div>
 
