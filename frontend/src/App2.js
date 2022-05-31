@@ -76,7 +76,7 @@ function App2() {
   const [dash, setDash ] = useState(false);
   if(!token) {
     return (
-    <div className = "bg-red-100">
+    <div className = " wrapper bg-blue-700">
       <Login setToken={setToken} />
     </div>
     )
