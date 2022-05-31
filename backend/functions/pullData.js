@@ -1,5 +1,5 @@
 
-function pullData(vars, callback) {
+async function pullData(vars, callback) {
 
     const startDate = vars.startDate.toISOString();
     const endDate = vars.endDate.toISOString();
@@ -20,9 +20,12 @@ function pullData(vars, callback) {
                             { "type" : type} 
                             ]}}]).
                             toArray( (err,res) => {
+            if(err){
+                throw err;
+            }
+            callback(res);
             client.close();
 
-            callback(res);
         });
     });
 }

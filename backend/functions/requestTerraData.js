@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-async function requestTerraData(input){
+async function requestTerraData(input, callback){
 
     const terraId = input.terraId;
     const startDate = input.startDate;
@@ -25,6 +25,7 @@ async function requestTerraData(input){
       .then(function(response){
         console.log('Terra Response');
         console.log(response.body);
+        callback();
       })
       .catch(function(error){
         console.log(error);
