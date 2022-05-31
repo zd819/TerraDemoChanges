@@ -41,7 +41,7 @@ function DashboardCard03() {
     // console.log('Retreived Data')
     for (let  user of response) {
       const splitDate = user.date.split('-');
-      if(user.dataPoint < 6 ){
+      if(user.data < 6 ){
         setSleep(true);
       }
       //console.log("Date :", user.date);
@@ -50,7 +50,7 @@ function DashboardCard03() {
       // console.log("THE YEAR IS :", splitDate[2]);
       //console.log("User Data :", user.dataPoint);
       times.push(user.date); 
-      points.push(user.dataPoint/3600);
+      points.push(user.data/3600);
     };
     let sortedDescending = response.sort((a, b) => {
       const aDate = a.date.split('-');
