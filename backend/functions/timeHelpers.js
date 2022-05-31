@@ -10,16 +10,35 @@ function dayDifference(startDate, endDate){
 
 }
 
-async function findMissingDates(startDate, endDate, data){
+async function findMissingDates(startDate, endDate, data, callback){
 
-    const begin = new Date(startDate);
+    var begin = new Date(startDate);
     const end = new Date(endDate);
     const datesToRequest = [];
 
-    for(var i = 0; i < data.length; i++){
-        const currDate = new Date(data[i].data.metadata.start_time);
+    if(data !== undefined){
+        data.sort((a,b) => {
+            return new Date(a.startDate) - new Date(b.startDate);
+        });
+
+        for(var i = 0; i < data.length; i++){
+            const currDate = new Date(data[i].startDate);   
+            if(begin < currDate){
+    
+                datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: currDate.toISOString().substring(0,10)});
+                begin = currDate + 1;
+            }else {
+                begin++;
+            }
+        }
     }
 
+
+    if(begin <= end){
+        datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: end.toISOString().substring(0,10)});
+    }
+
+    callback(datesToRequest);
 
 }
 

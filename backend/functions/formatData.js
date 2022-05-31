@@ -10,7 +10,7 @@ function processData(data, type) {
     });
 
     for(var i = 0; i < data.length; i++){
-        data[i] = {date : formatDate(data[i]), dataPoint: getRelevantData(data[i], type)};
+        data[i] = {date : formatDate(data[i]), data: getRelevantData(data[i].data, type)};
     }
 
     return data;
@@ -22,15 +22,17 @@ function getRelevantData(data, type) {
         case 'athlete': 
             break;
         case 'sleep':
+            return data.sleep_durations_data.other.duration_in_bed;
             break;
         case 'body':
             break;
         case 'menstruation':
             break; 
         case 'nutrition':
-            return data.data.summary.macros.calories;
+            return data.summary.macros.calories;
             break;
         case 'daily':
+            return data.calories_data.total_burned_calories;
             break;
         case 'body':
             break;
