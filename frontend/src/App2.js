@@ -32,7 +32,7 @@ import PollData from './components/Dashboard/PollData.js'
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
-const url = "https://6777-82-69-42-98.eu.ngrok.io"
+const url = "http://localhost:8080"
 
 async function getURL() {
   return await fetch(url+'/newSession', {

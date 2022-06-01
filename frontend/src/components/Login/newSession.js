@@ -1,4 +1,4 @@
-const url = "https://6777-82-69-42-98.eu.ngrok.io"
+const url = "http://localhost:8080"
 
 async function getURL() {
   return await fetch(url+'/newSession', {
