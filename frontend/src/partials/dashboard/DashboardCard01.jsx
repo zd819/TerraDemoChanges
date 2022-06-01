@@ -175,7 +175,7 @@ function DashboardCard01() {
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
   { isLoading ? <div>
-    Loading the data
+    Please connect a wearable which tracks Nutrition Data
     </div> :
   <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
@@ -206,7 +206,6 @@ function DashboardCard01() {
   </div>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div>
-    Loading the data 
     </div> :
        <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
