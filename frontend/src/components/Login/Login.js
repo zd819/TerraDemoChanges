@@ -36,11 +36,11 @@ export default function Login({ setToken }) {
   return(
     
     
-    <div className=" wrapper bg-blue-100">
+    <div className=" wrapper bg-blue-100 h-full">
       <img src={TerraAvatar} width="100" height="100" className="Terra-Avatar wrapper" alt="TerraAvatar" />
       
-      <h1 className = "text-blue-250 font-extrabold" >Please Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className = "text-blue-250 font-extrabold h-120" >Please Log In</h1>
+      <form onSubmit={handleSubmit} className= "h-120">
         <label>
           <p>Username</p>
           <input type="text " onChange={e => setUserName(e.target.value)}/>

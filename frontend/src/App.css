@@ -1,6 +1,13 @@
 .wrapper {
     padding: 20px;
     text-align: center;
+    /* Height : 100vmin; */
+}
+
+.Top-Layer{
+  display:flex; 
+  flex-direction:row;
+  /* Height : 100vmin; */
 }
 
 .App-logo {
@@ -39,6 +46,7 @@
   margin-right: 0px;
 }
 
-.Temp{display:flex; flex-direction:row;}
-
-.Top-Layer{display:flex; flex-direction:row;}
+.Temp{
+  display:flex; 
+  flex-direction:row;
+}
