@@ -9,6 +9,7 @@ import {
 // Import pages
 import App2 from './App2.js';
 import DashboardMoz from './pages/DashboardMoz';
+import AnalyticsMain from './AnalyticMain';
 
 function DashboardApp() {
 
@@ -25,6 +26,7 @@ function DashboardApp() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/*" element={<App2 />} />
+        <Route exact path="/Analytics" element={<AnalyticsMain />} />
         <Route exact path="/Dashboard" element={<DashboardMoz />} />
       </Routes>
     </BrowserRouter>
