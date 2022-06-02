@@ -4,7 +4,7 @@ import BarChart from '../../charts/BarChart01';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function DashboardCard04() {
+function Analysis4() {
 
   const chartData = {
     labels: [
@@ -40,7 +40,7 @@ function DashboardCard04() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">HEALTH 1</h2>
+        <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}

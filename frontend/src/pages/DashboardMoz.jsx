@@ -22,8 +22,26 @@ import DashboardCard10 from '../partials/dashboard/DashboardCard10';
 import DashboardCard11 from '../partials/dashboard/DashboardCard11';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
+import DashboardTest from '../partials/dashboard/DashboardTest';
 //import Banner from '../partials/Banner';
 
+class Sample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        connected: []
+    };
+  }
+  
+  changeColor = () => {
+    this.setState({color: "blue"});
+  }
+
+  render() {
+    return <h1>A Computer Science Portal For Geeks, {this.state.connected}</h1>;
+  }
+}
+ 
 function DashboardMoz(){
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -66,12 +84,15 @@ function DashboardMoz(){
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
               
+              {/* Line chart (TEST) */}
+              <DashboardTest />
               {/* Line chart (Acme Plus) */}
               <DashboardCard01 />
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 />
               {/* Line chart (Acme Professional) */}
               <DashboardCard03 />
+              <Sample />
             </div>
 
           </div>

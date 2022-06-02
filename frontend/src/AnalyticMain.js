@@ -22,6 +22,7 @@ import DashboardCard10 from './partials/dashboard/DashboardCard10';
 import DashboardCard11 from './partials/dashboard/DashboardCard11';
 import DashboardCard12 from './partials/dashboard/DashboardCard12';
 import DashboardCard13 from './partials/dashboard/DashboardCard13';
+import Analysis1 from './components/Analysis/Analysis1';
 // import Banner from '../partials/Banner';
 
 function DashboardMoz(){
@@ -65,15 +66,21 @@ function DashboardMoz(){
 
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
-              
+
+              {/* HEALTH CARDS */}
               {/* Bar chart (Direct vs Indirect) */}
               <DashboardCard04 />
               {/* Line chart (Real Time Value) */}
               <DashboardCard05 />
+              {/* <Analysis1 /> */}
+
+              {/* NUTRITION CARDS */}
               {/* Doughnut chart (Top Countries) */}
               <DashboardCard06 />
               {/* Table (Top Channels) */}
               <DashboardCard07 />
+
+              {/* PERFORMANCE CARDS */}
               {/* Line chart (Sales Over Time) */}
               <DashboardCard08 />
               {/* Stacked bar chart (Sales VS Refunds) */}
