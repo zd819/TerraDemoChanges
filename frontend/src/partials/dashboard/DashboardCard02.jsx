@@ -150,7 +150,7 @@ function DashboardCard02({addSugg}) {
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
       </div>}
-      <button onClick={() => addSugg("Performance", "Get More Sleep")}> ADDING SLEEP </button> 
+      <button onClick={() => addSugg("Performance", {Data})}> ADDING SLEEP </button> 
 
     </div>
   );

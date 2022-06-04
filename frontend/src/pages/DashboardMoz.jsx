@@ -89,7 +89,7 @@ class DashboardMoz extends React.Component {
 
   createSuggestion() {
     if(Object.keys(this.state.suggestions).length > 0){
-      
+
 
     }
   }
@@ -125,6 +125,7 @@ class DashboardMoz extends React.Component {
   console.log("NUTRITION",this.state.suggestions["Nutrition"])
   console.log("Sleep", this.state.suggestions["Sleep"])
   console.log("Health", this.state.suggestions["Health"])
+  console.log("TEST", this.state.suggestions["TEST"])
 
 
   return (
@@ -165,7 +166,7 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest />
+              <DashboardTest addSugg = {this.addSugg} />
               {/* Line chart (Acme Plus) */}
               <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
               {/* Line chart (Acme Advanced) */}

@@ -216,7 +216,7 @@ function DashboardCard01({addSugg}) {
       </div>}
       {/* <button onClick={() => addData("Data")}> ADDING DATA </button> 
       <button onClick={() => addItem("Nutrition")}> CONNECTED TO HEALTH </button>  */}
-      <button onClick={() => addSugg("Nutrition","Eat more")}> ADDING NUTRITION </button> 
+      <button onClick={() => addSugg("Nutrition",{Data})}> ADDING NUTRITION </button> 
       
 
 

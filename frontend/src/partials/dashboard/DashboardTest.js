@@ -7,8 +7,13 @@ import EditMenu from '../EditMenu';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardTest() {
-
+function DashboardTest({addSugg}) {
+  const Data = [
+    732, 610, 610, 504, 504, 504, 349,
+    349, 504, 342, 504, 610, 391, 192,
+    154, 273, 191, 191, 126, 263, 349,
+    252, 423, 622, 470, 532,
+  ]
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -24,12 +29,7 @@ function DashboardTest() {
     datasets: [
       // Indigo line
       {
-        data: [
-          732, 610, 610, 504, 504, 504, 349,
-          349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349,
-          252, 423, 622, 470, 532,
-        ],
+        data: Data,
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
@@ -90,6 +90,8 @@ function DashboardTest() {
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
       </div>
+      <button onClick={() => addSugg("TEST",{Data})}> ADDING HEALTH </button> 
+
     </div>
   );
 }
