@@ -25,39 +25,100 @@ import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import DashboardTest from '../partials/dashboard/DashboardTest';
 //import Banner from '../partials/Banner';
 
-class Sample extends React.Component {
+class DashboardMoz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        connected: []
+        lists: [], 
+        items:[],
+        data:[],
+        sidebarOpen :false,
+        suggestions : {}
     };
+  
+    this.addItem = this.addItem.bind(this)
+    this.removeItem = this.removeItem.bind(this)
+    this.updateItem = this.updateItem.bind(this)
+  }
+  addItem (item) {
+    this.setState({
+      items: this.state.items.concat(item)
+    })
+  }
+
+  addData (item) {
+    this.setState({
+      data: this.state.data.concat(item)
+    })
   }
   
-  changeColor = () => {
-    this.setState({color: "blue"});
+  addSugg (item,data) {
+    var a = {};
+    var dict2 =Object.assign(a, this.state.suggestions); 
+    dict2[item] = data;
+    this.setState({
+      suggestions: dict2
+    })
   }
 
-  render() {
-    return <h1>A Computer Science Portal For Geeks, {this.state.connected}</h1>;
+  updateItem(id, updatedItem) {
+    this.setState({
+      items: this.state.items.map(function (item) {
+        if (item.itemId !== id) return item;
+        return updatedItem;
+      })
+    })
   }
-}
- 
-function DashboardMoz(){
+  removeItem(id) {
+    this.setState({
+      items: this.state.items.filter(function(item) {
+        return item.itemId !== id
+      })
+    })
+  }
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  createSuggestion() {
+    if(this.state.items.length > 0){
+
+    }
+  }
+  
+  // changeColor = (props) => {
+  //   this.setState({connected: props});
+  // }
+
+//   add(item){
+//     let newEmp=[item]
+//     this.setEmps([...this.emps,newEmp])
+// }
+
+  // handleAddList(){
+  //   // creating empty object, assigning it to current value of items 
+  //   // then adding another property to it
+  //   var items = Object.assign({}, this.state.lists, {"temp": "something"})
+    
+  //   // setting the state with the new values
+  //   this.setState({
+  //     lists: ["new"],
+  //     connected: items
+  //   })
+  // }
+
+  render(){
+    
   const test = [1,2,3,4,5,6,7];
-
+  console.log("HERE I COME", this.state.data)
   return (
     <div className="flex h-screen overflow-hidden bg-blue-100">
       
       {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Sidebar sidebarOpen={this.sidebarOpen} setSidebarOpen={this.setState} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Header sidebarOpen={this.sidebarOpen} setSidebarOpen={this.setState} />
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto ">
@@ -87,12 +148,16 @@ function DashboardMoz(){
               {/* Line chart (TEST) */}
               <DashboardTest />
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 />
+              <DashboardCard01 addItem = {this.addItem} addData = {this.addData}/>
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 />
               {/* Line chart (Acme Professional) */}
               <DashboardCard03 />
-              <Sample />
+              {/* <Sample />
+              <button onClick={() => Sample.this.addItem("TESTING")}>do action</button> */}
+              <h1> TESTING 123, {this.state.items}</h1>
+              <button onClick={() => this.addItem("TESTING")}>do action </button> 
+
             </div>
 
           </div>
@@ -105,6 +170,6 @@ function DashboardMoz(){
       </div>
     </div>
   );
-}
+}};
 
 export default DashboardMoz;
