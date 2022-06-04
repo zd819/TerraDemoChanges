@@ -16,7 +16,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
   
 
-function DashboardCard01({addItem},{addData}) {
+function DashboardCard01({addSugg}) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
@@ -214,8 +214,13 @@ function DashboardCard01({addItem},{addData}) {
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
       </div>}
-      <button onClick={() => addItem("Nutrition")}>CONNECTED TO HEALTH</button> 
-      <button onClick={() => addData(Data)}>SUGGESTIONS</button> 
+      {/* <button onClick={() => addData("Data")}> ADDING DATA </button> 
+      <button onClick={() => addItem("Nutrition")}> CONNECTED TO HEALTH </button>  */}
+      <button onClick={() => addSugg("Nutrition","Eat more")}> ADDING NUTRITION </button> 
+      
+
+
+      
 
     
     </div>

@@ -8,7 +8,7 @@ import EditMenu from '../EditMenu';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 //Sleep data for health
-function DashboardCard03() {
+function DashboardCard03({addSugg}) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
@@ -150,6 +150,7 @@ function DashboardCard03() {
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
       </div>}
+      <button onClick={() => addSugg("Health","Take Cold Showers ")}> ADDING HEALTH </button> 
     </div>
   );
 }

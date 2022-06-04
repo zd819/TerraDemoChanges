@@ -31,15 +31,20 @@ class DashboardMoz extends React.Component {
     this.state = {
         lists: [], 
         items:[],
+        payloads:[],
         data:[],
         sidebarOpen :false,
         suggestions : {}
     };
   
     this.addItem = this.addItem.bind(this)
+    this.addData = this.addData.bind(this)
+    this.addSugg = this.addSugg.bind(this)
+    this.addPayload = this.addPayload.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
   }
+
   addItem (item) {
     this.setState({
       items: this.state.items.concat(item)
@@ -51,11 +56,16 @@ class DashboardMoz extends React.Component {
       data: this.state.data.concat(item)
     })
   }
+
+  addPayload (item) {
+    this.setState({
+      payloads: this.state.payloads.concat(item)
+    })
+  }
   
-  addSugg (item,data) {
-    var a = {};
-    var dict2 =Object.assign(a, this.state.suggestions); 
-    dict2[item] = data;
+  addSugg (key,data) {
+    var dict2 = this.state.suggestions; 
+    dict2[key] = data;
     this.setState({
       suggestions: dict2
     })
@@ -78,7 +88,8 @@ class DashboardMoz extends React.Component {
   }
 
   createSuggestion() {
-    if(this.state.items.length > 0){
+    if(Object.keys(this.state.suggestions).length > 0){
+      
 
     }
   }
@@ -107,7 +118,15 @@ class DashboardMoz extends React.Component {
   render(){
     
   const test = [1,2,3,4,5,6,7];
-  console.log("HERE I COME", this.state.data)
+  // console.log("HERE I COME", this.state.data)
+  // console.log("PAYLOADS ARE", this.state.payloads)
+  console.log("DICTIONARY OF SUGGESTIONS", this.state.suggestions)
+  console.log("DICTIONARY LENGTH", Object.keys(this.state.suggestions).length)
+  console.log("NUTRITION",this.state.suggestions["Nutrition"])
+  console.log("Sleep", this.state.suggestions["Sleep"])
+  console.log("Health", this.state.suggestions["Health"])
+
+
   return (
     <div className="flex h-screen overflow-hidden bg-blue-100">
       
@@ -148,15 +167,15 @@ class DashboardMoz extends React.Component {
               {/* Line chart (TEST) */}
               <DashboardTest />
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 addItem = {this.addItem} addData = {this.addData}/>
+              <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 />
+              <DashboardCard02 addSugg = {this.addSugg}/>
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 />
+              <DashboardCard03 addSugg = {this.addSugg}/>
               {/* <Sample />
               <button onClick={() => Sample.this.addItem("TESTING")}>do action</button> */}
-              <h1> TESTING 123, {this.state.items}</h1>
-              <button onClick={() => this.addItem("TESTING")}>do action </button> 
+              {/* <h1> TESTING 123, {this.state.items}</h1> */}
+              {/* <button onClick={() => this.addData("TESTING")}>do action </button>  */}
 
             </div>
 
