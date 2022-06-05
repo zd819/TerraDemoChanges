@@ -8,9 +8,9 @@ export default function General1({data},card){
             if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
                 for (let nValue of nutrition){ //Calories Consumed 
                     for (let pValue of performance){ //Calories Burned
-                        if (nValue < 4 && pValue > 1500 ){
-                            return "Lower Anxiety Levels could help reduce over eating"
-                        } else if (nValue > 11 && pValue < 300 ){
+                        if (nValue > 2500 && pValue < 500 ){
+                            return "A more active life can help improve quality and duration of sleep"
+                        } else if (nValue < 1000 && pValue < 500 ){
                             return "More hours awake and active could help increase your apetite"
                         } else return "Good Job, your nutrition levels indicate greatness"
                     }}
