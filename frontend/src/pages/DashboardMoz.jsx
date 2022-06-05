@@ -23,6 +23,7 @@ import DashboardCard11 from '../partials/dashboard/DashboardCard11';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import DashboardTest from '../partials/dashboard/DashboardTest';
+import General1 from '../components/Suggestions/General1';
 //import Banner from '../partials/Banner';
 
 class DashboardMoz extends React.Component {
@@ -34,7 +35,7 @@ class DashboardMoz extends React.Component {
         payloads:[],
         data:[],
         sidebarOpen :false,
-        suggestions : {}
+        allData : {}
     };
   
     this.addItem = this.addItem.bind(this)
@@ -64,7 +65,7 @@ class DashboardMoz extends React.Component {
   }
   
   addSugg (key,data) {
-    var dict2 = this.state.suggestions; 
+    var dict2 = this.state.allData; 
     dict2[key] = data;
     this.setState({
       suggestions: dict2
@@ -88,7 +89,7 @@ class DashboardMoz extends React.Component {
   }
 
   createSuggestion() {
-    if(Object.keys(this.state.suggestions).length > 0){
+    if(Object.keys(this.state.allData).length > 0){
 
 
     }
@@ -120,13 +121,14 @@ class DashboardMoz extends React.Component {
   const test = [1,2,3,4,5,6,7];
   // console.log("HERE I COME", this.state.data)
   // console.log("PAYLOADS ARE", this.state.payloads)
-  console.log("DICTIONARY OF SUGGESTIONS", this.state.suggestions)
-  console.log("DICTIONARY LENGTH", Object.keys(this.state.suggestions).length)
-  console.log("NUTRITION",this.state.suggestions["Nutrition"])
-  console.log("Sleep", this.state.suggestions["Sleep"])
-  console.log("Health", this.state.suggestions["Health"])
-  console.log("TEST", this.state.suggestions["TEST"])
-
+  console.log("DICTIONARY OF SUGGESTIONS", this.state.allData)
+  console.log("DICTIONARY LENGTH", Object.keys(this.state.allData).length)
+  console.log("NUTRITION",this.state.allData["Nutrition"])
+  console.log("Sleep", this.state.allData["Sleep"])
+  console.log("Health", this.state.allData["Health"])
+  console.log("TEST", this.state.allData["TEST"])
+  const result = General1(this.state.allData, "Health")
+  console.log("Suggestion1 : ", result)
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-100">
