@@ -69,7 +69,7 @@ function DashboardCard02(props) {
     setData(points); //set Time state
     setDate(times); //set Data state
     setLoading(false); //set loading state
-    props.addSugg('Health', Data);
+    props.addSugg('Health', points);
     props.addItem("Health");
     }
     loadPost(); 

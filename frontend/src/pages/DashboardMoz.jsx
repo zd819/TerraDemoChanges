@@ -130,14 +130,21 @@ class DashboardMoz extends React.Component {
   // console.log("PAYLOADS ARE", this.state.payloads)
   console.log("DICTIONARY OF SUGGESTIONS", this.state.allData)
   console.log("DICTIONARY LENGTH", Object.keys(this.state.allData).length)
-  console.log("NUTRITION",this.state.allData["Nutrition"])
-  console.log("Sleep", this.state.allData["Sleep"])
-  console.log("Health", this.state.allData["Health"])
+  console.log("NUTRITION",this.state.allData.Nutrition)
+  console.log("Sleep", this.state.allData.Sleep)
+  console.log("Health", this.state.allData['Health'])
   console.log("TEST", this.state.allData["TEST"])
   const result1 = General1(this.state.allData, "Health")
   console.log("Suggestion1 : ", result1)
   console.log("Suggestion type is : ", typeof(result1))
   console.log("Checking the Logging Async functions : ", this.state.items)
+  const arr = [1,2,3];
+  console.log("Array : ", arr);
+  console.log("Array Type : " , typeof(arr));
+  console.log("Data Type: " , typeof(this.state.allData));
+  console.log("Health Type : " , typeof(this.state.allData["Health"]));
+  console.log("Sleep Type : " , typeof(this.state.allData["Sleep"]));
+  console.log("Nutrition Type : " , typeof(this.state.allData["Nutrition"]));
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
