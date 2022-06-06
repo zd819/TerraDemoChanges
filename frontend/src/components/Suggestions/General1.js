@@ -4,6 +4,9 @@ export default function General1(data,card){
     var nutrition = (data["Nutrition"] !== undefined ) ? data["Nutrition"] : false ; //Calories consumed 
     var performance = (data["Performance"] !== undefined ) ? data["Performance"] : false ; //Calories Burned
     console.log('REPORTED HEALTH VALUE IS ,', health)
+    console.log('TYPE HEALTH VALUE IS ,', typeof(health))
+    console.log('TYPE NUTRITION VALUE IS ,', typeof(nutrition))
+    console.log('TYPE PERFORMACE VALUE IS ,', typeof(performance))
     console.log('CARD VALUE IS ,', card)
     function Average(array){
         return array.reduce((a,b) => a + b, 0) / array.length
