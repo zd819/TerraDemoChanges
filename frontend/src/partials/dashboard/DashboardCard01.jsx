@@ -16,7 +16,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
   
 
-function DashboardCard01({addSugg}) {
+function DashboardCard01(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
@@ -216,7 +216,7 @@ function DashboardCard01({addSugg}) {
       </div>}
       {/* <button onClick={() => addData("Data")}> ADDING DATA </button> 
       <button onClick={() => addItem("Nutrition")}> CONNECTED TO HEALTH </button>  */}
-      <button onClick={() => addSugg("Nutrition",{Data})}> ADDING NUTRITION </button> 
+      <button onClick={() => props.addSugg("Nutrition",{Data})}> ADDING NUTRITION </button> 
       
 
 

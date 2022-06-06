@@ -1,8 +1,14 @@
-export default function General1({data},card){
+export default function General1(data,card){
+    console.log('DATA VALUE IS ,', data)
     var health = (data["Health"] !== undefined ) ? data["Health"] : false ; //Sleep currently
-    var nutrition = (data["Nutrition"] !== undefined ) ? data["Nutrition"] : false; //Calories consumed 
-    var performance = (data["Performance"] !== undefined ) ? data["Performance"] : false; //Calories Burned
-    const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+    var nutrition = (data["Nutrition"] !== undefined ) ? data["Nutrition"] : false ; //Calories consumed 
+    var performance = (data["Performance"] !== undefined ) ? data["Performance"] : false ; //Calories Burned
+    console.log('REPORTED HEALTH VALUE IS ,', health)
+    console.log('CARD VALUE IS ,', card)
+    function Average(array){
+        return array.reduce((a,b) => a + b, 0) / array.length
+    }
+    // const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
     switch (card) {
         case 'Health': // Sleep
             if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
@@ -38,10 +44,11 @@ export default function General1({data},card){
                 }
             }
             else{
-                if(arrAvg(health) > 11){
+                if(health == false){return "No Suggestion"}
+                else if(Average(health) > 11){
                     return "Moderate Alchohol and Medication consumption can help rebalance sleep quantity"
                 }
-                else if (arrAvg(health) < 5){
+                else if (Average(health) < 5){
                     return "Meditation can reduce stress and anxiety levels and help increase sleep quantity and quality"
                 }
                 else{
@@ -89,10 +96,11 @@ export default function General1({data},card){
                 }
             }
             else{
-                if(arrAvg(nutrition) > 3000){
+                if(nutrition == false){return "No Suggestion"}
+                else if(Average(nutrition) > 3000){
                     return "You're consuming alot of calories! Make sure your diet and lifestyle are balancing out."
                 }
-                else if (arrAvg(nutrition) < 1000){
+                else if (Average(nutrition) < 1000){
                     return "More Calories may be beneficial for your gut and heart, and overall health!"
                 }
                 else{

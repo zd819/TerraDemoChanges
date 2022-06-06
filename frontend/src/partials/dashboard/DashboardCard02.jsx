@@ -7,7 +7,7 @@ import EditMenu from '../EditMenu';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard02({addSugg}) {
+function DashboardCard02(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
@@ -69,10 +69,18 @@ function DashboardCard02({addSugg}) {
     setData(points); //set Time state
     setDate(times); //set Data state
     setLoading(false); //set loading state
+    props.addSugg(Data);
     }
     loadPost(); 
     }, []);
 
+  var gray = [
+      732, 610, 610, 504, 504, 504, 349,
+      349, 504, 342, 504, 610, 391, 192,
+      154, 273, 191, 191, 126, 263, 349,
+      252, 423, 622, 470, 532,
+    ];
+  const grey = gray.map(v => v*10);
 
   const Over = "Good Average Activity";
   const Under = "Low Activity";  
@@ -95,12 +103,7 @@ function DashboardCard02({addSugg}) {
       },
       // Gray line
       {
-        data: [
-          732, 610, 610, 504, 504, 504, 349,
-          349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349,
-          252, 423, 622, 470, 532,
-        ],
+        data : grey,
         label: 'Average',
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
@@ -139,7 +142,8 @@ function DashboardCard02({addSugg}) {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Performance Data Analysis</div>
         <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
         <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
-            {lowActivity ? Under : Over};
+            {/* {lowActivity ? Under : Over} */}
+            {props.sugg}
           </div>
       </div>}
       {/* Chart built with Chart.js 3 */}
@@ -150,7 +154,7 @@ function DashboardCard02({addSugg}) {
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
       </div>}
-      <button onClick={() => addSugg("Performance", {Data})}> ADDING SLEEP </button> 
+      <button onClick={() => props.addSugg("Performance", {Data})}> ADDING SLEEP </button> 
 
     </div>
   );

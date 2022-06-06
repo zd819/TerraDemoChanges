@@ -134,8 +134,9 @@ class DashboardMoz extends React.Component {
   console.log("Sleep", this.state.allData["Sleep"])
   console.log("Health", this.state.allData["Health"])
   console.log("TEST", this.state.allData["TEST"])
-  // const result = General1(this.state.allData, "Health")
-  // console.log("Suggestion1 : ", result)
+  const result1 = General1(this.state.allData, "Health")
+  console.log("Suggestion1 : ", result1)
+  console.log("Suggestion type is : ", typeof(result1))
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -175,11 +176,11 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest addSugg = {this.addSugg} />
+              <DashboardTest addSugg = {this.addSugg} sugg = {result1} />
               {/* Line chart (Acme Plus) */}
               <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 addSugg = {this.addSugg}/>
+              <DashboardCard02 addSugg = {this.addSugg} sugg = {result1} />
               {/* Line chart (Acme Professional) */}
               <DashboardCard03 addSugg = {this.addSugg}/>
               {/* <Sample />
