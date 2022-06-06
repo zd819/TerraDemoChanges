@@ -38,12 +38,19 @@ class DashboardMoz extends React.Component {
         allData : {}
     };
   
+    this.openSidebar = this.openSidebar.bind(this)
     this.addItem = this.addItem.bind(this)
     this.addData = this.addData.bind(this)
     this.addSugg = this.addSugg.bind(this)
     this.addPayload = this.addPayload.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
+  }
+
+  openSidebar(val) {
+    this.setState({
+      sidebarOpen : val
+    })
   }
 
   addItem (item) {
@@ -127,20 +134,20 @@ class DashboardMoz extends React.Component {
   console.log("Sleep", this.state.allData["Sleep"])
   console.log("Health", this.state.allData["Health"])
   console.log("TEST", this.state.allData["TEST"])
-  const result = General1(this.state.allData, "Health")
-  console.log("Suggestion1 : ", result)
+  // const result = General1(this.state.allData, "Health")
+  // console.log("Suggestion1 : ", result)
 
   return (
-    <div className="flex h-screen overflow-hidden bg-blue-100">
+    <div className="flex h-screen overflow-hidden bg-blue-50">
       
       {/* Sidebar */}
-      <Sidebar sidebarOpen={this.sidebarOpen} setSidebarOpen={this.setState} />
+      <Sidebar sidebarOpen={this.sidebarOpen} setSidebarOpen={this.openSidebar} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={this.sidebarOpen} setSidebarOpen={this.setState} />
+        <Header sidebarOpen={this.sidebarOpen} setSidebarOpen={this.openSidebar} />
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto ">

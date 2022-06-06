@@ -64,7 +64,7 @@ function DashboardTest({addSugg}) {
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
-          <img src={Icon} width="32" height="32" alt="Icon 01" />
+          <img src={Icon} width="32" height="32" alt="Icon 01" /> {/*className = {'fill-current text-red-600'} */}
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
