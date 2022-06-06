@@ -1,18 +1,23 @@
-export default function General1(data,card){
-    console.log('DATA VALUE IS ,', data)
-    var health = (data["Health"] !== undefined ) ? data["Health"] : false ; //Sleep currently
-    var nutrition = (data["Nutrition"] !== undefined ) ? data["Nutrition"] : false ; //Calories consumed 
-    var performance = (data["Performance"] !== undefined ) ? data["Performance"] : false ; //Calories Burned
+export default function General1(props){
+    console.log('data VALUE IS ,', props.data)
+    var health,nutrition,performance = []
+    if(props.data === undefined){
+        return "No suggestion"
+    }
+    else{
+    health = (props.data["Health"] !== undefined ) ? props.data["Health"] : false  ; //Sleep currently
+    nutrition = (props.data["Nutrition"] !== undefined ) ?  props.data["Nutrition"] : false ; //Calories consumed 
+    performance = (props.data["Performance"] !== undefined ) ?  props.data["Performance"] : false  ; //Calories Burned
     console.log('REPORTED HEALTH VALUE IS ,', health)
     console.log('TYPE HEALTH VALUE IS ,', typeof(health))
     console.log('TYPE NUTRITION VALUE IS ,', typeof(nutrition))
     console.log('TYPE PERFORMACE VALUE IS ,', typeof(performance))
-    console.log('CARD VALUE IS ,', card)
+    console.log('Card VALUE IS ,', props.card)
     function Average(array){
         return array.reduce((a,b) => a + b, 0) / array.length
     }
     // const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-    switch (card) {
+    switch (props.card) {
         case 'Health': // Sleep
             if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
                 for (let nValue of nutrition){ //Calories Consumed 
@@ -81,7 +86,7 @@ export default function General1(data,card){
             else if (health){
                 for (let hValue of health){ //Sleep 
                     if( hValue < 4){
-                        return "Decreased Fatigue could help increase your apetite, more sleep could help"
+                        return "More Sleep can help decrease Fatigue which will help increase your apetite"
                     }
                     else if (hValue > 11){
                         return "Excessive Sleep can cause a spike in hunger, try gettig up earlier"
@@ -119,17 +124,57 @@ export default function General1(data,card){
 
             }
         default: // Performance
-            if(nutrition && health){
-
-            }
-            else if (nutrition){
-
+            if(health && nutrition){
+                for (let hValue of health){ //Sleep 
+                    for (let nValue of nutrition){ //Calories consumed
+                        if (hValue < 4 && nValue < 1300 ){
+                            return "Remember : Refeuling and Resting your body allows you to perform better the next day "
+                        } else if (hValue > 11 && nValue < 1300 ){
+                            return "Relax and focus. Attack your daily goals and naturally your body will consume and hence perform better"
+                        } else if (hValue < 4 && nValue > 3200 ){
+                            return "Meditation and Planned Schedules can help refocus your day, and help you get more active"
+                        } else return "Good Job, your Activity levels indicate greatness"
+                    }}
             }
             else if (health){
-
+                for (let hValue of health){ //Sleep 
+                    if( hValue < 4){
+                        return "Try and get more focues and prolonged sleep, to recharge and hit your activity goals"
+                    }
+                    else if (hValue > 11){
+                        return "Excessive Sleep can cause larthagy and laziness, try gettig up earlier"
+                    } else return "Good Job, your Activity levels indicate greatness"
+                }
+            }
+            else if (nutrition){
+                for (let nValue of nutrition){ //Calories Consumed 
+                    if( nValue < 300){
+                        return "Eat more to Do more. You got this"
+                    }
+                    else if (nValue > 1700){
+                        return "You may need to rethink your daily nutrition, maybe replace some carbs with fruit and veg"
+                    } else return "Good Job, your Activity levels indicate greatness"
+                }
             }
             else{
-
+                if(performance == false){return "No Suggestion"}
+                else if(Average(performance) > 3000){
+                    return "You're consuming alot of calories! Make sure your diet and lifestyle are balancing out."
+                }
+                else if (Average(performance) < 1000){
+                    return "More Calories may be beneficial for your gut and heart, and overall health!"
+                }
+                else{
+                    for (let pValue of performance){ //Calories Burned 
+                        if( pValue < 1000){
+                            return "You're nutrition levels are pretty good. Make sure you are eating enough every day"
+                        }
+                        else if (pValue > 1700){
+                            return "You're nutrition levels are pretty good. Keep wary of your nutrition limits daily"
+                        } else return "Good Job, your nutrition levels indicate greatness"
+                    }
+                }
             }
     }
+}
 };

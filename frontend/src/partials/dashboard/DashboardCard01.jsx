@@ -93,6 +93,8 @@ function DashboardCard01(props) {
       setData(points); //set Time state
       setDate(times); //set Data state
       setLoading(false); //set loading state
+      props.addSugg('Nutrition', Data);
+      props.addItem("Nutrition");
       }
       loadPost(); 
       }, []);

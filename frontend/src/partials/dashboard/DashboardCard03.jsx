@@ -68,6 +68,8 @@ function DashboardCard03(props) {
     setData(points); //set Data state
     setDate(times); //set Time state
     setLoading(false); //set loading state
+    props.addSugg('Performance', Data);
+    props.addItem("Performance");
     }
     loadPost(); 
     }, []);

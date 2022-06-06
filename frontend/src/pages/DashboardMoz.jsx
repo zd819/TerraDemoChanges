@@ -73,9 +73,9 @@ class DashboardMoz extends React.Component {
   
   addSugg (key,data) {
     var dict2 = this.state.allData; 
-    dict2[key] = data;
+    dict2[JSON.stringify(key)] = data;
     this.setState({
-      suggestions: dict2
+      allData: dict2
     })
   }
 
@@ -137,6 +137,7 @@ class DashboardMoz extends React.Component {
   const result1 = General1(this.state.allData, "Health")
   console.log("Suggestion1 : ", result1)
   console.log("Suggestion type is : ", typeof(result1))
+  console.log("Checking the Logging Async functions : ", this.state.items)
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -180,9 +181,9 @@ class DashboardMoz extends React.Component {
               {/* Line chart (Acme Plus) */}
               <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 addSugg = {this.addSugg} sugg = {result1} />
+              <DashboardCard02 addSugg = {this.addSugg} sugg = {result1} addItem = {this.addItem} />
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 addSugg = {this.addSugg}/>
+              <DashboardCard03 addSugg = {this.addSugg} addItem = {this.addItem}/>
               {/* <Sample />
               <button onClick={() => Sample.this.addItem("TESTING")}>do action</button> */}
               {/* <h1> TESTING 123, {this.state.items}</h1> */}
