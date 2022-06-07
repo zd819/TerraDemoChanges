@@ -154,4 +154,4 @@ function Analysis3() {
   );
 }
 
-export default DashboardCard03;
+export default Analysis3;

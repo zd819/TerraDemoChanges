@@ -38,9 +38,9 @@ function Analysis4() {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
+    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
+        <h2 className="font-semibold text-slate-800">Current Average VS Advised Average</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
@@ -49,4 +49,4 @@ function Analysis4() {
   );
 }
 
-export default DashboardCard04;
+export default Analysis4;

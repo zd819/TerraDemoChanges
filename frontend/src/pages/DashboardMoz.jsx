@@ -73,7 +73,8 @@ class DashboardMoz extends React.Component {
   
   addSugg (key,data) {
     var dict2 = this.state.allData; 
-    dict2[JSON.stringify(key)] = data;
+    // dict2 = {key.replace('"', ''):val for key, val in dict2}
+    dict2[key] = data;
     this.setState({
       allData: dict2
     })
@@ -131,15 +132,18 @@ class DashboardMoz extends React.Component {
   console.log("DICTIONARY OF SUGGESTIONS", this.state.allData)
   console.log("DICTIONARY LENGTH", Object.keys(this.state.allData).length)
   console.log("NUTRITION",this.state.allData.Nutrition)
-  console.log("Sleep", this.state.allData.Sleep)
+  console.log("Keys of Suggestion DIctionary : ", Object.keys(this.state.allData))
+  var health = Object.keys(this.state.allData)[0]
+  console.log("Sleep", this.state.allData['Sleep'])
   console.log("Health", this.state.allData['Health'])
-  console.log("TEST", this.state.allData["TEST"])
-  const result1 = General1(this.state.allData, "Health")
+  console.log("Performance", this.state.allData['Performance'])
+  var result1 = General1(this.state.allData, "Performance")
   console.log("Suggestion1 : ", result1)
   console.log("Suggestion type is : ", typeof(result1))
   console.log("Checking the Logging Async functions : ", this.state.items)
-  const arr = [1,2,3];
+  const arr = {"1":"11","2":"22","3":[1,2,3,4,5]};
   console.log("Array : ", arr);
+  console.log("Array 3 : ", arr["3"]);
   console.log("Array Type : " , typeof(arr));
   console.log("Data Type: " , typeof(this.state.allData));
   console.log("Health Type : " , typeof(this.state.allData["Health"]));
@@ -184,7 +188,7 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest addSugg = {this.addSugg} sugg = {result1} />
+              {/* <DashboardTest addSugg = {this.addSugg} sugg = {result1} /> */}
               {/* Line chart (Acme Plus) */}
               <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
               {/* Line chart (Acme Advanced) */}

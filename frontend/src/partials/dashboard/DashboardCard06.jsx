@@ -7,7 +7,7 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard06() {
 
   const chartData = {
-    labels: ['United States', 'Italy', 'Other'],
+    labels: ['Carbs', 'Protein', 'Fats'],
     datasets: [
       {
         label: 'Top Countries',

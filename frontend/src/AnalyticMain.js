@@ -23,6 +23,7 @@ import DashboardCard11 from './partials/dashboard/DashboardCard11';
 import DashboardCard12 from './partials/dashboard/DashboardCard12';
 import DashboardCard13 from './partials/dashboard/DashboardCard13';
 import Analysis1 from './components/Analysis/Analysis1';
+import Analysis8 from './components/Analysis/Analysis8';
 // import Banner from '../partials/Banner';
 
 function DashboardMoz(){
@@ -73,6 +74,7 @@ function DashboardMoz(){
               {/* Line chart (Real Time Value) */}
               <DashboardCard05 />
               {/* <Analysis1 /> */}
+              <Analysis1 />
 
               {/* NUTRITION CARDS */}
               {/* Doughnut chart (Top Countries) */}

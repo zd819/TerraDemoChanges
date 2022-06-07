@@ -122,11 +122,26 @@ function Analysis1() {
   const Under = "Good amount of Calories Consumed";
   //console.log('Logged DATES', Date);
   const chartData = {
-    labels: Date,
+    labels: [
+      '12-01-2020', '01-01-2021', '02-01-2021',
+      '03-01-2021', '04-01-2021', '05-01-2021',
+      '06-01-2021', '07-01-2021', '08-01-2021',
+      '09-01-2021', '10-01-2021', '11-01-2021',
+      '12-01-2021', '01-01-2022', '02-01-2022',
+      '03-01-2022', '04-01-2022', '05-01-2022',
+      '06-01-2022', '07-01-2022', '08-01-2022',
+      '09-01-2022', '10-01-2022', '11-01-2022',
+      '12-01-2022', '01-01-2023',
+    ],
     datasets: [
       // Indigo line
       {
-        data: Data,
+        data: [
+              532, 532, 532, 404, 404, 314, 314,
+              314, 314, 314, 234, 314, 234, 234,
+              314, 314, 314, 388, 314, 202, 202,
+              202, 202, 314, 720, 642,
+            ],
         label: 'Calories Consumed',
         fill: true,
         ticks: {
@@ -174,13 +189,10 @@ function Analysis1() {
   // }else{
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-  { isLoading ? <div>
-    Please connect a wearable which tracks Nutrition Data
-    </div> :
   <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
-          <img src={Icon} width="50" height="50" alt="Icon 01" />
+          {/* <img src={Icon} width="50" height="50" alt="Icon 01" /> */}
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
@@ -195,26 +207,23 @@ function Analysis1() {
           </EditMenu>
         </header>
         
-        <h2 className="text-lg font-semibold text-slate-800 mb-2">Nutrition</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Nutrition Data Analysis</div>
+        <h2 className="text-lg font-semibold text-slate-800 mb-2">Rem Sleep</h2>
+        {/* <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Nutrition Data Analysis</div> */}
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
-          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
+          {/* <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
             {calorieOver ? Over : Under};
-          </div>
+          </div> */}
         </div>
-  </div>}
+  </div>
       {/* Chart built with Chart.js 3 */}
-      { isLoading ? <div>
-    </div> :
        <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         {/* {Here can use hooks to not render LineChart, but render loading icon} */}
         {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
-      </div>}
-    
+      </div>    
     </div>
    );
 }

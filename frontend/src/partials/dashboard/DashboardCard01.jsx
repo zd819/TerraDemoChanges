@@ -34,7 +34,7 @@ function DashboardCard01(props) {
     'type': 'nutrition'
   }
   const options = {
-    url: "https://6777-82-69-42-98.eu.ngrok.io/testing",
+    url: "https://e176-62-23-207-10.eu.ngrok.io/testing",
     headers: {'Content-Type':'application/json',
     'userId': 'user1'},
     data: JSON.stringify(data), 
@@ -93,7 +93,8 @@ function DashboardCard01(props) {
       setData(points); //set Time state
       setDate(times); //set Data state
       setLoading(false); //set loading state
-      props.addSugg('Nutrition', points);
+      const val = 'Nutrition'
+      props.addSugg(val, points);
       props.addItem("Nutrition");
       }
       loadPost(); 

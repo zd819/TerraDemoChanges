@@ -1,23 +1,23 @@
-export default function General1(props){
-    console.log('data VALUE IS ,', props.data)
+export default function General1(data,card){
+    console.log('data VALUE IS ,', data)
     var health,nutrition,performance = []
-    if(props.data === undefined){
+    if(data === undefined){
         return "No suggestion"
     }
     else{
-    health = (props.data["Health"] !== undefined ) ? props.data["Health"] : false  ; //Sleep currently
-    nutrition = (props.data["Nutrition"] !== undefined ) ?  props.data["Nutrition"] : false ; //Calories consumed 
-    performance = (props.data["Performance"] !== undefined ) ?  props.data["Performance"] : false  ; //Calories Burned
+    health = (data['Health'] !== undefined ) ? data['Health'] : false  ; //Sleep currently
+    nutrition = (data['Nutrition'] !== undefined ) ?  data['Nutrition'] : false ; //Calories consumed
+    performance = (data['Performance'] !== undefined ) ?  data['Performance'] : false  ; //Calories Burned
     console.log('REPORTED HEALTH VALUE IS ,', health)
     console.log('TYPE HEALTH VALUE IS ,', typeof(health))
     console.log('TYPE NUTRITION VALUE IS ,', typeof(nutrition))
     console.log('TYPE PERFORMACE VALUE IS ,', typeof(performance))
-    console.log('Card VALUE IS ,', props.card)
+    console.log('Card VALUE IS ,', card)
     function Average(array){
         return array.reduce((a,b) => a + b, 0) / array.length
     }
     // const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-    switch (props.card) {
+    switch (card) {
         case 'Health': // Sleep
             if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
                 for (let nValue of nutrition){ //Calories Consumed 

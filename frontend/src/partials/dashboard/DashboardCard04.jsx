@@ -14,9 +14,9 @@ function DashboardCard04() {
     datasets: [
       // Light blue bars
       {
-        label: 'Direct',
+        label: 'Portion Awake',
         data: [
-          800, 1600, 900, 1300, 1950, 1700,
+          1.3, 1, 0.5, 1.3, 0.9, 1.7,
         ],
         backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
@@ -25,9 +25,9 @@ function DashboardCard04() {
       },
       // Blue bars
       {
-        label: 'Indirect',
+        label: 'Sleep Duration',
         data: [
-          4900, 2600, 5350, 4800, 5200, 4800,
+          8, 8.4, 7.7, 9.1, 8.8, 6.9,
         ],
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
@@ -38,9 +38,9 @@ function DashboardCard04() {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
+    <div className="flex flex-col col-span-100 sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">HEALTH 1</h2>
+        <h2 className="font-semibold text-slate-800">Sleep Concentration</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}

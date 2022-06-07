@@ -26,6 +26,7 @@ function BarChart01({
       type: 'bar',
       data: data,
       options: {
+        label: 'hours',
         layout: {
           padding: {
             top: 12,
@@ -66,7 +67,8 @@ function BarChart01({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              // label: (context) => formatValue(context.parsed.y),
+              label: 'hours',
             },
           },
         },
