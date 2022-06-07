@@ -70,7 +70,6 @@ function DashboardCard03(props) {
     setLoading(false); //set loading state
     const val = 'Performance'
     props.addSugg(val, points);
-    props.addItem("Performance");
     }
     loadPost(); 
     }, []);
@@ -140,7 +139,7 @@ function DashboardCard03(props) {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Health Data Analysis</div>
         <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
         <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (sleepUnder ? 'bg-yellow-500' : 'bg-green-500')}>
-            {sleepUnder ? Under : Over};
+            {props.sugg};
         </div>
 
       </div>}

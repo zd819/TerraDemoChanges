@@ -137,9 +137,11 @@ class DashboardMoz extends React.Component {
   console.log("Sleep", this.state.allData['Sleep'])
   console.log("Health", this.state.allData['Health'])
   console.log("Performance", this.state.allData['Performance'])
-  var result1 = General1(this.state.allData, "Performance")
-  console.log("Suggestion1 : ", result1)
-  console.log("Suggestion type is : ", typeof(result1))
+  var PerformanceSugg = General1(this.state.allData, "Performance")
+  var HealthSugg = General1(this.state.allData, "Health")
+  var NutritionSugg = General1(this.state.allData, "Sleep")
+  console.log("Suggestion1 : ", PerformanceSugg)
+  console.log("Suggestion type is : ", typeof(PerformanceSugg))
   console.log("Checking the Logging Async functions : ", this.state.items)
   const arr = {"1":"11","2":"22","3":[1,2,3,4,5]};
   console.log("Array : ", arr);
@@ -190,11 +192,11 @@ class DashboardMoz extends React.Component {
               {/* Line chart (TEST) */}
               {/* <DashboardTest addSugg = {this.addSugg} sugg = {result1} /> */}
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 addItem = {this.addItem} addData = {this.addData} addSugg = {this.addSugg} />
+              <DashboardCard01 addSugg = {this.addSugg} sugg = {NutritionSugg} />
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 addSugg = {this.addSugg} sugg = {result1} addItem = {this.addItem} />
+              <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} />
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 addSugg = {this.addSugg} addItem = {this.addItem}/>
+              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg}/>
               {/* <Sample />
               <button onClick={() => Sample.this.addItem("TESTING")}>do action</button> */}
               {/* <h1> TESTING 123, {this.state.items}</h1> */}

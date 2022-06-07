@@ -71,7 +71,6 @@ function DashboardCard02(props) {
     setLoading(false); //set loading state
     const val = 'Health'
     props.addSugg(val, points);
-    props.addItem("Health");
     }
     loadPost(); 
     }, []);
