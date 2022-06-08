@@ -39,10 +39,7 @@ class DashboardMoz extends React.Component {
     };
   
     this.openSidebar = this.openSidebar.bind(this)
-    this.addItem = this.addItem.bind(this)
-    this.addData = this.addData.bind(this)
     this.addSugg = this.addSugg.bind(this)
-    this.addPayload = this.addPayload.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
   }
@@ -53,24 +50,6 @@ class DashboardMoz extends React.Component {
     })
   }
 
-  addItem (item) {
-    this.setState({
-      items: this.state.items.concat(item)
-    })
-  }
-
-  addData (item) {
-    this.setState({
-      data: this.state.data.concat(item)
-    })
-  }
-
-  addPayload (item) {
-    this.setState({
-      payloads: this.state.payloads.concat(item)
-    })
-  }
-  
   addSugg (key,data) {
     var dict2 = this.state.allData; 
     // dict2 = {key.replace('"', ''):val for key, val in dict2}
@@ -96,61 +75,17 @@ class DashboardMoz extends React.Component {
     })
   }
 
-  createSuggestion() {
-    if(Object.keys(this.state.allData).length > 0){
-
-
-    }
-  }
-  
-  // changeColor = (props) => {
-  //   this.setState({connected: props});
-  // }
-
 //   add(item){
 //     let newEmp=[item]
 //     this.setEmps([...this.emps,newEmp])
 // }
 
-  // handleAddList(){
-  //   // creating empty object, assigning it to current value of items 
-  //   // then adding another property to it
-  //   var items = Object.assign({}, this.state.lists, {"temp": "something"})
-    
-  //   // setting the state with the new values
-  //   this.setState({
-  //     lists: ["new"],
-  //     connected: items
-  //   })
-  // }
-
   render(){
     
-  const test = [1,2,3,4,5,6,7];
-  // console.log("HERE I COME", this.state.data)
-  // console.log("PAYLOADS ARE", this.state.payloads)
-  console.log("DICTIONARY OF SUGGESTIONS", this.state.allData)
-  console.log("DICTIONARY LENGTH", Object.keys(this.state.allData).length)
-  console.log("NUTRITION",this.state.allData.Nutrition)
-  console.log("Keys of Suggestion DIctionary : ", Object.keys(this.state.allData))
-  var health = Object.keys(this.state.allData)[0]
-  console.log("Sleep", this.state.allData['Sleep'])
-  console.log("Health", this.state.allData['Health'])
-  console.log("Performance", this.state.allData['Performance'])
   var PerformanceSugg = General1(this.state.allData, "Performance")
   var HealthSugg = General1(this.state.allData, "Health")
   var NutritionSugg = General1(this.state.allData, "Sleep")
-  console.log("Suggestion1 : ", PerformanceSugg)
-  console.log("Suggestion type is : ", typeof(PerformanceSugg))
-  console.log("Checking the Logging Async functions : ", this.state.items)
-  const arr = {"1":"11","2":"22","3":[1,2,3,4,5]};
-  console.log("Array : ", arr);
-  console.log("Array 3 : ", arr["3"]);
-  console.log("Array Type : " , typeof(arr));
-  console.log("Data Type: " , typeof(this.state.allData));
-  console.log("Health Type : " , typeof(this.state.allData["Health"]));
-  console.log("Sleep Type : " , typeof(this.state.allData["Sleep"]));
-  console.log("Nutrition Type : " , typeof(this.state.allData["Nutrition"]));
+  
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -197,20 +132,9 @@ class DashboardMoz extends React.Component {
               <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} />
               {/* Line chart (Acme Professional) */}
               <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg}/>
-              {/* <Sample />
-              <button onClick={() => Sample.this.addItem("TESTING")}>do action</button> */}
-              {/* <h1> TESTING 123, {this.state.items}</h1> */}
-              {/* <button onClick={() => this.addData("TESTING")}>do action </button>  */}
-
             </div>
-
           </div>
         </main>
-
-       
-        {/* <Routes>
-            <Route path="/test" element={<DashboardCard03 />} />
-        </Routes> */}
       </div>
     </div>
   );

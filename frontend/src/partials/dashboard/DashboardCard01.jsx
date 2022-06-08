@@ -43,12 +43,9 @@ function DashboardCard01(props) {
   
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
-      // axios(options)
-      //console.log("Getting Data");
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-        // "Content-Type": "application/json",
         "userID" : "user1", 
         "startDate" : "2022-04-29",
         "endDate": "2022-05-24", 
@@ -57,23 +54,12 @@ function DashboardCard01(props) {
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);
-          // console.log("Axios error");
         });
-      // console.log(response.json());  
-      // console.log(response.at(0));
-      // console.log('Response is ',response); 
-      // //console.log(response[19].dataPoint);
-      // console.log('Retreived Data')
       for (let  user of response) {
         const splitDate = user.date.split('-');
         if(user.data> 3800){
           setCalories(true);
         }
-        //console.log("Date :", user.date);
-        // console.log("THE DAY IS :", splitDate[0]);
-        // console.log("THE MONTH IS :", splitDate[1]);
-        // console.log("THE YEAR IS :", splitDate[2]);
-        //console.log("User Data :", user.dataPoint);
         times.push(user.date); 
         points.push(user.data);
       };
@@ -97,32 +83,9 @@ function DashboardCard01(props) {
       props.addSugg(val, points);
       }
       loadPost(); 
-      }, []);
-  //console.log('Logged data', Data);
-  //console.log('Logged DATES', Date);
-  //var payload =  getData();
-  // var dataHealth = payload[0];
-  // setLoading(payload[1]);
-  // if(dataHealth == null){
-  //   setLoading(true);
-  // }
-  
-  
-  // if(props == null){
-  //   console.log('Props NOT PASSED');
-  // }else{
-  //   console.log('Props passed to Dashboard');
-  //   console.log(props);
-  // }
-  // var newTimes = props.map(function(ConvertTime) { 
-  //   ConvertTime.data = ConvertTime.data.split(','); 
-  //   return e;
-  // });
-  // const newTimes2 = props.map(stringX => ConvertTime(stringX));
-  
+      }, []);  
   const Over = "Too Many Calories Consumed";
   const Under = "Good amount of Calories Consumed";
-  //console.log('Logged DATES', Date);
   const chartData = {
     labels: Date,
     datasets: [
@@ -162,18 +125,6 @@ function DashboardCard01(props) {
       // },
     ],
   };
-
-  // { isLoading ? <div>
-  //   Loading the data {console.log("loading state")}
-  //   </div> : null}
-  
-  // if(isLoading){
-  //   <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-  //         <div className="px-5 pt-5">
-  //           Loading Health Data from MYFITNESSPAL
-  //         </div>
-  //   </div>
-  // }else{
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
   { isLoading ? <div>
@@ -215,16 +166,7 @@ function DashboardCard01(props) {
         {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
-      </div>}
-      {/* <button onClick={() => addData("Data")}> ADDING DATA </button> 
-      <button onClick={() => addItem("Nutrition")}> CONNECTED TO HEALTH </button>  */}
-      <button onClick={() => props.addSugg("Nutrition",{Data})}> ADDING NUTRITION </button> 
-      
-
-
-      
-
-    
+      </div>}    
     </div>
    );
 }

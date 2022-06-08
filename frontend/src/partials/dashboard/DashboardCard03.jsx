@@ -18,12 +18,10 @@ function DashboardCard03(props) {
   var points = [];
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
-    // axios(options)
     console.log("Getting Sleep Data");
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-      // "Content-Type": "application/json",
       "userID" : "user1", 
       "startDate" : "2022-05-03",
       "endDate": "2022-05-28", 
@@ -34,21 +32,12 @@ function DashboardCard03(props) {
         console.log(error);
         console.log("Axios error");
       });
-    // console.log(response.json());  
-    // console.log(response.at(0));
     console.log('Sleep is ',response); 
-    // //console.log(response[19].dataPoint);
-    // console.log('Retreived Data')
     for (let  user of response) {
       const splitDate = user.date.split('-');
       if(user.data < 6 ){
         setSleep(true);
       }
-      //console.log("Date :", user.date);
-      // console.log("THE DAY IS :", splitDate[0]);
-      // console.log("THE MONTH IS :", splitDate[1]);
-      // console.log("THE YEAR IS :", splitDate[2]);
-      //console.log("User Data :", user.dataPoint);
       times.push(user.date); 
       points.push(user.data/3600);
     };
@@ -63,7 +52,6 @@ function DashboardCard03(props) {
       }
       else return aDate[0]-bDate[0];
     });
-    //console.log('Sorted dates', sortedDescending);
     times = sortedDescending;
     setData(points); //set Data state
     setDate(times); //set Time state
@@ -152,7 +140,6 @@ function DashboardCard03(props) {
         {/* Change the height attribute to adjust the chart height */}
         <LineChart data={chartData} width={389} height={128} />
       </div>}
-      <button onClick={() => props.addSugg("Health",{Data})}> ADDING HEALTH </button> 
     </div>
   );
 }
