@@ -27,6 +27,7 @@ import useInterval from './hooks/autoData.js'
 import useData from './components/Dashboard/PollData.js';
 import testData from './components/Dashboard/testData.js';
 import PollData from './components/Dashboard/PollData.js'
+import generateID from './components/User/UserID';
 
 
 //Either in the Widget.js or before we set shown to true, we must request
@@ -34,21 +35,20 @@ import PollData from './components/Dashboard/PollData.js'
 
 const url = "http://localhost:8080"
 
+async function generateIDs() {
+  const current = new Date().toLocaleString();
+  const result = JSON.stringify(await sha256(current));
+  console.log("User ID Unique Result is : ", result);
+  return result;
+}
+
 async function getURL() {
   return await fetch(url+'/newSession', {
     method: 'GET',
-    headers: {userId: 'DunnoYet'}
+    headers: {userId: JSON.stringify(generateID())}
   })
   .then(data => data.json())
  }
-
-//  async function generateID() {
-//    const current = new Date().toLocaleString();
-//    const result = JSON.stringify(await sha256(current));
-//    console.log(result);
-//    return result;
-//  }
-
 
 const HandleClick1 = () => {
   // var ID = generateID();
@@ -75,6 +75,7 @@ function App2() {
   const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
   if(!token) {
+    generateID();
     return (
     <div className = " wrapper bg-blue-700 h-screen">
       <Login setToken={setToken} />
@@ -103,16 +104,6 @@ function App2() {
           </Link>
       </div>
     )
-  // }
-  // else{ 
-  //   return(
-  //     <div>
-  //         <Routes>
-  //           <Route exact path="/Dashboard" element={<DashboardMoz />} />
-  //         </Routes>
-  //     </div>
-  //   )
-  // } 
 };
 
 export default App2;

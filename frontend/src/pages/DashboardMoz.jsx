@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -26,6 +26,14 @@ import DashboardTest from '../partials/dashboard/DashboardTest';
 import General1 from '../components/Suggestions/General1';
 //import Banner from '../partials/Banner';
 
+// function useGetLocation(){
+//   const logoutUser = () => {
+//     const location = useLocation();
+//     return location.state;
+//   }
+//   return {logoutUser}
+// }
+
 class DashboardMoz extends React.Component {
   constructor(props) {
     super(props);
@@ -35,13 +43,15 @@ class DashboardMoz extends React.Component {
         payloads:[],
         data:[],
         sidebarOpen :false,
-        allData : {}
+        allData : {},
+        id : this.props.id,
     };
   
     this.openSidebar = this.openSidebar.bind(this)
     this.addSugg = this.addSugg.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
+    // this.setID = this.setID.bind(this)
   }
 
   openSidebar(val) {
@@ -58,6 +68,14 @@ class DashboardMoz extends React.Component {
       allData: dict2
     })
   }
+
+  // setID(){
+  //   const { getLocation } = useGetLocation();
+  //   console.log('PASSED PAGES : ' , getLocation);
+  //   this.setState({
+  //     id : getLocation
+  //   })
+  // }
 
   updateItem(id, updatedItem) {
     this.setState({
@@ -85,7 +103,10 @@ class DashboardMoz extends React.Component {
   var PerformanceSugg = General1(this.state.allData, "Performance")
   var HealthSugg = General1(this.state.allData, "Health")
   var NutritionSugg = General1(this.state.allData, "Sleep")
-  
+  // const { getLocation } = useGetLocation();
+  // console.log("React custom ID : ", getLocation)
+  // console.log("SET NEW ID IS : " , this.state.id)
+  console.log("PROPS USER DATA : ", this.state.id)
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">

@@ -9,7 +9,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 //Sleep data for health
 function DashboardCard03(props) {
-  const url = "https://e176-62-23-207-10.eu.ngrok.io/testing";
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [Data, setData ] = useState();

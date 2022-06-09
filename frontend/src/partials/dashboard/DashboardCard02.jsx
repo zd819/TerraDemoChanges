@@ -8,7 +8,7 @@ import EditMenu from '../EditMenu';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard02(props) {
-  const url = "https://e176-62-23-207-10.eu.ngrok.io/testing";
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();

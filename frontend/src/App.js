@@ -6,6 +6,8 @@ import {
   useLocation 
 } from 'react-router-dom';
 
+import generateID from './components/User/UserID.js';
+
 // Import pages
 import App2 from './App2.js';
 import DashboardMoz from './pages/DashboardMoz';
@@ -21,13 +23,13 @@ function DashboardApp() {
   //   document.querySelector('html').style.scrollBehavior = ''
   // }, [location.pathname]); // triggered on route change
 
-
+  var newID = generateID();
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/*" element={<App2 />} />
-        <Route exact path="/Analytics" element={<AnalyticsMain />} />
-        <Route exact path="/Dashboard" element={<DashboardMoz />} />
+        <Route exact path="/Analytics" element={<AnalyticsMain />}/>
+        <Route exact path="/Dashboard" element={<DashboardMoz id={newID } />} />
       </Routes>
     </BrowserRouter>
   );
