@@ -29,8 +29,6 @@ import Analysis8 from './components/Analysis/Analysis8';
 function DashboardMoz(){
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const test = [1,2,3,4,5,6,7];
-
   return (
     <div className="flex h-screen overflow-hidden bg-blue-100">
       
@@ -88,14 +86,8 @@ function DashboardMoz(){
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09 />
             </div>
-
           </div>
         </main>
-
-       
-        {/* <Routes>
-            <Route path="/test" element={<DashboardCard03 />} />
-        </Routes> */}
       </div>
     </div>
   );
