@@ -62,8 +62,7 @@ const ShowData = () => {
   .then((data) => {console.log(data)});
 };
 
-function App2() {
-
+function App2(props) {
   // const location = useLocation();
   
   // useEffect(() => {
@@ -99,7 +98,7 @@ function App2() {
           {/* {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash); } }>
             Connect to Terra Terra
           </button> : null}    */}
-          <Link to="/Dashboard" className="btn btn-primary" onClick={() => { HandleClick(); setDash(!dash); } } >
+          <Link to="/Dashboard" className="btn btn-primary" onClick={() => { HandleClick(props.id); setDash(!dash); } } >
           Connect to Terra Terra
           </Link>
       </div>

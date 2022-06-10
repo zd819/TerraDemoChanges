@@ -1,9 +1,9 @@
 const url = "http://localhost:8080"
 
-async function getURL() {
+async function getURL(data) {
   return await fetch(url+'/newSession', {
     method: 'GET',
-    headers: {userId: 'DunnoYet'}
+    headers: {userId: data}
   })
   .then(data => data.json())
  }
@@ -17,9 +17,8 @@ async function getURL() {
   //  }
   
   
-export default function HandleClick(){
-    console.log('WORKING1');
-    getURL()
+export default function HandleClick(data){
+    getURL(data)
     .then((data) => {console.log(data);window.open(data.url)})
     .catch((error) => console.log(error));
   };

@@ -24,7 +24,6 @@ import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import DashboardTest from '../partials/dashboard/DashboardTest';
 import General1 from '../components/Suggestions/General1';
-//import Banner from '../partials/Banner';
 
 // function useGetLocation(){
 //   const logoutUser = () => {
@@ -51,7 +50,6 @@ class DashboardMoz extends React.Component {
     this.addSugg = this.addSugg.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
-    // this.setID = this.setID.bind(this)
   }
 
   openSidebar(val) {
@@ -62,20 +60,17 @@ class DashboardMoz extends React.Component {
 
   addSugg (key,data) {
     var dict2 = this.state.allData; 
-    // dict2 = {key.replace('"', ''):val for key, val in dict2}
     dict2[key] = data;
     this.setState({
       allData: dict2
     })
   }
 
-  // setID(){
-  //   const { getLocation } = useGetLocation();
-  //   console.log('PASSED PAGES : ' , getLocation);
-  //   this.setState({
-  //     id : getLocation
-  //   })
-  // }
+  setID(){
+    this.setState({
+      id : this.props.id
+    })
+  }
 
   updateItem(id, updatedItem) {
     this.setState({
@@ -92,21 +87,11 @@ class DashboardMoz extends React.Component {
       })
     })
   }
-
-//   add(item){
-//     let newEmp=[item]
-//     this.setEmps([...this.emps,newEmp])
-// }
-
   render(){
     
   var PerformanceSugg = General1(this.state.allData, "Performance")
   var HealthSugg = General1(this.state.allData, "Health")
   var NutritionSugg = General1(this.state.allData, "Sleep")
-  // const { getLocation } = useGetLocation();
-  // console.log("React custom ID : ", getLocation)
-  // console.log("SET NEW ID IS : " , this.state.id)
-  console.log("PROPS USER DATA : ", this.state.id)
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -146,13 +131,13 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              {/* <DashboardTest addSugg = {this.addSugg} sugg = {result1} /> */}
+              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} />
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 addSugg = {this.addSugg} sugg = {NutritionSugg} />
+              <DashboardCard01 addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} />
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} />
+              <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} />
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg}/>
+              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id}/>
             </div>
           </div>
         </main>
