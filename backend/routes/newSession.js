@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios').default;
 const { default: Terra } = require("terra-api");
+const addNewUser = require('../functions/auth').addNewUser;
 
 // Create a new session on terra api and return result to frontend
 
@@ -14,6 +15,10 @@ router.get('/', (req, res) => {
     terraApi.generateWidgetSession(id, ["FITBIT","OURA","TRAININGPEAKS","WITHINGS","SUUNTO","PELOTON","ZWIFT","GARMIN","EIGHT","WAHOO","GOOGLE","POLAR","APPLE","FREESTYLELIBRE","TEMPO","IFIT","CONCEPT2","MYFITNESSPAL"],'EN')
     .then((s) => res.send(s))
     .catch((e) => console.log(e));
+
+    addNewUser(id), function (result){
+        res.send(result);
+    };
 
 });
 

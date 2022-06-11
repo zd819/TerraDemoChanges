@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     oneMonthAgo.setMonth(oneMonthAgo.getMonth()-1);
 
     const userId = req.get('userId');
+    var data = [];
     // const userWearables = getIds.getUserWearables(userId);
     getUserWearables(userId, (userWearables) => {
         for(var i = 0; i < userWearables.length; i++){

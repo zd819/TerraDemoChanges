@@ -1,4 +1,4 @@
-async function handlePayload(payload) {
+async function uploadData(payload) {
 
     const prov = payload.user.provider;
     const terraId = payload.user.user_id
@@ -34,4 +34,4 @@ async function handlePayload(payload) {
 
 
 
-module.exports = {handlePayload}
+module.exports = {uploadData}

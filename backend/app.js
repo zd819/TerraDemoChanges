@@ -12,6 +12,7 @@ const payloadRouter = require('./routes/terraPayload');
 const dataRouter = require('./routes/getData');
 const autoDataRouter = require('./routes/autoData');
 const mongoRouter = require('./routes/getFromMongo');
+const terraIdRouter = require('./routes/getTerraId');
 
 const cors = require('cors');
 const app = express();
@@ -37,6 +38,7 @@ app.use('/terraPayload', payloadRouter);
 app.use('/getData', dataRouter);
 app.use('/autoData', autoDataRouter);
 app.use('/testing', mongoRouter);
+app.use('/getTerraId', terraIdRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,8 +78,7 @@ global.dataRequest = [];
 // 2 - Process filled
 // 3 - Error of somesort
 
-//setting limit for express size limit
-
+global.authError = [];
 
 
 module.exports = app;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const handlePayload = require('../functions/payloadHandler').handlePayload;
+const uploadData = require('../functions/uploadData').uploadData;
 const auth = require('../functions/auth');
 
 // destination for terra webhook 
@@ -25,13 +25,14 @@ router.post('/', (req,res,next) => {
 
     if(payload.hasOwnProperty('data')) {     
 
-        handlePayload(payload);
+        uploadData(payload);
         
     }else {
 
         switch(type) {
             
             case 'auth':
+                authStatus[payload.widget_session_id] = 'success';
                 auth.addUserWearable(payload.user, payload.reference_id);
                 break;
             case 'deauth':
@@ -43,6 +44,7 @@ router.post('/', (req,res,next) => {
                 auth.addUserWearable(payload.new_user);
                 break;
             case 'auth_failure':
+                authStatus[payload.widget_session_id] = payload.reason;
                 break;
             case 'access_revoked':
                 break;
@@ -55,6 +57,10 @@ router.post('/', (req,res,next) => {
             case 'request_processing':
                 break;
             case 'processing':
+                break;
+            case 'google_no_datasource':
+                break;
+            case 'auth_success':
                 break;
             default:  // subscribed, bulk user info, user info, integrations;
         }

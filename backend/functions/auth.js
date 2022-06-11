@@ -9,7 +9,6 @@ async function deleteUserWearable(user) {
         }
         const db = client.db("Terra");
         const users = db.collection("users");
-        const wearable = db.collection("wearable_data");
         const wearable_provider_user = {provider : user.provider, terraId: user.user_id}
         users.update( {}, {$pull: {wearableIds : wearable_provider_user} }, function(err, res) {
             if (err) {
@@ -34,7 +33,6 @@ async function deleteUserData(user){
         }
         const db = client.db("Terra");
         const wearable = db.collection("wearable_data");
-        const wearable_provider_user = {provider : user.provider, terraId: user.user_id}
         wearable.deleteMany({terraId : terraId}, (err) => {
             console.log(err);
             console.log("Deleted old user data");
@@ -46,6 +44,7 @@ async function deleteUserData(user){
 }
 
 async function addUserWearable(user, userId) {
+
     mongoClient.connect((err,client) => {          
         if(err) {
             console.log(err);
@@ -58,10 +57,32 @@ async function addUserWearable(user, userId) {
             if (err) {
                 throw err;
             }
-            console.log("Added new Terra User");
+            console.log("Added new Wearable Id");
             client.close();
         });
     });
 }
 
-module.export = {deleteUserWearable, addUserWearable, deleteUserData};
+async function addNewUser(userId, callback) {
+
+    mongoClient.connect((err,client) => {          
+        if(err) {
+            console.log(err);
+            throw err;
+        }
+        const db = client.db("Terra");
+        const users = db.collection("users");
+        users.updateOne( {_id:userId}, function(err, res) {
+            if (err) {
+                callback(err);
+                throw err;
+            }
+            console.log("Added new User");
+            client.close();
+            callback("success");
+        });
+    });
+
+}
+
+module.export = {deleteUserWearable, addUserWearable, deleteUserData, addNewUser};

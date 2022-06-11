@@ -8,9 +8,8 @@ async function getUserWearables(userId, callback) {
         }  
         const db = client.db("Terra");
         const userDB = db.collection("users");
-        const query = [{ $match : {_id : userId} } , { $unwind : '$wearableIds'}, {$project : {_id : 0} } ];
 
-        userDB.findOne({_id:userId}, {'_id': false}, function(err, res){
+        userDB.findOne({_id:userId}, {'_id': false}, function(err, res) {
             if(err) {
                 throw err;
             }
@@ -21,7 +20,8 @@ async function getUserWearables(userId, callback) {
         })
     });
 
-}
+};
+
 
 module.exports = {getUserWearables};
 

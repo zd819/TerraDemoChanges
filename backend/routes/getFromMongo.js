@@ -10,16 +10,24 @@ const requestTerraData = require('../functions/requestTerraData').requestTerraDa
 // Create a new session on terra api and return result to frontend
 router.get('/', (req, res) => {
 
-    const startDate = new Date(req.get('startDate'));
-    const endDate = new Date(req.get('endDate'));
+    const start = req.get('startDate');
+    const end = req.get('endDate');
+    const startDate = new Date(start);
+    const endDate = new Date(end);
     const today = new Date();
     console.log(req.get('type'));
+    const terraId = req.get('terraId');
+    const type = req.get('type');
+    const reqId = terraId + type + start + end;
+
 
     if(startDate > endDate) {
         // error end date has to be bigger
+        res.send("Start Date is after End Date")
         throw "end date needs to be bigger than start";
     } else if(startDate > today || endDate > today) {
         // error error
+        res.send("Dates are in the future");
         throw "dates in the future";
     }
 
@@ -27,8 +35,8 @@ router.get('/', (req, res) => {
     pullData({
         startDate: startDate,
         endDate: endDate,
-        terraId: req.get('terraId'),
-        type: req.get('type')
+        terraId: terraId,
+        type: type
     }, function(result){
 
         var length;
@@ -48,7 +56,7 @@ router.get('/', (req, res) => {
         }else if(result.length < period) {
 
             // need to find missing dates and pull
-            dataRequest[req.get('terraId') + req.get('type') + req.get('startDate') + req.get('endDate')] = 1;
+            dataRequest[reqId] = 1;
 
             findMissingDates(startDate, endDate, result, (missingDates) => {
                 console.log(missingDates);
@@ -60,21 +68,22 @@ router.get('/', (req, res) => {
                             startDate: missingDates[i].startDate,
                             endDate: missingDates[i].endDate
                         }, () => {
-                            dataRequest[req.get('terraId') + req.get('type') + req.get('startDate') + req.get('endDate')] = 2;
+                            dataRequest[terraId + type + start + end] = 2;
                             // request fulfilled on server side now waiting for terra
                         });
                 }
             });
+            res.send("Waiting for Terra");
 
         }else {
 
+            delete dataRequest[reqId];
             //everything is fine
             // process data and send
-            processData(result, req.get('type'));
-
+            result = processData(result, req.get('type'));
+            res.send(result);
         }
 
-        res.send(result);
     })
 
 });
