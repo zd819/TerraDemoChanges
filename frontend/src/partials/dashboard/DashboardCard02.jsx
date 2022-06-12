@@ -37,10 +37,6 @@ function DashboardCard02(props) {
       });
     console.log('Activity is ',response); 
     for (let  user of response) {
-      const splitDate = user.date.split('-');
-      if(user.data< 2500){
-        setActivity(true);
-      }
       times.push(user.date); 
       points.push(user.data);
     };
@@ -72,9 +68,6 @@ function DashboardCard02(props) {
       252, 423, 622, 470, 532,
     ];
   const grey = gray.map(v => v*10);
-
-  const Over = "Good Average Activity";
-  const Under = "Low Activity";  
   const chartData = {
     labels: Date,
     datasets: [

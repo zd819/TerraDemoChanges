@@ -9,6 +9,7 @@ import axios from "axios";
 import qs from 'qs';
 
 import { ConvertTime } from '../../components/DataHandling/ConvertTime.js'
+import localTime from '../../components/DataHandling/localTime';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
@@ -56,10 +57,6 @@ function DashboardCard01(props) {
           console.log(error);
         });
       for (let  user of response) {
-        const splitDate = user.date.split('-');
-        if(user.data> 3800){
-          setCalories(true);
-        }
         times.push(user.date); 
         points.push(user.data);
       };
@@ -84,8 +81,17 @@ function DashboardCard01(props) {
       }
       loadPost(); 
       }, []);  
-  const Over = "Too Many Calories Consumed";
-  const Under = "Good amount of Calories Consumed";
+  // const cdate = new window.Date().toLocaleDateString();
+  // const cmonth = new window.Date().getMonth().toLocaleDateString();
+  // var start = new Date(document.getElementById('Stardate').value);
+  var start = new window.Date();
+  var x = start.getDate();
+  var y = start.getMonth() + 1;
+  var z = start.getFullYear();
+  var fulldate = x + '-' + y + '-' + z;
+  console.log("DATE : ", localTime());
+  // console.log("GOKU : ", y);
+  // console.log("DBZ : ", cdate);
   const chartData = {
     labels: Date,
     datasets: [
@@ -153,7 +159,7 @@ function DashboardCard01(props) {
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
           <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
-            {calorieOver ? Over : Under};
+          {props.sugg}
           </div>
         </div>
   </div>}

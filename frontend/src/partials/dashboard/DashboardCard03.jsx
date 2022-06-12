@@ -34,10 +34,6 @@ function DashboardCard03(props) {
       });
     console.log('Sleep is ',response); 
     for (let  user of response) {
-      const splitDate = user.date.split('-');
-      if(user.data < 6 ){
-        setSleep(true);
-      }
       times.push(user.date); 
       points.push(user.data/3600);
     };
@@ -127,7 +123,7 @@ function DashboardCard03(props) {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Health Data Analysis</div>
         <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
         <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (sleepUnder ? 'bg-yellow-500' : 'bg-green-500')}>
-            {props.sugg};
+            {props.sugg}
         </div>
 
       </div>}
