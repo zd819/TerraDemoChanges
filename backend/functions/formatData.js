@@ -38,6 +38,9 @@ function getRelevantData(data, type) {
             break;
         case 'activity':
             break;
+        case 'nutrition breakdown':
+            return data.summary.macros.protein_g, data.summary.macros.carbohydrates_g, data.summary.macros.fat_g;
+            break;
         default:
     }
 }
