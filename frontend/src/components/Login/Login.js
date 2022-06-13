@@ -36,7 +36,7 @@ export default function Login({ setToken }) {
   return(
     
     
-    <div className=" wrapper bg-blue-50 h-full">
+    <div className=" wrapper bg-blue-100 h-full">
       <img src={TerraAvatar} width="100" height="100" className="Terra-Avatar wrapper" alt="TerraAvatar" />
       
       <h1 className = "text-blue-250 font-extrabold h-120" >Please Log In</h1>

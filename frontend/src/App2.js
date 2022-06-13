@@ -76,7 +76,7 @@ function App2(props) {
   if(!token) {
     generateID();
     return (
-    <div className = " wrapper bg-blue-700 h-screen">
+    <div className = " wrapper bg-slate-50 h-screen">
       <Login setToken={setToken} />
     </div>
     )
