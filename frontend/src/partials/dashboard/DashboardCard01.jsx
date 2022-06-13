@@ -81,17 +81,6 @@ function DashboardCard01(props) {
       }
       loadPost(); 
       }, []);  
-  // const cdate = new window.Date().toLocaleDateString();
-  // const cmonth = new window.Date().getMonth().toLocaleDateString();
-  // var start = new Date(document.getElementById('Stardate').value);
-  var start = new window.Date();
-  var x = start.getDate();
-  var y = start.getMonth() + 1;
-  var z = start.getFullYear();
-  var fulldate = x + '-' + y + '-' + z;
-  console.log("DATE : ", localTime());
-  // console.log("GOKU : ", y);
-  // console.log("DBZ : ", cdate);
   const chartData = {
     labels: Date,
     datasets: [
@@ -143,13 +132,13 @@ function DashboardCard01(props) {
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 1</Link>
+              <button className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week Ago</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 2</Link>
+              <button className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month Ago</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to="#0">Remove</Link>
+              <button className="font-medium text-sm text-rose-500 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months Ago</button>
             </li>
           </EditMenu>
         </header>

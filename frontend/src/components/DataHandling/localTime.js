@@ -4,6 +4,6 @@ export default function localTime(){
     var x = start.getDate();
     var y = start.getMonth() + 1;
     var z = start.getFullYear();
-    var fulldate = x + '-' + y + '-' + z;
+    var fulldate = z + '-' + y + '-' + x ;
     return fulldate;
 }

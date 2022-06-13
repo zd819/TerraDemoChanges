@@ -94,17 +94,7 @@ class DashboardMoz extends React.Component {
   var PerformanceSugg = General1(this.state.allData, "Performance");
   var HealthSugg = General1(this.state.allData, "Health");
   var NutritionSugg = General1(this.state.allData, "Sleep");
-  var current = new window.Date();
-  var beforedate =  new Date(new Date().setDate(current.getDate()-30));
-  // var beforedate = new window.Date().setDate(current.getDate()-30);
-  // new Date(new Date().setDate(beforedate.getDate()-30));
-  // new Date(new Date().setDate(current.getDate() - 30));
-  var x = beforedate.getDate();
-  var y = beforedate.getMonth() + 1;
-  var z = beforedate.getFullYear();
-  var fulldate = x + '-' + y + '-' + z;
-  // var past = new window.Date().getDate(beforedate.getDate()-30);
-  console.log('PAST 30 DATE IS : ', getDiffTime('+',60));
+  console.log('PAST 30 DATE IS : ', getDiffTime('-',60));
   console.log('ZYZZ DATE IS : ', localTime());
 
   return (

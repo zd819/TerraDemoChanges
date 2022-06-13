@@ -67,14 +67,14 @@ function DashboardTest({addSugg}) {
           <img src={Icon} width="32" height="32" alt="Icon 01" /> {/*className = {'fill-current text-red-600'} */}
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
-            <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 1</Link>
+          <li>
+              <button  onClick={() => { console.log('BUTTON 1 WORKING'); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 2</Link>
+              <button  onClick={() => {console.log('BUTTON 2 WORKING'); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to="#0">Remove</Link>
+              <button  onClick={() => { console.log('BUTTON 3 WORKING'); }}className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months</button>
             </li>
           </EditMenu>
         </header>
