@@ -13,9 +13,10 @@ function Average(array){
 
 function DashboardCard06() {
   const url = "https://0a8a-80-3-12-252.eu.ngrok.io/testing";
-  const [Protein, setProtein] = useState((1));
-  const [Carbs, setCarbs] = useState((1));
-  const [Fat, setFat] = useState((1));
+  const [isLoading, setLoading ] = useState(true);
+  const [Protein, setProtein] = useState();
+  const [Carbs, setCarbs] = useState();
+  const [Fat, setFat] = useState();
   var parr = [];
   var farr = [];
   var carr = [];
@@ -28,7 +29,6 @@ function DashboardCard06() {
 
     useEffect(() => { // useEffect hook
       const loadPost = async () => {
-      console.log("Getting Data");
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -46,14 +46,11 @@ function DashboardCard06() {
         carr.push(user.data.carbohydrates_g);
         farr.push(user.data.fat_g);
       };
-      console.log('PROTEIN is : ', Average(parr));
-      console.log('CARBS is : ', Average(carr));
-      console.log('FATS is : ', Average(farr));
-      console.log('Type of farr is ',typeof(Average(farr)));
       console.log('Retreived Data');
-      setProtein(state => (20));
-      setCarbs((20));
-      setFat((20));
+      setLoading(false);
+      setProtein(Average(parr));
+      setCarbs(Average(carr));
+      setFat(Average(farr));
       console.log(Protein);
       console.log(Carbs);
       console.log(Fat);
@@ -66,7 +63,7 @@ function DashboardCard06() {
       {
         label: 'User Data',
         data: [
-          Protein, Carbs, Fat,
+          Carbs, Protein, Fat,
         ],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],
@@ -103,14 +100,21 @@ function DashboardCard06() {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">DIET BREAKDOWN</h2>
-        <h6 className="font-semibold text-slate-800">Inner circle is daily guidelines</h6>
-        <h6 className="font-semibold text-slate-800">Outer circle is your data</h6>
+      { isLoading ? <div>
+      Please connect a wearable which tracks Nutrition Data
+      </div> :<header className="px-5 py-4 border-b border-slate-100">
+          <h2 className="font-semibold text-slate-800">DIET BREAKDOWN</h2>
+          <h6 className="font-semibold text-slate-800">Inner circle is daily guidelines</h6>
+          <h6 className="font-semibold text-slate-800">Outer circle is your data</h6>
       </header>
+      }
+      
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      <DoughnutChart data={chartData} width={389} height={260} />
+      { isLoading ? <div>
+    Please connect a wearable which tracks Nutrition Data
+    </div> :
+      <DoughnutChart data={chartData} width={389} height={260} />}
     </div>
   );
 }
