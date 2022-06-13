@@ -52,12 +52,12 @@ function DashboardCard01(props) {
         "endDate": "2022-05-24", 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
-      }}).then((res => res.json()))
+      }}).then((res => res.calories.json()))
       .catch(function(error){
           console.log(error);
         });
-      for (let  user of response) {
-        times.push(user.date); 
+      for (let user of response) {
+        times.push(user.date);
         points.push(user.data);
       };
       let sortedDescending = response.sort((a, b) => {
@@ -76,7 +76,7 @@ function DashboardCard01(props) {
       setData(points); //set Time state
       setDate(times); //set Data state
       setLoading(false); //set loading state
-      const val = 'Nutrition'
+      const val = 'Nutrition';
       props.addSugg(val, points);
       }
       loadPost(); 

@@ -29,7 +29,7 @@ function getRelevantData(data, type) {
         case 'menstruation':
             break; 
         case 'nutrition':
-            return data.summary.macros.calories;
+            return data.summary.macros;
             break;
         case 'daily':
             return data.calories_data.total_burned_calories;
@@ -37,9 +37,6 @@ function getRelevantData(data, type) {
         case 'body':
             break;
         case 'activity':
-            break;
-        case 'nutrition breakdown':
-            return data.summary.macros.protein_g, data.summary.macros.carbohydrates_g, data.summary.macros.fat_g;
             break;
         default:
     }

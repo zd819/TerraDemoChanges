@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import DoughnutChart from '../../charts/DoughnutChart';
-import EditMenu from '../EditMenu';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
@@ -14,62 +12,61 @@ function Average(array){
 
 
 function DashboardCard06() {
+  const url = "https://0a8a-80-3-12-252.eu.ngrok.io/testing";
+  const [Protein, setProtein] = useState((1));
+  const [Carbs, setCarbs] = useState((1));
+  const [Fat, setFat] = useState((1));
+  var parr = [];
+  var farr = [];
+  var carr = [];
+  // const data = {
+  //   "startDate": "2022-05-21",
+  //   'endDate': '2022-05-22',
+  //   'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
+  //   'type': 'nutrition'
+  // }
 
-  const [protein, setProtein] = useState();
-  const [carbs, setCarbs] = useState();
-  const [fat, setFat] = useState();
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
-  const [Data, setData ] = useState();
-  const [Date, setDate ] = useState();
-  var times = [];
-  var points = [];
-
-  const data = {
-    "startDate": "2022-05-24",
-    'endDate': '2022-05-31',
-    'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
-    'type': 'nutrition breakdown'
-  }
-
-  const options = {
-    url: "https://e176-62-23-207-10.eu.ngrok.io/testing",
-    headers: {'Content-Type':'application/json',
-    'userId': 'user1'},
-    data: JSON.stringify(data), 
-    method: 'GET'
-    };
-  
     useEffect(() => { // useEffect hook
       const loadPost = async () => {
+      console.log("Getting Data");
       const response = await fetch(url, {
         method: 'GET',
         headers: {
         "userID" : "user1", 
-        "startDate" : "2022-05-24",
-        "endDate": "2022-05-31", 
+        "startDate" : "2022-05-21",
+        "endDate": "2022-05-22", 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-        "type": "nutrition breakdown", 
+        "type": "nutrition", 
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);
-        });
-
-      setProtein(Average(response[0]));
-      setCarbs(Average(response[1]));
-      setFat(Average(response[2]));
-      console.log(protein);
-      console.log(carbs);
-      console.log(fat);
-
+      });
+      for (let user of response) {
+        parr.push(user.data.protein_g);
+        carr.push(user.data.carbohydrates_g);
+        farr.push(user.data.fat_g);
+      };
+      console.log('PROTEIN is : ', Average(parr));
+      console.log('CARBS is : ', Average(carr));
+      console.log('FATS is : ', Average(farr));
+      console.log('Type of farr is ',typeof(Average(farr)));
+      console.log('Retreived Data');
+      setProtein(state => (20));
+      setCarbs((20));
+      setFat((20));
+      console.log(Protein);
+      console.log(Carbs);
+      console.log(Fat);
     }
-  } );
+    loadPost();
+    }, []);
   const chartData = {
     labels: ['Carbs', 'Protein', 'Fats'],
     datasets: [
       {
         label: 'User Data',
         data: [
-          protein, carbs, fat,
+          Protein, Carbs, Fat,
         ],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],

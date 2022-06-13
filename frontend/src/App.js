@@ -28,17 +28,13 @@ function DashboardApp() {
 
   async function GenerateID(){
     let ID = await sha256(current).then((result) => {
-        console.log('2222222222222 : ', result);
         setUserID(result);
         return result;
       });
-    console.log("33333333333333 : ", ID);
-    console.log("4444444444444: ", userID);
     return userID;
 };
 
   var newID = GenerateID();
-  console.log("99999 : ", userID);
   return (
     <BrowserRouter>
       <Routes>
