@@ -9,8 +9,7 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
-const dataRouter = require('./routes/getData');
-const autoDataRouter = require('./routes/autoData');
+const dataRouter = require('./routes/getUserData');
 const mongoRouter = require('./routes/getFromMongo');
 const terraIdRouter = require('./routes/getTerraId');
 
@@ -36,7 +35,6 @@ app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
 app.use('/getData', dataRouter);
-app.use('/autoData', autoDataRouter);
 app.use('/testing', mongoRouter);
 app.use('/getTerraId', terraIdRouter);
 
@@ -70,6 +68,20 @@ global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/m
     sslCert: credentials,
     serverApi: ServerApiVersion.v1
   });
+
+global.usersDB;
+global.wearableDB;
+mongoClient.connect((err,client) => {
+
+  if(err) throw err;
+
+  db = client.db("Terra");
+  userDB = db.collection("users");
+  wearableDB = db.collection("wearable_data");
+
+  console.log("Mongo Connected");
+
+});
 
 
 global.dataRequest = [];
