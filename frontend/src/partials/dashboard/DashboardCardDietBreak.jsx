@@ -11,15 +11,15 @@ function Average(array){
 }
 
 
-function DashboardCard06() {
-  const url = "https://0a8a-80-3-12-252.eu.ngrok.io/testing";
+function DashboardCardDietBreak() {
+  const url = "https://89eb-2a0c-5bc0-40-2e2f-10f4-180a-b79f-ff4b.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
   const [Fat, setFat] = useState();
-  var parr = [];
-  var farr = [];
-  var carr = [];
+  var pro_arr = [];
+  var fat_arr = [];
+  var carbs_arr = [];
   // const data = {
   //   "startDate": "2022-05-21",
   //   'endDate': '2022-05-22',
@@ -42,18 +42,16 @@ function DashboardCard06() {
           console.log(error);
       });
       for (let user of response) {
-        parr.push(user.data.protein_g);
-        carr.push(user.data.carbohydrates_g);
-        farr.push(user.data.fat_g);
+        pro_arr.push(user.data.protein_g);
+        carbs_arr.push(user.data.carbohydrates_g);
+        fat_arr.push(user.data.fat_g);
       };
       console.log('Retreived Data');
       setLoading(false);
-      setProtein(Average(parr));
-      setCarbs(Average(carr));
-      setFat(Average(farr));
-      console.log(Protein);
-      console.log(Carbs);
-      console.log(Fat);
+      setProtein(Average(pro_arr));
+      setCarbs(Average(carbs_arr));
+      setFat(Average(fat_arr));
+     
     }
     loadPost();
     }, []);
@@ -119,4 +117,4 @@ function DashboardCard06() {
   );
 }
 
-export default DashboardCard06;
+export default DashboardCardDietBreak;
