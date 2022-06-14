@@ -17,7 +17,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
   
 
-function DashboardCard01(props) {
+function DashboardNutrition(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
@@ -166,4 +166,4 @@ function DashboardCard01(props) {
    );
 }
 
-export default DashboardCard01;
+export default DashboardNutrition;

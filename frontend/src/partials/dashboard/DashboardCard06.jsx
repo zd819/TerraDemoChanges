@@ -102,7 +102,7 @@ function DashboardCard06() {
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       { isLoading ? <div>
       Please connect a wearable which tracks Nutrition Data
-      </div> :<header className="px-5 py-4 border-b border-slate-100">
+      </div> : <header className="px-5 py-4 border-b border-slate-100">
           <h2 className="font-semibold text-slate-800">DIET BREAKDOWN</h2>
           <h6 className="font-semibold text-slate-800">Inner circle is daily guidelines</h6>
           <h6 className="font-semibold text-slate-800">Outer circle is your data</h6>

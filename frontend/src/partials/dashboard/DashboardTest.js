@@ -7,7 +7,8 @@ import EditMenu from '../EditMenu';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardTest({addSugg}) {
+function DashboardTest(props) {
+  console.log('123 : ', props.id)
   const Data = [
     732, 610, 610, 504, 504, 504, 349,
     349, 504, 342, 504, 610, 391, 192,
