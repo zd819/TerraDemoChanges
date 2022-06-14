@@ -40,10 +40,6 @@ function Analysis1() {
           console.log(error);
         });
       console.log('Resposne is : ', response);
-      for (let  user of response) {
-        times.push(user.date); 
-        remdata.push(user.data);
-      };
       let sortedDescending = response.sort((a, b) => {
         const aDate = a.date.split('-');
         const bDate = b.date.split('-');
@@ -55,20 +51,24 @@ function Analysis1() {
         }
         else return aDate[0]-bDate[0];
       });
-      times = sortedDescending;
-      console.log('TIMES :', typeof(times));
-      console.log('DATA : ', typeof(remdata));
+      for (let  user of sortedDescending) {
+        times.push(user.date); 
+        remdata.push(user.data/3600);
+      };
+      // times = sortedDescending;
+      console.log('SORTED :', times);
+      // console.log('DATA : ', typeof(remdata));
       console.log('Retreived Data');
       setData(remdata);
       setDate(times);
       setLoading(false);
-      console.log('123 : ', Data);
-      console.log('456 : ', Date);
+      
     }
     loadPost(); 
     }, []);
 
-  
+    console.log('123 : ', Data);
+    console.log('456 : ', Date);
   //console.log('Logged DATES', Date);
   const chartData = {
     labels: Date,
