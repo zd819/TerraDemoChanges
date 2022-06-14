@@ -81,7 +81,7 @@ function DashboardCard06() {
       {
         label: 'Daily Guidelines',
         data: [
-          55.5, 333, 97,
+          333, 55.5, 97,
         ],
         backgroundColor: [
           tailwindConfig().theme.colors.indigo[500],
