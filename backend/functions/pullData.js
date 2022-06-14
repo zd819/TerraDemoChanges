@@ -6,27 +6,17 @@ async function pullData(vars, callback) {
     const terraId = vars.terraId;
     const type = vars.type
 
-    mongoClient.connect((err,client) => {    
-        if(err) {
-            console.log(err);
+    wearableDB.aggregate( [ { $match : { $and: [ 
+                        { "terraId" : terraId },
+                        { "startDate" : { $gte : startDate }},
+                        { "startDate" : { $lte : endDate }},
+                        { "type" : type} 
+                        ]}}]).
+                        toArray( (err,res) => {
+        if(err){
             throw err;
-        }  
-        const db = client.db("Terra");
-        const wearableDB = db.collection("wearable_data");
-        wearableDB.aggregate( [ { $match : { $and: [ 
-                            { "terraId" : terraId },
-                            { "startDate" : { $gte : startDate }},
-                            { "startDate" : { $lte : endDate }},
-                            { "type" : type} 
-                            ]}}]).
-                            toArray( (err,res) => {
-            if(err){
-                throw err;
-            }
-            callback(res);
-            client.close();
-
-        });
+        }
+        callback(res);
     });
 }
 
