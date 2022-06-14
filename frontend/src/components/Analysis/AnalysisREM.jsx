@@ -17,8 +17,8 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 function Analysis1() {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
-  const [Data, setData ] = useState();
-  const [Date, setDate ] = useState();
+  const [Data, setData ] = useState([]);
+  const [Date, setDate ] = useState([]);
   var times = [];
   var remdata = [];
   const green = "bg-green-500";
@@ -44,8 +44,8 @@ function Analysis1() {
         times.push(user.date); 
         remdata.push(user.data);
       };
-      console.log('TIMES :', times);
-      console.log('DATA : ', remdata);
+      console.log('TIMES :', typeof(times));
+      console.log('DATA : ', typeof(remdata));
       console.log('Retreived Data');
       setData(remdata);
       setDate(times);
@@ -84,7 +84,10 @@ function Analysis1() {
 
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-  <div className="px-5 pt-5">
+  { isLoading ? <div>
+    Please connect a wearable which tracks Activity Data
+    </div> :
+    <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
           {/* <img src={Icon} width="50" height="50" alt="Icon 01" /> */}
@@ -110,15 +113,17 @@ function Analysis1() {
             {calorieOver ? Over : Under};
           </div> */}
         </div>
-  </div>
+  </div>}
       {/* Chart built with Chart.js 3 */}
+      { isLoading ? <div>
+    </div> :
        <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         {/* {Here can use hooks to not render LineChart, but render loading icon} */}
         {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
         {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
         <LineChart data={chartData} width={389} height={128} />
-      </div>    
+      </div>    }
     </div>
    );
 }
