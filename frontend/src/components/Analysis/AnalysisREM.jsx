@@ -15,8 +15,8 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
-  const url = "https://3bb2-80-3-12-252.eu.ngrok.io/testing";
-  const [isLoading, setLoading ] = useState(false);
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+  const [isLoading, setLoading ] = useState(true);
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
@@ -33,20 +33,25 @@ function Analysis1() {
         "userID" : "user1", 
         "startDate" : "2022-04-29",
         "endDate": "2022-05-24", 
-        "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
+        "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
         "type": "sleep", 
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);
         });
+      console.log('Resposne is : ', response);
       for (let  user of response) {
         times.push(user.date); 
         remdata.push(user.data);
       };
+      console.log('TIMES :', times);
+      console.log('DATA : ', remdata);
       console.log('Retreived Data');
-      setLoading(false);
       setData(remdata);
       setDate(times);
+      setLoading(false);
+      console.log('123 : ', Data);
+      console.log('456 : ', Date);
     }
     loadPost(); 
     }, []);
@@ -54,13 +59,11 @@ function Analysis1() {
   
   //console.log('Logged DATES', Date);
   const chartData = {
-    labels: [ Date ],
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        data: [
-          Data
-            ],
+        data: Data,
         label: 'Calories Consumed',
         fill: true,
         ticks: {
