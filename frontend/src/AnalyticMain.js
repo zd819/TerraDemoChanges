@@ -24,7 +24,7 @@ import DashboardCard12 from './partials/dashboard/DashboardCard12';
 import DashboardCard13 from './partials/dashboard/DashboardCard13';
 import AnalysisREM from './components/Analysis/AnalysisREM';
 import Analysis8 from './components/Analysis/Analysis8';
-import AnalyticSteos from './components/Analysis/AnalyticsSteps.js';
+import AnalyticSteps from './components/Analysis/AnalyticsSteps.js';
 // import Banner from '../partials/Banner';
 
 function DashboardMoz(){
