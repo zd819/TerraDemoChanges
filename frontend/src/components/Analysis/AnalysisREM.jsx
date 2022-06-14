@@ -44,6 +44,18 @@ function Analysis1() {
         times.push(user.date); 
         remdata.push(user.data);
       };
+      let sortedDescending = response.sort((a, b) => {
+        const aDate = a.date.split('-');
+        const bDate = b.date.split('-');
+        if(aDate[2]!=bDate[2]){
+          return aDate[2]-bDate[2];
+        }
+        else if(aDate[1]!=bDate[1]){
+          return aDate[1]-bDate[1];
+        }
+        else return aDate[0]-bDate[0];
+      });
+      times = sortedDescending;
       console.log('TIMES :', typeof(times));
       console.log('DATA : ', typeof(remdata));
       console.log('Retreived Data');
