@@ -11,7 +11,7 @@ import localTime from '../components/DataHandling/localTime.js';
 import getDiffTime from '../components/DataHandling/getDiffTime';
 
 import Datepicker from '../partials/actions/Datepicker';
-import DashboardCard01 from '../partials/dashboard/DashboardCard01';
+import DashboardNutrition from '../partials/dashboard/DashboardNutrition';
 import DashboardCard02 from '../partials/dashboard/DashboardCard02';
 import DashboardCard03 from '../partials/dashboard/DashboardCard03';
 import DashboardCard04 from '../partials/dashboard/DashboardCard04';
@@ -96,6 +96,7 @@ class DashboardMoz extends React.Component {
   var NutritionSugg = General1(this.state.allData, "Sleep");
   console.log('PAST 30 DATE IS : ', getDiffTime('-',60));
   console.log('ZYZZ DATE IS : ', localTime());
+  console.log('456 : ', this.props.id);
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -135,9 +136,9 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} />
+              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} />
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} />
+              <DashboardNutrition addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} />
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} />
               {/* Line chart (Acme Professional) */}
