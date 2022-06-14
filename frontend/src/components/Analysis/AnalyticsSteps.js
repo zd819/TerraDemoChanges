@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-02.svg';
-import EditMenu from '../EditMenu';
+import EditMenu from '../../partials/EditMenu.jsx';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard02(props) {
+function AnalyticsSteps(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
@@ -142,4 +142,4 @@ function DashboardCard02(props) {
   );
 }
 
-export default DashboardCard02;
+export default AnalyticsSteps;
