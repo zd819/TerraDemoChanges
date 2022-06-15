@@ -1,7 +1,7 @@
 import React from 'react';
 import Flatpickr from 'react-flatpickr';
 
-function Datepicker() {
+function Datepicker(props) {
 
   const options = {
     mode: 'range',
@@ -16,6 +16,10 @@ function Datepicker() {
     },
     onChange: (selectedDates, dateStr, instance) => {
       instance.element.value = dateStr.replace('to', '-');
+      console.log("ZION : ", selectedDates, " AND TYPE IS :", typeof(selectedDates));
+      console.log("VEGETA : ", dateStr, " AND TYPE IS :", typeof(dateStr));
+      props.addDate(selectedDates);
+      props.override(true);
     },
   }
 

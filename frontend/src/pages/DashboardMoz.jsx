@@ -9,6 +9,7 @@ import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars';
 import localTime from '../components/DataHandling/localTime.js';
 import getDiffTime from '../components/DataHandling/getDiffTime';
+import convertDate from '../components/DataHandling/convertDate';
 
 import Datepicker from '../partials/actions/Datepicker';
 import DashboardNutrition from '../partials/dashboard/DashboardNutrition';
@@ -39,7 +40,8 @@ class DashboardMoz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        lists: [], 
+        dates: [], 
+        overrideDate : false,
         items:[],
         payloads:[],
         data:[],
@@ -52,6 +54,8 @@ class DashboardMoz extends React.Component {
     this.addSugg = this.addSugg.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
+    this.setDates = this.setDates.bind(this)
+    this.setOverrideDate = this.setOverrideDate.bind(this)
   }
 
   openSidebar(val) {
@@ -71,6 +75,18 @@ class DashboardMoz extends React.Component {
   setID(){
     this.setState({
       id : this.props.id
+    })
+  }
+
+  setOverrideDate(newV){
+    this.setState({
+      overrideDate : newV
+    })
+  }
+
+  setDates(val){
+    this.setState({
+      dates : val
     })
   }
 
@@ -97,6 +113,24 @@ class DashboardMoz extends React.Component {
   console.log('PAST 30 DATE IS : ', getDiffTime('-',60));
   console.log('ZYZZ DATE IS : ', localTime());
   console.log('456 : ', this.props.id);
+  console.log('OLD : ', this.state.dates);
+  if(this.state.overrideDate == true){
+    console.log('12345');
+  }
+  if(this.state.dates.length == 2 && this.state.overrideDate == true){
+    var temp = [];
+    console.log('LENGTH IS 2');
+    for( let item of this.state.dates ){
+      console.log('CHANGED : ', convertDate(item));
+      temp.push(convertDate(item)) ;
+    };
+    console.log('TEMP IS: ', temp);
+    // var x = this.state.dates.map(item => convertDate(item));
+    this.setDates(temp);
+    console.log('NEW  : ', this.state.dates);
+    this.setOverrideDate(false);
+  }
+  
 
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
@@ -129,7 +163,7 @@ class DashboardMoz extends React.Component {
               </div>
               {/* Filter button */}
              
-              <Datepicker />
+              <Datepicker addDate = {this.setDates} override = {this.setOverrideDate}/>
             </div>
 
             {/* Cards */}

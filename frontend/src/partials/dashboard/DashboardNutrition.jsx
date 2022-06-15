@@ -8,8 +8,10 @@ import PollData from '../../components/Dashboard/PollData';
 import axios from "axios";
 import qs from 'qs';
 
+
 import { ConvertTime } from '../../components/DataHandling/ConvertTime.js'
-import localTime from '../../components/DataHandling/localTime';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
@@ -29,8 +31,8 @@ function DashboardNutrition(props) {
   const green = "bg-green-500";
   const yellow = "bg-yellow-500";
   const data = {
-    "startDate": "2022-04-29",
-    'endDate': '2022-05-24',
+    "startDate" : localTime,
+    "endDate": getDIffTime('-', 30), 
     'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
     'type': 'nutrition'
   }

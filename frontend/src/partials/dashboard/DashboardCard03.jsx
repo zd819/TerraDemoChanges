@@ -6,6 +6,8 @@ import EditMenu from '../EditMenu';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 
 //Sleep data for health
 function DashboardCard03(props) {
@@ -23,8 +25,8 @@ function DashboardCard03(props) {
       method: 'GET',
       headers: {
       "userID" : "user1", 
-      "startDate" : "2022-05-03",
-      "endDate": "2022-05-28", 
+      "startDate" : localTime,
+      "endDate": getDIffTime('-', 30), 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 
     }}).then((res => res.json()))
