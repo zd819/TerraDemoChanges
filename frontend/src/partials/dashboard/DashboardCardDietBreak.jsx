@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://89eb-2a0c-5bc0-40-2e2f-10f4-180a-b79f-ff4b.eu.ngrok.io/testing";
+  const url = "https://be19-80-3-12-252.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
@@ -41,6 +41,7 @@ function DashboardCardDietBreak() {
       .catch(function(error){
           console.log(error);
       });
+      //pushing data from mongo into arrays
       for (let user of response) {
         pro_arr.push(user.data.protein_g);
         carbs_arr.push(user.data.carbohydrates_g);
@@ -48,6 +49,7 @@ function DashboardCardDietBreak() {
       };
       console.log('Retreived Data');
       setLoading(false);
+      //averaging out of arrays tp get single point to plotted
       setProtein(Average(pro_arr));
       setCarbs(Average(carbs_arr));
       setFat(Average(fat_arr));
@@ -57,6 +59,7 @@ function DashboardCardDietBreak() {
     }, []);
   const chartData = {
     labels: ['Carbs', 'Protein', 'Fats'],
+    //plot for user's average data
     datasets: [
       {
         label: 'User Data',
@@ -77,6 +80,7 @@ function DashboardCardDietBreak() {
       },
 
       {
+        //plot for daily guidelines
         label: 'Daily Guidelines',
         data: [
           333, 55.5, 97,
