@@ -33,8 +33,8 @@ function DashboardCardDietBreak() {
         method: 'GET',
         headers: {
         "userID" : "user1", 
-        "startDate" : "2022-05-21",
-        "endDate": "2022-05-22", 
+        "startDate" : "2022-05-17",
+        "endDate": "2022-05-28", 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
       }}).then((res => res.json()))
@@ -50,9 +50,9 @@ function DashboardCardDietBreak() {
       console.log('Retreived Data');
       setLoading(false);
       //averaging out of arrays tp get single point to plotted
-      setProtein(Average(pro_arr));
-      setCarbs(Average(carbs_arr));
-      setFat(Average(fat_arr));
+      setProtein(Average(pro_arr).toPrecision(3));
+      setCarbs(Average(carbs_arr).toPrecision(3));
+      setFat(Average(fat_arr).toPrecision(3));
      
     }
     loadPost();

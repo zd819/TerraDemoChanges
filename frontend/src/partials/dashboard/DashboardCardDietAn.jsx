@@ -55,8 +55,8 @@ const url = "https://be19-80-3-12-252.eu.ngrok.io/testing";
       method: 'GET',
       headers: {
       "userID" : "user1", 
-      "startDate" : "2022-05-21",
-      "endDate": "2022-05-22", 
+      "startDate" : "2022-05-17",
+      "endDate": "2022-05-28", 
       "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
       "type": "nutrition", 
     }}).then((res => res.json()))
@@ -76,20 +76,21 @@ const url = "https://be19-80-3-12-252.eu.ngrok.io/testing";
     console.log('Retreived Data');
     setLoading(false);
     //obtain averages of user data for each component
-    setProtein(Average(pro_arr));
-    setCarbs(Average(carbs_arr));
-    setFat(Average(fat_arr));
-    setSodium(Average(sod_arr));
-    setSugar(Average(sug_arr));
-    setCalories(Average(cal_arr));
+    setProtein(Average(pro_arr).toPrecision(3));
+    setCarbs(Average(carbs_arr).toPrecision(3));
+    setFat(Average(fat_arr).toPrecision(3));
+    setSodium(Average(sod_arr).toPrecision(4));
+    setSugar(Average(sug_arr).toPrecision(3));
+    setCalories(Average(cal_arr).toPrecision(4));
 
     //find percentage difference between user data and daily guidelines
-    setpro_diff(perDiff(Protein, pro_guide).toPrecision(4));
+    setpro_diff(perDiff(Protein, pro_guide).toPrecision(3));
     setcarbs_diff(perDiff(Carbs, carbs_guide).toPrecision(3));
     setfat_diff(perDiff(Fat, fat_guide).toPrecision(3));
     setsod_diff(perDiff(Sodium, sod_guide).toPrecision(3));
     setsug_diff(perDiff(Sugar, sug_guide).toPrecision(3));
     setcal_diff(perDiff(Calories, cal_guide).toPrecision(3));
+
     //sorting of suggestions for each category
     if(pro_diff >= 0){
       
