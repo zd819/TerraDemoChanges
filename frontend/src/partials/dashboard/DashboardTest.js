@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-01.svg';
 import EditMenu from '../EditMenu';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
+
+function date1W(){
+  return getDIffTime('-', 7);
+}
+function date1M(){
+  return getDIffTime('-', 30);
+}
+function date3M(){
+  return getDIffTime('-', 90);
+}
 
 function DashboardTest(props) {
   console.log('123 : ', props.id)
@@ -69,13 +81,13 @@ function DashboardTest(props) {
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
           <li>
-              <button  onClick={() => { console.log('BUTTON 1 WORKING'); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week</button>
+              <button  onClick={() => { date1W(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week</button>
             </li>
             <li>
-              <button  onClick={() => {console.log('BUTTON 2 WORKING'); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month</button>
+              <button  onClick={() => {date1M(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month</button>
             </li>
             <li>
-              <button  onClick={() => { console.log('BUTTON 3 WORKING'); }}className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months</button>
+              <button  onClick={() => { date3M(); }}className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months</button>
             </li>
           </EditMenu>
         </header>

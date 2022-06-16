@@ -15,14 +15,23 @@ import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
-
   
-  
-
 function DashboardNutrition(props) {
+  function date1W(){
+    setendDate(getDIffTime('-', 7));
+  }
+  function date1M(){
+    setendDate(getDIffTime('-', 30));
+  }
+  function date3M(){
+    setendDate(getDIffTime('-', 90));
+  }
+
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
+  const [startDate, setstartDate ] = useState(localTime());
+  const [endDate, setendDate ] = useState(getDIffTime('-', 30));
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
@@ -30,28 +39,19 @@ function DashboardNutrition(props) {
   const terraData = []
   const green = "bg-green-500";
   const yellow = "bg-yellow-500";
-  const data = {
-    "startDate" : localTime,
-    "endDate": getDIffTime('-', 30), 
-    'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
-    'type': 'nutrition'
+  if(props.override == true && props.dates.length == 2){
+    console.log('OVERRRID 1 : ', props.dates[0], ' 2 : ', props.dates[1]);
+    setstartDate(props.dates[0]);
+    setendDate(props.dates[1]);
   }
-  const options = {
-    url: "https://e176-62-23-207-10.eu.ngrok.io/testing",
-    headers: {'Content-Type':'application/json',
-    'userId': 'user1'},
-    data: JSON.stringify(data), 
-    method: 'GET'
-    };
-  
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
         "userID" : "user1", 
-        "startDate" : "2022-04-29",
-        "endDate": "2022-05-24", 
+        "startDate" : startDate,
+        "endDate": endDate, 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
       }}).then((res => res.calories.json()))
@@ -134,13 +134,13 @@ function DashboardNutrition(props) {
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
-              <button className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week Ago</button>
+              <button  onClick={() => { date1W(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week</button>
             </li>
             <li>
-              <button className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month Ago</button>
+              <button  onClick={() => {date1M(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month</button>
             </li>
             <li>
-              <button className="font-medium text-sm text-rose-500 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months Ago</button>
+              <button  onClick={() => { date3M(); }}className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months</button>
             </li>
           </EditMenu>
         </header>

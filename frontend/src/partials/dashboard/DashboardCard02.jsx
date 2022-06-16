@@ -8,11 +8,22 @@ import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
+function date1W(){
+  return getDIffTime('-', 7);
+}
+function date1M(){
+  return getDIffTime('-', 30);
+}
+function date3M(){
+  return getDIffTime('-', 90);
+}
+
 function DashboardCard02(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
+  const [endDate, setendDate ] = useState(getDIffTime('-', 30));
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
@@ -27,8 +38,8 @@ function DashboardCard02(props) {
       headers: {
       // "Content-Type": "application/json",
       "userID" : "user1", 
-      "startDate" : localTime,
-      "endDate": getDIffTime('-', 30), 
+      "startDate" : localTime(),
+      "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "daily", 
     }}).then((res => res.json()))
@@ -113,13 +124,13 @@ function DashboardCard02(props) {
           {/* Menu button */}
           <EditMenu className="relative inline-flex">
             <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 1</Link>
+              <button  onClick={() => { date1W(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Week</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">Option 2</Link>
+              <button  onClick={() => {date1M(); } } className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">1 Month</button>
             </li>
             <li>
-              <Link className="font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3" to="#0">Remove</Link>
+              <button  onClick={() => { date3M(); }}className="font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3" to="#0">3 Months</button>
             </li>
           </EditMenu>
         </header>
