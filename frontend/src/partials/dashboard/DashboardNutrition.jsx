@@ -39,11 +39,14 @@ function DashboardNutrition(props) {
   const terraData = []
   const green = "bg-green-500";
   const yellow = "bg-yellow-500";
-  if(props.override == true && props.dates.length == 2){
-    console.log('OVERRRID 1 : ', props.dates[0], ' 2 : ', props.dates[1]);
+  if(props.overrideDate == true && props.dates.length == 2){
+    console.log('BESERK : ', props.dates[0], ' <-> ', props.dates[1]);
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
+    // props.setOverrideDate(false);
   }
+  console.log('CARD 1 ', startDate, ' <-> ', endDate);
+
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
       const response = await fetch(url, {

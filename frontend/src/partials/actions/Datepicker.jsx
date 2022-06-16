@@ -1,5 +1,6 @@
 import React from 'react';
 import Flatpickr from 'react-flatpickr';
+import convertDate from '../../components/DataHandling/convertDate';
 
 function Datepicker(props) {
 
@@ -17,10 +18,12 @@ function Datepicker(props) {
     },
     onChange: (selectedDates, dateStr, instance) => {
       instance.element.value = dateStr.replace('to', '-');
-      // console.log("ZION : ", selectedDates, " AND TYPE IS :", typeof(selectedDates));
-      // console.log("VEGETA : ", dateStr, " AND TYPE IS :", typeof(dateStr));
-      // props.setDates(selectedDates);
-      // props.override(true);
+      console.log("ZION : ", selectedDates, " AND TYPE IS :", typeof(selectedDates));
+      console.log("VEGETA : ", dateStr, " AND TYPE IS :", typeof(dateStr));
+      if(selectedDates.length == 2 && props.overrideDate == false){
+        props.setDates(selectedDates.map(val => convertDate(val)));
+        props.setOverrideDate(true);
+      }
     },
   }
 

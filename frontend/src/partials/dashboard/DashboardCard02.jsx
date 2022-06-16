@@ -8,25 +8,32 @@ import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function date1W(){
-  return getDIffTime('-', 7);
-}
-function date1M(){
-  return getDIffTime('-', 30);
-}
-function date3M(){
-  return getDIffTime('-', 90);
-}
-
 function DashboardCard02(props) {
+  function date1W(){
+    setendDate(getDIffTime('-', 7));
+  }
+  function date1M(){
+    setendDate(getDIffTime('-', 30));
+  }
+  function date3M(){
+    setendDate(getDIffTime('-', 90));
+  }
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
+  const [startDate, setstartDate ] = useState(localTime());
   const [endDate, setendDate ] = useState(getDIffTime('-', 30));
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
+  if(props.overrideDate == true && props.dates.length == 2){
+    setstartDate(props.dates[0]);
+    setendDate(props.dates[1]);
+    // props.setOverrideDate(false);
+  }
+  console.log('CARD 2 ', startDate, ' <-> ', endDate);
+
   // const cdate = new Date().getDate();
   // console.log('DATE', cdate);
   useEffect(() => { // useEffect hook
@@ -38,7 +45,7 @@ function DashboardCard02(props) {
       headers: {
       // "Content-Type": "application/json",
       "userID" : "user1", 
-      "startDate" : localTime(),
+      "startDate" : startDate,
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "daily", 

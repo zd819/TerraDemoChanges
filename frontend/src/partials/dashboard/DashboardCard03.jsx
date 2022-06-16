@@ -9,26 +9,32 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 import localTime from '../../components/DataHandling/localTime.js';
 import getDIffTime from '../../components/DataHandling/getDiffTime.js';
 
-function date1W(){
-  return getDIffTime('-', 7);
-}
-function date1M(){
-  return getDIffTime('-', 30);
-}
-function date3M(){
-  return getDIffTime('-', 90);
-}
-
 //Sleep data for health
 function DashboardCard03(props) {
+  function date1W(){
+    setendDate(getDIffTime('-', 7));
+  }
+  function date1M(){
+    setendDate(getDIffTime('-', 30));
+  }
+  function date3M(){
+    setendDate(getDIffTime('-', 90));
+  }
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
+  const [startDate, setstartDate ] = useState(localTime());
   const [endDate, setendDate ] = useState(getDIffTime('-', 30));
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
+  if(props.overrideDate == true && props.dates.length == 2){
+    setstartDate(props.dates[0]);
+    setendDate(props.dates[1]);
+    // props.setOverrideDate(false);
+  }
+  console.log('CARD 3 ', startDate, ' <-> ', endDate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     console.log("Getting Sleep Data");
@@ -36,7 +42,7 @@ function DashboardCard03(props) {
       method: 'GET',
       headers: {
       "userID" : "user1", 
-      "startDate" : localTime(),
+      "startDate" : startDate,
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 

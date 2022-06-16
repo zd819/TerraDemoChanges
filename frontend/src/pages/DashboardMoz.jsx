@@ -107,39 +107,25 @@ class DashboardMoz extends React.Component {
     })
   }
   componentDidMount(){
-    console.log('MOUNTED');
+    // console.log('MOUNTED');
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    // if (this.props.userID !== prevProps.userID) {
-    //   this.fetchData(this.props.userID);
-    // }
-
-    if(this.state.dates.length == 2 && this.state.overrideDate == true){
-      var temp = [];
-      console.log('LENGTH IS 2');
-      for( let item of this.state.dates ){
-        console.log('CHANGED : ', convertDate(item));
-        temp.push(convertDate(item)) ;
-      };
-      console.log('TEMP IS: ', temp);
-      // var x = this.state.dates.map(item => convertDate(item));
-      this.setDates(temp);
-      console.log('NEW  : ', this.state.dates);
+    console.log('SAYAIN : ', this.state.overrideDate);
+    if(this.state.overrideDate == true  && this.state.dates.length == 2){
+      console.log('NAMEK : ', this.state.dates);
       this.setOverrideDate(false);
     }
   }
+
   render(){
-  console.log('SAYAIN : ', this.state.overrideDate);
+  
+  // console.log('FRUITS : ', this.state.dates);
   var PerformanceSugg = General1(this.state.allData, "Performance");
   var HealthSugg = General1(this.state.allData, "Health");
   var NutritionSugg = General1(this.state.allData, "Sleep");
   // console.log('PAST 30 DATE IS : ', getDiffTime('-',60));
-  console.log('OLD : ', this.state.dates);
-  if(this.state.overrideDate ==false){
-    console.log('FRUITS : ', this.state.dates);
-  }
+  // console.log('OLD : ', this.state.dates);
   
 
   return (
@@ -173,20 +159,20 @@ class DashboardMoz extends React.Component {
               </div>
               {/* Filter button */}
              
-              <Datepicker setDates = {this.setDates} override = {this.setOverrideDate}/>
+              <Datepicker setDates = {this.setDates} setOverrideDate = {this.setOverrideDate} overrideDate = {this.state.overrideDate}/>
             </div>
 
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} dates = {this.state.dates} override = {this.state.overrideDate} />
+              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Plus) */}
-              <DashboardNutrition addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} dates = {this.state.dates} override = {this.state.overrideDate}/>
+              <DashboardNutrition addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
               {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} dates = {this.state.dates} override = {this.state.overrideDate} />
+              <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} dates = {this.state.dates} override = {this.state.overrideDate}/>
+              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
             </div>
           </div>
         </main>
