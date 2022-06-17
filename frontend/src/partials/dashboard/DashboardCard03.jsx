@@ -7,34 +7,34 @@ import EditMenu from '../EditMenu';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 import localTime from '../../components/DataHandling/localTime.js';
-import getDIffTime from '../../components/DataHandling/getDiffTime.js';
+import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 //Sleep data for health
 function DashboardCard03(props) {
   function date1W(){
-    setendDate(getDIffTime('-', 7));
+    setendDate(getDiffTime('-', 7));
   }
   function date1M(){
-    setendDate(getDIffTime('-', 30));
+    setendDate(getDiffTime('-', 30));
   }
   function date3M(){
-    setendDate(getDIffTime('-', 90));
+    setendDate(getDiffTime('-', 90));
   }
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(localTime());
-  const [endDate, setendDate ] = useState(getDIffTime('-', 30));
+  const [endDate, setendDate ] = useState(getDiffTime('-', 30));
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
-  if(props.overrideDate == true && props.dates.length == 2){
+  if(props.overrideDate === true){
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log('CARD 3 ', startDate, ' <-> ', endDate);
+  console.log(props.overrideDate, 'CARD 3 ', startDate, ' <-> ', endDate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     console.log("Getting Sleep Data");

@@ -4,35 +4,35 @@ import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-02.svg';
 import EditMenu from '../EditMenu';
 import localTime from '../../components/DataHandling/localTime.js';
-import getDIffTime from '../../components/DataHandling/getDiffTime.js';
+import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard02(props) {
   function date1W(){
-    setendDate(getDIffTime('-', 7));
+    setendDate(getDiffTime('-', 7));
   }
   function date1M(){
-    setendDate(getDIffTime('-', 30));
+    setendDate(getDiffTime('-', 30));
   }
   function date3M(){
-    setendDate(getDIffTime('-', 90));
+    setendDate(getDiffTime('-', 90));
   }
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
   const [startDate, setstartDate ] = useState(localTime());
-  const [endDate, setendDate ] = useState(getDIffTime('-', 30));
+  const [endDate, setendDate ] = useState(getDiffTime('-', 30));
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
-  if(props.overrideDate == true && props.dates.length == 2){
+  if(props.overrideDate === true){
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log('CARD 2 ', startDate, ' <-> ', endDate);
+  console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
 
   // const cdate = new Date().getDate();
   // console.log('DATE', cdate);

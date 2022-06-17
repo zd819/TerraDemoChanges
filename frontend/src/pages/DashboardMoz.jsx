@@ -28,6 +28,7 @@ import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import DashboardTest from '../partials/dashboard/DashboardTest';
 import General1 from '../components/Suggestions/General1';
 
+
 // function useGetLocation(){
 //   const logoutUser = () => {
 //     const location = useLocation();
@@ -50,7 +51,7 @@ class DashboardMoz extends React.Component {
         id : this.props.id,
     };
   
-    this.openSidebar = this.openSidebar.bind(this)
+    this.setSidebarOpen = this.setSidebarOpen.bind(this)
     this.addSugg = this.addSugg.bind(this)
     this.removeItem = this.removeItem.bind(this)
     this.updateItem = this.updateItem.bind(this)
@@ -58,7 +59,7 @@ class DashboardMoz extends React.Component {
     this.setOverrideDate = this.setOverrideDate.bind(this)
   }
 
-  openSidebar(val) {
+  setSidebarOpen(val) {
     this.setState({
       sidebarOpen : val
     })
@@ -132,13 +133,13 @@ class DashboardMoz extends React.Component {
     <div className="flex h-screen overflow-hidden bg-blue-50">
       
       {/* Sidebar */}
-      <Sidebar sidebarOpen={this.sidebarOpen} setSidebarOpen={this.openSidebar} />
+      <Sidebar sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={this.sidebarOpen} setSidebarOpen={this.openSidebar} />
+        <Header sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto ">
