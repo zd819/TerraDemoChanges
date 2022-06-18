@@ -30,8 +30,8 @@ function DashboardNutrition(props) {
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
-  const [startDate, setstartDate ] = useState(localTime());
-  const [endDate, setendDate ] = useState(getDiffTime('-', 30));
+  const [startDate, setstartDate ] = useState(getDiffTime('-', 30));
+  const [endDate, setendDate ] = useState(localTime());
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
@@ -57,15 +57,22 @@ function DashboardNutrition(props) {
         "endDate": endDate, 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
-      }}).then((res => res.calories.json()))
+      }}).then((res =>  {console.log('NEW RESPONSE IS : ', res);res.calories.json();}))
       .catch(function(error){
           console.log(error);
         });
-      for (let user of response) {
-        times.push(user.date);
-        points.push(user.data);
+      // for (let user of response.result) {
+      //   times.push(user.date);
+      //   points.push(user.data);
+      // };
+      for (let user of response.result) {
+        if(times.length < 25){
+          times.push(user.date); 
+          points.push(user.data);
+        }
       };
-      let sortedDescending = response.sort((a, b) => {
+      let values = response.result;
+      let sortedDescending = values.sort((a, b) => {
         const aDate = a.date.split('-');
         const bDate = b.date.split('-');
         if(aDate[2]!=bDate[2]){
@@ -76,8 +83,10 @@ function DashboardNutrition(props) {
         }
         else return aDate[0]-bDate[0];
       });
+      
+      console.log('NUTRITION is ', points); 
       //console.log('Sorted dates', sortedDescending);
-      times = sortedDescending;
+      // times = sortedDescending;
       setData(points); //set Time state
       setDate(times); //set Data state
       setLoading(false); //set loading state

@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://be19-80-3-12-252.eu.ngrok.io/testing";
+const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
