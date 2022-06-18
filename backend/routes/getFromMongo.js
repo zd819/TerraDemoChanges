@@ -23,68 +23,64 @@ router.get('/', (req, res) => {
 
     if(startDate > endDate) {
         // error end date has to be bigger
-        res.send("Start Date is after End Date")
-        throw "end date needs to be bigger than start";
+        res.send({status:"Error", message:"Start Date is after End Date"});
+        //throw "end date needs to be bigger than start";
+        
     } else if(startDate > today || endDate > today) {
         // error error
-        res.send("Dates are in the future");
-        throw "dates in the future";
+        res.send({status:"Error", message:"One or more dates are in the future"});
+        //throw "dates in the future";
+    } else {
+
+        console.log("Data Requested from Frontend");
+        pullData({
+            startDate: startDate,
+            endDate: endDate,
+            terraId: terraId,
+            type: type
+        }, function(result){
+            var length;
+            if(result === undefined){
+                length = 0;
+            }else {
+                length = result.length;
+            }
+            const period = dayDifference(startDate, endDate);
+            console.log(period);
+            //console.log(result);
+            if(result.length > period) {
+                // too many results there has to be an error somewhere 
+                // this should never happen there must be something wrong inside mongo / pushing data
+                next(createError("DB Error"));
+            }else if(result.length < period) {
+                // need to find missing dates and pull
+                dataRequest[reqId] = 1;
+                findMissingDates(startDate, endDate, result, (missingDates) => {
+                    console.log(missingDates);
+                    for(var i = 0; i < missingDates.length; i++) {
+                        requestTerraData(
+                            {
+                                terraId: req.get('terraId'),
+                                type: req.get('type'),
+                                startDate: missingDates[i].startDate,
+                                endDate: missingDates[i].endDate
+                            }, () => {
+                                dataRequest[terraId + type + start + end] = 2;
+                                // request fulfilled on server side now waiting for terra
+                            });
+                    }
+                });
+                res.send({status:"Waiting for Terra", result:result});
+            }else {
+                delete dataRequest[reqId];
+                //everything is fine
+                // process data and send
+                result = processData(result, req.get('type'));
+                res.send({status:"Success", result:result});
+            }
+
+        })
     }
-
-    console.log("Data Requested from Frontend");
-    pullData({
-        startDate: startDate,
-        endDate: endDate,
-        terraId: terraId,
-        type: type
-    }, function(result){
-
-        var length;
-        if(result === undefined){
-            length = 0;
-        }else {
-            length = result.length;
-        }
-        const period = dayDifference(startDate, endDate);
-        console.log(period);
-        //console.log(result);
-        if(result.length > period) {
-
-            // too many results there has to be an error somewhere 
-            // this should never happen there must be something wrong inside mongo / pushing data
-
-        }else if(result.length < period) {
-
-            // need to find missing dates and pull
-            dataRequest[reqId] = 1;
-
-            findMissingDates(startDate, endDate, result, (missingDates) => {
-                console.log(missingDates);
-                for(var i = 0; i < missingDates.length; i++) {
-                    requestTerraData(
-                        {
-                            terraId: req.get('terraId'),
-                            type: req.get('type'),
-                            startDate: missingDates[i].startDate,
-                            endDate: missingDates[i].endDate
-                        }, () => {
-                            dataRequest[terraId + type + start + end] = 2;
-                            // request fulfilled on server side now waiting for terra
-                        });
-                }
-            });
-            res.send("Waiting for Terra");
-
-        }else {
-
-            delete dataRequest[reqId];
-            //everything is fine
-            // process data and send
-            result = processData(result, req.get('type'));
-            res.send(result);
-        }
-
-    })
 
 });
 
