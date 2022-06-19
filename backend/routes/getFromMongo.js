@@ -62,6 +62,7 @@ router.get('/', (req, res) => {
             }
             const period = dayDifference(startDate, endDate);
             console.log(period);
+            console.log(result.length);
             //console.log(result);
             if(result.length > period) {
                 // too many results there has to be an error somewhere 
@@ -85,13 +86,12 @@ router.get('/', (req, res) => {
                             });
                     }
                 });
-                res.send({status:"Waiting for Terra", result:result});
+                res.send({status:"Waiting for Terra", result:processData(result,type)});
             }else {
                 delete dataRequest[reqId];
                 //everything is fine
                 // process data and send
                 result = processData(result, type);
-                console.log(result);
                 res.send({status:"Success", result:result});
             }
 
