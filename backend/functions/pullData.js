@@ -1,4 +1,3 @@
-
 async function pullData(vars, callback) {
 
     const startDate = vars.startDate.toISOString();

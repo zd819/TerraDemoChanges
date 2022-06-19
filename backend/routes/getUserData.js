@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     }
 
     if(dataRequest[reqId] === 2) {
-        res.send({status:"waiting for terra still"});
+        res.send({status:"Waiting for Terra still"});
     };
 
     console.log("Data Requested from Frontend");

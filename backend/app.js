@@ -12,6 +12,7 @@ const payloadRouter = require('./routes/terraPayload');
 const dataRouter = require('./routes/getUserData');
 const mongoRouter = require('./routes/getFromMongo');
 const terraIdRouter = require('./routes/getTerraId');
+const providersRouter = require('./routes/getUserProviders');
 
 const cors = require('cors');
 const app = express();
@@ -37,6 +38,7 @@ app.use('/terraPayload', payloadRouter);
 app.use('/getData', dataRouter);
 app.use('/testing', mongoRouter);
 app.use('/getTerraId', terraIdRouter);
+app.use('/userProviders', providersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -87,7 +89,7 @@ mongoClient.connect((err,client) => {
 global.dataRequest = [];
 // 0 - Nothing going on rn
 // 1 - Processing
-// 2 - Process filled
+// 2 - Process fulfilled
 // 3 - Error of somesort
 
 global.authError = [];
