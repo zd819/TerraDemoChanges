@@ -22,8 +22,8 @@ function DashboardCard02(props) {
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
-  const [startDate, setstartDate ] = useState(localTime());
-  const [endDate, setendDate ] = useState(getDiffTime('-', 30));
+  const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
+  const [endDate, setendDate ] = useState(localTime());
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
@@ -54,12 +54,17 @@ function DashboardCard02(props) {
         console.log(error);
         console.log("Axios error");
       });
-    console.log('Activity is ',response); 
-    for (let  user of response) {
-      times.push(user.date); 
-      points.push(user.data);
+    // console.log('Activity is ',response); 
+    // for (let  user of response.result) {
+    //   times.push(user.date); 
+    //   points.push(user.data);
+    // };
+    for (let user of response.result) {
+        times.push(user.date); 
+        points.push(user.data);
     };
-    let sortedDescending = response.sort((a, b) => {
+    let values = response.result;
+    let sortedDescending = values.sort((a, b) => {
       const aDate = a.date.split('-');
       const bDate = b.date.split('-');
       if(aDate[2]!=bDate[2]){
@@ -70,9 +75,13 @@ function DashboardCard02(props) {
       }
       else return aDate[0]-bDate[0];
     });
-    times = sortedDescending;
+    
+    
+    // times = sortedDescending;
     setData(points); //set Time state
     setDate(times); //set Data state
+    console.log('ACTIVITY 1 is ', Date); 
+    console.log('ACTIVITY 2 is ', Data); 
     setLoading(false); //set loading state
     const val = 'Health'
     props.addSugg(val, points);
