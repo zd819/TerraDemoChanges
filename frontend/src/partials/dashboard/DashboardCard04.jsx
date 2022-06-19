@@ -8,16 +8,16 @@ function DashboardCard04() {
 
   const chartData = {
     labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
+      '01-01-2022', '02-01-2022', '03-01-2022',
+      '04-01-2022', '05-01-2022', '06-01-2022',
     ],
     datasets: [
       // Light blue bars
       {
         label: 'Portion Awake',
         data: [
-          1.3, 1, 0.5, 1.3, 0.9, 1.7,
-        ],
+          8, 8.4, 7.7, 9.1, 8.8, 6.9,
+        ].map(val => val*0.1 + (Math.random()-0.5)*0.5),
         backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
         barPercentage: 0.66,

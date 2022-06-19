@@ -134,8 +134,8 @@ function LineChart02({
       <div className="px-5 py-3">
         <div className="flex flex-wrap justify-between items-end">
           <div className="flex items-start">
-            <div className="text-3xl font-bold text-slate-800 mr-2">$1,482</div>
-            <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div>
+            <div className="text-3xl font-bold text-slate-800 mr-2">78 BPM</div>
+            {/* <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div> */}
           </div>
           <div className="grow ml-2 mb-1">
             <ul ref={legend} className="flex flex-wrap justify-end"></ul>

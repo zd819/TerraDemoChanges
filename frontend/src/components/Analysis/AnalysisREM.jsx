@@ -15,8 +15,14 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
+  const DATA =  [
+    73, 64, 73, 69, 104, 104, 164,
+    164, 120, 120, 120, 148, 142, 104,
+    122, 110, 104, 152, 166, 133, 168,
+    152, 184, 184, 133, 123,
+  ].map(val => 7.5*0.22 + ((Math.random()-0.5)*0.1));
   const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
-  const [isLoading, setLoading ] = useState(true);
+  const [isLoading, setLoading ] = useState(false);
   const [Data, setData ] = useState([]);
   const [Date, setDate ] = useState([]);
   var times = [];
@@ -71,17 +77,29 @@ function Analysis1() {
     console.log('456 : ', Date);
   //console.log('Logged DATES', Date);
   const chartData = {
-    labels: Date,
+    labels: [
+      '12-01-2020', '01-01-2021', '02-01-2021',
+      '03-01-2021', '04-01-2021', '05-01-2021',
+      '06-01-2021', '07-01-2021', '08-01-2021',
+      '09-01-2021', '10-01-2021', '11-01-2021',
+      '12-01-2021', '01-01-2022', '02-01-2022',
+      '03-01-2022', '04-01-2022', '05-01-2022',
+      '06-01-2022', '07-01-2022', '08-01-2022',
+      '09-01-2022', '10-01-2022', '11-01-2022',
+      '12-01-2022', '01-01-2023',
+    ],
     datasets: [
       // Indigo line
       {
-        data: Data,
-        label: 'Calories Consumed',
+        data: DATA,
+        label: 'Total REM Sleep',
         fill: true,
         ticks: {
           callback: function(value, index, ticks) {
             return value + ' Kcal'  ;
-          }},
+          },
+          label: (context) => context + ' hours',
+        },
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
         borderWidth: 2,
@@ -89,6 +107,18 @@ function Analysis1() {
         pointRadius: 0,
         pointHoverRadius: 3,
         pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20,
+      },
+      // Gray line
+      {
+        data: DATA.map(val => val + (Math.random()-0.5)*0.2),
+        label: 'Goal',
+        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
         clip: 20,
       },
     ],

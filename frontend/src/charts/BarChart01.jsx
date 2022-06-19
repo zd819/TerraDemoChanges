@@ -42,7 +42,7 @@ function BarChart01({
             },
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              callback: (value) => value + ' hours',
             },
           },
           x: {
