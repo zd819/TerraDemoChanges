@@ -27,8 +27,25 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
-  const [isLoading, setLoading ] = useState(true);
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
+  const DUMMY = [
+    732, 610, 610, 504, 504, 504, 349,
+    349, 504, 342, 504, 610, 391, 192,
+    154, 273, 191, 191, 126, 263, 349,
+    252, 423, 622, 470, 532,
+  ].map(val => (Math.random()-0.5)*1000 + 2500);
+  const DUMMY2 = [
+    '12-01-2020', '01-01-2021', '02-01-2021',
+    '03-01-2021', '04-01-2021', '05-01-2021',
+    '06-01-2021', '07-01-2021', '08-01-2021',
+    '09-01-2021', '10-01-2021', '11-01-2021',
+    '12-01-2021', '01-01-2022', '02-01-2022',
+    '03-01-2022', '04-01-2022', '05-01-2022',
+    '06-01-2022', '07-01-2022', '08-01-2022',
+    '09-01-2022', '10-01-2022', '11-01-2022',
+    '12-01-2022', '01-01-2023',
+  ];
+  const [isLoading, setLoading ] = useState(false);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 30));
   const [endDate, setendDate ] = useState(localTime());
@@ -45,62 +62,63 @@ function DashboardNutrition(props) {
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log(props.overrideDate, ' CARD 1 ', startDate, ' <-> ', endDate);
+  // console.log(props.overrideDate, ' CARD 1 ', startDate, ' <-> ', endDate);
 
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-        "userID" : "user1", 
-        "startDate" : startDate,
-        "endDate": endDate, 
-        "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-        "type": "nutrition", 
-      }}).then((res =>  {console.log('NEW RESPONSE IS : ', res);res.calories.json();}))
-      .catch(function(error){
-          console.log(error);
+        console.log('Getting Health Data');
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+          "userID" : "user1", 
+          "startDate" : startDate,
+          "endDate": endDate, 
+          "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
+          "type": "nutrition",
+          "provider" : "MYFITNESSPAL", 
+        }}).then((res =>  {console.log('ASHBORN : ', res.result.calories);res.json();}))
+        .catch(function(error){
+            console.log(error);
+          });
+        // console.log('NEW RESPONSE IS : ', response , ' and result is : ', response.result.calories);
+        // for (let user of response.result) {
+        //   times.push(user.date);
+        //   points.push(user.data);
+        // };
+        for (let user of response.result) {
+            times.push(user.date); 
+            points.push(user.data);
+        };
+        let values = response.result;
+        let sortedDescending = values.sort((a, b) => {
+          const aDate = a.date.split('-');
+          const bDate = b.date.split('-');
+          if(aDate[2]!=bDate[2]){
+            return aDate[2]-bDate[2];
+          }
+          else if(aDate[1]!=bDate[1]){
+            return aDate[1]-bDate[1];
+          }
+          else return aDate[0]-bDate[0];
         });
-      // for (let user of response.result) {
-      //   times.push(user.date);
-      //   points.push(user.data);
-      // };
-      for (let user of response.result) {
-        if(times.length < 25){
-          times.push(user.date); 
-          points.push(user.data);
+        
+        console.log('NUTRITION is ', points); 
+        //console.log('Sorted dates', sortedDescending);
+        // times = sortedDescending;
+        setData(points); //set Time state
+        setDate(times); //set Data state
+        setLoading(false); //set loading state
+        const val = 'Nutrition';
+        props.addSugg(val, points);
         }
-      };
-      let values = response.result;
-      let sortedDescending = values.sort((a, b) => {
-        const aDate = a.date.split('-');
-        const bDate = b.date.split('-');
-        if(aDate[2]!=bDate[2]){
-          return aDate[2]-bDate[2];
-        }
-        else if(aDate[1]!=bDate[1]){
-          return aDate[1]-bDate[1];
-        }
-        else return aDate[0]-bDate[0];
-      });
-      
-      console.log('NUTRITION is ', points); 
-      //console.log('Sorted dates', sortedDescending);
-      // times = sortedDescending;
-      setData(points); //set Time state
-      setDate(times); //set Data state
-      setLoading(false); //set loading state
-      const val = 'Nutrition';
-      props.addSugg(val, points);
-      }
-      loadPost(); 
+        loadPost(); 
       }, []);  
   const chartData = {
-    labels: Date,
+    labels: DUMMY2,
     datasets: [
       // Indigo line
       {
-        data: Data,
+        data: DUMMY,
         label: 'Calories Consumed',
         fill: true,
         ticks: {
@@ -118,12 +136,7 @@ function DashboardNutrition(props) {
       },
       // Gray line
       // {
-      //   data: [
-      //     532, 532, 532, 404, 404, 314, 314,
-      //     314, 314, 314, 234, 314, 234, 234,
-      //     314, 314, 314, 388, 314, 202, 202,
-      //     202, 202, 314, 720, 642,
-      //   ],
+      //   data: DUMMY.map(val => val + (Math.random()-0.5)*),
       //   borderColor: tailwindConfig().theme.colors.slate[300],
       //   borderWidth: 2,
       //   tension: 0,
@@ -158,12 +171,12 @@ function DashboardNutrition(props) {
         </header>
         
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Nutrition</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Nutrition Data Analysis</div>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
         <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
-          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
+          <div className="text-3xl font-bold text-slate-800 mr-2">2658 calories</div>
+          {/* <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
           {props.sugg}
-          </div>
+          </div> */}
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}

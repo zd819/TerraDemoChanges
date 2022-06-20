@@ -20,7 +20,7 @@ function DashboardCard03(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -34,7 +34,7 @@ function DashboardCard03(props) {
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log(props.overrideDate, 'CARD 3 ', startDate, ' <-> ', endDate);
+  // console.log(props.overrideDate, 'CARD 3 ', startDate, ' <-> ', endDate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     console.log("Getting Sleep Data");
@@ -45,7 +45,8 @@ function DashboardCard03(props) {
       "startDate" : startDate,
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
-      "type": "sleep", 
+      "type": "sleep",
+      "provider" : "EIGHT",  
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -56,10 +57,8 @@ function DashboardCard03(props) {
     //   points.push(user.data/3600);
     // };
     for (let user of response.result) {
-      if(times.length < 25){
         times.push(user.date); 
         points.push(user.data/3600);
-      }
     };
     let values = response.result;
     console.log('123456789 ', response); 
@@ -79,7 +78,7 @@ function DashboardCard03(props) {
     console.log('SLEEP is ', points); 
     // times = sortedDescending;
     setData(points); //set Time state
-      setDate(times); //set Data state
+    setDate(times); //set Data state
     setLoading(false); //set loading state
     const val = 'Performance'
     props.addSugg(val, points);

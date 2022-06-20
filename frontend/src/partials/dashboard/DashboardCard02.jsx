@@ -18,8 +18,25 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
-  const [isLoading, setLoading ] = useState(true);
+  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
+  const DUMMY = [
+    732, 610, 610, 504, 504, 504, 349,
+    349, 504, 342, 504, 610, 391, 192,
+    154, 273, 191, 191, 126, 263, 349,
+    252, 423, 622, 470, 532,
+  ].map(val => (Math.random()-0.5)*1000 + 2300);
+  const DUMMY2 = [
+    '12-01-2020', '01-01-2021', '02-01-2021',
+    '03-01-2021', '04-01-2021', '05-01-2021',
+    '06-01-2021', '07-01-2021', '08-01-2021',
+    '09-01-2021', '10-01-2021', '11-01-2021',
+    '12-01-2021', '01-01-2022', '02-01-2022',
+    '03-01-2022', '04-01-2022', '05-01-2022',
+    '06-01-2022', '07-01-2022', '08-01-2022',
+    '09-01-2022', '10-01-2022', '11-01-2022',
+    '12-01-2022', '01-01-2023',
+  ];
+  const [isLoading, setLoading ] = useState(false);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -32,7 +49,7 @@ function DashboardCard02(props) {
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
+  // console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
 
   // const cdate = new Date().getDate();
   // console.log('DATE', cdate);
@@ -49,6 +66,7 @@ function DashboardCard02(props) {
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "daily", 
+      "provider" : "OURA", 
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -97,11 +115,11 @@ function DashboardCard02(props) {
     ];
   const grey = gray.map(v => v*10);
   const chartData = {
-    labels: Date,
+    labels: DUMMY2,
     datasets: [
       // Indigo line
       {
-        data: Data,
+        data: DUMMY,
         label: 'Calories Burned',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
@@ -114,17 +132,17 @@ function DashboardCard02(props) {
         clip: 20,
       },
       // Gray line
-      {
-        data : grey,
-        label: 'Average',
-        borderColor: tailwindConfig().theme.colors.slate[300],
-        borderWidth: 2,
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 3,
-        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-        clip: 20,
-      },
+      // {
+      //   data : DUMMY,
+      //   label: 'Average',
+      //   borderColor: tailwindConfig().theme.colors.slate[300],
+      //   borderWidth: 2,
+      //   tension: 0,
+      //   pointRadius: 0,
+      //   pointHoverRadius: 3,
+      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+      //   clip: 20,
+      // },
     ],
   };
 
@@ -151,10 +169,9 @@ function DashboardCard02(props) {
           </EditMenu>
         </header>
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Performance</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Performance Data Analysis</div>
-        <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
-        <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
-            {/* {lowActivity ? Under : Over} */}
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
+        <div className="text-3xl font-bold text-slate-800 mr-2">2410 calories</div>
+          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
             {props.sugg}
           </div>
       </div>}

@@ -35,7 +35,7 @@ function LineChart01({
           y: {
             ticks: {
               callback: function(value, index, ticks) {
-                return value + ' hours'  ;
+                return value + ' kcal consumed'  ;
               }},
             display: true,
             beginAtZero: true,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
-import Icon from '../../images/icon-01.svg';
+import Icon from '../../images/sleep.svg';
 import EditMenu from '../EditMenu';
 import localTime from '../../components/DataHandling/localTime.js';
 import getDIffTime from '../../components/DataHandling/getDiffTime.js';
@@ -26,7 +26,7 @@ function DashboardTest(props) {
     349, 504, 342, 504, 610, 391, 192,
     154, 273, 191, 191, 126, 263, 349,
     252, 423, 622, 470, 532,
-  ]
+  ].map(val => (Math.random()-0.5)*10 + 40)
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -55,12 +55,7 @@ function DashboardTest(props) {
       },
       // Gray line
       {
-        data: [
-          532, 532, 532, 404, 404, 314, 314,
-          314, 314, 314, 234, 314, 234, 234,
-          314, 314, 314, 388, 314, 202, 202,
-          202, 202, 314, 720, 642,
-        ],
+        data: Data.map(val => val + (Math.random()-0.5)*10),
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
         tension: 0,
@@ -91,11 +86,11 @@ function DashboardTest(props) {
             </li>
           </EditMenu>
         </header>
-        <h2 className="text-lg font-semibold text-slate-800 mb-2">TESTING CARD</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Sales</div>
+        <h2 className="text-lg font-semibold text-slate-800 mb-2">REM SLEEP</h2>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
         <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 mr-2">$24,780</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div>
+          <div className="text-3xl font-bold text-slate-800 mr-2">47 mins</div>
+          {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div> */}
         </div>
       </div>
       {/* Chart built with Chart.js 3 */}
