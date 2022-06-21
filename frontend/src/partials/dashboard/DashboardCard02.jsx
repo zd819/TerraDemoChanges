@@ -18,25 +18,8 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
-  const DUMMY = [
-    732, 610, 610, 504, 504, 504, 349,
-    349, 504, 342, 504, 610, 391, 192,
-    154, 273, 191, 191, 126, 263, 349,
-    252, 423, 622, 470, 532,
-  ].map(val => (Math.random()-0.5)*1000 + 2300);
-  const DUMMY2 = [
-    '12-01-2020', '01-01-2021', '02-01-2021',
-    '03-01-2021', '04-01-2021', '05-01-2021',
-    '06-01-2021', '07-01-2021', '08-01-2021',
-    '09-01-2021', '10-01-2021', '11-01-2021',
-    '12-01-2021', '01-01-2022', '02-01-2022',
-    '03-01-2022', '04-01-2022', '05-01-2022',
-    '06-01-2022', '07-01-2022', '08-01-2022',
-    '09-01-2022', '10-01-2022', '11-01-2022',
-    '12-01-2022', '01-01-2023',
-  ];
-  const [isLoading, setLoading ] = useState(false);
+  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
+  const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -78,28 +61,30 @@ function DashboardCard02(props) {
     //   points.push(user.data);
     // };
     for (let user of response.result) {
-        times.push(user.date); 
+      if((times.indexOf(user.date) == -1)){
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        times.push(newDate); 
         points.push(user.data);
+      }  
     };
-    let values = response.result;
-    let sortedDescending = values.sort((a, b) => {
-      const aDate = a.date.split('-');
-      const bDate = b.date.split('-');
-      if(aDate[2]!=bDate[2]){
-        return aDate[2]-bDate[2];
-      }
-      else if(aDate[1]!=bDate[1]){
-        return aDate[1]-bDate[1];
-      }
-      else return aDate[0]-bDate[0];
-    });
-    
-    
+    // let values = response.result;
+    // let sortedDescending = values.sort((a, b) => {
+    //   const aDate = a.date.split('-');
+    //   const bDate = b.date.split('-');
+    //   if(aDate[2]!=bDate[2]){
+    //     return aDate[2]-bDate[2];
+    //   }
+    //   else if(aDate[1]!=bDate[1]){
+    //     return aDate[1]-bDate[1];
+    //   }
+    //   else return aDate[0]-bDate[0];
+    // });
+    // times = sortedDescending;
+    console.log('VEGETA : ', points, ' <-> ', times);
     // times = sortedDescending;
     setData(points); //set Time state
     setDate(times); //set Data state
-    console.log('ACTIVITY 1 is ', Date); 
-    console.log('ACTIVITY 2 is ', Data); 
     setLoading(false); //set loading state
     const val = 'Health'
     props.addSugg(val, points);
@@ -107,19 +92,15 @@ function DashboardCard02(props) {
     loadPost(); 
     }, []);
 
-  var gray = [
-      732, 610, 610, 504, 504, 504, 349,
-      349, 504, 342, 504, 610, 391, 192,
-      154, 273, 191, 191, 126, 263, 349,
-      252, 423, 622, 470, 532,
-    ];
-  const grey = gray.map(v => v*10);
+    
+    console.log('ACTIVITY 1 is ', Date); 
+    console.log('ACTIVITY 2 is ', Data);
   const chartData = {
-    labels: DUMMY2,
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        data: DUMMY,
+        data: Data,
         label: 'Calories Burned',
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,

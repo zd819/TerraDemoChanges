@@ -1,4 +1,4 @@
-const url = "https://6777-82-69-42-98.eu.ngrok.io"
+const url = "https://0d2a-80-3-12-252.eu.ngrok.io"
 
 async function getURL(data) {
   return await fetch(url+'/newSession', {

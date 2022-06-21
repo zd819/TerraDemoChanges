@@ -1,5 +1,5 @@
 export default function General1(data,card){
-    console.log('data VALUE IS ,', data)
+    // console.log('data VALUE IS ,', data)
     var health,nutrition,performance = []
     if(data === undefined){
         return "No suggestion"

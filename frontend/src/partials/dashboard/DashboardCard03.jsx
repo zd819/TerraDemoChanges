@@ -20,7 +20,7 @@ function DashboardCard03(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
+  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -56,12 +56,15 @@ function DashboardCard03(props) {
     //   times.push(user.date); 
     //   points.push(user.data/3600);
     // };
+    console.log('123456789 ', response); 
     for (let user of response.result) {
+      if((times.indexOf(user.date) == -1)){
         times.push(user.date); 
-        points.push(user.data/3600);
+        points.push(user.data);
+      }  
     };
     let values = response.result;
-    console.log('123456789 ', response); 
+    
     let sortedDescending = response.result.sort((a, b) => {
       const aDate = a.date.split('-');
       const bDate = b.date.split('-');
@@ -73,9 +76,9 @@ function DashboardCard03(props) {
       }
       else return aDate[0]-bDate[0];
     });
-    console.log('123456789 ', values); 
+    // console.log('123456789 ', values); 
     
-    console.log('SLEEP is ', points); 
+    // console.log('SLEEP is ', points); 
     // times = sortedDescending;
     setData(points); //set Time state
     setDate(times); //set Data state
@@ -85,9 +88,7 @@ function DashboardCard03(props) {
     }
     loadPost(); 
     }, []);
-
-    const Over = "Good Amounts of Sleep";
-    const Under = "Careful of Sleep Deprivation";  
+    
   const chartData = {
     labels: Date,
     datasets: [
@@ -106,22 +107,22 @@ function DashboardCard03(props) {
         clip: 20,
       },
       // Gray line
-      {
-        data: [
-          6.89, 5.62, 4.77, 4.77, 4.77, 4.77, 4.58,
-          3.14, 4.30, 3.78, 4.30, 4.98, 6.42, 3.50,
-          1.45, 1.45, 3.54, 2.60, 1.88, 1.88, 3.00,
-          3.00, 2.82, 3.64, 6.60, 5.54,
-        ],
-        label: 'Average',
-        borderColor: tailwindConfig().theme.colors.slate[300],
-        borderWidth: 2,
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 3,
-        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-        clip: 20,
-      },
+      // {
+      //   data: [
+      //     6.89, 5.62, 4.77, 4.77, 4.77, 4.77, 4.58,
+      //     3.14, 4.30, 3.78, 4.30, 4.98, 6.42, 3.50,
+      //     1.45, 1.45, 3.54, 2.60, 1.88, 1.88, 3.00,
+      //     3.00, 2.82, 3.64, 6.60, 5.54,
+      //   ],
+      //   label: 'Average',
+      //   borderColor: tailwindConfig().theme.colors.slate[300],
+      //   borderWidth: 2,
+      //   tension: 0,
+      //   pointRadius: 0,
+      //   pointHoverRadius: 3,
+      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+      //   clip: 20,
+      // },
     ],
   };
 

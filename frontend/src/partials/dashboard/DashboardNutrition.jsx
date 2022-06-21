@@ -27,7 +27,7 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/data";
+  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
   const DUMMY = [
     732, 610, 610, 504, 504, 504, 349,
     349, 504, 342, 504, 610, 391, 192,
@@ -45,7 +45,7 @@ function DashboardNutrition(props) {
     '09-01-2022', '10-01-2022', '11-01-2022',
     '12-01-2022', '01-01-2023',
   ];
-  const [isLoading, setLoading ] = useState(false);
+  const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 30));
   const [endDate, setendDate ] = useState(localTime());
@@ -114,11 +114,11 @@ function DashboardNutrition(props) {
         loadPost(); 
       }, []);  
   const chartData = {
-    labels: DUMMY2,
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        data: DUMMY,
+        data: Data,
         label: 'Calories Consumed',
         fill: true,
         ticks: {
@@ -174,9 +174,9 @@ function DashboardNutrition(props) {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">2658 calories</div>
-          {/* <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
+          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
           {props.sugg}
-          </div> */}
+          </div>
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}

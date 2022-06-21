@@ -167,13 +167,13 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
               {/* Line chart (TEST) */}
-              <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
+              {/* <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} /> */}
               {/* Line chart (Acme Plus) */}
-              <DashboardNutrition addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
+              {/* <DashboardNutrition addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/> */}
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Professional) */}
-              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
+              {/* <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/> */}
             </div>
           </div>
         </main>
