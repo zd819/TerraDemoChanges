@@ -36,7 +36,7 @@ app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
 app.use('/getData', dataRouter);
-app.use('/testing', mongoRouter);
+app.use('/data', mongoRouter);
 app.use('/getTerraId', terraIdRouter);
 app.use('/userProviders', providersRouter);
 

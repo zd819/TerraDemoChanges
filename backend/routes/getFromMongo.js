@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
 
     getUserWearables(userId, function (wearableIds) {
 
-        const wearable = userWearables.find(wearable => wearable.provider === provider);
+        const wearable = wearableIds.find(wearable => wearable.provider === provider);
 
         console.log("Data Requested from Frontend");
         pullData({

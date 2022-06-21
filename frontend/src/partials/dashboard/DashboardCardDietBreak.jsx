@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+  const url = "https://505c-81-111-246-14.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
