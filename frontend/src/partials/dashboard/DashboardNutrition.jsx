@@ -27,7 +27,7 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const DUMMY = [
     732, 610, 610, 504, 504, 504, 349,
     349, 504, 342, 504, 610, 391, 192,

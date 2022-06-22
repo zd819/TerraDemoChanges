@@ -20,7 +20,7 @@ function DashboardCard03(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -46,7 +46,7 @@ function DashboardCard03(props) {
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep",
-      "provider" : "EIGHT",  
+      "provider" : "OURA",  
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -59,8 +59,10 @@ function DashboardCard03(props) {
     console.log('123456789 ', response); 
     for (let user of response.result) {
       if((times.indexOf(user.date) == -1)){
-        times.push(user.date); 
-        points.push(user.data);
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        times.push(newDate);
+        points.push(user.data.duration_asleep_state/3600);
       }  
     };
     let values = response.result;

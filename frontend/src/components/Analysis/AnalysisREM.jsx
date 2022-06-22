@@ -21,7 +21,7 @@ function Analysis1() {
     122, 110, 104, 152, 166, 133, 168,
     152, 184, 184, 133, 123,
   ].map(val => 7.5*0.22 + ((Math.random()-0.5)*0.1));
-  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(false);
   const [Data, setData ] = useState([]);
   const [Date, setDate ] = useState([]);

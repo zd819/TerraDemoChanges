@@ -18,7 +18,7 @@ function convertHours(data){
 }
 
 function DashboardCard04() {
-  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/login/data";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/login/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();

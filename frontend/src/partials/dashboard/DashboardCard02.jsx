@@ -18,7 +18,7 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://0d2a-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();

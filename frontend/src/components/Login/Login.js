@@ -7,7 +7,7 @@ import TerraAvatar from '../../images/user-avatar-32.png';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 async function loginUser(credentials) {
- return fetch('https://0d2a-80-3-12-252.eu.ngrok.io/login', {
+ return fetch('https://09b9-80-3-12-252.eu.ngrok.io/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'

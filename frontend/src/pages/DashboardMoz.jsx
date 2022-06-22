@@ -173,7 +173,7 @@ class DashboardMoz extends React.Component {
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Professional) */}
-              {/* <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/> */}
+              <DashboardCard03 addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
             </div>
           </div>
         </main>
