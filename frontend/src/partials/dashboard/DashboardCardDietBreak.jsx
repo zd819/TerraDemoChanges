@@ -37,6 +37,7 @@ function DashboardCardDietBreak() {
         "endDate": "2022-05-28", 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
+        "provider": "MYFITNESSPAL",
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);

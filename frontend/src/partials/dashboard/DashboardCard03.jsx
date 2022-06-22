@@ -56,7 +56,8 @@ function DashboardCard03(props) {
     //   times.push(user.date); 
     //   points.push(user.data/3600);
     // };
-    console.log('123456789 ', response); 
+    // console.log('123456789 ', response);
+    // console.log('CONDITION 2 : ', response.condition); 
     for (let user of response.result) {
       if((times.indexOf(user.date) == -1)){
         const day = (user.date.split('-'));
@@ -65,19 +66,19 @@ function DashboardCard03(props) {
         points.push(user.data.duration_asleep_state/3600);
       }  
     };
-    let values = response.result;
+    // let values = response.result;
     
-    let sortedDescending = response.result.sort((a, b) => {
-      const aDate = a.date.split('-');
-      const bDate = b.date.split('-');
-      if(aDate[2]!=bDate[2]){
-        return aDate[2]-bDate[2];
-      }
-      else if(aDate[1]!=bDate[1]){
-        return aDate[1]-bDate[1];
-      }
-      else return aDate[0]-bDate[0];
-    });
+    // let sortedDescending = response.result.sort((a, b) => {
+    //   const aDate = a.date.split('-');
+    //   const bDate = b.date.split('-');
+    //   if(aDate[2]!=bDate[2]){
+    //     return aDate[2]-bDate[2];
+    //   }
+    //   else if(aDate[1]!=bDate[1]){
+    //     return aDate[1]-bDate[1];
+    //   }
+    //   else return aDate[0]-bDate[0];
+    // });
     // console.log('123456789 ', values); 
     
     // console.log('SLEEP is ', points); 

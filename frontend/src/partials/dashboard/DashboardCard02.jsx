@@ -60,6 +60,7 @@ function DashboardCard02(props) {
     //   times.push(user.date); 
     //   points.push(user.data);
     // };
+    // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
       if((times.indexOf(user.date) == -1)){
         const day = (user.date.split('-'));
