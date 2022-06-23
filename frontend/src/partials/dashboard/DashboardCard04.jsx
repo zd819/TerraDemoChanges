@@ -18,7 +18,7 @@ function convertHours(data){
 }
 
 function DashboardCard04() {
-  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/login/data";
+  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();
@@ -36,11 +36,13 @@ function DashboardCard04() {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-      "userID" : "user1", 
+      "Content-Type": "application/json",
+      "userId" : "user1", 
       "startDate" : "2022-06-09",
       "endDate": "2022-06-10", 
       "terraId": "54903686-1da1-4c82-b58d-3c3fdbb8061b",
       "type": "sleep", 
+      "provider": "OURA",
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
