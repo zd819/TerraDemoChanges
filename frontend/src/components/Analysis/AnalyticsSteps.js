@@ -8,7 +8,7 @@ import EditMenu from '../../partials/EditMenu.jsx';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function AnalyticsSteps(props) {
-  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();

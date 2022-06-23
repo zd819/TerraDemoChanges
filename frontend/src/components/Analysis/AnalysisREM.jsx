@@ -15,7 +15,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
-  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(false);
   const [Data, setData ] = useState([]);
   const [Date, setDate ] = useState([]);

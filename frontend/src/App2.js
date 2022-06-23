@@ -33,7 +33,7 @@ import generateID from './components/User/UserID';
 //Either in the Widget.js or before we set shown to true, we must request
 //SessionID from the backend and append to terraURL
 
-const url = "http://localhost:8080"
+const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io"
 
 async function generateIDs() {
   const current = new Date().toLocaleString();

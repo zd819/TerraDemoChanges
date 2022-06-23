@@ -27,7 +27,7 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const DUMMY = [
     732, 610, 610, 504, 504, 504, 349,
     349, 504, 342, 504, 610, 391, 192,
@@ -70,6 +70,7 @@ function DashboardNutrition(props) {
         const response = await fetch(url, {
           method: 'GET',
           headers: {
+          "Content-Type": "application/json",
           "userID" : "user1", 
           "startDate" : startDate,
           "endDate": endDate, 
