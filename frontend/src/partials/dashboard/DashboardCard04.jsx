@@ -1,23 +1,94 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BarChart from '../../charts/BarChart01';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
+
+function convertHours(data){
+
+  for(let i = 0; i < data.length; i++){
+
+    data[i] = data[i]/3600;
+  }
+
+  return data;
+}
+
 function DashboardCard04() {
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/login/data";
+  const [isLoading, setLoading ] = useState(true);
+  const [REM, setREM] = useState();
+  const [deepSleep, setdeepSleep] = useState();
+  const [lightSleep, setlightSleep] = useState();
+  const [totalSleep, settotalSleep] = useState();
+  const [Date, setDate ] = useState();
+  var REM_arr = [];
+  var dS_arr = [];
+  var lS_arr = [];
+  var tS_arr = [];
+  var times = [];
+
+  useEffect(() => { // useEffect hook
+    const loadPost = async () => {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+      "userID" : "user1", 
+      "startDate" : "2022-06-09",
+      "endDate": "2022-06-10", 
+      "terraId": "54903686-1da1-4c82-b58d-3c3fdbb8061b",
+      "type": "sleep", 
+    }}).then((res => res.json()))
+    .catch(function(error){
+        console.log(error);
+    });
+    //pushing data from mongo into arrays
+    for (let user of response.result) {
+      //REM_arr.push(user.data.duration_REM_sleep_state);
+      //dS_arr.push(user.data.duration_deep_sleep_state);
+      //lS_arr.push(user.data.duration_light_sleep_state);
+      tS_arr.push(user.data.duration_asleep_state);
+      times.push(user.date);
+    };
+    console.log('Retreived Data');
+    let sortedDescending = response.sort((a, b) => {
+      const aDate = a.date.split('-');
+      const bDate = b.date.split('-');
+      if(aDate[2]!=bDate[2]){
+        return aDate[2]-bDate[2];
+      }
+      else if(aDate[1]!=bDate[1]){
+        return aDate[1]-bDate[1];
+      }
+      else return aDate[0]-bDate[0];
+    });
+    times = sortedDescending;
+    setLoading(false);
+    setDate(times);
+    //convertHours(REM_arr);
+    //convertHours(dS_arr);
+    //convertHours(lS_arr);
+    convertHours(tS_arr);
+
+    //setREM(REM_arr);
+    //setdeepSleep(dS_arr);
+    //setlightSleep(lS_arr);
+    settotalSleep(tS_arr);
+
+  }
+  loadPost();
+  }, []);
 
   const chartData = {
-    labels: [
-      '01-01-2022', '02-01-2022', '03-01-2022',
-      '04-01-2022', '05-01-2022', '06-01-2022',
-    ],
+    labels: Date,
     datasets: [
       // Light blue bars
       {
-        label: 'Portion Awake',
-        data: [
-          8, 8.4, 7.7, 9.1, 8.8, 6.9,
-        ].map(val => val*0.1 + (Math.random()-0.5)*0.5),
+        label: 'Total Sleep',
+        data: totalSleep,
         backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
         barPercentage: 0.66,
@@ -25,10 +96,8 @@ function DashboardCard04() {
       },
       // Blue bars
       {
-        label: 'Sleep Duration',
-        data: [
-          8, 8.4, 7.7, 9.1, 8.8, 6.9,
-        ],
+        label: 'REM Sleep',
+        data: REM,
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
         barPercentage: 0.66,

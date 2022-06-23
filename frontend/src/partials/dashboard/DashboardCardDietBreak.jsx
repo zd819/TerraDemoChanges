@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
@@ -37,6 +37,7 @@ function DashboardCardDietBreak() {
         "endDate": "2022-05-28", 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
         "type": "nutrition", 
+        "provider": "MYFITNESSPAL",
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);

@@ -68,7 +68,7 @@ function BarChart01({
             callbacks: {
               title: () => false, // Disable tooltip title
               // label: (context) => formatValue(context.parsed.y),
-              label: 'hours',
+              // label: 'hours',
             },
           },
         },

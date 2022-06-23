@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
@@ -59,6 +59,7 @@ const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
       "endDate": "2022-05-28", 
       "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
       "type": "nutrition", 
+      "provider": "MYFITNESSPAL",
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);

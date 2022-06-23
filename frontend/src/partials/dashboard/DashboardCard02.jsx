@@ -18,7 +18,7 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://6777-82-69-42-98.eu.ngrok.io/testing";
+  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
@@ -32,7 +32,7 @@ function DashboardCard02(props) {
     setendDate(props.dates[1]);
     // props.setOverrideDate(false);
   }
-  console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
+  // console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
 
   // const cdate = new Date().getDate();
   // console.log('DATE', cdate);
@@ -49,6 +49,7 @@ function DashboardCard02(props) {
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "daily", 
+      "provider" : "OURA", 
     }}).then((res => res.json()))
     .catch(function(error){
         console.log(error);
@@ -59,29 +60,32 @@ function DashboardCard02(props) {
     //   times.push(user.date); 
     //   points.push(user.data);
     // };
+    // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-        times.push(user.date); 
+      if((times.indexOf(user.date) == -1)){
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        times.push(newDate); 
         points.push(user.data);
+      }  
     };
-    let values = response.result;
-    let sortedDescending = values.sort((a, b) => {
-      const aDate = a.date.split('-');
-      const bDate = b.date.split('-');
-      if(aDate[2]!=bDate[2]){
-        return aDate[2]-bDate[2];
-      }
-      else if(aDate[1]!=bDate[1]){
-        return aDate[1]-bDate[1];
-      }
-      else return aDate[0]-bDate[0];
-    });
-    
-    
+    // let values = response.result;
+    // let sortedDescending = values.sort((a, b) => {
+    //   const aDate = a.date.split('-');
+    //   const bDate = b.date.split('-');
+    //   if(aDate[2]!=bDate[2]){
+    //     return aDate[2]-bDate[2];
+    //   }
+    //   else if(aDate[1]!=bDate[1]){
+    //     return aDate[1]-bDate[1];
+    //   }
+    //   else return aDate[0]-bDate[0];
+    // });
+    // times = sortedDescending;
+    console.log('VEGETA : ', points, ' <-> ', times);
     // times = sortedDescending;
     setData(points); //set Time state
     setDate(times); //set Data state
-    console.log('ACTIVITY 1 is ', Date); 
-    console.log('ACTIVITY 2 is ', Data); 
     setLoading(false); //set loading state
     const val = 'Health'
     props.addSugg(val, points);
@@ -89,13 +93,9 @@ function DashboardCard02(props) {
     loadPost(); 
     }, []);
 
-  var gray = [
-      732, 610, 610, 504, 504, 504, 349,
-      349, 504, 342, 504, 610, 391, 192,
-      154, 273, 191, 191, 126, 263, 349,
-      252, 423, 622, 470, 532,
-    ];
-  const grey = gray.map(v => v*10);
+    
+    console.log('ACTIVITY 1 is ', Date); 
+    console.log('ACTIVITY 2 is ', Data);
   const chartData = {
     labels: Date,
     datasets: [
@@ -114,17 +114,17 @@ function DashboardCard02(props) {
         clip: 20,
       },
       // Gray line
-      {
-        data : grey,
-        label: 'Average',
-        borderColor: tailwindConfig().theme.colors.slate[300],
-        borderWidth: 2,
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 3,
-        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-        clip: 20,
-      },
+      // {
+      //   data : DUMMY,
+      //   label: 'Average',
+      //   borderColor: tailwindConfig().theme.colors.slate[300],
+      //   borderWidth: 2,
+      //   tension: 0,
+      //   pointRadius: 0,
+      //   pointHoverRadius: 3,
+      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+      //   clip: 20,
+      // },
     ],
   };
 
@@ -151,10 +151,9 @@ function DashboardCard02(props) {
           </EditMenu>
         </header>
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Performance</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Performance Data Analysis</div>
-        <div className="text-3xl font-bold text-slate-800 mr-2">3 Months Ago</div>
-        <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
-            {/* {lowActivity ? Under : Over} */}
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
+        <div className="text-3xl font-bold text-slate-800 mr-2">2410 calories</div>
+          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
             {props.sugg}
           </div>
       </div>}
