@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
 
     const start = req.get('startDate');
     const end = req.get('endDate');
+    console.log(start)
+    console.log(end)
     const startDate = new Date(start);
     const endDate = new Date(end);
     const today = new Date();
@@ -26,26 +28,22 @@ router.get('/', (req, res) => {
 
     if(startDate > endDate) {
         // error end date has to be bigger
-        res.send({status:"Error", message:"Start Date is after End Date"});
+        res.send({condition:"Error", message:"Start Date is after End Date"});
         return;
         //throw "end date needs to be bigger than start";
         
     } else if(startDate > today || endDate > today) {
         // error error
-        res.send({status:"Error", message:"One or more dates are in the future"});
+        res.send({condition:"Error", message:"One or more dates are in the future"});
         return;
         //throw "dates in the future"
     }
 
-    
-    if(dataRequest[reqId] === 2) {
-        res.send({status:"Waiting for Terra still"});
-    };
-
-
-    getUserWearables(userId, function (wearableIds) {
+    getUserWearables(userId, function (userWearables) {
 
         const wearable = userWearables.find(wearable => wearable.provider === provider);
+        console.log(wearable);
+        console.log(provider);
 
         console.log("Data Requested from Frontend");
         pullData({
@@ -63,10 +61,10 @@ router.get('/', (req, res) => {
             const period = dayDifference(startDate, endDate);
             console.log(period);
             console.log(result.length);
-            //console.log(result);
             if(result.length > period) {
                 // too many results there has to be an error somewhere 
                 // this should never happen there must be something wrong inside mongo / pushing data
+                console.log("in this error");
                 next(createError("DB Error"));
             }else if(result.length < period) {
                 // need to find missing dates and pull
@@ -81,18 +79,17 @@ router.get('/', (req, res) => {
                                 startDate: missingDates[i].startDate,
                                 endDate: missingDates[i].endDate
                             }, () => {
-                                dataRequest[terraId + type + start + end] = 2;
+                                dataRequest[reqId] = 2;
                                 // request fulfilled on server side now waiting for terra
                             });
                     }
                 });
-                res.send({status:"Waiting for Terra", result:processData(result,type)});
+                res.send({condition:"Waiting for Terra", result:processData(result,type)});
             }else {
                 delete dataRequest[reqId];
                 //everything is fine
                 // process data and send
-                result = processData(result, type);
-                res.send({status:"Success", result:result});
+                res.send({condition:"Success", result:processData(result, type)});
             }
 
         })

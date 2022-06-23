@@ -12,8 +12,8 @@ function dayDifference(startDate, endDate){
 
 async function findMissingDates(startDate, endDate, data, callback){
 
-    var begin = new Date(startDate);
-    const end = new Date(endDate);
+    var begin = startDate;
+    const end = endDate;
     const datesToRequest = [];
 
     if(data !== undefined){
@@ -28,7 +28,7 @@ async function findMissingDates(startDate, endDate, data, callback){
                 datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: currDate.toISOString().substring(0,10)});
                 begin = currDate + 1;
             }else {
-                begin++;
+                begin = begin + 1;
             }
         }
     }
