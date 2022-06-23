@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
 
     const start = req.get('startDate');
     const end = req.get('endDate');
+    console.log(start)
+    console.log(end)
     const startDate = new Date(start);
     const endDate = new Date(end);
     const today = new Date();
@@ -66,7 +68,6 @@ router.get('/', (req, res) => {
             const period = dayDifference(startDate, endDate);
             console.log(period);
             console.log(result.length);
-            //console.log(result);
             if(result.length > period) {
                 // too many results there has to be an error somewhere 
                 // this should never happen there must be something wrong inside mongo / pushing data
@@ -88,7 +89,7 @@ router.get('/', (req, res) => {
                                 startDate: missingDates[i].startDate,
                                 endDate: missingDates[i].endDate
                             }, () => {
-                                dataRequest[terraId + type + start + end] = 2;
+                                dataRequest[reqId] = 2;
                                 // request fulfilled on server side now waiting for terra
                             });
                     }

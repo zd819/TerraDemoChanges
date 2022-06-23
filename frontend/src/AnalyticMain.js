@@ -69,23 +69,23 @@ function DashboardMoz(){
 
               {/* HEALTH CARDS */}
               {/* Bar chart (Direct vs Indirect) */}
-              {/* <DashboardCard04 /> */}
+              <DashboardCard04 />
               {/* Line chart (Real Time Value) */}
-              {/* <DashboardCard05 /> */}
+              <DashboardCard05 />
               {/* <Analysis1 /> */}
               <AnalysisREM/>
 
               {/* NUTRITION CARDS */}
               {/* Doughnut chart (Top Countries) */}
-              {/* <DashboardCardDietBreak /> */}
+              <DashboardCardDietBreak />
               {/* Table (Top Channels) */}
-              {/* <DashboardCardDietAn /> */}
+              <DashboardCardDietAn />
 
               {/* PERFORMANCE CARDS */}
               {/* Line chart (Sales Over Time) */}
-              {/* <DashboardCard08 /> */}
+              <DashboardCard08 />
               {/* Stacked bar chart (Sales VS Refunds) */}
-              {/* <DashboardCard09 /> */}
+              <DashboardCard09 />
             </div>
           </div>
           oura

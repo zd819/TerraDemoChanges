@@ -20,8 +20,8 @@ function Datepicker(props) {
     },
     onChange: (selectedDates, dateStr, instance) => {
       instance.element.value = dateStr.replace('to', '-');
-      console.log("ZION : ", selectedDates, " AND TYPE IS :", typeof(selectedDates));
-      console.log("VEGETA : ", dateStr, " AND TYPE IS :", typeof(dateStr));
+      // console.log("ZION : ", selectedDates, " AND TYPE IS :", typeof(selectedDates));
+      // console.log("VEGETA : ", dateStr, " AND TYPE IS :", typeof(dateStr));
       if(selectedDates.length == 2 && props.overrideDate == false){
         props.setOverrideDate(true);
         props.setDates(selectedDates.map(val => convertDate(val)));

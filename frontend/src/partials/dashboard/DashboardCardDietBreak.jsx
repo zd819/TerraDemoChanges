@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
@@ -32,6 +32,7 @@ function DashboardCardDietBreak() {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
+        "Content-Type": "application/json",
         "userID" : "user1", 
         "startDate" : "2022-05-17",
         "endDate": "2022-05-28", 
@@ -43,7 +44,7 @@ function DashboardCardDietBreak() {
           console.log(error);
       });
       //pushing data from mongo into arrays
-      for (let user of response) {
+      for (let user of response.result) {
         pro_arr.push(user.data.protein_g);
         carbs_arr.push(user.data.carbohydrates_g);
         fat_arr.push(user.data.fat_g);

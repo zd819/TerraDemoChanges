@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
+const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
@@ -54,6 +54,7 @@ const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
     const response = await fetch(url, {
       method: 'GET',
       headers: {
+      "Content-Type": "application/json",
       "userID" : "user1", 
       "startDate" : "2022-05-17",
       "endDate": "2022-05-28", 
@@ -65,7 +66,7 @@ const url = "https://09b9-80-3-12-252.eu.ngrok.io/data";
         console.log(error);
     });
     //push data from mongo into arrays
-    for (let user of response) {
+    for (let user of response.result) {
       pro_arr.push(user.data.protein_g);
       carbs_arr.push(user.data.carbohydrates_g);
       fat_arr.push(user.data.fat_g);

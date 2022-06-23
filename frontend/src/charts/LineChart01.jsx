@@ -13,7 +13,8 @@ Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, T
 function LineChart01({
   data,
   width,
-  height
+  height,
+  tick
 }) {
 
   const canvas = useRef(null);
@@ -35,7 +36,7 @@ function LineChart01({
           y: {
             ticks: {
               callback: function(value, index, ticks) {
-                return value + ' kcal consumed'  ;
+                return value + (tick=='kcal'? ' kcal' : (tick=='sleep'? ' hours': ' kcal burnt'));
               }},
             display: true,
             beginAtZero: true,
