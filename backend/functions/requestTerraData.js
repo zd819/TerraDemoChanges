@@ -23,8 +23,6 @@ async function requestTerraData(input, callback){
 
     axios(options)
       .then(function(response){
-        console.log('Terra Response');
-        console.log(response.body);
         callback();
       })
       .catch(function(error){

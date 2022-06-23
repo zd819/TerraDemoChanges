@@ -4,7 +4,6 @@ async function uploadData(payload) {
     const terraId = payload.user.user_id
     const type = payload.type;
 
-    var items = 0;
     for(var i = 0; i < payload.data.length; i++){
         const data = payload.data[i];
         const startDate = data.metadata.start_time;

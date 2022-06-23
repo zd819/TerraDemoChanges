@@ -15,37 +15,40 @@ router.get('/', (req, res) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
     const today = new Date();
-    console.log(req.get('type'));
     const terraId = req.get('terraId');
     const type = req.get('type');
     const userId = req.get('userId');
     const provider = req.get('provider');
     const reqId = terraId + type + start + end;
+    console.log(type + " " + start + " " + end);
+
 
 
 
     if(startDate > endDate) {
         // error end date has to be bigger
-        res.send({status:"Error", message:"Start Date is after End Date"});
+        res.send({condition:"Error", message:"Start Date is after End Date"});
         return;
-        //throw "end date needs to be bigger than start";
         
     } else if(startDate > today || endDate > today) {
         // error error
-        res.send({status:"Error", message:"One or more dates are in the future"});
+        res.send({condition:"Error", message:"One or more dates are in the future"});
         return;
-        //throw "dates in the future"
     }
 
     
-    if(dataRequest[reqId] === 2) {
-        res.send({status:"Waiting for Terra still"});
-    };
+    // if(dataRequest[reqId] === 2) {
+    //     res.send({status:"Waiting for Terra still"});
+    // };
 
 
     getUserWearables(userId, function (wearableIds) {
 
         const wearable = wearableIds.find(wearable => wearable.provider === provider);
+        if(wearable === undefined) {
+            res.send({condition:"Error", message: "Provider not connected to this account"});
+            return;
+        }
 
         console.log("Data Requested from Frontend");
         pullData({
@@ -67,11 +70,15 @@ router.get('/', (req, res) => {
             if(result.length > period) {
                 // too many results there has to be an error somewhere 
                 // this should never happen there must be something wrong inside mongo / pushing data
+
+                // this can happen with some types i.e events with more than one occurence per day so need to figure out this
+
                 next(createError("DB Error"));
             }else if(result.length < period) {
                 // need to find missing dates and pull
                 dataRequest[reqId] = 1;
                 findMissingDates(startDate, endDate, result, (missingDates) => {
+                    console.log("Missing Dates");
                     console.log(missingDates);
                     for(var i = 0; i < missingDates.length; i++) {
                         requestTerraData(
@@ -86,13 +93,12 @@ router.get('/', (req, res) => {
                             });
                     }
                 });
-                res.send({status:"Waiting for Terra", result:processData(result,type)});
+                res.send({condition:"Waiting for Terra", result:processData(result,type)});
             }else {
                 delete dataRequest[reqId];
                 //everything is fine
                 // process data and send
-                result = processData(result, type);
-                res.send({status:"Success", result:result});
+                res.send({condition:"Success", result:processData(result, type)});
             }
 
         })

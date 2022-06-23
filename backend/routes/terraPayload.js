@@ -11,8 +11,6 @@ router.post('/', (req,res,next) => {
     const payload = req.body;
     const type = payload.type;
     console.log('Payload From Terra');
-    console.log(payload);
-    console.log(payload.data);
 
     if(payload.status === "error") {
         // this is bad :/

@@ -6,7 +6,6 @@ async function getUserWearables(userId, callback) {
             throw err;
         }
         console.log("Retrieving Ids");
-        console.log(res);
         callback(res.wearableIds);
     });
 };
