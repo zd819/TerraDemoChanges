@@ -167,7 +167,7 @@ function DashboardCard03(props) {
           </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
-        <LineChart data={chartData} width={389} height={128} />
+        <LineChart data={chartData} width={389} height={128} tick = {"sleep"}/>
       </div>}
     </div>
   );

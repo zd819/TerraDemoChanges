@@ -21,9 +21,9 @@ function DashboardCard02(props) {
   const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
-  const [Data, setData ] = useState();
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
   const [endDate, setendDate ] = useState(localTime());
+  const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
@@ -93,9 +93,6 @@ function DashboardCard02(props) {
     loadPost(); 
     }, []);
 
-    
-    console.log('ACTIVITY 1 is ', Date); 
-    console.log('ACTIVITY 2 is ', Data);
   const chartData = {
     labels: Date,
     datasets: [
@@ -163,7 +160,7 @@ function DashboardCard02(props) {
     </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
-        <LineChart data={chartData} width={389} height={128} />
+        <LineChart data={chartData} width={389} height={128} tick = {"consumed"}/>
       </div>}
     </div>
   );
