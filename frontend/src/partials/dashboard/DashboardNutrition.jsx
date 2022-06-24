@@ -140,9 +140,7 @@ function DashboardNutrition(props) {
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 mr-2">2658 calories</div>
-          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (calorieOver ? 'bg-yellow-500' : 'bg-green-500')}>
-          {props.sugg}
-          </div>
+        
         </div>
   </div>}
       {/* Chart built with Chart.js 3 */}
