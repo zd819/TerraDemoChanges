@@ -150,9 +150,7 @@ function DashboardCard02(props) {
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Performance</h2>
         <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
         <div className="text-3xl font-bold text-slate-800 mr-2">2410 calories</div>
-          <div className={'text-sm font-semibold text-white px-1.5 rounded-full ' + (lowActivity ? 'bg-yellow-500' : 'bg-green-500')}>
-            {props.sugg}
-          </div>
+         
       </div>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div>
