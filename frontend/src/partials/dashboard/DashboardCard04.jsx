@@ -91,7 +91,7 @@ function DashboardCard04() {
     datasets: [
       // Light blue bars
       {
-        label: 'Total Sleep',
+        label: 'Total Sleep, Date',
         data: totalSleep,
         backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],

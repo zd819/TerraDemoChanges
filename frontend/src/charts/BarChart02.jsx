@@ -36,6 +36,13 @@ function BarChart02({
         scales: {
           y: {
             stacked: true,
+            time: {
+              parser: 'MM-DD-YYYY',
+              unit: 'month',
+              displayFormats: {
+                month: 'MMM YY',
+              },
+            },
             grid: {
               drawBorder: false,
             },

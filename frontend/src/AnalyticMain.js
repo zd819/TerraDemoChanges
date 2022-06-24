@@ -89,7 +89,7 @@ function DashboardMoz(){
             </div>
           </div>
           oura
-          data,distance,steps ( Heart Rate)
+          data,distance,steps (Heart Rate)
         </main>
       </div>
     </div>
