@@ -109,7 +109,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
     }
     else{
 
-      setcarbs_sugg("Yikes, how are you not getting enough carbs? Go get some chips or pasta");
+      setcarbs_sugg("Unfortunately you are not getting enough carbs. Go get some chips or pasta");
     }
 
     if(fat_diff <= 0){
@@ -214,7 +214,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{pro_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{pro_sugg}</div>
+                  <div className="text-center text-red-500">{pro_sugg}</div>
                 </td>
               </tr>
               {/* Row */}
@@ -238,7 +238,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{carbs_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{carbs_sugg}</div>
+                  <div className="text-center text-orange-500">{carbs_sugg}</div>
                 </td>
               </tr>
               {/* Row */}
@@ -262,7 +262,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{fat_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{fat_sugg}</div>
+                  <div className="text-center text-yellow-500">{fat_sugg}</div>
                 </td>
               </tr>
               {/* Row */}
@@ -286,7 +286,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{sod_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{sod_sugg}</div>
+                  <div className="text-center text-green-500">{sod_sugg}</div>
                 </td>
               </tr>
               {/* Row */}
@@ -310,7 +310,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{sug_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{sug_sugg}</div>
+                  <div className="text-center text-blue-500">{sug_sugg}</div>
                 </td>
               </tr>
               {/* Row */}
@@ -334,7 +334,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
                   <div className="text-center">{cal_diff}</div>
                 </td>
                 <td className="p-2">
-                  <div className="text-center text-sky-500">{cal_sugg}</div>
+                  <div className="text-center text-indigo-500">{cal_sugg}</div>
                 </td>
               </tr>
             </tbody>
