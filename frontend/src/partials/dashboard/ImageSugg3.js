@@ -22,7 +22,7 @@ function ImageSugg3(props) {
         <div className="flex items-start">
           {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div> */}
         </div>
-        <h1>  {props.sugg} </h1>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">{props.sugg}</div>
       </div>
     </div>
   );
