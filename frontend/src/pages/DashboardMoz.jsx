@@ -170,9 +170,9 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
 
-              <ImageSugg1 />
-              <ImageSugg2 />
-              <ImageSugg3 />
+              <ImageSugg1 sugg = {NutritionSugg} number = {0}/>
+              <ImageSugg2 sugg = {PerformanceSugg} number = {0}/>
+              <ImageSugg3 sugg = {HealthSugg} number = {0}/>
               {/* Line chart (TEST) */}
               {/* <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} /> */}
               {/* Line chart (Acme Plus) */}

@@ -15,12 +15,13 @@ function ImageSugg3(props) {
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
-          <img src={Icon} width="100" height="100" alt="Icon 01" /> {/*className = {'fill-current text-red-600'} */}
+          {props.number==0 ? <img src={Icon} width="100" height="100" alt="Icon 01" />
+        : null}
         </header>
         <div className="flex items-start">
           {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div> */}
         </div>
-        <h1> Follow a sleep schedule</h1>
+        <h1>  {props.sugg} </h1>
       </div>
     </div>
   );
