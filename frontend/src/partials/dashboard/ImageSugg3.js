@@ -16,7 +16,8 @@ function ImageSugg3(props) {
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
           {props.number==0 ? <img src={Icon} width="100" height="100" alt="Icon 01" />
-        : null}
+        : (props.number==1 ? <img src={Icon} width="100" height="100" alt="Icon 01" /> :
+                             <img src={Icon} width="100" height="100" alt="Icon 01" /> )}
         </header>
         <div className="flex items-start">
           {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div> */}

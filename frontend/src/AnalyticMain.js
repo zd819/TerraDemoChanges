@@ -73,7 +73,7 @@ function DashboardMoz(){
               {/* Line chart (Real Time Value) */}
               <DashboardCard05 />
               {/* <Analysis1 /> */}
-              <AnalysisREM/>
+              <AnalysisREM />
 
               {/* NUTRITION CARDS */}
               {/* Doughnut chart (Top Countries) */}

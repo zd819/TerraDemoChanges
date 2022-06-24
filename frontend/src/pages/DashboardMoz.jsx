@@ -125,11 +125,15 @@ class DashboardMoz extends React.Component {
   render(){
   
   // console.log('FRUITS : ', this.state.dates);
-  var PerformanceSugg = General1(this.state.allData, "Performance");
-  var HealthSugg = General1(this.state.allData, "Health");
-  var NutritionSugg = General1(this.state.allData, "Sleep");
-  // console.log('PAST 30 DATE IS : ', getDiffTime('-',60));
-  // console.log('OLD : ', this.state.dates);
+  var Pnum = General1(this.state.allData, "Performance")[0];
+  var PerformanceSugg = General1(this.state.allData, "Performance")[1];
+  var Hnum = General1(this.state.allData, "Health")[0];
+  var HealthSugg = General1(this.state.allData, "Health")[1];
+  var Nnum = General1(this.state.allData, "Sleep")[0];
+  var NutritionSugg = General1(this.state.allData, "Sleep")[1];
+  console.log('NUM 1 : ', Pnum);
+  console.log('NUM 2 : ', Hnum);
+  console.log('NUM 3 : ', Nnum);
   
 
   return (
@@ -170,9 +174,9 @@ class DashboardMoz extends React.Component {
             <div className="grid grid-cols-12 gap-6">
               
 
-              <ImageSugg1 sugg = {NutritionSugg} number = {0}/>
-              <ImageSugg2 sugg = {PerformanceSugg} number = {0}/>
-              <ImageSugg3 sugg = {HealthSugg} number = {0}/>
+              <ImageSugg1 sugg = {NutritionSugg} number = {Nnum}/>
+              <ImageSugg2 sugg = {PerformanceSugg} number = {Pnum}/>
+              <ImageSugg3 sugg = {HealthSugg} number = {Hnum}/>
               {/* Line chart (TEST) */}
               {/* <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} /> */}
               {/* Line chart (Acme Plus) */}
