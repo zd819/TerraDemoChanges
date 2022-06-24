@@ -70,8 +70,8 @@ function DashboardMoz(){
               {/* HEALTH CARDS */}
               {/* Bar chart (Direct vs Indirect) */}
               <DashboardCard04 />
-              {/* Line chart (Real Time Value) */}
-              <DashboardCard05 />
+              {/* Stacked bar chart (Sleep VS Efficiency) */}
+              <DashboardCard09 />
               {/* <Analysis1 /> */}
               <AnalysisREM />
 
@@ -82,7 +82,7 @@ function DashboardMoz(){
               <DashboardCardDietAn />
 
               {/* PERFORMANCE CARDS */}
-              {/* Line chart (Sales Over Time) */}
+              {/* Line chart (CardioVascular Health) */}
               <DashboardCard08 />
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09 />

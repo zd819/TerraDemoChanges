@@ -13,7 +13,8 @@ Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, T
 function LineChart02({
   data,
   width,
-  height
+  height,
+  tick,
 }) {
 
   const canvas = useRef(null);
@@ -37,7 +38,9 @@ function LineChart02({
             },
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              callback: function(value, index, ticks) {
+                return value + (tick=='kcal'? ' kcal' : (tick=='sleep'? ' hours': (tick=='bpm'? ' BPM': ' kcal burnt')));
+              }
             },
           },
           x: {
@@ -66,7 +69,7 @@ function LineChart02({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              // label: (context) => formatValue(context.parsed.y),
             },
           },
         },

@@ -61,27 +61,6 @@ function DashboardNutrition(props) {
         .catch(function(error){
             console.log(error);
           });
-        // console.log('NEW RESPONSE IS : ', response , ' and result is : ', response.result.calories);
-        // for (let user of response.result) {
-        //   times.push(user.date);
-        //   points.push(user.data);
-        // };
-        // for (let user of response.result) {
-        //     times.push(user.date); 
-        //     points.push(user.data);
-        // };
-        // let values = response.result;
-        // let sortedDescending = values.sort((a, b) => {
-        //   const aDate = a.date.split('-');
-        //   const bDate = b.date.split('-');
-        //   if(aDate[2]!=bDate[2]){
-        //     return aDate[2]-bDate[2];
-        //   }
-        //   else if(aDate[1]!=bDate[1]){
-        //     return aDate[1]-bDate[1];
-        //   }
-        //   else return aDate[0]-bDate[0];
-        // });
         console.log('ASHBORN :   <-> ', response.result);
         for (let user of response.result) {
           if((times.indexOf(user.date) == -1)){
@@ -92,8 +71,6 @@ function DashboardNutrition(props) {
           }  
         };
         console.log('NUTRITION is ', points); 
-        //console.log('Sorted dates', sortedDescending);
-        // times = sortedDescending;
         setData(points); //set Time state
         setDate(times); //set Data state
         setLoading(false); //set loading state

@@ -1,33 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LineChart from '../../charts/LineChart02';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
-function DashboardCard08() {
-  const harr =  [
-    73, 64, 73, 69, 104, 104, 164,
-    164, 120, 120, 120, 148, 142, 104,
-    122, 110, 104, 152, 166, 133, 168,
-    152, 184, 184, 133, 123,
-  ].map(val => ((Math.random()-0.5)*40)+80);
+function DashboardCard08(props) {
+  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const [isLoading, setLoading ] = useState(true);
+  const [calorieOver, setCalories ] = useState(false);
+  const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
+  const [endDate, setendDate ] = useState(localTime());
+  const [Avg, setAvg ] = useState();
+  const [High, setHigh ] = useState();
+  const [Low, setLow ] = useState();
+  const [Date, setDate ] = useState();
+  var times = [];
+  var avgHR = [];
+  var highHR = [];
+  var lowHR = [];
+  
+  useEffect(() => { // useEffect hook
+    const loadPost = async () => {
+      console.log('Getting Health Data');
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+        "Content-Type": "application/json",
+        "userID" : "user1", 
+        "startDate" : startDate,
+        "endDate": endDate, 
+        "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
+        "type": "heart",
+        "provider" : "OURA", 
+      }}).then((res => res.json()))
+      .catch(function(error){
+          console.log(error);
+        });
+      console.log('ASHBORN :   <-> ', response.result);
+      for (let user of response.result) {
+        if((times.indexOf(user.date) == -1)){
+          const day = (user.date.split('-'));
+          const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+          times.push(newDate); 
+          avgHR.push(user.data.avg_hr);
+          highHR.push(user.data.max_hr);
+          lowHR.push(user.data.min_hr);
+        }  
+      };
+      setAvg(avgHR); //set Time state
+      setHigh(highHR); //set Time state
+      setLow(lowHR); //set Time state
+      setDate(times); //set Data state
+      setLoading(false); //set loading state
+      // const val = 'Nutrition';
+      // props.addSugg(val, points);
+      }
+      loadPost(); 
+    }, []);  
   const chartData = {
-    labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
-      '06-01-2021', '07-01-2021', '08-01-2021',
-      '09-01-2021', '10-01-2021', '11-01-2021',
-      '12-01-2021', '01-01-2022', '02-01-2022',
-      '03-01-2022', '04-01-2022', '05-01-2022',
-      '06-01-2022', '07-01-2022', '08-01-2022',
-      '09-01-2022', '10-01-2022', '11-01-2022',
-      '12-01-2022', '01-01-2023',
-    ],
+    labels: Date,
     datasets: [
       // Indigo line
       {
-        label: 'Target Heart Rate',
-        data: harr,
+        label: 'Avg Heart Rate',
+        data: Avg,
         borderColor: tailwindConfig().theme.colors.indigo[500],
         fill: false,
         borderWidth: 2,
@@ -39,7 +77,7 @@ function DashboardCard08() {
       // Blue line
       {
         label: 'Maximum',
-        data: harr.map(val => (val*1.3) ),
+        data: High,
         borderColor: tailwindConfig().theme.colors.blue[400],
         fill: false,
         borderWidth: 2,
@@ -51,7 +89,7 @@ function DashboardCard08() {
       // Green line
       {
         label: 'Resting',
-        data: harr.map(val => val + ((Math.random()-0.5)*20)),
+        data: Low,
         borderColor: tailwindConfig().theme.colors.green[500],
         fill: false,
         borderWidth: 2,
@@ -65,12 +103,18 @@ function DashboardCard08() {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
-      <header className="px-5 py-4 border-b border-slate-100 flex items-center">
+      { isLoading ? <div>
+        Please connect a wearable which tracks Nutrition Data
+        </div> :
+    <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">CardioVascular Health</h2>
-      </header>
+      </header>}
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      <LineChart data={chartData} width={595} height={248} />
+      { isLoading ? <div>
+      </div> :
+        <LineChart data={chartData} width={595} height={248} tick ={"bpm"}/>
+    }
     </div>
   );
 }

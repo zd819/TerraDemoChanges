@@ -41,7 +41,7 @@ function DashboardCard09() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
-        <h2 className="font-semibold text-slate-800">PERFORMANCE 2</h2>
+        <h2 className="font-semibold text-slate-800">Sleep Time and Efficiency</h2>
         <Info className="ml-2" containerClassName="min-w-80">
           <div className="text-sm">Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</div>
         </Info>

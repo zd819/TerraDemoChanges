@@ -24,6 +24,9 @@ function getRelevantData(data, type) {
         case 'sleep':
             return data.sleep_durations_data.asleep;
             break;
+        case 'heart':
+            return data.heart_rate_data.summary;
+            break;
         case 'body':
             break;
         case 'menstruation':
