@@ -6,7 +6,7 @@ function WelcomeBanner() {
 
       {/* Background illustration */}
       <div className="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
-        <svg width="150" height="99" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg width="150" height="50" xmlnsXlink="http://www.w3.org/1999/xlink">
           <defs>
            
             <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="welcome-b">

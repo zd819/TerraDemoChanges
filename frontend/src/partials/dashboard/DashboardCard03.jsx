@@ -20,7 +20,7 @@ function DashboardCard03(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
+  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));

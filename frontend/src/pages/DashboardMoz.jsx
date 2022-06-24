@@ -27,6 +27,9 @@ import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import DashboardTest from '../partials/dashboard/DashboardTest';
 import General1 from '../components/Suggestions/General1';
+import ImageSugg1 from '../partials/dashboard/ImageSugg1.js';
+import ImageSugg2 from '../partials/dashboard/ImageSugg2.js';
+import ImageSugg3 from '../partials/dashboard/ImageSugg3.js';
 
 
 // function useGetLocation(){
@@ -166,6 +169,10 @@ class DashboardMoz extends React.Component {
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
               
+
+              <ImageSugg1 />
+              <ImageSugg2 />
+              <ImageSugg3 />
               {/* Line chart (TEST) */}
               {/* <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} /> */}
               {/* Line chart (Acme Plus) */}

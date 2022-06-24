@@ -18,7 +18,7 @@ function convertHours(data){
 }
 
 function DashboardCard04() {
-  const url = "https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/data";
+  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();
@@ -49,25 +49,27 @@ function DashboardCard04() {
     });
     //pushing data from mongo into arrays
     for (let user of response.result) {
+      if((times.indexOf(user.date) == -1)){
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        times.push(newDate);
+        tS_arr.push(user.data.duration_asleep_state/3600);
+      } 
       //REM_arr.push(user.data.duration_REM_sleep_state);
       //dS_arr.push(user.data.duration_deep_sleep_state);
       //lS_arr.push(user.data.duration_light_sleep_state);
-      tS_arr.push(user.data.duration_asleep_state);
-      times.push(user.date);
     };
-    console.log('Retreived Data');
-    let sortedDescending = response.sort((a, b) => {
-      const aDate = a.date.split('-');
-      const bDate = b.date.split('-');
-      if(aDate[2]!=bDate[2]){
-        return aDate[2]-bDate[2];
-      }
-      else if(aDate[1]!=bDate[1]){
-        return aDate[1]-bDate[1];
-      }
-      else return aDate[0]-bDate[0];
-    });
-    times = sortedDescending;
+    // let sortedDescending = response.sort((a, b) => {
+    //   const aDate = a.date.split('-');
+    //   const bDate = b.date.split('-');
+    //   if(aDate[2]!=bDate[2]){
+    //     return aDate[2]-bDate[2];
+    //   }
+    //   else if(aDate[1]!=bDate[1]){
+    //     return aDate[1]-bDate[1];
+    //   }
+    //   else return aDate[0]-bDate[0];
+    // });
     setLoading(false);
     setDate(times);
     //convertHours(REM_arr);
@@ -110,12 +112,19 @@ function DashboardCard04() {
 
   return (
     <div className="flex flex-col col-span-100 sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+      { isLoading ? <div>
+        Please connect a wearable which tracks Activity Data
+        </div> :
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Sleep Concentration</h2>
-      </header>
+      </header>}
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      <BarChart data={chartData} width={595} height={248} />
+      { isLoading ? <div>
+        Please connect a wearable which tracks Activity Data
+        </div> :
+        <BarChart data={chartData} width={595} height={248} />
+      }
     </div>
   );
 }

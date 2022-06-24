@@ -3,7 +3,7 @@ import { trackPromise } from 'react-promise-tracker';
 
 export default function getData() {
 
-    return  trackPromise(fetch('https://7a34-2a02-6b6a-8c49-0-45a2-f907-3fe0-4be7.eu.ngrok.io/autoData', {
+    return  trackPromise(fetch('https://2782-80-3-12-252.eu.ngrok.io/autoData', {
     method: 'POST',
     headers: {'Content-Type':'application/json',
               'userid': 'user1'}
