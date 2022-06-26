@@ -49,9 +49,15 @@ function BarChart01({
             type: 'time',
             time: {
               parser: 'MM-DD-YYYY',
-              unit: 'month',
+              unit: 'week',
               displayFormats: {
-                month: 'MMM YY',
+                year: 'YYYY',
+                month: 'MM',
+                week: 'DD/MM/YY',
+                day: 'DD',
+              },
+              ticks: {
+                align: 'end',
               },
             },
             grid: {

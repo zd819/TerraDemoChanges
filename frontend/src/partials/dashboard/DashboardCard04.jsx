@@ -32,13 +32,14 @@ function averageWeeks(data){
 
   data.splice(3,6);
 
-  for(var i = 4; i < (data.length - 3); i++){
+  for(var i = 4; i < (data.length - 2); i++){
 
     data[3] += data[i]; 
 
   }
 
   data.splice(4,9);
+
 
   data[0] = data[0]/7;
   data[1] = data[1]/7;
@@ -50,18 +51,22 @@ function averageWeeks(data){
 
 function weeklyDates(data){
 
+
+  console.log('before splice', data);
+
   data[1] = data[7];
   data[2] = data[14];
   data[3] = data[21];
 
   data.splice(4,27);
+  console.log('after splice', data);
 
   return data;
 }
 
 
 function DashboardCard04() {
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();
@@ -83,7 +88,7 @@ function DashboardCard04() {
       "userId" : "user1", 
       "startDate" : "2022-05-11",
       "endDate": "2022-06-10", 
-      "terraId": "54903686-1da1-4c82-b58d-3c3fdbb8061b",
+      "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 
       "provider": "OURA",
     }}).then((res => res.json()))
@@ -98,8 +103,8 @@ function DashboardCard04() {
         times.push(newDate);
         tS_arr.push(user.data.duration_asleep_state/3600); 
         REM_arr.push(user.data.duration_REM_sleep_state/3600);
-      //dS_arr.push(user.data.duration_deep_sleep_state);
-      //lS_arr.push(user.data.duration_light_sleep_state);
+        dS_arr.push(user.data.duration_deep_sleep_state/3600);
+        lS_arr.push(user.data.duration_light_sleep_state/3600);
       }
     };
     // let sortedDescending = response.sort((a, b) => {
@@ -114,16 +119,17 @@ function DashboardCard04() {
     //   else return aDate[0]-bDate[0];
     // });
     setLoading(false);
+     
     averageWeeks(tS_arr);
     averageWeeks(REM_arr);
+    averageWeeks(lS_arr);
+    averageWeeks(dS_arr);
     weeklyDates(times);
-    
 
     setDate(times);
-    console.log('weeks data', tS_arr);
     setREM(REM_arr);
-    //setdeepSleep(dS_arr);
-    //setlightSleep(lS_arr);
+    setdeepSleep(dS_arr);
+    setlightSleep(lS_arr);
     settotalSleep(tS_arr);
   }
   loadPost();
@@ -137,17 +143,33 @@ function DashboardCard04() {
       {
         label: 'Total Sleep',
         data: totalSleep,
-        backgroundColor: tailwindConfig().theme.colors.blue[400],
-        hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
+        backgroundColor: tailwindConfig().theme.colors.sky[300],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[400],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
       // Blue bars
       {
+        label: 'Light Sleep',
+        data: lightSleep,
+        backgroundColor: tailwindConfig().theme.colors.sky[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[600],
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+      },
+      {
+        label: 'Deep Sleep',
+        data: deepSleep,
+        backgroundColor: tailwindConfig().theme.colors.blue[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+      },
+      {
         label: 'REM Sleep',
         data: REM,
-        backgroundColor: tailwindConfig().theme.colors.indigo[500],
-        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        backgroundColor: tailwindConfig().theme.colors.blue[600],
+        hoverBackgroundColor: tailwindConfig().theme.colors.blue[700],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
@@ -157,7 +179,7 @@ function DashboardCard04() {
   return (
     <div className="flex flex-col col-span-100 sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       { isLoading ? <div>
-        Please connect a wearable which tracks Activity Data
+        Please connect a wearable which tracks Sleep Data
         </div> :
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Sleep Analysis</h2>
@@ -165,7 +187,7 @@ function DashboardCard04() {
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
       { isLoading ? <div>
-        Please connect a wearable which tracks Activity Data
+        Please connect a wearable which tracks Sleep Data
         </div> :
         <BarChart data={chartData} width={595} height={248} />
       }

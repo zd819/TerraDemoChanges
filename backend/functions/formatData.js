@@ -35,7 +35,7 @@ function getRelevantData(data, type) {
             return data.summary.macros;
             break;
         case 'daily':
-            return data.calories_data.total_burned_calories;
+            return data;
             break;
         case 'body':
             break;
