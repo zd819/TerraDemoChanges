@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Login.css';
-import TerraLogo from '../../images/terra_logo_dark copy.png';
-import TerraAvatar from '../../images/user-avatar-32.png';
-import { tailwindConfig, hexToRGB } from '../../utils/Utils';
+
 
 async function loginUser(credentials) {
- return fetch('https://2782-80-3-12-252.eu.ngrok.io/login', {
+ return fetch('http://localhost:8080/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -30,32 +28,22 @@ export default function Login({ setToken }) {
     setToken(token);
   }
 
-  
- 
-
   return(
-    
-    
-    <div className=" wrapper bg-blue-100 h-full">
-      <img src={TerraAvatar} width="100" height="100" className="Terra-Avatar wrapper" alt="TerraAvatar" />
-      
-      <h1 className = "text-blue-250 font-extrabold h-120" >Please Log In</h1>
-      <form onSubmit={handleSubmit} className= "h-120">
+    <div className="login-wrapper">
+      <h1>Please Log In</h1>
+      <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
-          <input type="text " onChange={e => setUserName(e.target.value)}/>
+          <input type="text" onChange={e => setUserName(e.target.value)}/>
         </label>
         <div>
           <label>
-            <p>Password </p>
-            <input type=" password" onChange={e => setPassword(e.target.value)}/>
+            <p>Password</p>
+            <input type="password" onChange={e => setPassword(e.target.value)}/>
           </label>
         </div>
         <div>
-          <button type=" submit">Submit</button>
-        </div>
-        <div className="flex items-center truncate">
-        <img src={TerraLogo}  width="300" height="300" className="Terra-Logo " alt="TerraLogo" />
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

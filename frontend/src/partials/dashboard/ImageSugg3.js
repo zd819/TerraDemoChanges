@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
-import Icon from '../../images/sleep.svg';
+import Icon from '../../images/rest-nobg.svg';
 import EditMenu from '../EditMenu';
 import localTime from '../../components/DataHandling/localTime.js';
 import getDIffTime from '../../components/DataHandling/getDiffTime.js';
