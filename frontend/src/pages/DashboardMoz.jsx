@@ -140,7 +140,7 @@ class DashboardMoz extends React.Component {
     <div className="flex h-screen overflow-hidden bg-blue-50">
       
       {/* Sidebar */}
-      <Sidebar sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
+      <Sidebar id={this.props.id} sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
