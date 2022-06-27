@@ -18,7 +18,7 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -66,7 +66,8 @@ function DashboardCard02(props) {
         const day = (user.date.split('-'));
         const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
         times.push(newDate); 
-        points.push(user.data);
+        points.push(user.data.calories_data.total_burned_calories);
+        
       }  
     };
     // let values = response.result;

@@ -1,62 +1,109 @@
-import React from 'react';
-import Info from '../../utils/Info';
+import React, { useEffect, useState } from 'react';
 import BarChart from '../../charts/BarChart02';
+import localTime from '../../components/DataHandling/localTime.js';
+import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
 function DashboardCard09() {
+  
+
+  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+  const [isLoading, setLoading] = useState(true);
+  const [steps, setsteps] = useState();
+  const [dist, setdist] = useState();
+  const [Date, setDate ] = useState();
+  var times = [];
+  var step_arr = [];
+  var dist_arr = [];
+
+  useEffect(() => { // useEffect hook
+    const loadPost = async () => {
+    // axios(options)
+    console.log("Getting Activity Data");
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+      "Content-Type": "application/json",
+      "userID" : "user1", 
+      "startDate" : "2022-06-13",
+      "endDate": "2022-06-20", 
+      "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
+      "type": "daily", 
+      "provider" : "OURA", 
+    }}).then((res => res.json()))
+    .catch(function(error){
+        console.log(error);
+        console.log("Axios error");
+      });
+    // console.log('Activity is ',response); 
+    // for (let  user of response.result) {
+    //   times.push(user.date); 
+    //   points.push(user.data);
+    // };
+    // console.log('CONDITION 1 : ', response.condition);
+    for (let user of response.result) {
+      if((times.indexOf(user.date) == -1)){
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        times.push(newDate); 
+        dist_arr.push(user.data.distance_data.distance_metres);
+        step_arr.push(user.data.distance_data.steps);
+        
+      }  
+    };
+
+
+    setLoading(false);
+    setsteps(step_arr); //set Time state
+    setdist(dist_arr);
+    setDate(times); //set Data state
+    }
+    loadPost(); 
+    }, []);
+
 
   const chartData = {
-    labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
-    ],
+    labels: Date,
     datasets: [
       // Light blue bars
       {
-        label: 'Stack 1',
-        data: [
-          6200, 9200, 6600, 8800, 5200, 9200,
-        ],
+        label: 'Steps',
+        data: steps,
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
-        barPercentage: 0.66,
-        categoryPercentage: 0.66,
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
       },
       // Blue bars
       {
-        label: 'Stack 2',
-        data: [
-          -4000, -2600, -5350, -4000, -7500, -2000,
-        ],
+        label: 'Distance (m)',
+        data: dist,
         backgroundColor: tailwindConfig().theme.colors.indigo[200],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[300],
-        barPercentage: 0.66,
-        categoryPercentage: 0.66,
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
       },
     ],
   };
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
+      { isLoading ? <div>
+        Please connect a wearable which tracks Activity Data
+        </div> :
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
-        <h2 className="font-semibold text-slate-800">Sleep Time and Efficiency</h2>
-        <Info className="ml-2" containerClassName="min-w-80">
-          <div className="text-sm">Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</div>
-        </Info>
-      </header>
-      <div className="px-5 py-3">
-        <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 mr-2">+$6,796</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-34%</div>
-        </div>
-      </div>
+        <h2 className="font-semibold text-slate-800">General Activity</h2>
+      </header>}
       {/* Chart built with Chart.js 3 */}
+      { isLoading ? <div>
+        Please connect a wearable which tracks Activity Data
+        </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
         <BarChart data={chartData} width={595} height={248} />
-      </div>
+      </div>}
     </div>
   );
 }

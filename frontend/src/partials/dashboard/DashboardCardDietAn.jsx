@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
@@ -133,7 +133,7 @@ const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
 
     if(sug_diff <= 0){
       
-      setsug_sugg("Bravo, go treat yourself to something sweet (stay under your goal tho)");
+      setsug_sugg("Bravo, go treat yourself to something sweet (stay under your goal though)");
     }
     else{
 
