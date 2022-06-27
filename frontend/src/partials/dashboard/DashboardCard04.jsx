@@ -66,7 +66,7 @@ function weeklyDates(data){
 
 
 function DashboardCard04() {
-  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();
@@ -97,10 +97,10 @@ function DashboardCard04() {
     });
     //pushing data from mongo into arrays
     for (let user of response.result) {
-      if((times.indexOf(user.date) == -1)){
-        const day = (user.date.split('-'));
-        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-        times.push(newDate);
+      const day = (user.date.split('-'));
+      const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+      if(times.indexOf(newDate) == -1){
+        times.push(newDate); 
         tS_arr.push(user.data.duration_asleep_state/3600); 
         REM_arr.push(user.data.duration_REM_sleep_state/3600);
         dS_arr.push(user.data.duration_deep_sleep_state/3600);

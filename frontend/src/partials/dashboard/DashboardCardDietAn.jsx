@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
@@ -75,7 +75,7 @@ const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
       cal_arr.push(user.data.calories);
 
     };
-    console.log('Retreived Data');
+    // console.log('Retreived Data');
     setLoading(false);
     //obtain averages of user data for each component
     setProtein(Average(pro_arr).toPrecision(3));

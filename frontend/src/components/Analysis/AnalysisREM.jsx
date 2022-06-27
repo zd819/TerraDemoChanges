@@ -17,7 +17,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
   const [endDate, setendDate ] = useState(localTime());
@@ -53,27 +53,27 @@ function Analysis1() {
       //   }
       //   else return aDate[0]-bDate[0];
       // });
-      console.log('REM :', response.result.date );
-
+      
       for (let user of response.result) {
-        if((times.indexOf(user.date) == -1)){
-          const day = (user.date.split('-'));
-          const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-          times.push(newDate);
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        if(times.indexOf(newDate) == -1){
+          times.push(newDate); 
           remdata.push(user.data.duration_REM_sleep_state/3600);
-        }  
+        }
       };
       // times = sortedDescending;
       setData(remdata);
       setDate(times);
       setLoading(false);
       
+      
     }
     loadPost(); 
     }, []);
-
-    console.log('DATA  : ', Data);
-    console.log('DATE: ', Date);
+    
+    // console.log('DATA  : ', Data);
+    // console.log('DATE: ', Date);
   //console.log('Logged DATES', Date);
   const chartData = {
     labels: Date,

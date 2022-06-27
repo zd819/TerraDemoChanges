@@ -7,7 +7,7 @@ import localTime from '../../components/DataHandling/localTime.js';
 import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 function DashboardCard08(props) {
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -32,21 +32,21 @@ function DashboardCard08(props) {
         "startDate" : startDate,
         "endDate": endDate, 
         "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
-        "type": "heart",
+        "type": "daily",
         "provider" : "OURA", 
       }}).then((res => res.json()))
       .catch(function(error){
           console.log(error);
         });
-      console.log('ASHBORN :   <-> ', response.result);
+      // console.log('ASHBORN :   <-> ', response.result);
       for (let user of response.result) {
-        if((times.indexOf(user.date) == -1)){
-          const day = (user.date.split('-'));
-          const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        const day = (user.date.split('-'));
+        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+        if(times.indexOf(newDate) == -1){
           times.push(newDate); 
-          avgHR.push(user.data.avg_hr);
-          highHR.push(user.data.max_hr);
-          lowHR.push(user.data.min_hr);
+          avgHR.push(user.data.heart_rate_data.summary.avg_hr);
+          highHR.push(user.data.heart_rate_data.summary.max_hr);
+          lowHR.push(user.data.heart_rate_data.summary.min_hr);
         }  
       };
       setAvg(avgHR); //set Time state

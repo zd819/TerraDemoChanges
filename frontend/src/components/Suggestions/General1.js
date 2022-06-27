@@ -14,6 +14,13 @@ export default function General1(data,card){
     // const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
     switch (card) {
         case 'Health': // Sleep
+        // Active : 0
+        // Portion Control : 1
+        // Outdoor Sun : 2 
+        // Healthy Eating : 3
+        // Vice Balance : 4
+        // Rest : 5
+        // Target : 6
             if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
                 let nValue =  Average(nutrition); //Calories Consumed 
                     let pValue = Average(performance); //Calories Burned
@@ -68,6 +75,10 @@ export default function General1(data,card){
             }
 
         case 'Nutrition': // Calories Consumed 
+        // Portion Control : 0
+        // Healthy Eating : 1
+        // Vice Balance : 2 
+        // Target : 3
             if(health && performance){
                 let hValue = Average(health); //Sleep 
                     let pValue = Average(performance);//Calories Burned
@@ -119,6 +130,12 @@ export default function General1(data,card){
 
             }
         default: // Performance
+        // Rest : 0
+        // Meditation : 1
+        // Anxiety Balance : 2 
+        // Eat more : 2.5
+        // Sleep : 3
+        // Target : 4
             if(health && nutrition){
                 let hValue = Average(health); //Sleep 
                     let nValue = Average(nutrition); //Calories consumed

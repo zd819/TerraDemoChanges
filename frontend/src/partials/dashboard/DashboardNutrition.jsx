@@ -27,7 +27,7 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -51,7 +51,7 @@ function DashboardNutrition(props) {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
-          "userID" : "user1", 
+          "userID" : props.id, 
           "startDate" : startDate,
           "endDate": endDate, 
           "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
@@ -61,14 +61,13 @@ function DashboardNutrition(props) {
         .catch(function(error){
             console.log(error);
           });
-        console.log('ASHBORN :   <-> ', response.result);
         for (let user of response.result) {
-          if((times.indexOf(user.date) == -1)){
             const day = (user.date.split('-'));
             const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-            times.push(newDate); 
-            points.push(user.data.calories);
-          }  
+            if(times.indexOf(newDate) == -1){
+              times.push(newDate); 
+              points.push(user.data.calories);            
+          }
         };
         console.log('NUTRITION is ', points); 
         setData(points); //set Time state

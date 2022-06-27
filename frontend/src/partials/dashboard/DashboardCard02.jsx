@@ -18,7 +18,7 @@ function DashboardCard02(props) {
   function date3M(){
     setendDate(getDiffTime('-', 90));
   }
-  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -44,7 +44,7 @@ function DashboardCard02(props) {
       method: 'GET',
       headers: {
       "Content-Type": "application/json",
-      "userID" : "user1", 
+      "userID" : props.id,
       "startDate" : startDate,
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
@@ -62,13 +62,12 @@ function DashboardCard02(props) {
     // };
     // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-      if((times.indexOf(user.date) == -1)){
-        const day = (user.date.split('-'));
-        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+      const day = (user.date.split('-'));
+      const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+      if(times.indexOf(newDate) == -1){
         times.push(newDate); 
-        points.push(user.data.calories_data.total_burned_calories);
-        
-      }  
+        points.push(user.data.calories_data.total_burned_calories); 
+      }
     };
     // let values = response.result;
     // let sortedDescending = values.sort((a, b) => {

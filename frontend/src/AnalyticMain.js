@@ -59,9 +59,6 @@ function DashboardMoz(){
                 {/* Add view button */}
                             
               </div>
-              {/* Filter button */}
-             
-              <Datepicker />
             </div>
 
             {/* Cards */}
