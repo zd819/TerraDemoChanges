@@ -22,7 +22,7 @@ function DashboardCard11() {
       headers: {
       "Content-Type": "application/json",
       "userId" : "user1", 
-      "startDate" : "2022-06-04",
+      "startDate" : "2022-06-03",
       "endDate": "2022-06-10", 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 
@@ -38,7 +38,9 @@ function DashboardCard11() {
         const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
         times.push(newDate);
         asleep_arr.push(user.data.asleep.duration_asleep_state/3600);
-        awake_arr.push(user.data.awake.duration_awake_state/3600);
+        awake_arr.push(user.data.awake.duration_before_sleeping/3600);
+        console.log('awake data is', awake_arr);
+        console.log('asleep data is', asleep_arr);
       }
     };
 
