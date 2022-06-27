@@ -22,7 +22,7 @@ function getRelevantData(data, type) {
         case 'athlete': 
             break;
         case 'sleep':
-            return data.sleep_durations_data.asleep;
+            return data.sleep_durations_data;
             break;
         case 'heart':
             return data.heart_rate_data.summary;
