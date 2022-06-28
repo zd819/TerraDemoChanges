@@ -13,7 +13,7 @@ function DashboardCard09() {
   const [isLoading, setLoading] = useState(true);
   const [steps, setsteps] = useState();
   const [dist, setdist] = useState();
-  const [Date, setDate ] = useState();
+  const [dates, setdates] = useState();
   var times = [];
   var step_arr = [];
   var dist_arr = [];
@@ -44,28 +44,32 @@ function DashboardCard09() {
     // };
     // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-      if((times.indexOf(user.date) == -1)){
-        const day = (user.date.split('-'));
-        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-        times.push(newDate); 
+        
         dist_arr.push(user.data.distance_data.distance_metres);
         step_arr.push(user.data.distance_data.steps);
+
+        const day = user.date.substring(0,10).split('-').reverse().join('-');
+        times.push(day); 
         
-      }  
     };
 
 
     setLoading(false);
     setsteps(step_arr); //set Time state
     setdist(dist_arr);
-    setDate(times); //set Data state
+    setdates(times); //set Data state
+
+    console.log('dates', dates);
+    console.log('steps', steps);
+    console.log('dist', dist);
     }
     loadPost(); 
     }, []);
 
+    
 
   const chartData = {
-    labels: Date,
+    labels: dates,
     datasets: [
       // Light blue bars
       {

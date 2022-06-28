@@ -51,7 +51,7 @@ function BarChart02({
             stacked: false,
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
+              parser: 'DD-MM-YYYY',
               unit: 'day',
               displayFormats: {
                 day: 'DD/MM/YY',
@@ -62,7 +62,7 @@ function BarChart02({
               drawBorder: false,
             },
             ticks: {
-              align: 'end',
+              align: 'center',
             },
           },
         },

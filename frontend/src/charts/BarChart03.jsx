@@ -47,9 +47,9 @@ function BarChart03({
             grid: {
               drawBorder: false,
             },
-            beginAtZero: true,
+            beginAtZero: false,
             ticks: {
-              maxTicksLimit: 5,
+              maxTicksLimit: 7,
               callback: (value) => formatValue(value),
               callback: (value) => value,
             },
@@ -58,7 +58,7 @@ function BarChart03({
             stacked: true,
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
+              parser: 'DD-MM-YYYY',
               unit: 'day',
               displayFormats: {
                 day: 'DD/MM/YY',
@@ -71,7 +71,7 @@ function BarChart03({
             ticks: {
               autoSkipPadding: 48,
               maxRotation: 0,
-              align: 'end',
+              align: 'center',
             },
           },
         },

@@ -85,8 +85,6 @@ function DashboardMoz(){
               <DashboardCard09 />
             </div>
           </div>
-          oura
-          data,distance,steps (Heart Rate)
         </main>
       </div>
     </div>
