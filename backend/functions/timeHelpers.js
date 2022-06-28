@@ -22,14 +22,12 @@ async function findMissingDates(startDate, endDate, data, callback){
         });
 
         for(var i = 0; i < data.length; i++){
-            const currDate = new Date(data[i].startDate);   
-            console.log(begin);
-            console.log(currDate)
-            console.log("space");
+            var currDate = new Date(data[i].startDate);   
+
             if(begin < currDate) {    
                 datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: currDate.toISOString().substring(0,10)});
             } 
-            begin = currDate.setDate(currDate.getDate() + 1);
+            begin = new Date(currDate.setDate(currDate.getDate() + 1));
 
         }
     }

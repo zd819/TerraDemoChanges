@@ -1,6 +1,6 @@
 function formatDate(data) {
 
-    return data.data.metadata.start_time.substring(0,10).split('-').reverse().join('-');
+    return data.data.metadata.start_time;
 };
 
 function processData(data, type) {
@@ -12,7 +12,6 @@ function processData(data, type) {
     for(var i = 0; i < data.length; i++){
         data[i] = {date : formatDate(data[i]), data: getRelevantData(data[i].data, type)};
     }
-
     return data;
 }
 
@@ -22,7 +21,10 @@ function getRelevantData(data, type) {
         case 'athlete': 
             break;
         case 'sleep':
-            return data.sleep_durations_data.asleep;
+            return  {
+                        sleep_durations_data: data.sleep_durations_data,
+                        metadata: data.metadata
+                    }
             break;
         case 'heart':
             return data.heart_rate_data.summary;

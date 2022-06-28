@@ -1,3 +1,5 @@
+const getUserWearables = require('../functions/getUserWearables').getUserWearables;
+
 async function deleteUserWearable(user) {
 
     const terraId = user.user_id;
@@ -10,12 +12,11 @@ async function deleteUserWearable(user) {
         console.log("Deleted old user");
     });
 
-    deleteUserData(user);
+    deleteUserData(terraId);
 };
 
-async function deleteUserData(user){
+async function deleteUserData(terraId){
 
-    const terraId = user.user_id;
     wearableDB.deleteMany({terraId : terraId}, (err) => {
         console.log(err);
         console.log("Deleted old user data");
@@ -44,6 +45,22 @@ async function addNewUser(userId, callback) {
         callback("success");
     });
     return;
+};
+
+async function deleteUserData(userId) {
+    
+    getUserWearables(userId, function (wearableIds) {
+        
+        for(var i = 0; i < wearableIds.length; i++){
+
+            deleteUserData(wearableIds[i].terraId);
+
+        }
+
+        userDB.deleteOne({_id : userId});
+
+    })
+
 };
 
 module.exports = {deleteUserWearable, addUserWearable, deleteUserData, addNewUser};

@@ -26,8 +26,7 @@ async function requestTerraData(input, callback){
         callback();
       })
       .catch(function(error){
-        console.log(error);
-        console.log('Axios Error');
+        console.log("Axios error");
         callback();
       })
 }

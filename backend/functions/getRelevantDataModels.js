@@ -66,5 +66,29 @@ function getDataPath(dataModel) {
     }
 }
 
+function defaultDataModel(type) {
+
+    switch(type) {
+        case 'athlete':
+            return {} 
+            break;
+        case 'sleep':
+            break;
+        case 'body':
+            break;
+        case 'menstruation':
+            break; 
+        case 'nutrition':
+            break;
+        case 'daily':
+            break;
+        case 'body':
+            break;
+        case 'activity':
+            break;
+        default:        
+    }
+
+}
 
 module.exports = {relevantDataModels, getDataPath};

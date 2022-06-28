@@ -6,7 +6,11 @@ async function getUserWearables(userId, callback) {
             throw err;
         }
         console.log("Retrieving Ids");
-        callback(res.wearableIds);
+        if(res == null || res.wearableIds == null) {
+            callback([])
+        } else {
+            callback(res.wearableIds);
+        }
     });
 };
 
