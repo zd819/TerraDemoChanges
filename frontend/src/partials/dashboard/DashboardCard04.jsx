@@ -51,7 +51,7 @@ function averageWeeks(data){
 
 function weeklyDates(data){
 
-    console.log('before splice ', data)
+    //console.log('before splice ', data)
 
   data[1] = data[7];
   data[2] = data[14];
@@ -59,7 +59,7 @@ function weeklyDates(data){
 
   data.splice(4,27);
 
-    console.log('after splice ', data)
+    //console.log('after splice ', data)
 
   return data;
 }
@@ -87,7 +87,7 @@ function DashboardCard04() {
       "Content-Type": "application/json",
       "userId" : "user1", 
       "startDate" : "2022-05-10",
-      "endDate": "2022-06-11", 
+      "endDate": "2022-06-09", 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 
       "provider": "OURA",
@@ -98,14 +98,13 @@ function DashboardCard04() {
     //pushing data from mongo into arrays
     for (let user of response.result) {
       const temp_day = new Date(user.date); 
-      console.log('c day', temp_day);
-      console.log('hours', temp_day.getHours());
-      if(0 < temp_day.getHours() < 6){
+      if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
         temp_day.setDate(temp_day.getDate() - 1);
       };
+      
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
       times.push(day);
-      console.log('dates', times);
+      //console.log('dates', times);
       tS_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600); 
       REM_arr.push(user.data.sleep_durations_data.asleep.duration_REM_sleep_state/3600);
       dS_arr.push(user.data.sleep_durations_data.asleep.duration_deep_sleep_state/3600);
