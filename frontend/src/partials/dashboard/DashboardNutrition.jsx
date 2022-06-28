@@ -27,7 +27,7 @@ function DashboardNutrition(props) {
     setendDate(getDiffTime('-', 90));
   }
 
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));

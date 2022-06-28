@@ -9,7 +9,7 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard09() {
   
 
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
   const [steps, setsteps] = useState();
   const [dist, setdist] = useState();

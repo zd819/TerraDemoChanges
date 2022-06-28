@@ -30,7 +30,9 @@ import General1 from '../components/Suggestions/General1';
 import ImageSugg1 from '../partials/dashboard/ImageSugg1.js';
 import ImageSugg2 from '../partials/dashboard/ImageSugg2.js';
 import ImageSugg3 from '../partials/dashboard/ImageSugg3.js';
-
+import Awaiting from '../components/Dashboard/awaiting';
+import PollData from '../components/Dashboard/PollData';
+import { defineLocale } from 'moment';
 
 // function useGetLocation(){
 //   const logoutUser = () => {
@@ -52,6 +54,8 @@ class DashboardMoz extends React.Component {
         sidebarOpen :false,
         allData : {},
         id : this.props.id,
+        connected : [],
+        timer : 0,
     };
   
     this.setSidebarOpen = this.setSidebarOpen.bind(this)
@@ -60,6 +64,8 @@ class DashboardMoz extends React.Component {
     this.updateItem = this.updateItem.bind(this)
     this.setDates = this.setDates.bind(this)
     this.setOverrideDate = this.setOverrideDate.bind(this)
+    this.setConnected = this.setConnected.bind(this)
+
   }
 
   setSidebarOpen(val) {
@@ -95,6 +101,12 @@ class DashboardMoz extends React.Component {
     })
   }
 
+  setConnected(data){
+    this.setState({
+      connected : data
+    })
+  }
+
   updateItem(id, updatedItem) {
     this.setState({
       items: this.state.items.map(function (item) {
@@ -110,11 +122,19 @@ class DashboardMoz extends React.Component {
       })
     })
   }
-  componentDidMount(){
-    // console.log('MOUNTED');
+
+  componentDidMount() {
+    // console.log('MOUNTED ', awaiting());
+    this.timer = setInterval(()=> console.log('12321 : ', Awaiting("user1", this.setConnected)), 3500);
+  }
+  
+  componentWillUnmount() {
+    this.timer = null; // here...
   }
 
   componentDidUpdate(prevProps) {
+    // console.log('CONNECTION : ', PollData(this.props.id));
+    console.log('Updated ', this.state.connected);
     console.log('SAYAIN : ', this.state.overrideDate);
     if(this.state.overrideDate == true  && this.state.dates.length == 2){
       console.log('NAMEK : ', this.state.dates);
@@ -134,11 +154,8 @@ class DashboardMoz extends React.Component {
   console.log('NUM 1 : ', Pnum);
   console.log('NUM 2 : ', Hnum);
   console.log('NUM 3 : ', Nnum);
-  
-
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
-      
       {/* Sidebar */}
       <Sidebar id={this.props.id} sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
@@ -193,4 +210,10 @@ class DashboardMoz extends React.Component {
   );
 }};
 
+
 export default DashboardMoz;
+// export default () => {
+//   return (
+//       <DashboardMoz />
+//   )
+// }
