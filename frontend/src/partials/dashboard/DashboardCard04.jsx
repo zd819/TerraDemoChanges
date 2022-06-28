@@ -51,28 +51,28 @@ function averageWeeks(data){
 
 function weeklyDates(data){
 
-
-  console.log('before splice', data);
+    console.log('before splice ', data)
 
   data[1] = data[7];
   data[2] = data[14];
   data[3] = data[21];
 
   data.splice(4,27);
-  console.log('after splice', data);
+
+    console.log('after splice ', data)
 
   return data;
 }
 
 
 function DashboardCard04() {
-  const url = "https://2472-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();
   const [lightSleep, setlightSleep] = useState();
   const [totalSleep, settotalSleep] = useState();
-  const [Date, setDate ] = useState();
+  const [dates, setdates ] = useState();
   var REM_arr = [];
   var dS_arr = [];
   var lS_arr = [];
@@ -86,8 +86,8 @@ function DashboardCard04() {
       headers: {
       "Content-Type": "application/json",
       "userId" : "user1", 
-      "startDate" : "2022-05-11",
-      "endDate": "2022-06-10", 
+      "startDate" : "2022-05-10",
+      "endDate": "2022-06-11", 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
       "type": "sleep", 
       "provider": "OURA",
@@ -97,15 +97,20 @@ function DashboardCard04() {
     });
     //pushing data from mongo into arrays
     for (let user of response.result) {
-      if((times.indexOf(user.date) == -1)){
-        const day = (user.date.split('-'));
-        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-        times.push(newDate);
-        tS_arr.push(user.data.duration_asleep_state/3600); 
-        REM_arr.push(user.data.duration_REM_sleep_state/3600);
-        dS_arr.push(user.data.duration_deep_sleep_state/3600);
-        lS_arr.push(user.data.duration_light_sleep_state/3600);
-      }
+      const temp_day = new Date(user.date); 
+      console.log('c day', temp_day);
+      console.log('hours', temp_day.getHours());
+      if(0 < temp_day.getHours() < 6){
+        temp_day.setDate(temp_day.getDate() - 1);
+      };
+      const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
+      times.push(day);
+      console.log('dates', times);
+      tS_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600); 
+      REM_arr.push(user.data.sleep_durations_data.asleep.duration_REM_sleep_state/3600);
+      dS_arr.push(user.data.sleep_durations_data.asleep.duration_deep_sleep_state/3600);
+      lS_arr.push(user.data.sleep_durations_data.asleep.duration_light_sleep_state/3600);
+      
     };
     // let sortedDescending = response.sort((a, b) => {
     //   const aDate = a.date.split('-');
@@ -126,7 +131,7 @@ function DashboardCard04() {
     averageWeeks(dS_arr);
     weeklyDates(times);
 
-    setDate(times);
+    setdates(times);
     setREM(REM_arr);
     setdeepSleep(dS_arr);
     setlightSleep(lS_arr);
@@ -137,7 +142,7 @@ function DashboardCard04() {
 
 
   const chartData = {
-    labels: Date,
+    labels: dates,
     datasets: [
       // Light blue bars
       {

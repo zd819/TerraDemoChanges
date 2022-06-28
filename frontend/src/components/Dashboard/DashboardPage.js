@@ -3,7 +3,7 @@ import PollData from './PollData.js'
 import getData from './testData.js'
 
 // async function getData() {
-//   return fetch('https://2782-80-3-12-252.eu.ngrok.io/getData', {
+//   return fetch('https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/getData', {
 //     method: 'POST',
 //     headers: {'Content-Type':'application/json'},
 //     body: JSON.stringify({'datatype': 'athlete'})

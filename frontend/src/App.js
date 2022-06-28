@@ -18,7 +18,7 @@ var shajs = require('sha.js');
 
 function DashboardApp() {
   const [userID, setUserID] = useState('');
-  const current = new Date().toLocaleString();
+  
 
   // useEffect(() => {
   //   document.querySelector('html').style.scrollBehavior = 'auto'
@@ -26,6 +26,7 @@ function DashboardApp() {
   //   document.querySelector('html').style.scrollBehavior = ''
   // }, [location.pathname]); // triggered on route change
 
+  const current = new Date().toLocaleString();
   async function GenerateID(){
     let ID = await sha256(current).then((result) => {
         setUserID(result);

@@ -8,7 +8,7 @@ import EditMenu from '../../partials/EditMenu.jsx';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function AnalyticsSteps(props) {
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();
@@ -36,22 +36,13 @@ function AnalyticsSteps(props) {
         console.log("Axios error");
       });
     console.log('Activity is ',response); 
-    for (let  user of response) {
-      times.push(user.date); 
-      points.push(user.data);
-    };
-    let sortedDescending = response.sort((a, b) => {
-      const aDate = a.date.split('-');
-      const bDate = b.date.split('-');
-      if(aDate[2]!=bDate[2]){
-        return aDate[2]-bDate[2];
-      }
-      else if(aDate[1]!=bDate[1]){
-        return aDate[1]-bDate[1];
-      }
-      else return aDate[0]-bDate[0];
-    });
-    times = sortedDescending;
+    for (let user of response.result) {
+      const day = (user.date.split('-'));
+      const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
+      if(times.indexOf(newDate) == -1){
+        times.push(newDate); 
+        points.push(user.data);
+    }};
     setData(points); //set Time state
     setDate(times); //set Data state
     setLoading(false); //set loading state

@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://2782-80-3-12-252.eu.ngrok.io/data";
+  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
@@ -49,7 +49,7 @@ function DashboardCardDietBreak() {
         carbs_arr.push(user.data.carbohydrates_g);
         fat_arr.push(user.data.fat_g);
       };
-      console.log('Retreived Data');
+      // console.log('Retreived Data');
       setLoading(false);
       //averaging out of arrays tp get single point to plotted
       setProtein(Average(pro_arr).toPrecision(3));

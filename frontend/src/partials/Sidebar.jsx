@@ -6,7 +6,8 @@ import HandleClick from '../components/Login/newSession';
 
 function Sidebar({
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
+  id,
 }) {
 
   const location = useLocation();
@@ -93,7 +94,7 @@ function Sidebar({
 
               {/* Terra widget */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('campaigns') && 'bg-slate-900'}`} >
-                <NavLink end to="/Dashboard" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('campaigns') && 'hover:text-slate-200'}`} onClick={() => HandleClick()}>
+                <NavLink end to="/Dashboard" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('campaigns') && 'hover:text-slate-200'}`} onClick={() => HandleClick(id)}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24"
                     > {/* onMouseEnter={handleMouseEnter}

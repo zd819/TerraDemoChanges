@@ -59,9 +59,6 @@ function DashboardMoz(){
                 {/* Add view button */}
                             
               </div>
-              {/* Filter button */}
-             
-              <Datepicker />
             </div>
 
             {/* Cards */}
@@ -71,7 +68,7 @@ function DashboardMoz(){
               {/* Bar chart (Direct vs Indirect) */}
               <DashboardCard04 />
               {/* Stacked bar chart (Sleep VS Efficiency) */}
-              <DashboardCard09 />
+              <DashboardCard11 />
               {/* <Analysis1 /> */}
               <AnalysisREM />
 
