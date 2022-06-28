@@ -13,6 +13,7 @@ const dataRouter = require('./routes/requestData');
 const mongoRouter = require('./routes/getData');
 const terraIdRouter = require('./routes/getTerraId');
 const providersRouter = require('./routes/getUserProviders');
+const deleteUserRouter = require('./routes/deleteUser');
 
 const cors = require('cors');
 const app = express();
@@ -39,6 +40,7 @@ app.use('/requestData', dataRouter);
 app.use('/data', mongoRouter);
 app.use('/getTerraId', terraIdRouter);
 app.use('/userProviders', providersRouter);
+app.use('/deleteUser', deleteUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -80,17 +82,6 @@ global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/m
 
 global.usersDB;
 global.wearableDB;
-mongoClient.connect((err,client) => {
-
-  if(err) throw err;
-
-  db = client.db("Terra");
-  userDB = db.collection("users");
-  wearableDB = db.collection("wearable_data");
-
-  console.log("Mongo Connected");
-
-});
 
 
 global.dataRequest = [];

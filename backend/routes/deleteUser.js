@@ -5,8 +5,9 @@ const deleteUser = require('../functions/auth').deleteUser
 // Create a new session on terra api and return result to frontend
 router.get('/', (req, res) => {
 
-
-    deleteUser(req.find('userId'));
+    const userId = req.get('userId');
+    console.log("Deleting User: " + userId);
+    deleteUser(userId);
     res.sendStatus(200);
 
 });

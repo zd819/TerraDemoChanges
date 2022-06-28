@@ -10,16 +10,18 @@ router.post('/', (req,res,next) => {
     res.sendStatus(200);
     const payload = req.body;
     const type = payload.type;
-    console.log('Payload From Terra');
+    console.log('Payload From Terra - ' + type);
 
     if(payload.status === "error") {
         // this is bad :/
         console.log("error oopsie");
         console.log(payload.message);
         next(createError(payload));
+        return;
     }else if(payload.status === "not_available") {
         console.log("Data not available from this wearable");
         next(createError("Data not available from this wearable"));
+        return;
     };
 
     if(payload.hasOwnProperty('data')) {     
@@ -31,19 +33,18 @@ router.post('/', (req,res,next) => {
         switch(type) {
             
             case 'auth':
-                authStatus[payload.widget_session_id] = 'success';
+                console.log("User Auth");
                 auth.addUserWearable(payload.user, payload.reference_id);
                 break;
             case 'deauth':
-                auth.deleteUserWearable(payload.user);
+                auth.deauthWearable(payload.user);
                 break;
             case 'user_reauth':
                 // need to delete old data / move it to new id in wearables collection
-                auth.deleteUserWearable(payload.old_user);
-                auth.addUserWearable(payload.new_user);
+                console.log("Reauth");
+                auth.updateWearable(payload.old_user, payload.new_user);
                 break;
             case 'auth_failure':
-                authStatus[payload.widget_session_id] = payload.reason;
                 break;
             case 'access_revoked':
                 break;

@@ -6,9 +6,10 @@ const getUserWearables = require('../functions/getUserWearables').getUserWearabl
 router.get('/', (req, res) => {
 
     const userId = req.get('userId');
+    console.log("User Providers: " + userId);
     getUserWearables(userId, function (wearableIds){
         for(var i = 0; i < wearableIds.length; i++) {
-            wearableIds[i] = wearableIds.provider;
+            wearableIds[i] = wearableIds[i].provider;
         }
         res.send({providers: wearableIds});
     });

@@ -1,19 +1,34 @@
 const getUserWearables = require('../functions/getUserWearables').getUserWearables;
 
-async function deleteUserWearable(user) {
+async function updateWearable(oldUser, newUser) {
 
-    const terraId = user.user_id;
+    const terraId = oldUser.user_id;
 
-    const wearable_provider_user = {provider : user.provider, terraId: terraId};
-    userDB.update( {}, {$pull: {wearableIds : wearable_provider_user} }, function(err, res) {
+    const wearable_provider_user = {provider : oldUser.provider, terraId: terraId};
+    const newWearable = {provider: newUser.provider, terraId: newUser.user__id};
+    userDB.updateMany({wearableIds : wearable_provider_user}, {$set : {wearableIds:newWearable} } , function(err, res) {
         if (err) {
             throw err;
         }
-        console.log("Deleted old user");
+        console.log("Updated wearable");
     });
 
     deleteUserData(terraId);
 };
+
+async function deauthWearable(user) {
+
+    const terraId = user.user_id;
+    const wearable_provider_user = {provider : user.provider, terraId: terraId};
+    userDB.updateMany({wearableIds : wearable_provider_user}, {$pull : {wearableIds:wearable_provider_user} } , function(err, res) {
+        if (err) {
+            throw err;
+        }
+        console.log("Updated wearable");
+    });
+
+    deleteUserData(terraId);
+}
 
 async function deleteUserData(terraId){
 
@@ -36,7 +51,7 @@ async function addUserWearable(user, userId) {
 
 async function addNewUser(userId, callback) {
 
-    userDB.updateOne( {_id:userId}, {$setOnInsert: {wearableIds:undefined}}, {upsert:true}, function(err, res) {
+    userDB.updateOne( {_id:userId}, {$setOnInsert: {wearableIds:[]}}, {upsert:true}, function(err, res) {
         if (err) {
             callback(err);
             throw err;
@@ -47,7 +62,7 @@ async function addNewUser(userId, callback) {
     return;
 };
 
-async function deleteUserData(userId) {
+async function deleteUser(userId) {
     
     getUserWearables(userId, function (wearableIds) {
         
@@ -63,4 +78,4 @@ async function deleteUserData(userId) {
 
 };
 
-module.exports = {deleteUserWearable, addUserWearable, deleteUserData, addNewUser};
+module.exports = {updateWearable, addUserWearable, deleteUserData, addNewUser, deleteUser, deauthWearable};

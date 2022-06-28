@@ -22,7 +22,7 @@ async function findMissingDates(startDate, endDate, data, callback){
         });
 
         for(var i = 0; i < data.length; i++){
-            var currDate = new Date(data[i].startDate);   
+            var currDate = new Date(data[i].startDate.substring(0,10));   
 
             if(begin < currDate) {    
                 datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: currDate.toISOString().substring(0,10)});

@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     const type = req.get('type');
     const userId = req.get('userId');
     const provider = req.get('provider');
-    console.log(provider + " " + type + " " + start + " " + end);
+    console.log(provider + " " + type + " " + start + " " + end + " " + userId);
 
 
 

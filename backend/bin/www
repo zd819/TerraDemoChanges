@@ -20,6 +20,20 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+mongoClient.connect((err,client) => {
+
+  if(err) throw err;
+
+  db = client.db("Terra");
+  userDB = db.collection("users");
+  wearableDB = db.collection("wearable_data");
+
+  console.log("Mongo Connected");
+
+
+});
+
+
 const server = http.createServer(app);
 
 /**
