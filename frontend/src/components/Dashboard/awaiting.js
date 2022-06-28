@@ -20,7 +20,7 @@ async function sendWait(id) {
 export default function Awaiting(id, setConnected){
     // const [setConn, setSetter] = useState();
     
-    console.log('CRAZY : ', id, '<><> ', setConnected);
+    // console.log('CRAZY : ', id, '<><> ', setConnected);
     return sendWait(id)
     .then((data) => {
         console.log('Providers : ' ,data);

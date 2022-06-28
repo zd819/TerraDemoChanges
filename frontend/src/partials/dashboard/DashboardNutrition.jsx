@@ -77,7 +77,7 @@ function DashboardNutrition(props) {
         props.addSugg(val, points);
         }
         loadPost(); 
-      }, []);  
+      }, [props.reload]);  
   const chartData = {
     labels: Date,
     datasets: [

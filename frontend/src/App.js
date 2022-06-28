@@ -18,6 +18,8 @@ var shajs = require('sha.js');
 
 function DashboardApp() {
   const [userID, setUserID] = useState('');
+  const [reload, setReload ] = useState(true);
+
   
 
   // useEffect(() => {
@@ -42,7 +44,7 @@ function DashboardApp() {
       <Routes>
         <Route exact path="/*" element={<App2 id={userID} />} />
         <Route exact path="/Analytics" element={<AnalyticsMain />}/>
-        <Route exact path="/Dashboard" element={<DashboardMoz id={userID} />}/>
+        <Route exact path="/Dashboard" element={<DashboardMoz id={userID} setReload = {setReload} />}/>
       </Routes>
     </BrowserRouter>
   );

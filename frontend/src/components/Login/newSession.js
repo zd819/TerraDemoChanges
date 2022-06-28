@@ -1,5 +1,3 @@
-import PollData from "../Dashboard/PollData";
-
 const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/";
 
 async function getURL(data) {
@@ -22,8 +20,5 @@ async function getURL(data) {
 export default function HandleClick(data){
     getURL(data)
     .then((data) => {console.log(data);window.open(data.url)})
-    .catch((error) => console.log(error));
-    PollData(data)
-    .then((data) => {console.log(data);return data;})
     .catch((error) => console.log(error));
   };
