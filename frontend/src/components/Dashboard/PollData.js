@@ -14,7 +14,7 @@ const sendWait = async (data) => {
    }
 
 const PollData = (data) => { 
-    const MINUTE_MS = 1000;
+    const MINUTE_MS = 10000;
     useEffect(() => {
     const interval = setInterval(() => {
         //console.log('Logs every second');

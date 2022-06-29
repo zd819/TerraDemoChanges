@@ -34,6 +34,7 @@ function DashboardNutrition(props) {
   const [endDate, setendDate ] = useState(localTime());
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
+  const [resend, setResend] = useState(0);
   var times = [];
   var points = [];
   if(props.overrideDate === true){
@@ -43,7 +44,23 @@ function DashboardNutrition(props) {
     // props.setOverrideDate(false);
   }
   // console.log(props.overrideDate, ' CARD 1 ', startDate, ' <-> ', endDate);
-
+  // props.reload ? useEffect(()=>{
+  //   for(let i of 4){
+  //     setInterval(()=> {
+  //       setResend(!resend);
+  //     }, 5000);
+  //   }
+  // },[]) : props.reload
+  console.log('THIS SUCKS : ', props.reload);
+  if(props.reload == true){
+    const arr = [0,0,0,0];
+    console.log('RESEND : ', resend);
+    arr.map((user, i) =>{setInterval(()=> {
+      setResend(resend + 1);
+    },5000)});
+    props.setReload(false);
+    // setResend(0);
+  }
   useEffect(() => { // useEffect hook
       const loadPost = async () => {
         console.log('Getting Health Data');
@@ -77,7 +94,7 @@ function DashboardNutrition(props) {
         props.addSugg(val, points);
         }
         loadPost(); 
-      }, [props.reload]);  
+      }, [resend]);  
   const chartData = {
     labels: Date,
     datasets: [

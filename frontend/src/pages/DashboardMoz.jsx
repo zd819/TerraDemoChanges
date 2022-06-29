@@ -33,6 +33,7 @@ import ImageSugg3 from '../partials/dashboard/ImageSugg3.js';
 import Awaiting from '../components/Dashboard/awaiting';
 import PollData from '../components/Dashboard/PollData';
 import { defineLocale } from 'moment';
+import deleteUser from '../components/Dashboard/deleteUser';
 
 // function useGetLocation(){
 //   const logoutUser = () => {
@@ -56,7 +57,7 @@ class DashboardMoz extends React.Component {
         id : this.props.id,
         connected : [],
         timer : 0,
-        reload : true
+        reload : false
     };
     this.setSidebarOpen = this.setSidebarOpen.bind(this)
     this.addSugg = this.addSugg.bind(this)
@@ -66,12 +67,12 @@ class DashboardMoz extends React.Component {
     this.setOverrideDate = this.setOverrideDate.bind(this)
     this.setConnected = this.setConnected.bind(this)
     this.setReload = this.setReload.bind(this)
-    this.checkNut = this.checkNut.bind(this)
+    this.checkFitness = this.checkFitness.bind(this)
   }
 
-  setReload(){
+  setReload(val){
     this.setState({
-      reload : true
+      reload : val
     })
   }
 
@@ -130,33 +131,45 @@ class DashboardMoz extends React.Component {
     })
   }
 
-  checkNut(){
+  checkFitness(){
     console.log('NUT IS : ', this.state.connected.indexOf('MYFITNESSPAL') == -1);
+    // return this.state.connected.indexOf('MYFITNESSPAL') == -1;
     return this.state.connected.findIndex(val => val == 'MYFITNESSPAL');
   }
 
   componentDidMount() {
     // console.log('MOUNTED ', awaiting());
     this.timer = setInterval(()=> {
-      this.setConnected(Awaiting(this.props.id, this.setConnected));
-      console.log('12321 : ', this.state.connected );
+      if((this.state.connected !== Awaiting(this.props.id, this.setConnected))){
+        this.setConnected(Awaiting(this.props.id, this.setConnected));
+      }
+      // console.log('12321 : ', typeof(Awaiting(this.props.id, this.setConnected)) );
       // this.props.setReload(true);
-    }, 3500);
-    console.log('ARRAY : ', typeof(this.state.connected));
+    }, 10000);
   }
   
   componentWillUnmount() {
     this.timer = null; // here...
+    
+    window.addEventListener("beforeunload", (ev) => 
+    {  
+    ev.preventDefault();
+    deleteUser(this.props.id);
+    console.log('USER DELETED');
+    return ev.returnValue = 'Are you sure you want to close?';
+    });
+    
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.connected.providers !== prevState.connected.providers) {
       console.log('CHANGEDDDDD');
-      this.setReload(!this.state.reload);
+      this.setReload(true);
     }
-    // console.log('CONNECTION : ', PollData(this.props.id));
-    console.log('Updated ', this.state.connected.providers);
-    console.log('SAYAIN : ', this.state.overrideDate);
+    
+    // // console.log('CONNECTION : ', PollData(this.props.id));
+    // console.log('Updated ', this.state.connected.providers);
+    // console.log('SAYAIN : ', this.state.overrideDate);
     if(this.state.overrideDate == true  && this.state.dates.length == 2){
       console.log('NAMEK : ', this.state.dates);
       this.setOverrideDate(false);
@@ -172,9 +185,6 @@ class DashboardMoz extends React.Component {
   var HealthSugg = General1(this.state.allData, "Health")[1];
   var Nnum = General1(this.state.allData, "Sleep")[0];
   var NutritionSugg = General1(this.state.allData, "Sleep")[1];
-  console.log('NUM 1 : ', Pnum);
-  console.log('NUM 2 : ', Hnum);
-  console.log('NUM 3 : ', Nnum);
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
       {/* Sidebar */}
@@ -218,7 +228,7 @@ class DashboardMoz extends React.Component {
               {/* Line chart (TEST) */}
               {/* <DashboardTest addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} /> */}
               {/* Line chart (Acme Plus) */}
-              <DashboardNutrition reload = {this.checkNut()} addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
+              <DashboardNutrition setReload = {this.setReload} reload = {this.checkFitness()} addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
               {/* Line chart (Acme Advanced) */}
               <DashboardCard02 addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Professional) */}

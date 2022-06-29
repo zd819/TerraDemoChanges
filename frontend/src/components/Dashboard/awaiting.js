@@ -17,14 +17,15 @@ async function sendWait(id) {
 
 
 
-export default function Awaiting(id, setConnected){
+export default async function Awaiting(id, setConnected){
     // const [setConn, setSetter] = useState();
     
     // console.log('CRAZY : ', id, '<><> ', setConnected);
-    return sendWait(id)
-    .then((data) => {
-        console.log('Providers : ' ,data);
+    try {
+        const data = await sendWait(id);
+        // console.log('Providers : ', data);
         setConnected(data);
-    })
-    .catch((error) => console.log(error));
+    } catch (error) {
+        return console.log(error);
+    }
 }
