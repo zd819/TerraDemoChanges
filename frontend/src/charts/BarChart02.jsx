@@ -126,8 +126,8 @@ function BarChart02({
             labelContainer.style.alignItems = 'center';
             const value = document.createElement('span');
             value.style.color = tailwindConfig().theme.colors.slate[800];
-            value.style.fontSize = tailwindConfig().theme.fontSize['3xl'][0];
-            value.style.lineHeight = tailwindConfig().theme.fontSize['3xl'][1].lineHeight;
+            value.style.fontSize = tailwindConfig().theme.fontSize['xl'][0];
+            value.style.lineHeight = tailwindConfig().theme.fontSize['xl'][1].lineHeight;
             value.style.fontWeight = tailwindConfig().theme.fontWeight.bold;
             value.style.marginRight = tailwindConfig().theme.margin[2];
             value.style.pointerEvents = 'none';

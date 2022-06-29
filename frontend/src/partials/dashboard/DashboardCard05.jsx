@@ -89,6 +89,7 @@ function DashboardCard05() {
     </div> :
     <header className="px-5 py-4 border-b border-slate-100">
     <h2 className="font-semibold text-slate-800">Sleep Efficiency</h2>
+    <h6 className="font-semibold text-slate-800">Are You Sleeping Well?</h6>
     </header>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div>

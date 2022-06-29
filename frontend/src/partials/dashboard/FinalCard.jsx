@@ -100,7 +100,7 @@ function FinalCard() {
       });
 
     for (let user of response.result) {
-      const day = user.date.substring(0,10).split('-').reverse().join('-');
+      const day = user.date.substring(0,10).split('-').reverse().join('/');
       
       act_arr.push(user.data.active_durations_data.vigorous_intensity_seconds/60)      
       times.push(day); 
@@ -135,32 +135,32 @@ function FinalCard() {
       {
         label: dates_1,
         data: [week1],
-        backgroundColor: tailwindConfig().theme.colors.indigo[500],
-        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        backgroundColor: tailwindConfig().theme.colors.sky[300],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[400],
         barPercentage: 1,
         categoryPercentage: 1,
       },
       {
         label: dates_2,
         data: [week2],
-        backgroundColor: tailwindConfig().theme.colors.indigo[800],
-        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
+        backgroundColor: tailwindConfig().theme.colors.sky[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[600],
         barPercentage: 1,
         categoryPercentage: 1,
       },
       {
         label: dates_3,
         data: [week3],
-        backgroundColor: tailwindConfig().theme.colors.sky[400],
-        hoverBackgroundColor: tailwindConfig().theme.colors.sky[500],
+        backgroundColor: tailwindConfig().theme.colors.blue[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
         barPercentage: 1,
         categoryPercentage: 1,
       },
       {
         label: dates_4,
         data: [week4],
-        backgroundColor: tailwindConfig().theme.colors.green[400],
-        hoverBackgroundColor: tailwindConfig().theme.colors.green[500],
+        backgroundColor: tailwindConfig().theme.colors.blue[600],
+        hoverBackgroundColor: tailwindConfig().theme.colors.blue[700],
         barPercentage: 1,
         categoryPercentage: 1,
       },
@@ -173,7 +173,8 @@ function FinalCard() {
         Please connect a wearable which tracks Activity Data
         </div> :
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Activity Minutes</h2>
+        <h2 className="font-semibold text-slate-800"> Intense Activity Minutes</h2>
+        <h6 className="font-semibold text-slate-800">You Hitting Gym?</h6>
       </header>}
       <div className="px-5 py-3">
         <div className="flex items-start">

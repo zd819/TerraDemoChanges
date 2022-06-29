@@ -76,7 +76,7 @@ function DashboardCard11() {
       {
         label: 'Max Heart Rate',
         data: max_hr,
-        backgroundColor: tailwindConfig().theme.colors.rose[600],
+        backgroundColor: tailwindConfig().theme.colors.sky[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
@@ -84,7 +84,7 @@ function DashboardCard11() {
       {
         label: 'Min Heart Rate',
         data: min_hr,
-        backgroundColor: tailwindConfig().theme.colors.blue[400],
+        backgroundColor: tailwindConfig().theme.colors.blue[600],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
@@ -92,7 +92,7 @@ function DashboardCard11() {
       {
         label: 'Average Heart Rate',
         data: ave_hr,
-        backgroundColor: tailwindConfig().theme.colors.indigo[800],
+        backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
@@ -105,6 +105,7 @@ function DashboardCard11() {
     <div className="col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Sleep Heart Rate</h2>
+        <h6 className="font-semibold text-slate-800">How's Your Heart Doing?</h6>
       </header>
       {/* Chart built with Chart.js 3 */}
       <div className="grow">

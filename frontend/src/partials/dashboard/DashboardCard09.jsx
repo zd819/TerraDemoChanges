@@ -100,13 +100,16 @@ function DashboardCard09() {
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">General Activity</h2>
       </header>}
+      <header className="px-5 py-0.0001 border-b border-slate-100 flex items-center">
+        <h6 className="font-semibold text-slate-800">Make Sure You Stay Active!</h6>
+      </header>
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         
         </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
-        <BarChart data={chartData} width={595} height={248} />
+        <BarChart data={chartData} width={595} height={200} />
       </div>}
     </div>
   );
