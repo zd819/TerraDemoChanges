@@ -9,7 +9,7 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard09() {
   
 
-  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://fb43-2a0c-5bc0-40-2e2f-304f-3c6b-9509-c963.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
   const [steps, setsteps] = useState();
   const [dist, setdist] = useState();
@@ -100,12 +100,11 @@ function DashboardCard09() {
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">General Activity</h2>
       </header>}
-      <header className="px-5 py-0.0001 border-b border-slate-100 flex items-center">
-        <h6 className="font-semibold text-slate-800">Make Sure You Stay Active!</h6>
-      </header>
+      <header className="px-5 py-0.0001 border-b border-slate-100 flex items-center"> 
+      <h6 className="font-semibold text-slate-800">Make Sure You Stay Active!</h6>
+       </header> 
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
-        
         </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
