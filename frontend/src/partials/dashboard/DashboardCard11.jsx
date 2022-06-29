@@ -11,8 +11,12 @@ function DashboardCard11() {
   const [asleep, setasleep] = useState();
   const [awake, setawake] = useState();
   const [dates, setdates] = useState();
+  const [startTime, setstartTime] = useState();
+  const [endTime, setendTime] = useState();
   var asleep_arr = [];
   var awake_arr = [];
+  var start_arr = [];
+  var end_arr = [];
   var times = [];
 
   useEffect(() => { // useEffect hook
@@ -40,6 +44,11 @@ function DashboardCard11() {
       
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-'); 
       times.push(day);
+
+      const tempStart = user.data.metadata.start_time.substring(11,16);
+      start_arr.push(tempStart);
+      //console.log('start', start_arr);
+
       //console.log('day', times);
       asleep_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600);
       awake_arr.push(user.data.sleep_durations_data.awake.duration_before_sleeping/3600);
@@ -89,6 +98,7 @@ function DashboardCard11() {
       },
     ],
   };
+
 
   return (
     <div className="col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">

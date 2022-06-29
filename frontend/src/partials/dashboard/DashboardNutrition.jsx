@@ -51,7 +51,7 @@ function DashboardNutrition(props) {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
-          "userID" : props.id, 
+          "userID" : "user1", 
           "startDate" : startDate,
           "endDate": endDate, 
           "terraId": "596be094-5daa-4962-bd60-0177c9439cec",

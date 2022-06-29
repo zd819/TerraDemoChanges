@@ -3,7 +3,7 @@ const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/";
 async function getURL(data) {
   return await fetch(url+'newSession', {
     method: 'GET',
-    headers: {userId: data}
+    headers: {"userId": "user1"}
   })
   .then(data => data.json())
  }
