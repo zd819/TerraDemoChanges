@@ -2,7 +2,7 @@ import React from 'react';
 
 function WelcomeBanner() {
   return (
-    <div className="relative bg-blue-100 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
+    <div className="relative bg-blue-100 p-4 sm:p-6 rounded-sm overflow-hidden mb-1">
 
       {/* Background illustration */}
       <div className="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">

@@ -65,10 +65,9 @@ function DashboardCard02(props) {
     // };
     // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-      const day = (user.date.split('-'));
-      const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-      if(times.indexOf(newDate) == -1){
-        times.push(newDate); 
+      const day = user.date.substring(0,10).split('-').reverse().join('-');
+      if(times.indexOf(day) == -1){
+        times.push(day); 
         points.push(user.data.calories_data.total_burned_calories); 
       }
     };
