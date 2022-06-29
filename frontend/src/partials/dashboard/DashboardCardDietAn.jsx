@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DashboardCardDietAn() {
-const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;
@@ -158,13 +158,13 @@ const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data"
   return ( 
     
     <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-    { isLoading ? <div>
+    { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
       Please connect a wearable which tracks Nutrition Data
       </div>:<header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">DIET ANALYSIS</h2>
         <h6 className="font-semibold text-slate-800">How can you improve your diet?</h6>
       </header>}
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
       Please connect a wearable which tracks Nutrition Data
       </div> :
       <div className="p-3">

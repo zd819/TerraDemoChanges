@@ -48,7 +48,7 @@ function BarChart01({
           x: {
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
+              parser: 'DD-MM-YYYY',
               unit: 'week',
               displayFormats: {
                 year: 'YYYY',
@@ -57,7 +57,7 @@ function BarChart01({
                 day: 'DD',
               },
               ticks: {
-                align: 'end',
+                align: 'center',
               },
             },
             grid: {
@@ -127,8 +127,8 @@ function BarChart01({
             labelContainer.style.alignItems = 'center';
             const value = document.createElement('span');
             value.style.color = tailwindConfig().theme.colors.slate[800];
-            value.style.fontSize = tailwindConfig().theme.fontSize['3xl'][0];
-            value.style.lineHeight = tailwindConfig().theme.fontSize['3xl'][1].lineHeight;
+            value.style.fontSize = tailwindConfig().theme.fontSize['xl'][0];
+            value.style.lineHeight = tailwindConfig().theme.fontSize['xl'][1].lineHeight;
             value.style.fontWeight = tailwindConfig().theme.fontWeight.bold;
             value.style.marginRight = tailwindConfig().theme.margin[2];
             value.style.pointerEvents = 'none';
@@ -136,9 +136,9 @@ function BarChart01({
             label.style.color = tailwindConfig().theme.colors.slate[500];
             label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
             label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
-            const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
-            const valueText = document.createTextNode(formatValue(theValue));
-            const labelText = document.createTextNode(item.text);
+            const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0)/4;
+            const valueText = document.createTextNode(theValue.toPrecision(3)+ ' hours');
+            const labelText = document.createTextNode(item.text.substring(0,11) + ' Monthly Average');
             value.appendChild(valueText);
             label.appendChild(labelText);
             li.appendChild(button);

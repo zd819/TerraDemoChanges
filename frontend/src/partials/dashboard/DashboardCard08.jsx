@@ -7,7 +7,7 @@ import localTime from '../../components/DataHandling/localTime.js';
 import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 function DashboardCard08(props) {
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -103,7 +103,7 @@ function DashboardCard08(props) {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Nutrition Data
         </div> :
     <header className="px-5 py-4 border-b border-slate-100 flex items-center">

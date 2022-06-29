@@ -37,19 +37,19 @@ function BarChart03({
         scales: {
           y: {
             stacked: true,
-            /*time: {
+            time: {
               parser: 'HH:MM',
               unit: 'hour',
               displayFormats: {
                 hour: 'HH',
               },
-            },*/
+            },
             grid: {
               drawBorder: false,
             },
             beginAtZero: true,
             ticks: {
-              maxTicksLimit: 5,
+              maxTicksLimit: 7,
               callback: (value) => formatValue(value),
               callback: (value) => value,
             },
@@ -58,7 +58,7 @@ function BarChart03({
             stacked: true,
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
+              parser: 'DD-MM-YYYY',
               unit: 'day',
               displayFormats: {
                 day: 'DD/MM/YY',
@@ -71,7 +71,7 @@ function BarChart03({
             ticks: {
               autoSkipPadding: 48,
               maxRotation: 0,
-              align: 'end',
+              align: 'center',
             },
           },
         },

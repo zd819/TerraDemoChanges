@@ -9,11 +9,11 @@ import { tailwindConfig } from '../../utils/Utils';
 function DashboardCard09() {
   
 
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
   const [steps, setsteps] = useState();
   const [dist, setdist] = useState();
-  const [Date, setDate ] = useState();
+  const [dates, setdates] = useState();
   var times = [];
   var step_arr = [];
   var dist_arr = [];
@@ -44,28 +44,32 @@ function DashboardCard09() {
     // };
     // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-      if((times.indexOf(user.date) == -1)){
-        const day = (user.date.split('-'));
-        const newDate = day[1] + '-' + day[0] + '-' + day[2]; 
-        times.push(newDate); 
+      const day = user.date.substring(0,10).split('-').reverse().join('-');
+      if(times.indexOf(day) == -1){      
         dist_arr.push(user.data.distance_data.distance_metres);
         step_arr.push(user.data.distance_data.steps);
+        times.push(day); 
+      }
         
-      }  
     };
 
 
     setLoading(false);
     setsteps(step_arr); //set Time state
     setdist(dist_arr);
-    setDate(times); //set Data state
+    setdates(times); //set Data state
+
+    console.log('dates', dates);
+    console.log('steps', steps);
+    console.log('dist', dist);
     }
     loadPost(); 
     }, []);
 
+    
 
   const chartData = {
-    labels: Date,
+    labels: dates,
     datasets: [
       // Light blue bars
       {
@@ -90,15 +94,15 @@ function DashboardCard09() {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Activity Data
         </div> :
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">General Activity</h2>
       </header>}
       {/* Chart built with Chart.js 3 */}
-      { isLoading ? <div>
-        Please connect a wearable which tracks Activity Data
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
+        
         </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}

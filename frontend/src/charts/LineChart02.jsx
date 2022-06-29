@@ -39,17 +39,17 @@ function LineChart02({
             ticks: {
               maxTicksLimit: 5,
               callback: function(value, index, ticks) {
-                return value + (tick=='kcal'? ' kcal' : (tick=='sleep'? ' hours': (tick=='bpm'? ' BPM': ' kcal burnt')));
+                return value + ' BPM';
               }
             },
           },
           x: {
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
+              parser: 'DD-MM-YYYY',
+              unit: 'day',
               displayFormats: {
-                month: 'MMM YY',
+                month: 'DD/MM/YY',
               },
             },
             grid: {
@@ -137,7 +137,7 @@ function LineChart02({
       <div className="px-5 py-3">
         <div className="flex flex-wrap justify-between items-end">
           <div className="flex items-start">
-            <div className="text-3xl font-bold text-slate-800 mr-2">78 BPM</div>
+            {/* <div className="text-3xl font-bold text-slate-800 mr-2">78 BPM</div> */}
             {/* <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div> */}
           </div>
           <div className="grow ml-2 mb-1">

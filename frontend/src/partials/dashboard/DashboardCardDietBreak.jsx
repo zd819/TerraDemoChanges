@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DashboardCardDietBreak() {
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();
@@ -69,14 +69,14 @@ function DashboardCardDietBreak() {
           Carbs, Protein, Fat,
         ],
         backgroundColor: [
-          tailwindConfig().theme.colors.indigo[500],
-          tailwindConfig().theme.colors.blue[400],
-          tailwindConfig().theme.colors.indigo[800],
+          tailwindConfig().theme.colors.amber[500],
+          tailwindConfig().theme.colors.rose[400],
+          tailwindConfig().theme.colors.zinc[400],
         ],
         hoverBackgroundColor: [
-          tailwindConfig().theme.colors.indigo[600],
-          tailwindConfig().theme.colors.blue[500],
-          tailwindConfig().theme.colors.indigo[900],
+          tailwindConfig().theme.colors.amber[600],
+          tailwindConfig().theme.colors.rose[500],
+          tailwindConfig().theme.colors.zinc[500],
         ],
         hoverBorderColor: tailwindConfig().theme.colors.white,
       },
@@ -88,14 +88,14 @@ function DashboardCardDietBreak() {
           333, 55.5, 97,
         ],
         backgroundColor: [
-          tailwindConfig().theme.colors.indigo[500],
-          tailwindConfig().theme.colors.blue[400],
-          tailwindConfig().theme.colors.indigo[800],
+          tailwindConfig().theme.colors.amber[500],
+          tailwindConfig().theme.colors.rose[400],
+          tailwindConfig().theme.colors.zinc[400],
         ],
         hoverBackgroundColor: [
-          tailwindConfig().theme.colors.indigo[600],
-          tailwindConfig().theme.colors.blue[500],
-          tailwindConfig().theme.colors.indigo[900],
+          tailwindConfig().theme.colors.amber[600],
+          tailwindConfig().theme.colors.rose[500],
+          tailwindConfig().theme.colors.zinc[500],
         ],
         hoverBorderColor: tailwindConfig().theme.colors.white,
       },
@@ -104,7 +104,7 @@ function DashboardCardDietBreak() {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
       Please connect a wearable which tracks Nutrition Data
       </div> : <header className="px-5 py-4 border-b border-slate-100">
           <h2 className="font-semibold text-slate-800">DIET BREAKDOWN</h2>
@@ -115,7 +115,7 @@ function DashboardCardDietBreak() {
       
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
     Please connect a wearable which tracks Nutrition Data
     </div> :
       <DoughnutChart data={chartData} width={389} height={260} />}

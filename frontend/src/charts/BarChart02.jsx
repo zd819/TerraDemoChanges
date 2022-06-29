@@ -51,7 +51,7 @@ function BarChart02({
             stacked: false,
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
+              parser: 'DD-MM-YYYY',
               unit: 'day',
               displayFormats: {
                 day: 'DD/MM/YY',
@@ -62,7 +62,7 @@ function BarChart02({
               drawBorder: false,
             },
             ticks: {
-              align: 'end',
+              align: 'center',
             },
           },
         },
@@ -136,8 +136,8 @@ function BarChart02({
             label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
             label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
             const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
-            const valueText = document.createTextNode(formatValue(theValue));
-            const labelText = document.createTextNode(item.text);
+            const valueText = document.createTextNode(theValue);
+            const labelText = document.createTextNode('Total ' + item.text);
             value.appendChild(valueText);
             label.appendChild(labelText);
             li.appendChild(button);

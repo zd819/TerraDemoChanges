@@ -12,15 +12,15 @@ import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 //Sleep data for health
 function DashboardCard03(props) {
   function date1W(){
-    setendDate(getDiffTime('-', 7));
+    setstartDate(getDiffTime('-', 7));
   }
   function date1M(){
-    setendDate(getDiffTime('-', 30));
+    setstartDate(getDiffTime('-', 30));
   }
   function date3M(){
-    setendDate(getDiffTime('-', 90));
+    setstartDate(getDiffTime('-', 90));
   }
-  const url = "https://0dac-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
@@ -131,7 +131,7 @@ function DashboardCard03(props) {
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
       Please connect a wearable which tracks Sleep Data {console.log("loading state")}
       </div> :
       <div className="px-5 pt-5">
