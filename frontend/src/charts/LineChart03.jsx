@@ -36,7 +36,7 @@ function LineChart03({
           y: {
             ticks: {
               callback: function(value, index, ticks) {
-                return value;
+                return value*100 + ' %';
               }},
             display: true,
             beginAtZero: true,

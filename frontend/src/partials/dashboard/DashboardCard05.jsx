@@ -67,7 +67,7 @@ function DashboardCard05() {
         fill: true,
         ticks: {
           callback: function(value, index, ticks) {
-            return value;
+            return value + '%';
           },
         },
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
