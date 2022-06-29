@@ -70,21 +70,9 @@ function DashboardCard03(props) {
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
       if(times.indexOf(day) == -1){
         times.push(day); 
-        points.push(user.data.duration_asleep_state/3600);
+        points.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600);
     }};
-    // let values = response.result;
     
-    // let sortedDescending = response.result.sort((a, b) => {
-    //   const aDate = a.date.split('-');
-    //   const bDate = b.date.split('-');
-    //   if(aDate[2]!=bDate[2]){
-    //     return aDate[2]-bDate[2];
-    //   }
-    //   else if(aDate[1]!=bDate[1]){
-    //     return aDate[1]-bDate[1];
-    //   }
-    //   else return aDate[0]-bDate[0];
-    // });
     console.log('BATMAN ', times); 
     
     console.log('IRONMAN ', points); 

@@ -44,8 +44,11 @@ function LineChart01({
           x: {
             type: 'time',
             time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
+              parser: 'DD-MM-YYYY',
+              unit: 'day',
+            },
+            displayFormats: {
+              day: 'DD/MM/YY',
             },
             display: false,
           },
