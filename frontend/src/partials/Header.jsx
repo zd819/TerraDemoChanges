@@ -6,7 +6,8 @@ import UserMenu from './header/UserMenu';
 
 function Header({
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
+  setToken,
 }) {
 
   const [searchModalOpen, setSearchModalOpen] = useState(false)
@@ -41,7 +42,7 @@ function Header({
 
 
 
-            <UserMenu />
+            <UserMenu setToken={setToken} />
 
           </div>
 

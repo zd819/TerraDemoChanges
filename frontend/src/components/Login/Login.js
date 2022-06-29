@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
 
 import './Login.css';
 
@@ -15,7 +16,7 @@ async function loginUser(credentials) {
   .then(data => data.json())  
 };
 
-export default function Login({ setToken }) {
+export default function Login({ setToken , id, HandleClick}) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
@@ -26,6 +27,8 @@ export default function Login({ setToken }) {
       password
     });
     setToken(token);
+    // HandleClick(id);
+    this.props.history.push('/Dashboard')
   }
 
   return(
