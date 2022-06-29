@@ -68,7 +68,7 @@ function BarChart01({
         },
         plugins: {
           legend: {
-            display: false,
+            display: true,
           },
           tooltip: {
             callbacks: {
@@ -137,7 +137,7 @@ function BarChart01({
             label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
             label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
             const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0)/4;
-            const valueText = document.createTextNode(formatValue(theValue));
+            const valueText = document.createTextNode(theValue.toPrecision(3)+ ' hours');
             const labelText = document.createTextNode(item.text.substring(0,11) + ' Monthly Average');
             value.appendChild(valueText);
             label.appendChild(labelText);
