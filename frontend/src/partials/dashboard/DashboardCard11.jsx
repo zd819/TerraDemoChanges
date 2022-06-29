@@ -43,7 +43,7 @@ function DashboardCard11() {
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-'); 
       if(times.indexOf(day) == -1){
       times.push(day);
-      console.log('dates', times);
+     
       ave_arr.push(user.data.heart_rate_data.avg_hr);
       max_arr.push(user.data.heart_rate_data.max_hr);
       min_arr.push(user.data.heart_rate_data.min_hr);
