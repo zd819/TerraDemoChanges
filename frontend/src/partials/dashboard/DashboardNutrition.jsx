@@ -40,23 +40,12 @@ function DashboardNutrition(props) {
   var times = [];
   var points = [];
   if(props.overrideDate === true){
-    console.log('BESERK : ', props.dates[0], ' <-> ', props.dates[1]);
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
-    // props.setOverrideDate(false);
   }
-  // console.log(props.overrideDate, ' CARD 1 ', startDate, ' <-> ', endDate);
-  // props.reload ? useEffect(()=>{
-  //   for(let i of 4){
-  //     setInterval(()=> {
-  //       setResend(!resend);
-  //     }, 5000);
-  //   }
-  // },[]) : props.reload
-  console.log('THIS SUCKS : ', props.reload);
+
   if(props.reload == true){
     const arr = [0,0,0,0];
-    console.log('RESEND : ', resend);
     arr.map((user, i) =>{setInterval(()=> {
       setResend(resend + 1);
     },5000)});
@@ -87,7 +76,6 @@ function DashboardNutrition(props) {
               points.push(user.data.calories);            
           }
         };
-        console.log('NUTRITION is ', points); 
         setData(points); //set Time state
         setDate(times); //set Data state
         setLoading(false); //set loading state
@@ -99,7 +87,6 @@ function DashboardNutrition(props) {
   const chartData = {
     labels: Date,
     datasets: [
-      // Indigo line
       {
         data: Data,
         label: 'Calories Consumed',
@@ -117,17 +104,7 @@ function DashboardNutrition(props) {
         pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
         clip: 20,
       },
-      // Gray line
-      // {
-      //   data: DUMMY.map(val => val + (Math.random()-0.5)*),
-      //   borderColor: tailwindConfig().theme.colors.slate[300],
-      //   borderWidth: 2,
-      //   tension: 0,
-      //   pointRadius: 0,
-      //   pointHoverRadius: 3,
-      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-      //   clip: 20,
-      // },
+      
     ],
   };
   return (

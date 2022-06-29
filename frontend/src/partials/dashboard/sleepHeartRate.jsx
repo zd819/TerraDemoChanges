@@ -4,7 +4,7 @@ import BarChart from '../../charts/LineChart02';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function DashboardCard11() {
+function sleepHeartRate() {
 
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading] = useState(true);
@@ -48,9 +48,6 @@ function DashboardCard11() {
       max_arr.push(user.data.heart_rate_data.max_hr);
       min_arr.push(user.data.heart_rate_data.min_hr);
 
-      //console.log('day', times);
-      //console.log('awake data is', awake_arr);
-      //console.log('asleep data is', asleep_arr);
     }
     };
 
@@ -65,9 +62,6 @@ function DashboardCard11() {
   loadPost();
   }, []);
 
-  //console.log('before plot', awake);
-  //console.log('before plot', asleep);
-  //console.log('before plot', dates);
 
 
   const chartData = {
@@ -121,4 +115,4 @@ function DashboardCard11() {
   );
 }
 
-export default DashboardCard11;
+export default sleepHeartRate;

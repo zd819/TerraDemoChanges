@@ -10,7 +10,7 @@ import localTime from '../../components/DataHandling/localTime.js';
 import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 //Sleep data for health
-function DashboardCard03(props) {
+function averageSleep(props) {
   function date1W(){
     setstartDate(getDiffTime('-', 7));
   }
@@ -35,9 +35,7 @@ function DashboardCard03(props) {
   if(props.overrideDate === true){
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
-    // props.setOverrideDate(false);
   }
-  // console.log(props.overrideDate, 'CARD 3 ', startDate, ' <-> ', endDate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     console.log("Getting Sleep Data");
@@ -56,12 +54,6 @@ function DashboardCard03(props) {
         console.log(error);
         console.log("Axios error");
       });
-    // for (let  user of response.result) {
-    //   times.push(user.date); 
-    //   points.push(user.data/3600);
-    // };
-    // console.log('123456789 ', response);
-    // console.log('CONDITION 2 : ', response.condition); 
     for (let user of response.result) {
       const temp_day = new Date(user.date); 
       if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
@@ -73,10 +65,6 @@ function DashboardCard03(props) {
         points.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600);
     }};
     
-    console.log('BATMAN ', times); 
-    
-    console.log('IRONMAN ', points); 
-    // times = sortedDescending;
     setData(points); //set Time state
     setDate(times); //set Data state
     setLoading(false); //set loading state
@@ -103,23 +91,6 @@ function DashboardCard03(props) {
         pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
         clip: 20,
       },
-      // Gray line
-      // {
-      //   data: [
-      //     6.89, 5.62, 4.77, 4.77, 4.77, 4.77, 4.58,
-      //     3.14, 4.30, 3.78, 4.30, 4.98, 6.42, 3.50,
-      //     1.45, 1.45, 3.54, 2.60, 1.88, 1.88, 3.00,
-      //     3.00, 2.82, 3.64, 6.60, 5.54,
-      //   ],
-      //   label: 'Average',
-      //   borderColor: tailwindConfig().theme.colors.slate[300],
-      //   borderWidth: 2,
-      //   tension: 0,
-      //   pointRadius: 0,
-      //   pointHoverRadius: 3,
-      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-      //   clip: 20,
-      // },
     ],
   };
 
@@ -165,4 +136,4 @@ function DashboardCard03(props) {
   );
 }
 
-export default DashboardCard03;
+export default averageSleep;

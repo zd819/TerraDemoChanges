@@ -51,7 +51,6 @@ function averageWeeks(data){
 
 function weeklyDates(data){
 
-    //console.log('before splice ', data)
 
   data[1] = data[7];
   data[2] = data[14];
@@ -59,7 +58,6 @@ function weeklyDates(data){
 
   data.splice(4,27);
 
-    //console.log('after splice ', data)
 
   return data;
 }
@@ -104,7 +102,6 @@ function DashboardCard04() {
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
       if(times.indexOf(day) == -1){   
         times.push(day);
-        //console.log('dates', times);
         tS_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600); 
         REM_arr.push(user.data.sleep_durations_data.asleep.duration_REM_sleep_state/3600);
         dS_arr.push(user.data.sleep_durations_data.asleep.duration_deep_sleep_state/3600);
@@ -133,7 +130,6 @@ function DashboardCard04() {
   const chartData = {
     labels: dates,
     datasets: [
-      // Light blue bars
       {
         label: 'Total Sleep Weekly Average',
         data: totalSleep,
@@ -142,7 +138,6 @@ function DashboardCard04() {
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
-      // Blue bars
       {
         label: 'Light Sleep Weekly Average',
         data: lightSleep,
@@ -190,4 +185,4 @@ function DashboardCard04() {
   );
 }
 
-export default DashboardCard04;
+export default sleepAnalysis;

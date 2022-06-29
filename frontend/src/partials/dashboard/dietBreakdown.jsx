@@ -20,12 +20,6 @@ function DashboardCardDietBreak() {
   var pro_arr = [];
   var fat_arr = [];
   var carbs_arr = [];
-  // const data = {
-  //   "startDate": "2022-05-21",
-  //   'endDate': '2022-05-22',
-  //   'terraId': '596be094-5daa-4962-bd60-0177c9439cec',
-  //   'type': 'nutrition'
-  // }
 
     useEffect(() => { // useEffect hook
       const loadPost = async () => {
@@ -49,7 +43,7 @@ function DashboardCardDietBreak() {
         carbs_arr.push(user.data.carbohydrates_g);
         fat_arr.push(user.data.fat_g);
       };
-      // console.log('Retreived Data');
+      
       setLoading(false);
       //averaging out of arrays tp get single point to plotted
       setProtein(Average(pro_arr).toPrecision(3));
@@ -123,4 +117,4 @@ function DashboardCardDietBreak() {
   );
 }
 
-export default DashboardCardDietBreak;
+export default dietBreakdown;

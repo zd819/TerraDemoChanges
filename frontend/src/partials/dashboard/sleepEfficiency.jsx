@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart03';
-import EditMenu from '../../partials/EditMenu.jsx';
+import EditMenu from '../EditMenu.jsx';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
@@ -60,7 +60,6 @@ function DashboardCard05() {
   const chartData = {
     labels: dates,
     datasets: [
-      // Indigo line
       {
         data: sleepEff,
         label: 'Sleep Efficiency',
@@ -105,4 +104,4 @@ function DashboardCard05() {
    );
 }
 
-export default DashboardCard05;
+export default sleepEfficiency;

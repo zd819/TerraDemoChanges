@@ -6,7 +6,7 @@ import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function DashboardCard09() {
+function stepCounter() {
   
 
   const url = "http://localhost:8080/data";
@@ -37,12 +37,7 @@ function DashboardCard09() {
         console.log(error);
         console.log("Axios error");
       });
-    // console.log('Activity is ',response); 
-    // for (let  user of response.result) {
-    //   times.push(user.date); 
-    //   points.push(user.data);
-    // };
-    // console.log('CONDITION 1 : ', response.condition);
+
     for (let user of response.result) {
       const day = user.date.substring(0,10).split('-').reverse().join('-');
       if(times.indexOf(day) == -1){      
@@ -59,9 +54,6 @@ function DashboardCard09() {
     setdist(dist_arr);
     setdates(times); //set Data state
 
-    console.log('dates', dates);
-    console.log('steps', steps);
-    console.log('dist', dist);
     }
     loadPost(); 
     }, []);
@@ -71,7 +63,6 @@ function DashboardCard09() {
   const chartData = {
     labels: dates,
     datasets: [
-      // Light blue bars
       {
         label: 'Steps',
         data: steps,
@@ -80,7 +71,6 @@ function DashboardCard09() {
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
-      // Blue bars
       {
         label: 'Distance (m)',
         data: dist,
@@ -114,4 +104,4 @@ function DashboardCard09() {
   );
 }
 
-export default DashboardCard09;
+export default stepCounter;

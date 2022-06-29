@@ -75,7 +75,6 @@ const url = "http://localhost:8080/data";
       cal_arr.push(user.data.calories);
 
     };
-    // console.log('Retreived Data');
     setLoading(false);
     //obtain averages of user data for each component
     setProtein(Average(pro_arr).toPrecision(3));
@@ -322,4 +321,4 @@ const url = "http://localhost:8080/data";
   );
 }
 
-export default DashboardCardDietAn;
+export default dietAnalysis;

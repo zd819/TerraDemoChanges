@@ -49,22 +49,18 @@ function averageWeeks(data){
 
 function weeklyDates(data){
 
-    //console.log('before splice ', data)
-
   data[1] = data[7];
   data[2] = data[14];
   data[3] = data[21];
 
   data.splice(4,27);
 
-    //console.log('after splice ', data)
-
   return data;
 }
 
 
 
-function FinalCard() {
+function activityMinutes() {
 
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading] = useState(true);
@@ -192,4 +188,4 @@ function FinalCard() {
   );
 }
 
-export default FinalCard;
+export default activityMinutes;

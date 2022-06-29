@@ -8,7 +8,7 @@ import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard02(props) {
+function caloriesBurned(props) {
   function date1W(){
     setstartDate(getDiffTime('-', 7));
   }
@@ -30,15 +30,12 @@ function DashboardCard02(props) {
   const [Date, setDate ] = useState();
   var times = [];
   var points = [];
+
   if(props.overrideDate === true){
     setstartDate(props.dates[0]);
     setendDate(props.dates[1]);
-    // props.setOverrideDate(false);
   }
-  // console.log(props.overrideDate, 'CARD 2 ', startDate, ' <-> ', endDate);
 
-  // const cdate = new Date().getDate();
-  // console.log('DATE', cdate);
   useEffect(() => { // useEffect hook
     const loadPost = async () => {
     // axios(options)
@@ -58,12 +55,7 @@ function DashboardCard02(props) {
         console.log(error);
         console.log("Axios error");
       });
-    // console.log('Activity is ',response); 
-    // for (let  user of response.result) {
-    //   times.push(user.date); 
-    //   points.push(user.data);
-    // };
-    // console.log('CONDITION 1 : ', response.condition);
+
     for (let user of response.result) {
       const day = user.date.substring(0,10).split('-').reverse().join('-');
       if(times.indexOf(day) == -1){
@@ -71,21 +63,8 @@ function DashboardCard02(props) {
         points.push(user.data.calories_data.total_burned_calories); 
       }
     };
-    // let values = response.result;
-    // let sortedDescending = values.sort((a, b) => {
-    //   const aDate = a.date.split('-');
-    //   const bDate = b.date.split('-');
-    //   if(aDate[2]!=bDate[2]){
-    //     return aDate[2]-bDate[2];
-    //   }
-    //   else if(aDate[1]!=bDate[1]){
-    //     return aDate[1]-bDate[1];
-    //   }
-    //   else return aDate[0]-bDate[0];
-    // });
-    // times = sortedDescending;
-    console.log('VEGETA : ', points, ' <-> ', times);
-    // times = sortedDescending;
+   
+    
     setData(points); //set Time state
     setDate(times); //set Data state
     setLoading(false); //set loading state
@@ -98,7 +77,6 @@ function DashboardCard02(props) {
   const chartData = {
     labels: Date,
     datasets: [
-      // Indigo line
       {
         data: Data,
         label: 'Calories Burned',
@@ -112,18 +90,7 @@ function DashboardCard02(props) {
         pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
         clip: 20,
       },
-      // Gray line
-      // {
-      //   data : DUMMY,
-      //   label: 'Average',
-      //   borderColor: tailwindConfig().theme.colors.slate[300],
-      //   borderWidth: 2,
-      //   tension: 0,
-      //   pointRadius: 0,
-      //   pointHoverRadius: 3,
-      //   pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
-      //   clip: 20,
-      // },
+      
     ],
   };
 
@@ -166,4 +133,4 @@ function DashboardCard02(props) {
   );
 }
 
-export default DashboardCard02;
+export default caloriesBurned;
