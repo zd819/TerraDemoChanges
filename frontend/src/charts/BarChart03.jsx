@@ -37,17 +37,17 @@ function BarChart03({
         scales: {
           y: {
             stacked: true,
-            /*time: {
+            time: {
               parser: 'HH:MM',
               unit: 'hour',
               displayFormats: {
                 hour: 'HH',
               },
-            },*/
+            },
             grid: {
               drawBorder: false,
             },
-            beginAtZero: false,
+            beginAtZero: true,
             ticks: {
               maxTicksLimit: 7,
               callback: (value) => formatValue(value),

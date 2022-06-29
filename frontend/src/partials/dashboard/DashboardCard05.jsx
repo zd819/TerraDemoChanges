@@ -1,75 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import Info from '../../utils/Info';
-import RealtimeChart from '../../charts/RealtimeChart';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import LineChart from '../../charts/LineChart03';
+import EditMenu from '../../partials/EditMenu.jsx';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard05() {
-
-  // IMPORTANT:
-  // Code below is for demo purpose only, and it's not covered by support.
-  // If you need to replace dummy data with real data,
-  // refer to Chart.js documentation: https://www.chartjs.org/docs/latest
-
-  // Fake real-time data
-  const [counter, setCounter] = useState(0);
-  const [increment, setIncrement] = useState(0);
-  const [range, setRange] = useState(35);
   
-  // Dummy data to be looped
-  const data = [
-    57.81, 57.75, 55.48, 54.28, 53.14, 52.25, 51.04, 52.49, 55.49, 56.87,
-    53.73, 56.42, 58.06, 55.62, 58.16, 55.22, 58.67, 60.18, 61.31, 63.25,
-    65.91, 64.44, 65.97, 62.27, 60.96, 59.34, 55.07, 59.85, 53.79, 51.92,
-    50.95, 49.65, 48.09, 49.81, 47.85, 49.52, 50.21, 52.22, 54.42, 53.42,
-    50.91, 58.52, 53.37, 57.58, 59.09, 59.36, 58.71, 59.42, 55.93, 57.71,
-    50.62, 56.28, 57.37, 53.08, 55.94, 55.82, 53.94, 52.65, 50.25,
-  ];
+  
 
-  const [slicedData, setSlicedData] = useState(data.slice(0, range));
+function DashboardCard05() {
+  const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
+  const [isLoading, setLoading ] = useState(true);
+  const [sleepEff, setsleepEff] = useState([]);
+  const [dates, setdates] = useState([]);
+  var times = [];
+  var sleepEff_arr = [];
+  
+  useEffect(() => { // useEffect hook
+      const loadPost = async () => {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+        "Content-Type": "application/json",
+        "userID" : "user1", 
+        "startDate" : "2022-05-10",
+        "endDate": "2022-06-09", 
+        "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
+        "type": "sleep",
+        "provider" : "OURA",  
+      }}).then((res => res.json()))
+      .catch(function(error){
+          console.log(error);
+        });
+      
+      for (let user of response.result) {
+        const temp_day = new Date(user.date); 
+        if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
+          temp_day.setDate(temp_day.getDate() - 1);
+        };
+        
+        const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
+        times.push(day);
+        sleepEff_arr.push(user.data.metadata.sleep_efficiency);
 
-  // Generate fake dates from now to back in time
-  const generateDates = () => {
-    const now = new Date();
-    const dates = [];
-    data.forEach((v, i) => {
-      dates.push(new Date(now - 2000 - i * 2000));
-    });
-    return dates;
-  };
+      };
 
-  const [slicedLabels, setSlicedLabels] = useState(generateDates().slice(0, range).reverse());
-
-  // Fake update every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter(counter + 1);
-    }, 2000);
-    return () => clearInterval(interval)
-  }, [counter]);
-
-  // Loop through data array and update
-  useEffect(() => {
-    setIncrement(increment + 1);
-    if (increment + range < data.length) {
-      setSlicedData(([x, ...slicedData]) => [...slicedData, data[increment + range]]);
-    } else {
-      setIncrement(0);
-      setRange(0);
+      setLoading(false);
+      setsleepEff(sleepEff_arr);
+      setdates(times);
+      
     }
-    setSlicedLabels(([x, ...slicedLabels]) => [...slicedLabels, new Date()]);
-    return () => setIncrement(0)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counter]);
+    loadPost(); 
+    }, []);
 
+    console.log('dates', dates);
+    console.log('sleep', sleepEff);
+
+    
   const chartData = {
-    labels: slicedLabels,
+    labels: dates,
     datasets: [
       // Indigo line
       {
-        data: slicedData,
+        data: sleepEff,
+        label: 'Sleep Efficiency',
         fill: true,
+        ticks: {
+          callback: function(value, index, ticks) {
+            return value;
+          },
+        },
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
         borderWidth: 2,
@@ -83,18 +84,25 @@ function DashboardCard05() {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      <header className="px-5 py-4 border-b border-slate-100 flex items-center">
-        <h2 className="font-semibold text-slate-800">HEALTH 2</h2>
-        <Info className="ml-2" containerClassName="min-w-44">
-          <div className="text-sm text-center">Built with <a className="underline" href="https://www.chartjs.org/" target="_blank" rel="noreferrer">Chart.js</a></div>
-        </Info>
-      </header>
+ <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
+  { isLoading ? <div>
+    Please connect a wearable which tracks Sleep Data
+    </div> :
+    <header className="px-5 py-4 border-b border-slate-100">
+    <h2 className="font-semibold text-slate-800">Sleep Efficiency</h2>
+    </header>}
       {/* Chart built with Chart.js 3 */}
-      {/* Change the height attribute to adjust the chart height */}
-      <RealtimeChart data={chartData} width={595} height={248} />
+      { isLoading ? <div>
+    </div> :
+       <div className="grow">
+        {/* Change the height attribute to adjust the chart height */}
+        {/* {Here can use hooks to not render LineChart, but render loading icon} */}
+        {/* link : https://programmingwithmosh.com/react/create-react-loading-spinner/ */}
+        {/* Understanding code layout : freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/ */}
+        <LineChart data={chartData} width={389} height={128} tick = {"sleep"}/>
+      </div>}
     </div>
-  );
+   );
 }
 
 export default DashboardCard05;

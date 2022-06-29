@@ -111,17 +111,7 @@ function DashboardCard04() {
       lS_arr.push(user.data.sleep_durations_data.asleep.duration_light_sleep_state/3600);
       
     };
-    // let sortedDescending = response.sort((a, b) => {
-    //   const aDate = a.date.split('-');
-    //   const bDate = b.date.split('-');
-    //   if(aDate[2]!=bDate[2]){
-    //     return aDate[2]-bDate[2];
-    //   }
-    //   else if(aDate[1]!=bDate[1]){
-    //     return aDate[1]-bDate[1];
-    //   }
-    //   else return aDate[0]-bDate[0];
-    // });
+
     setLoading(false);
      
     averageWeeks(tS_arr);
@@ -145,7 +135,7 @@ function DashboardCard04() {
     datasets: [
       // Light blue bars
       {
-        label: 'Total Sleep',
+        label: 'Total Sleep Weekly Average',
         data: totalSleep,
         backgroundColor: tailwindConfig().theme.colors.sky[300],
         hoverBackgroundColor: tailwindConfig().theme.colors.sky[400],
@@ -154,7 +144,7 @@ function DashboardCard04() {
       },
       // Blue bars
       {
-        label: 'Light Sleep',
+        label: 'Light Sleep Weekly Average',
         data: lightSleep,
         backgroundColor: tailwindConfig().theme.colors.sky[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.sky[600],
@@ -162,7 +152,7 @@ function DashboardCard04() {
         categoryPercentage: 0.8,
       },
       {
-        label: 'Deep Sleep',
+        label: 'Deep Sleep Weekly Average',
         data: deepSleep,
         backgroundColor: tailwindConfig().theme.colors.blue[400],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
@@ -170,7 +160,7 @@ function DashboardCard04() {
         categoryPercentage: 0.8,
       },
       {
-        label: 'REM Sleep',
+        label: 'REM  Sleep Weekly Average',
         data: REM,
         backgroundColor: tailwindConfig().theme.colors.blue[600],
         hoverBackgroundColor: tailwindConfig().theme.colors.blue[700],
@@ -182,7 +172,7 @@ function DashboardCard04() {
 
   return (
     <div className="flex flex-col col-span-100 sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Sleep Data
         </div> :
       <header className="px-5 py-4 border-b border-slate-100">
@@ -190,7 +180,7 @@ function DashboardCard04() {
       </header>}
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Sleep Data
         </div> :
         <BarChart data={chartData} width={595} height={248} />

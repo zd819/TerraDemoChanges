@@ -65,23 +65,23 @@ function DashboardMoz(){
             <div className="grid grid-cols-12 gap-6">
 
               {/* HEALTH CARDS */}
-              {/* Bar chart (Direct vs Indirect) */}
+              {/* Sleep Analysis */}
               <DashboardCard04 />
-              {/* Stacked bar chart (Sleep VS Efficiency) */}
+              {/* Stacked bar chart (Sleep Times) */}
               <DashboardCard11 />
-              {/* <Analysis1 /> */}
-              <AnalysisREM />
+              {/* < Sleep Efficiency /> */}
+              <DashboardCard05 />
 
               {/* NUTRITION CARDS */}
-              {/* Doughnut chart (Top Countries) */}
+              {/* Doughnut chart (Food Groups) */}
               <DashboardCardDietBreak />
-              {/* Table (Top Channels) */}
+              {/* Table (Diet Analysis) */}
               <DashboardCardDietAn />
 
               {/* PERFORMANCE CARDS */}
               {/* Line chart (CardioVascular Health) */}
               <DashboardCard08 />
-              {/* Stacked bar chart (Sales VS Refunds) */}
+              {/* Step/Distance tracker */}
               <DashboardCard09 />
             </div>
           </div>

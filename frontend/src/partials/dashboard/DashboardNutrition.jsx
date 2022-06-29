@@ -68,7 +68,7 @@ function DashboardNutrition(props) {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
-          "userID" : props.id, 
+          "userID" : "user1", 
           "startDate" : startDate,
           "endDate": endDate, 
           "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
@@ -131,7 +131,7 @@ function DashboardNutrition(props) {
   };
   return (
  <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-  { isLoading ? <div>
+  { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
     Please connect a wearable which tracks Nutrition Data
     </div> :
   <div className="px-5 pt-5">
