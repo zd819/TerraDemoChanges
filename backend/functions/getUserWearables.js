@@ -5,7 +5,6 @@ async function getUserWearables(userId, callback) {
         if(err) {
             throw err;
         }
-        console.log("Retrieving Ids");
         if(res == null || res.wearableIds == null) {
             callback([])
         } else {

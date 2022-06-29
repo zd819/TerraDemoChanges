@@ -5,8 +5,8 @@ async function updateWearable(oldUser, newUser) {
     const terraId = oldUser.user_id;
 
     const wearable_provider_user = {provider : oldUser.provider, terraId: terraId};
-    const newWearable = {provider: newUser.provider, terraId: newUser.user__id};
-    userDB.updateMany({wearableIds : wearable_provider_user}, {$set : {wearableIds:newWearable} } , function(err, res) {
+    const newU = {provider : oldUser.provider, terraId: newUser.user__id};    
+    userDB.updateMany({"wearableIds.$.terraId": terraId}, {$set : {"wearableIds.$.terraId":newUser.user__id} } , function(err, res) {
         if (err) {
             throw err;
         }

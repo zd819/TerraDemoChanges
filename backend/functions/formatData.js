@@ -23,6 +23,7 @@ function getRelevantData(data, type) {
         case 'sleep':
             return  {
                         sleep_durations_data: data.sleep_durations_data,
+                        heart_rate_data: data.heart_rate_data.summary,
                         metadata: data.metadata
                     }
             break;

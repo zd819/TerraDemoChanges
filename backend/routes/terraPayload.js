@@ -42,6 +42,7 @@ router.post('/', (req,res,next) => {
             case 'user_reauth':
                 // need to delete old data / move it to new id in wearables collection
                 console.log("Reauth");
+                console.log(payload.reference_id);
                 auth.updateWearable(payload.old_user, payload.new_user);
                 break;
             case 'auth_failure':
