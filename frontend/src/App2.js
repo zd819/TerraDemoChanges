@@ -71,13 +71,13 @@ function App2(props) {
   //   document.querySelector('html').style.scrollBehavior = ''
   // }, [location.pathname]); // triggered on route change
   
-  const { token, setToken } = useToken();
+  // const { token, setToken } = useToken();
   const [dash, setDash ] = useState(false);
-  if(!token) {
+  if(!props.token) {
     generateID();
     return (
     <div className = " wrapper bg-slate-50 h-screen">
-      <Login setToken={setToken} />
+      <Login setToken={props.setToken} id = {props.id} HandleClick={HandleClick} />
     </div>
     )
   }
@@ -98,7 +98,7 @@ function App2(props) {
           {/* {!dash ? <button className="Terra-link" onClick={() => { HandleClick(); setDash(!dash); } }>
             Connect to Terra Terra
           </button> : null}    */}
-          <Link to="/Dashboard" className="btn btn-primary" onClick={() => { HandleClick(props.id); setDash(!dash); } } >
+          <Link to="/Dashboard" className="btn btn-primary" onClick={() => { HandleClick(props.id);} } >
           Connect to Terra Terra
           </Link>
       </div>

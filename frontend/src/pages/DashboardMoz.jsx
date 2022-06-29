@@ -188,13 +188,13 @@ class DashboardMoz extends React.Component {
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
       {/* Sidebar */}
-      <Sidebar id={this.props.id} sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
+      <Sidebar setToken={this.props.setToken} id={this.props.id} sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
-        <Header sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
+        <Header setToken={this.props.setToken} sidebarOpen={this.state.sidebarOpen} setSidebarOpen={this.setSidebarOpen} />
 
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto ">
@@ -215,7 +215,7 @@ class DashboardMoz extends React.Component {
               </div>
               {/* Filter button */}
              
-              <Datepicker setDates = {this.setDates} setOverrideDate = {this.setOverrideDate} overrideDate = {this.state.overrideDate}/>
+              {/* <Datepicker setDates = {this.setDates} setOverrideDate = {this.setOverrideDate} overrideDate = {this.state.overrideDate}/> */}
             </div>
 
             {/* Cards */}

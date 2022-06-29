@@ -144,46 +144,46 @@ export default function General1(data,card){
                         } else if (hValue > 11 && nValue < 1300 ){
                             return [0,"Relax and focus. Attack your daily goals and naturally your body will consume and hence perform better"]
                         } else if (hValue < 4 && nValue > 3200 ){
-                            return [0,"Meditation and Planned Schedules can help refocus your day, and help you get more active"]
-                        } else return [0,"Good Job, your Activity levels indicate greatness"]
+                            return [1,"Meditation and Planned Schedules can help refocus your day, and help you get more active"]
+                        } else return [5,"Good Job, your Activity levels indicate greatness"]
                     
             }
             else if (health){
                 let hValue = Average(health); //Sleep 
                     if( hValue < 4){
-                        return [0,"Try and get more focues and prolonged sleep, to recharge and hit your activity goals"]
+                        return [4,"Try and get more focues and prolonged sleep, to recharge and hit your activity goals"]
                     }
                     else if (hValue > 11){
-                        return [0,"Excessive Sleep can cause larthagy and laziness, try gettig up earlier"]
-                    } else return [0,"Good Job, your Activity levels indicate greatness"]
+                        return [4,"Excessive Sleep can cause larthagy and laziness, try gettig up earlier"]
+                    } else return [5,"Good Job, your Activity levels indicate greatness"]
                 
             }
             else if (nutrition){
                 let nValue = Average(nutrition); //Calories Consumed 
                     if( nValue < 300){
-                        return [0,"Eat more to Do more. You got this"]
+                        return [3,"Eat more to Do more. You got this"]
                     }
                     else if (nValue > 1700){
-                        return [0,"You may need to rethink your daily nutrition, maybe replace some carbs with fruit and veg"]
+                        return [3,"You may need to rethink your daily nutrition, maybe replace some carbs with fruit and veg"]
                     } else return [0,"Good Job, your Activity levels indicate greatness"]
                 
             }
             else{
                 if(performance == false){return "No Suggestion"}
                 else if(Average(performance) > 3000){
-                    return [0,"You're consuming alot of calories! Make sure your diet and lifestyle are balancing out."]
+                    return [3,"You're consuming alot of calories! Make sure your diet and lifestyle are balancing out."]
                 }
                 else if (Average(performance) < 1000){
-                    return [0,"More Calories may be beneficial for your gut and heart, and overall health!"]
+                    return [3,"More Calories may be beneficial for your gut and heart, and overall health!"]
                 }
                 else{
                     for (let pValue of performance){ //Calories Burned 
                         if( pValue < 1000){
-                            return [0,"You're nutrition levels are pretty good. Make sure you are eating enough every day"]
+                            return [3,"You're nutrition levels are pretty good. Make sure you are eating enough every day"]
                         }
                         else if (pValue > 1700){
-                            return [0,"You're nutrition levels are pretty good. Keep wary of your nutrition limits daily"]
-                        } else return [0,"Good Job, your nutrition levels indicate greatness"]
+                            return [3,"You're nutrition levels are pretty good. Keep wary of your nutrition limits daily"]
+                        } else return [5,"Good Job, your nutrition levels indicate greatness"]
                     }
                 }
             }

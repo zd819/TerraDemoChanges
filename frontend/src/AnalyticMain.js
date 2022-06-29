@@ -68,7 +68,7 @@ function DashboardMoz(){
               {/* HEALTH CARDS */}
               {/* Sleep Analysis */}
               <DashboardCard04 />
-              {/* Stacked bar chart (Sleep Times) */}
+              {/* Sleep Heart Rate */}
               <DashboardCard11 />
               {/* < Sleep Efficiency /> */}
               <DashboardCard05 />
@@ -80,7 +80,7 @@ function DashboardMoz(){
               <DashboardCardDietAn />
 
               {/* PERFORMANCE CARDS */}
-              {/* Line chart (CardioVascular Health) */}
+              {/* Activity Minutes */}
               <FinalCard />
               {/* Step/Distance tracker */}
               <DashboardCard09 />

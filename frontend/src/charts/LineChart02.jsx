@@ -49,7 +49,7 @@ function LineChart02({
               parser: 'DD-MM-YYYY',
               unit: 'day',
               displayFormats: {
-                month: 'DD/MM/YY',
+                day: 'DD/MM/YY',
               },
             },
             grid: {

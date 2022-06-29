@@ -69,14 +69,14 @@ function DashboardCardDietBreak() {
           Carbs, Protein, Fat,
         ],
         backgroundColor: [
-          tailwindConfig().theme.colors.amber[500],
-          tailwindConfig().theme.colors.rose[400],
-          tailwindConfig().theme.colors.zinc[400],
+          tailwindConfig().theme.colors.sky[300],
+          tailwindConfig().theme.colors.blue[300],
+          tailwindConfig().theme.colors.indigo[300],
         ],
         hoverBackgroundColor: [
-          tailwindConfig().theme.colors.amber[600],
-          tailwindConfig().theme.colors.rose[500],
-          tailwindConfig().theme.colors.zinc[500],
+          tailwindConfig().theme.colors.sky[400],
+          tailwindConfig().theme.colors.blue[400],
+          tailwindConfig().theme.colors.indigo[400],
         ],
         hoverBorderColor: tailwindConfig().theme.colors.white,
       },
@@ -88,14 +88,14 @@ function DashboardCardDietBreak() {
           333, 55.5, 97,
         ],
         backgroundColor: [
-          tailwindConfig().theme.colors.amber[500],
-          tailwindConfig().theme.colors.rose[400],
-          tailwindConfig().theme.colors.zinc[400],
+          tailwindConfig().theme.colors.sky[400],
+          tailwindConfig().theme.colors.blue[400],
+          tailwindConfig().theme.colors.indigo[400],
         ],
         hoverBackgroundColor: [
-          tailwindConfig().theme.colors.amber[600],
-          tailwindConfig().theme.colors.rose[500],
-          tailwindConfig().theme.colors.zinc[500],
+          tailwindConfig().theme.colors.sky[500],
+          tailwindConfig().theme.colors.blue[500],
+          tailwindConfig().theme.colors.indigo[500],
         ],
         hoverBorderColor: tailwindConfig().theme.colors.white,
       },
@@ -108,8 +108,8 @@ function DashboardCardDietBreak() {
       Please connect a wearable which tracks Nutrition Data
       </div> : <header className="px-5 py-4 border-b border-slate-100">
           <h2 className="font-semibold text-slate-800">DIET BREAKDOWN</h2>
-          <h6 className="font-semibold text-slate-800">Inner circle is daily guidelines</h6>
-          <h6 className="font-semibold text-slate-800">Outer circle is your data</h6>
+          <h6 className="font-semibold text-slate-800">Inner: Daily Guidelines, Outer: Your Data</h6>
+          <h6 className="font-semibold text-slate-800">Keeping a Balanced Diet?</h6>
       </header>
       }
       

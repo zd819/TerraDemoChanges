@@ -162,10 +162,10 @@ const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data"
       Please connect a wearable which tracks Nutrition Data
       </div>:<header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">DIET ANALYSIS</h2>
-        <h6 className="font-semibold text-slate-800">How can you improve your diet?</h6>
+        <h6 className="font-semibold text-slate-800">How Can You Improve Your Diet?</h6>
       </header>}
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
-      Please connect a wearable which tracks Nutrition Data
+
       </div> :
       <div className="p-3">
         {/* Table */}

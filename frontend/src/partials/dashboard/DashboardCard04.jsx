@@ -177,11 +177,12 @@ function DashboardCard04() {
         </div> :
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Sleep Analysis</h2>
+        <h6 className="font-semibold text-slate-800">Here's Your Full Sleep Breakdown:</h6>
       </header>}
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
-        Please connect a wearable which tracks Sleep Data
+        
         </div> :
         <BarChart data={chartData} width={595} height={200} />
       }

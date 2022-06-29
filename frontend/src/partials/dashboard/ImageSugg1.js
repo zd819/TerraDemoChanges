@@ -14,7 +14,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function ImageSugg1(props) {
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-blue-50 rounded-sm">
+    <div className="flex flex-col col-span-full sm:col-span-2 xl:col-span-4 bg-blue-50 rounded-sm">
       <div className="px-5 pt-5">
         <header className="flex justify-between items-start mb-2">
           {/* Icon */}
