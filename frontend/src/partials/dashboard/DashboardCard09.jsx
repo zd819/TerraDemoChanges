@@ -44,12 +44,12 @@ function DashboardCard09() {
     // };
     // console.log('CONDITION 1 : ', response.condition);
     for (let user of response.result) {
-        
+      const day = user.date.substring(0,10).split('-').reverse().join('-');
+      if(times.indexOf(day) == -1){      
         dist_arr.push(user.data.distance_data.distance_metres);
         step_arr.push(user.data.distance_data.steps);
-
-        const day = user.date.substring(0,10).split('-').reverse().join('-');
         times.push(day); 
+      }
         
     };
 
@@ -102,7 +102,7 @@ function DashboardCard09() {
       </header>}
       {/* Chart built with Chart.js 3 */}
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
-        Please connect a wearable which tracks Activity Data
+        
         </div> :
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}

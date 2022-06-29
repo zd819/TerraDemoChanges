@@ -100,17 +100,17 @@ function DashboardCard04() {
       const temp_day = new Date(user.date); 
       if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
         temp_day.setDate(temp_day.getDate() - 1);
-      };
-      
+      };  
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
-      times.push(day);
-      //console.log('dates', times);
-      tS_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600); 
-      REM_arr.push(user.data.sleep_durations_data.asleep.duration_REM_sleep_state/3600);
-      dS_arr.push(user.data.sleep_durations_data.asleep.duration_deep_sleep_state/3600);
-      lS_arr.push(user.data.sleep_durations_data.asleep.duration_light_sleep_state/3600);
-      
-    };
+      if(times.indexOf(day) == -1){   
+        times.push(day);
+        //console.log('dates', times);
+        tS_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600); 
+        REM_arr.push(user.data.sleep_durations_data.asleep.duration_REM_sleep_state/3600);
+        dS_arr.push(user.data.sleep_durations_data.asleep.duration_deep_sleep_state/3600);
+        lS_arr.push(user.data.sleep_durations_data.asleep.duration_light_sleep_state/3600);
+      };          
+    }
 
     setLoading(false);
      
