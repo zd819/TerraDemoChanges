@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BarChart from '../../charts/BarChart03';
+import BarChart from '../../charts/LineChart02';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
@@ -8,15 +8,14 @@ function DashboardCard11() {
 
   const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
-  const [asleep, setasleep] = useState();
-  const [awake, setawake] = useState();
+  const [ave_hr, setave_hr] = useState();
+  const [max_hr, setmax_hr] = useState();
+  const [min_hr, setmin_hr] = useState();
   const [dates, setdates] = useState();
-  const [startTime, setstartTime] = useState();
-  const [endTime, setendTime] = useState();
-  var asleep_arr = [];
-  var awake_arr = [];
-  var start_arr = [];
-  var end_arr = [];
+
+  var ave_arr = [];
+  var max_arr = [];
+  var min_arr = [];
   var times = [];
 
   useEffect(() => { // useEffect hook
@@ -44,14 +43,12 @@ function DashboardCard11() {
       
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-'); 
       times.push(day);
-
-      const tempStart = user.data.metadata.start_time.substring(11,16);
-      start_arr.push(tempStart);
-      //console.log('start', start_arr);
+      console.log('dates', times);
+      ave_arr.push(user.data.heart_rate_data.avg_hr);
+      max_arr.push(user.data.heart_rate_data.max_hr);
+      min_arr.push(user.data.heart_rate_data.min_hr);
 
       //console.log('day', times);
-      asleep_arr.push(user.data.sleep_durations_data.asleep.duration_asleep_state/3600);
-      awake_arr.push(user.data.sleep_durations_data.awake.duration_before_sleeping/3600);
       //console.log('awake data is', awake_arr);
       //console.log('asleep data is', asleep_arr);
       
@@ -59,14 +56,10 @@ function DashboardCard11() {
 
     setLoading(false);
 
-    awake_arr.splice(7,7);
-    asleep_arr.splice(7,7);
-    times.splice(7,7);
-    
-
     setdates(times);
-    setawake(awake_arr);
-    setasleep(asleep_arr);
+    setave_hr(ave_arr);
+    setmax_hr(max_arr);
+    setmin_hr(min_arr);
 
   }
   loadPost();
@@ -81,16 +74,24 @@ function DashboardCard11() {
     labels: dates,
     datasets: [
       {
-        label: 'Asleep',
-        data: asleep,
+        label: 'Max Heart Rate',
+        data: max_hr,
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
       {
-        label: 'Awake',
-        data: awake,
+        label: 'Average Heart Rate',
+        data: ave_hr,
+        backgroundColor: tailwindConfig().theme.colors.indigo[800],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+      },
+      {
+        label: 'Min Heart Rate',
+        data: min_hr,
         backgroundColor: tailwindConfig().theme.colors.indigo[800],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
         barPercentage: 0.8,
@@ -103,7 +104,7 @@ function DashboardCard11() {
   return (
     <div className="col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Sleep Times</h2>
+        <h2 className="font-semibold text-slate-800">Sleep Heart Rate</h2>
       </header>
       {/* Chart built with Chart.js 3 */}
       <div className="grow">
