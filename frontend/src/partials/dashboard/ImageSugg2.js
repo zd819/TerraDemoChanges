@@ -4,9 +4,11 @@ import LineChart from '../../charts/LineChart01';
 import Icon0 from '../../images/rest-nobg.svg';
 import Icon1 from '../../images/meditation.svg';
 import Icon2 from '../../images/calm.svg';
-import Icon3 from '../../images/sleep.svg';
-import Icon4 from '../../images/eat-more.svg';
-import Icon5 from '../../images/goal-achieved.svg';
+import Icon4 from '../../images/sleep.svg';
+import Icon3 from '../../images/eat-more.svg';
+import Icon5 from '../../images/healthy-eating.svg';
+import Icon6 from '../../images/portion-control.svg';
+import Icon7 from '../../images/goal-achieved.svg';
 import EditMenu from '../EditMenu';
 import localTime from '../../components/DataHandling/localTime.js';
 import getDIffTime from '../../components/DataHandling/getDiffTime.js';
@@ -25,7 +27,9 @@ function ImageSugg2(props) {
           (props.number==2 ? <img src={Icon2} width="100" height="100" alt="Icon 02" /> :
           (props.number==3 ? <img src={Icon3} width="100" height="100" alt="Icon 03" /> :
           (props.number==4 ? <img src={Icon4} width="100" height="100" alt="Icon 04" /> :
-                             <img src={Icon5} width="100" height="100" alt="Icon 05" /> ))))}
+          (props.number==5 ? <img src={Icon5} width="100" height="100" alt="Icon 05" /> :
+          (props.number==6 ? <img src={Icon6} width="100" height="100" alt="Icon 06" /> :
+                             <img src={Icon7} width="100" height="100" alt="Icon 07" /> ))))))}
         </header>
         <div className="flex items-start">
           {/* <div className="text-sm font-semibold text-white px-1.5 bg-green-500 rounded-full">+49%</div> */}
