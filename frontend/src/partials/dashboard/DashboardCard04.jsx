@@ -172,7 +172,7 @@ function DashboardCard04() {
 
   return (
     <div className="flex flex-col col-span-100 sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Sleep Data
         </div> :
       <header className="px-5 py-4 border-b border-slate-100">
@@ -180,7 +180,7 @@ function DashboardCard04() {
       </header>}
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      { isLoading ? <div>
+      { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Sleep Data
         </div> :
         <BarChart data={chartData} width={595} height={248} />
