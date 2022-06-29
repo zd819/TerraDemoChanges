@@ -17,7 +17,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
-  const url = "https://fb43-2a0c-5bc0-40-2e2f-304f-3c6b-9509-c963.eu.ngrok.io/data";
+  const url = "http://localhost:8080/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
   const [Data, setData ] = useState();
@@ -34,7 +34,7 @@ function Analysis1() {
     'type': 'nutrition'
   }
   const options = {
-    url: "https://fb43-2a0c-5bc0-40-2e2f-304f-3c6b-9509-c963.eu.ngrok.io/data",
+    url: "http://localhost:8080/data",
     headers: {'Content-Type':'application/json',
     'userId': 'user1'},
     data: JSON.stringify(data), 

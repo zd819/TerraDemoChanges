@@ -1,4 +1,9 @@
-inconsistent use of userId, wearableId etc so unclear in seperate files, 
-FROM NOW USE terraId WHEN REFERING TO WEARABLE IDS ETC AND userId IN REFERENCE TO OUR ID
 
-FIX SOME OF THE FUNCTIONS AND FILE / MODULE STUFF SO IT LOOKS NICER / MOVE SOME STUFF AROUND SO ROUTES IS CLEAN
+some providers only give data when its exists (contrary to myfitnesspal) we request whenever we see dates missing from our own db, we should really not be doing this 
+so if theres no data for a certain day it will keep requesting from terra on every frontend request.
+can add empty db entry when requesting from terra as it will overwrite if we receive actual data but it will be a placeholder to say weve already requested
+
+data processing needed to discern multiple events in the same day i.e if someone naps mid-day
+
+stuff for activities
+

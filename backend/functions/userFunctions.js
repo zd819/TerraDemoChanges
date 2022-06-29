@@ -1,18 +1,12 @@
-const getUserWearables = require('../functions/getUserWearables').getUserWearables;
-
 async function updateWearable(oldUser, newUser) {
 
     const terraId = oldUser.user_id;
-
-    const wearable_provider_user = {provider : oldUser.provider, terraId: terraId};
-    const newU = {provider : oldUser.provider, terraId: newUser.user__id};    
     userDB.updateMany({"wearableIds.$.terraId": terraId}, {$set : {"wearableIds.$.terraId":newUser.user__id} } , function(err, res) {
         if (err) {
             throw err;
         }
         console.log("Updated wearable");
     });
-
     deleteUserData(terraId);
 };
 
@@ -26,7 +20,6 @@ async function deauthWearable(user) {
         }
         console.log("Updated wearable");
     });
-
     deleteUserData(terraId);
 }
 
@@ -59,23 +52,31 @@ async function addNewUser(userId, callback) {
         console.log("Added new User");
         callback("success");
     });
-    return;
 };
 
 async function deleteUser(userId) {
     
     getUserWearables(userId, function (wearableIds) {
-        
         for(var i = 0; i < wearableIds.length; i++){
-
             deleteUserData(wearableIds[i].terraId);
-
         }
-
         userDB.deleteOne({_id : userId});
-
-    })
-
+    });
 };
 
-module.exports = {updateWearable, addUserWearable, deleteUserData, addNewUser, deleteUser, deauthWearable};
+async function getUserWearables(userId, callback) {
+
+    userDB.findOne({_id:userId}, {'_id': false}, function(err, res) {
+        if(err) {
+            throw err;
+        }
+        if(res == null || res.wearableIds == null) {
+            callback([])
+        } else {
+            callback(res.wearableIds);
+        }
+    });
+};
+
+
+module.exports = {updateWearable, addUserWearable, deleteUserData, addNewUser, deleteUser, deauthWearable, getUserWearables};

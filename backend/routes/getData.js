@@ -5,7 +5,7 @@ const pullData = require('../functions/pullData').pullData;
 const dayDifference = require('../functions/timeHelpers').dayDifference;
 const findMissingDates = require('../functions/timeHelpers').findMissingDates;
 const requestTerraData = require('../functions/requestTerraData').requestTerraData;
-const getUserWearables = require('../functions/getUserWearables').getUserWearables;
+const getUserWearables = require('../functions/userFunctions').getUserWearables;
 
 // Create a new session on terra api and return result to frontend
 router.get('/', (req, res) => {
@@ -17,9 +17,6 @@ router.get('/', (req, res) => {
     const userId = req.get('userId');
     const provider = req.get('provider');
     console.log(provider + " " + type + " " + start + " " + end + " " + userId);
-
-
-
 
     if(startDate > endDate) {
         // error end date has to be bigger
@@ -57,42 +54,33 @@ router.get('/', (req, res) => {
             const period = dayDifference(startDate, endDate);
             console.log(period + " "  + result.length);
 
-            if(result.length > period) {
-                // too many results there has to be an error somewhere 
-                // this should never happen there must be something wrong inside mongo / pushing data
+            // need to find missing dates and pull
+            findMissingDates(startDate, endDate, result, (missingDates) => {
 
-                // this can happen with some types i.e events with more than one occurence per day so need to figure out this
+                if(missingDates.length === 0) {
+                    //everything is fine
+                    // process data and send
+                    res.send({condition:"Success", result:processData(result, type)});
 
-                next(createError("DB Error"));
-
-            }else if(result.length < period) {
-                // need to find missing dates and pull
-                findMissingDates(startDate, endDate, result, (missingDates) => {
-                    console.log("Missing Dates");
-                    console.log(missingDates);
-                    for(var i = 0; i < missingDates.length; i++) {
-                        requestTerraData(
-                            {
-                                terraId: wearable.terraId,
-                                type: type,
-                                startDate: missingDates[i].startDate,
-                                endDate: missingDates[i].endDate
-                            }, () => {
-                                // request fulfilled on server side now waiting for terra
-                            });
+                } else {
+                        console.log("Missing Dates");
+                        console.log(missingDates);
+                        for(var i = 0; i < missingDates.length; i++) {
+                            requestTerraData(
+                                {
+                                    terraId: wearable.terraId,
+                                    type: type,
+                                    startDate: missingDates[i].startDate,
+                                    endDate: missingDates[i].endDate
+                                }, () => {
+                                    // request fulfilled on server side now waiting for terra
+                                });
+                        }
                     }
-                });
-                res.send({condition:"Waiting for Terra", result:processData(result,type)});
-
-            }else {
-                //everything is fine
-                // process data and send
-                res.send({condition:"Success", result:processData(result, type)});
-            }
-
-        })
-    })
-
+                    res.send({condition:"Waiting for Terra", result:processData(result,type)});                  
+            });
+        });
+    });
 });
 
 module.exports = router;

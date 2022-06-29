@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { default: Terra } = require("terra-api");
-const addNewUser = require('../functions/auth').addNewUser;
+const addNewUser = require('../functions/userFunctions').addNewUser;
 
 // Create a new session on terra api and return result to frontend
 
@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
     addNewUser(id, function (result){
     });
 
+    // I want to just get all providers, couldn't leave it blank tho
     terraApi.generateWidgetSession(id, ["FITBIT","OURA","TRAININGPEAKS","WITHINGS","SUUNTO","PELOTON","ZWIFT","GARMIN","EIGHT","WAHOO","GOOGLE","POLAR","APPLE","FREESTYLELIBRE","TEMPO","IFIT","CONCEPT2","MYFITNESSPAL"],'EN')
     .then((s) => res.send(s))
     .catch((e) => console.log(e));

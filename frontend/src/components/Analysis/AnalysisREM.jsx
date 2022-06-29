@@ -17,7 +17,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function Analysis1() {
-  const url = "https://fb43-2a0c-5bc0-40-2e2f-304f-3c6b-9509-c963.eu.ngrok.io/data";
+  const url = "http://localhost:8080/data";
   const [isLoading, setLoading ] = useState(true);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
   const [endDate, setendDate ] = useState(localTime());

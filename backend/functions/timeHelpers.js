@@ -2,12 +2,9 @@ function dayDifference(startDate, endDate){
 
     var date1 = startDate;
     var date2 = endDate;
-    // To calculate the time difference of two dates
     var Difference_In_Time = date2.getTime() - date1.getTime();
-    // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
     return Difference_In_Days
-
 }
 
 async function findMissingDates(startDate, endDate, data, callback){
@@ -22,23 +19,20 @@ async function findMissingDates(startDate, endDate, data, callback){
         });
 
         for(var i = 0; i < data.length; i++){
-            var currDate = new Date(data[i].startDate.substring(0,10));   
-
-            if(begin < currDate) {    
+            var currDate = new Date(data[i].startDate.substring(0,10));
+            if(begin >= currDate) {
+                // do nothing
+            } else {    
                 datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: currDate.toISOString().substring(0,10)});
             } 
             begin = new Date(currDate.setDate(currDate.getDate() + 1));
-
         }
     }
-
 
     if(begin <= end){
         datesToRequest.push({startDate: begin.toISOString().substring(0,10), endDate: end.toISOString().substring(0,10)});
     }
-
     callback(datesToRequest);
-
 }
 
 module.exports = {dayDifference, findMissingDates};

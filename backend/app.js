@@ -9,11 +9,8 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const sessionRouter = require('./routes/newSession');
 const payloadRouter = require('./routes/terraPayload');
-const dataRouter = require('./routes/requestData');
 const mongoRouter = require('./routes/getData');
-const terraIdRouter = require('./routes/getTerraId');
-const providersRouter = require('./routes/getUserProviders');
-const deleteUserRouter = require('./routes/deleteUser');
+const userRouter = require('./routes/user');
 
 const cors = require('cors');
 const app = express();
@@ -36,11 +33,8 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/newSession', sessionRouter);
 app.use('/terraPayload', payloadRouter);
-app.use('/requestData', dataRouter);
 app.use('/data', mongoRouter);
-app.use('/getTerraId', terraIdRouter);
-app.use('/userProviders', providersRouter);
-app.use('/deleteUser', deleteUserRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

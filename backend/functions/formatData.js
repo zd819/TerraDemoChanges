@@ -1,5 +1,4 @@
 function formatDate(data) {
-
     return data.data.metadata.start_time;
 };
 
@@ -26,17 +25,14 @@ function getRelevantData(data, type) {
                         heart_rate_data: data.heart_rate_data.summary,
                         metadata: data.metadata
                     }
-            break;
         case 'heart':
             return data.heart_rate_data.summary;
-            break;
         case 'body':
             break;
         case 'menstruation':
             break; 
         case 'nutrition':
             return data.summary.macros;
-            break;
         case 'daily':
             return data;
             break;

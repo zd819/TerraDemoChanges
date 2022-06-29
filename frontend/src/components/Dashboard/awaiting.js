@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 
 
-const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/";
+const url = "http://localhost:8080/";
 
 async function sendWait(id) {
-    return await fetch(url+'userProviders', {
+    return await fetch(url+'user/getProviders', {
       method: 'GET',
       headers: {
           "Content-Type": "application/json",

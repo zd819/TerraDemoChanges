@@ -1,5 +1,6 @@
+// supposed to be helpers for various things to do with providers / data models. not used tho
+
 function relevantDataModels(provider) {
-    console.log("inside here");
 
     switch(provider) {
         case "FITBIT":
@@ -70,7 +71,6 @@ function defaultDataModel(type) {
 
     switch(type) {
         case 'athlete':
-            return {} 
             break;
         case 'sleep':
             break;
@@ -91,4 +91,4 @@ function defaultDataModel(type) {
 
 }
 
-module.exports = {relevantDataModels, getDataPath};
+module.exports = {relevantDataModels, getDataPath, defaultDataModel};

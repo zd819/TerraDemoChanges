@@ -6,7 +6,7 @@ import './Login.css';
 
 
 async function loginUser(credentials) {
- return fetch('https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/login', {
+ return fetch('http://localhost:8080/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'

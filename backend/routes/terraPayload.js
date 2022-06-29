@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const uploadData = require('../functions/uploadData').uploadData;
-const auth = require('../functions/auth');
+const auth = require('../functions/userFunctions');
 const createError = require('http-errors');
 
 // destination for terra webhook 
