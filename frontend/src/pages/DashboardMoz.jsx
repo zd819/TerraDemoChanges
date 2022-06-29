@@ -183,8 +183,8 @@ class DashboardMoz extends React.Component {
   var PerformanceSugg = General1(this.state.allData, "Performance")[1];
   var Hnum = General1(this.state.allData, "Health")[0];
   var HealthSugg = General1(this.state.allData, "Health")[1];
-  var Nnum = General1(this.state.allData, "Sleep")[0];
-  var NutritionSugg = General1(this.state.allData, "Sleep")[1];
+  var Nnum = General1(this.state.allData, "Nutrition")[0];
+  var NutritionSugg = General1(this.state.allData, "Nutrition")[1];
   return (
     <div className="flex h-screen overflow-hidden bg-blue-50">
       {/* Sidebar */}
