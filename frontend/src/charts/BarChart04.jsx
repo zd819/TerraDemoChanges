@@ -59,7 +59,7 @@ function BarChart04({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => context.parsed.x + ' mins',
+              label: (context) => context.parsed.x + ' mins per day',
             },
           },
         },
