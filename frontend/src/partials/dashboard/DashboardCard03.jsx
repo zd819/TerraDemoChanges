@@ -21,7 +21,7 @@ function DashboardCard03(props) {
     setstartDate(getDiffTime('-', 90));
   }
   function Average(array){
-    return array.reduce((a,b) => a + b, 0) / array.length
+    return (array.reduce((a,b) => a + b, 0) / array.length).toPrecision(3)
   }
   const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);

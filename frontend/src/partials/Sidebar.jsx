@@ -7,6 +7,7 @@ import HandleClick from '../components/Login/newSession';
 function Sidebar({
   sidebarOpen,
   setSidebarOpen,
+  setToken,
   id,
 }) {
 
@@ -123,7 +124,7 @@ function Sidebar({
               
               {/* Login */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
-                <NavLink end to="/" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('calendar') && 'hover:text-slate-200'}`}>
+                <NavLink end to="/" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('calendar') && 'hover:text-slate-200'}`} onClick={() =>setToken(false)}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                     <path className={`fill-current text-slate-600 ${pathname.includes('team') && 'text-indigo-500'}`} d="" />
