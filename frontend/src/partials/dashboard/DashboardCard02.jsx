@@ -18,6 +18,9 @@ function DashboardCard02(props) {
   function date3M(){
     setstartDate(getDiffTime('-', 90));
   }
+  function Average(array){
+    return array.reduce((a,b) => a + b, 0) / array.length
+  }
   const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
@@ -44,7 +47,7 @@ function DashboardCard02(props) {
       method: 'GET',
       headers: {
       "Content-Type": "application/json",
-      "userID" : props.id,
+      "userID" : "user1",
       "startDate" : startDate,
       "endDate": endDate, 
       "terraId": "147f9175-e2bf-4122-8694-6a5f75fb4b60",
@@ -148,8 +151,8 @@ function DashboardCard02(props) {
           </EditMenu>
         </header>
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Performance</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
-        <div className="text-3xl font-bold text-slate-800 mr-2">2410 calories</div>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Performance Data Analysis</div>
+        <div className="text-xl font-bold text-slate-800 mr-2">Average : {Average(Data)}</div>
          
       </div>}
       {/* Chart built with Chart.js 3 */}

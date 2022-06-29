@@ -26,7 +26,9 @@ function DashboardNutrition(props) {
   function date3M(){
     setstartDate(getDiffTime('-', 90));
   }
-
+  function Average(array){
+    return array.reduce((a,b) => a + b, 0) / array.length
+  }
   const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
@@ -68,7 +70,7 @@ function DashboardNutrition(props) {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
-          "userID" : this.props.id, 
+          "userID" : "user1", 
           "startDate" : startDate,
           "endDate": endDate, 
           "terraId": "596be094-5daa-4962-bd60-0177c9439cec",
@@ -153,9 +155,9 @@ function DashboardNutrition(props) {
         </header>
         
         <h2 className="text-lg font-semibold text-slate-800 mb-2">Nutrition</h2>
-        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Average</div>
+        <div className="text-xs font-semibold text-slate-400 uppercase mb-1">Your Nutrition Data Analysis</div>
         <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 mr-2">2658 calories</div>
+        <div className="text-xl font-bold text-slate-800 mr-2">Average : {Average(Data)}</div>
         
         </div>
   </div>}

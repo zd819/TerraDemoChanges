@@ -215,7 +215,7 @@ class DashboardMoz extends React.Component {
               </div>
               {/* Filter button */}
              
-              <Datepicker setDates = {this.setDates} setOverrideDate = {this.setOverrideDate} overrideDate = {this.state.overrideDate}/>
+              {/* <Datepicker setDates = {this.setDates} setOverrideDate = {this.setOverrideDate} overrideDate = {this.state.overrideDate}/> */}
             </div>
 
             {/* Cards */}
