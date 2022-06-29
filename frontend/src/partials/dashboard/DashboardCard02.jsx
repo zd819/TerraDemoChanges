@@ -10,13 +10,13 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard02(props) {
   function date1W(){
-    setendDate(getDiffTime('-', 7));
+    setstartDate(getDiffTime('-', 7));
   }
   function date1M(){
-    setendDate(getDiffTime('-', 30));
+    setstartDate(getDiffTime('-', 30));
   }
   function date3M(){
-    setendDate(getDiffTime('-', 90));
+    setstartDate(getDiffTime('-', 90));
   }
   const url = "https://980d-2a02-6b6a-8c49-0-b903-d7a2-2ebb-9e6f.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
