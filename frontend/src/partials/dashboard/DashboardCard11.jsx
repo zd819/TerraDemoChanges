@@ -40,8 +40,8 @@ function DashboardCard11() {
       if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
         temp_day.setDate(temp_day.getDate() - 1);
       };
-      
       const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-'); 
+      if(times.indexOf(day) == -1){
       times.push(day);
       console.log('dates', times);
       ave_arr.push(user.data.heart_rate_data.avg_hr);
@@ -51,7 +51,7 @@ function DashboardCard11() {
       //console.log('day', times);
       //console.log('awake data is', awake_arr);
       //console.log('asleep data is', asleep_arr);
-      
+    }
     };
 
     setLoading(false);
@@ -76,8 +76,16 @@ function DashboardCard11() {
       {
         label: 'Max Heart Rate',
         data: max_hr,
-        backgroundColor: tailwindConfig().theme.colors.indigo[500],
+        backgroundColor: tailwindConfig().theme.colors.rose[600],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+      },
+      {
+        label: 'Min Heart Rate',
+        data: min_hr,
+        backgroundColor: tailwindConfig().theme.colors.blue[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
       },
@@ -88,15 +96,7 @@ function DashboardCard11() {
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
         barPercentage: 0.8,
         categoryPercentage: 0.8,
-      },
-      {
-        label: 'Min Heart Rate',
-        data: min_hr,
-        backgroundColor: tailwindConfig().theme.colors.indigo[800],
-        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
-        barPercentage: 0.8,
-        categoryPercentage: 0.8,
-      },
+      }, 
     ],
   };
 
