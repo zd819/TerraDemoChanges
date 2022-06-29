@@ -35,15 +35,16 @@ function DashboardCard05() {
         });
       
       for (let user of response.result) {
-        const temp_day = new Date(user.date); 
-        if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
-          temp_day.setDate(temp_day.getDate() - 1);
-        };
-        
-        const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
-        times.push(day);
-        sleepEff_arr.push(user.data.metadata.sleep_efficiency);
-
+          const temp_day = new Date(user.date); 
+          const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
+          if(times.indexOf(day) == -1){
+            if(temp_day.getHours() < 6 && 0 < temp_day.getHours()){
+              temp_day.setDate(temp_day.getDate() - 1);
+            };
+            const day = temp_day.toISOString().substring(0,10).split('-').reverse().join('-');
+            times.push(day);
+            sleepEff_arr.push(user.data.metadata.sleep_efficiency);         
+            }
       };
 
       setLoading(false);
