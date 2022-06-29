@@ -25,6 +25,7 @@ import DashboardCard13 from './partials/dashboard/DashboardCard13';
 import AnalysisREM from './components/Analysis/AnalysisREM';
 import Analysis8 from './components/Analysis/Analysis8';
 import AnalyticSteps from './components/Analysis/AnalyticsSteps.js';
+import FinalCard from './partials/dashboard/FinalCard';
 // import Banner from '../partials/Banner';
 
 function DashboardMoz(){
@@ -80,7 +81,7 @@ function DashboardMoz(){
 
               {/* PERFORMANCE CARDS */}
               {/* Line chart (CardioVascular Health) */}
-              <DashboardCard08 />
+              <FinalCard />
               {/* Step/Distance tracker */}
               <DashboardCard09 />
             </div>
