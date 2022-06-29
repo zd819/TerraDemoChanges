@@ -55,8 +55,6 @@ function DashboardCard05() {
     loadPost(); 
     }, []);
 
-    console.log('dates', dates);
-    console.log('sleep', sleepEff);
 
     
   const chartData = {

@@ -137,7 +137,7 @@ function BarChart02({
             label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
             const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
             const valueText = document.createTextNode(formatValue(theValue));
-            const labelText = document.createTextNode(item.text);
+            const labelText = document.createTextNode('Total ' + item.text);
             value.appendChild(valueText);
             label.appendChild(labelText);
             li.appendChild(button);

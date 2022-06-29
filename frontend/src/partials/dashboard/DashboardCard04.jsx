@@ -183,7 +183,7 @@ function DashboardCard04() {
       { isLoading ? <div className=" text-center font-small text-slate-300 hover:text-slate400 ">
         Please connect a wearable which tracks Sleep Data
         </div> :
-        <BarChart data={chartData} width={595} height={248} />
+        <BarChart data={chartData} width={595} height={200} />
       }
     </div>
   );
