@@ -11,7 +11,7 @@ function Average(array){
 }
 
 
-function DashboardCardDietBreak() {
+function DietBreakdown() {
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
@@ -117,4 +117,4 @@ function DashboardCardDietBreak() {
   );
 }
 
-export default dietBreakdown;
+export default DietBreakdown;

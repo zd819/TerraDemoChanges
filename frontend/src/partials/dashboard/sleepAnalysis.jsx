@@ -63,7 +63,7 @@ function weeklyDates(data){
 }
 
 
-function DashboardCard04() {
+function SleepAnalysis() {
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
@@ -185,4 +185,4 @@ function DashboardCard04() {
   );
 }
 
-export default sleepAnalysis;
+export default SleepAnalysis;

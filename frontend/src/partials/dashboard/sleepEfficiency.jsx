@@ -9,7 +9,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
   
 
-function DashboardCard05() {
+function SleepEfficiency () {
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepEff, setsleepEff] = useState([]);
@@ -104,4 +104,4 @@ function DashboardCard05() {
    );
 }
 
-export default sleepEfficiency;
+export default SleepEfficiency;

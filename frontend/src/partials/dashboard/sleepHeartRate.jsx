@@ -4,7 +4,7 @@ import BarChart from '../../charts/LineChart02';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function sleepHeartRate() {
+function SleepHeartRate() {
 
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading] = useState(true);
@@ -115,4 +115,4 @@ function sleepHeartRate() {
   );
 }
 
-export default sleepHeartRate;
+export default SleepHeartRate;

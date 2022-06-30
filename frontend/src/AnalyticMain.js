@@ -9,13 +9,13 @@ import WelcomeBanner from './partials/dashboard/WelcomeBanner';
 import DashboardAvatars from './partials/dashboard/DashboardAvatars';
 
 import Datepicker from './partials/actions/Datepicker';
-import sleepAnalysis from './partials/dashboard/sleepAnalysis';
-import sleepEfficiency from './partials/dashboard/sleepEfficiency';
-import dietBreakdown from './partials/dashboard/dietBreakdown';
-import dietAnalysis from './partials/dashboard/dietAnalysis';
-import stepCounter from './partials/dashboard/stepCounter';
-import sleepHeartRate from './partials/dashboard/sleepHeartRate';
-import activityMinutes from './partials/dashboard/activityMinutes';
+import SleepAnalysis from './partials/dashboard/SleepAnalysis';
+import SleepEfficiency from './partials/dashboard/SleepEfficiency';
+import DietBreakdown from './partials/dashboard/DietBreakdown';
+import DietAnalysis from './partials/dashboard/DietAnalysis';
+import StepCounter from './partials/dashboard/StepCounter';
+import SleepHeartRate from './partials/dashboard/SleepHeartRate';
+import ActivityMinutes from './partials/dashboard/ActivityMinutes';
 
 function DashboardMoz(){
 
@@ -56,23 +56,23 @@ function DashboardMoz(){
 
               {/* HEALTH CARDS */}
               {/* Sleep Analysis */}
-              <sleepAnalysis />
+              <SleepAnalysis />
               {/* Sleep Heart Rate */}
-              <sleepHeartRate />
+              <SleepHeartRate />
               {/* < Sleep Efficiency /> */}
-              <sleepEfficiency />
+              <SleepEfficiency />
 
               {/* NUTRITION CARDS */}
               {/* Doughnut chart (Food Groups) */}
-              <dietBreakdown />
+              <DietBreakdown />
               {/* Table (Diet Analysis) */}
-              <dietAnalysis />
+              <DietAnalysis />
 
               {/* PERFORMANCE CARDS */}
               {/* Activity Minutes */}
-              <activityMinutes />
+              <ActivityMinutes />
               {/* Step/Distance tracker */}
-              <stepCounter/>
+              <StepCounter/>
             </div>
           </div>
         </main>

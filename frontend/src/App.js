@@ -31,13 +31,14 @@ function DashboardApp() {
   // }, [location.pathname]); // triggered on route change
 
   const current = new Date().toLocaleString();
+  console.log('sha ' , current);
   async function GenerateID(){
     let ID = await sha256(current).then((result) => {
         setUserID(result);
         return result;
       });
     return userID;
-};
+  };
 
   var newID = GenerateID();
   console.log('891- : ', userID);

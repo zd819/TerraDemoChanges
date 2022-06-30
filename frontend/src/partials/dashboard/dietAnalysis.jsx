@@ -12,7 +12,7 @@ function perDiff(a,b){
   return 100 * (a - b) / b;
 }
 
-function DashboardCardDietAn() {
+function DietAnalysis() {
 const url = "http://localhost:8080/data";
 
   const pro_guide = 55.5;
@@ -321,4 +321,4 @@ const url = "http://localhost:8080/data";
   );
 }
 
-export default dietAnalysis;
+export default DietAnalysis;

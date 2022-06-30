@@ -8,7 +8,7 @@ import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function caloriesBurned(props) {
+function CaloriesBurned(props) {
   function date1W(){
     setstartDate(getDiffTime('-', 7));
   }
@@ -133,4 +133,4 @@ function caloriesBurned(props) {
   );
 }
 
-export default caloriesBurned;
+export default CaloriesBurned;

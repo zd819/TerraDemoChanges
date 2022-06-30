@@ -60,7 +60,7 @@ function weeklyDates(data){
 
 
 
-function activityMinutes() {
+function ActivityMinutes() {
 
   const url = "http://localhost:8080/data";
   const [isLoading, setLoading] = useState(true);
@@ -188,4 +188,4 @@ function activityMinutes() {
   );
 }
 
-export default activityMinutes;
+export default ActivityMinutes;

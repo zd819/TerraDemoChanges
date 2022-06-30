@@ -13,8 +13,8 @@ import convertDate from '../components/DataHandling/convertDate';
 
 import Datepicker from '../partials/actions/Datepicker';
 import DashboardNutrition from '../partials/dashboard/DashboardNutrition';
-import caloriesBurned from '../partials/dashboard/caloriesBurned';
-import averageSleep from '../partials/dashboard/averageSleep';
+import CaloriesBurned from '../partials/dashboard/CaloriesBurned';
+import AverageSleep from '../partials/dashboard/AverageSleep';
 import General1 from '../components/Suggestions/General1';
 import ImageSugg1 from '../partials/dashboard/ImageSugg1.js';
 import ImageSugg2 from '../partials/dashboard/ImageSugg2.js';
@@ -219,9 +219,9 @@ class DashboardMoz extends React.Component {
               {/* Line chart (Acme Plus) */}
               <DashboardNutrition setReload = {this.setReload} reload = {this.checkFitness()} addSugg = {this.addSugg} sugg = {NutritionSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
               {/* Line chart (Acme Advanced) */}
-              <caloriesBurned addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
+              <CaloriesBurned addSugg = {this.addSugg} sugg = {PerformanceSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate} />
               {/* Line chart (Acme Professional) */}
-              <averageSleep addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
+              <AverageSleep addSugg = {this.addSugg} sugg = {HealthSugg} id={this.props.id} setOverrideDate = {this.setOverrideDate} dates = {this.state.dates} overrideDate = {this.state.overrideDate}/>
             </div>
           </div>
         </main>

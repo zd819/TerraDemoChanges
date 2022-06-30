@@ -6,7 +6,7 @@ import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';
 
-function stepCounter() {
+function StepCounter() {
   
 
   const url = "http://localhost:8080/data";
@@ -104,4 +104,4 @@ function stepCounter() {
   );
 }
 
-export default stepCounter;
+export default StepCounter;

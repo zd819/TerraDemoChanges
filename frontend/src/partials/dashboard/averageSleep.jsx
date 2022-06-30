@@ -10,7 +10,7 @@ import localTime from '../../components/DataHandling/localTime.js';
 import getDiffTime from '../../components/DataHandling/getDiffTime.js';
 
 //Sleep data for health
-function averageSleep(props) {
+function AverageSleep(props) {
   function date1W(){
     setstartDate(getDiffTime('-', 7));
   }
@@ -136,4 +136,4 @@ function averageSleep(props) {
   );
 }
 
-export default averageSleep;
+export default AverageSleep;
