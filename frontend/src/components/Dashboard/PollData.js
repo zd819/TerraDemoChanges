@@ -2,7 +2,7 @@ import React, {useEffect, useState } from 'react';
 import getData from './testData.js'
 import awaiting from './awaiting.js';
 
-const url = "http://localhost:8080/";
+const url = "https://752b-80-3-12-252.eu.ngrok.io/";
 
 
 const sendWait = async (data) => {

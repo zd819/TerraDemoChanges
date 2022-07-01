@@ -6,7 +6,7 @@ import { tailwindConfig } from '../../utils/Utils';
 
 function SleepHeartRate() {
 
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
   const [ave_hr, setave_hr] = useState();
   const [max_hr, setmax_hr] = useState();

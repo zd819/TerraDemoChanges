@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 
 
-const url = "http://localhost:8080/";
+const url = "https://752b-80-3-12-252.eu.ngrok.io/";
 
 async function sendWait(id) {
     return await fetch(url+'user/getProviders', {

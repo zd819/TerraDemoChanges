@@ -23,7 +23,7 @@ function AverageSleep(props) {
   function Average(array){
     return (array.reduce((a,b) => a + b, 0) / array.length).toPrecision(3)
   }
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [startDate, setstartDate ] = useState(getDiffTime('-', 25));

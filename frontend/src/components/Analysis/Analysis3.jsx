@@ -9,7 +9,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 //Sleep data for health
 function Analysis3() {
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepUnder, setSleep ] = useState(false);
   const [Data, setData ] = useState();

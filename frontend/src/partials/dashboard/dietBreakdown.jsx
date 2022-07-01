@@ -12,7 +12,7 @@ function Average(array){
 
 
 function DietBreakdown() {
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [Protein, setProtein] = useState();
   const [Carbs, setCarbs] = useState();

@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/";
+const url = "https://752b-80-3-12-252.eu.ngrok.io/";
 
 async function deleteReq(id) {
   return await fetch(url+'user/delete', {

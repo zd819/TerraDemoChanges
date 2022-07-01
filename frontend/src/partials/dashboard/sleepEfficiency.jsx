@@ -10,7 +10,7 @@ import { tailwindConfig, hexToRGB } from '../../utils/Utils';
   
 
 function SleepEfficiency () {
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [sleepEff, setsleepEff] = useState([]);
   const [dates, setdates] = useState([]);

@@ -8,7 +8,7 @@ import EditMenu from '../EditMenu';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function Analysis2() {
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [lowActivity, setActivity ] = useState(false);
   const [Data, setData ] = useState();

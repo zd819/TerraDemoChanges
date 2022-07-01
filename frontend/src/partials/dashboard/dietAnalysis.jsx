@@ -13,7 +13,7 @@ function perDiff(a,b){
 }
 
 function DietAnalysis() {
-const url = "http://localhost:8080/data";
+const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
 
   const pro_guide = 55.5;
   const carbs_guide = 333;

@@ -19,29 +19,20 @@ import AnalyticsMain from './AnalyticMain';
 var shajs = require('sha.js');
 
 function DashboardApp() {
-  const [userID, setUserID] = useState('');
-  const [reload, setReload ] = useState(true);
-  const { token, setToken } = useToken();
+  const [userID, setUserID] = useState(''); //Use State for Session ID
+  const [reload, setReload ] = useState(true); // Use state for reloading Dates
+  const { token, setToken } = useToken(); // Use State for login token
   
-
-  // useEffect(() => {
-  //   document.querySelector('html').style.scrollBehavior = 'auto'
-  //   window.scroll({ top: 0 })
-  //   document.querySelector('html').style.scrollBehavior = ''
-  // }, [location.pathname]); // triggered on route change
-
-  const current = new Date().toLocaleString();
-  console.log('sha ' , current);
-  async function GenerateID(){
-    let ID = await sha256(current).then((result) => {
-        setUserID(result);
+  const current = new Date().toLocaleString(); //Get Current Full time and convert to string
+  async function GenerateID(){ //Uses the current time and a random pertubated string as keys to a SHA256 hash  
+    let ID = await sha256(current+(Math.random()*1000*Math.random()).toLocaleString).then((result) => {
+        setUserID(result); // Use setter to set generated Session ID
         return result;
       });
     return userID;
   };
 
-  var newID = GenerateID();
-  console.log('891- : ', userID);
+  var newID = GenerateID(); // Run Generate function
   return (
     <BrowserRouter>
       <Routes>

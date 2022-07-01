@@ -14,65 +14,61 @@ export default function General1(data,card){
     // const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
     switch (card) {
         case 'Health': // Sleep
-        // Active : 0
-        // Portion Control : 1
-        // Outdoor Sun : 2 
-        // Healthy Eating : 3
-        // Vice Balance : 4
-        // Rest : 5
-        // Meditation : 6
-        // Target : 7
-            if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
-                let nValue =  Average(nutrition); //Calories Consumed 
-                    let pValue = Average(performance); //Calories Burned
-                        if (nValue > 2500 && pValue < 500 ){
-                            return [0,"A more active routine can help improve quality and duration of sleep"]
-                        } else if (nValue < 1000 && pValue < 500 ){
-                            return [0,"Make sure you're hitting your diet and exercise goals, and your body will naturally increase quality of sleep"]
-                        } else if (nValue < 1000 && pValue > 1800 ){
-                            return [2,"Exercising in nature, like walks in the sun, can help decrease Cortisol levels and improve sleep.Try replacing some of your activity with these"]
+            if(Average(health)>6 && Average(health)<10){
+                return [7,"Good Job, your Sleep patterns indicate greatness"]           
+            }else{
+                if(nutrition && performance){  //Calories consumed vs Burned "Lower Stress Levels could help improve qua"
+                    let nValue =  Average(nutrition); //Calories Consumed 
+                        let pValue = Average(performance); //Calories Burned
+                            if (nValue > 2500 && pValue < 500 ){
+                                return [0,"A more active routine can help improve quality and duration of sleep"]
+                            } else if (nValue < 1000 && pValue < 500 ){
+                                return [0,"Make sure you're hitting your diet and exercise goals, and your body will naturally increase quality of sleep"]
+                            } else if (nValue < 1000 && pValue > 1800 ){
+                                return [2,"Exercising in nature, like walks in the sun, can help decrease Cortisol levels and improve sleep.Try replacing some of your activity with these"]
+                            } else return [7,"Good Job, your Sleep patterns indicate greatness"]
+                        
+                }
+                else if (nutrition){
+                    let nValue = Average(nutrition); //Calories consumed 
+                        if( nValue < 1000){
+                            return [3,"A more vibrant and balanced diet can help your body to recover better during sleep"]
+                        }
+                        else if (nValue > 3000){
+                            return [1,"More moderate calorie consumption can help decrease sleep deprivation and increase sleep quality"]
                         } else return [7,"Good Job, your Sleep patterns indicate greatness"]
                     
-            }
-            else if (nutrition){
-                let nValue = Average(nutrition); //Calories consumed 
-                    if( nValue < 1000){
-                        return [3,"A more vibrant and balanced diet can help your body to recover better during sleep"]
-                    }
-                    else if (nValue > 3000){
-                        return [1,"More moderate calorie consumption can help decrease sleep deprivation and increase sleep quality"]
-                    } else return [7,"Good Job, your Sleep patterns indicate greatness"]
-                
-            }
-            else if (performance){
-                let pValue = Average(performance); //Calories burned 
-                    if( pValue < 500){
-                        return [0,"Adding more moderate-vigorous activity during the day can greatly imprve sleep quality. Try taking a walk in the sun!"]
-                    }
-                    else if (pValue > 2000){
-                        return [5,"Allow your body to rest and recover regularly, especially after vigorous exercise, and your sleep and overall health will improve"]
-                    } else return [7,"Good Job, your Sleep patterns indicate greatness"]
-                
-            }
-            else{
-                if(health == false){return "No Suggestion"}
-                else if(Average(health) > 11){
-                    return [4,"Moderate Alchohol and Medication consumption can help rebalance sleep quantity"]
                 }
-                else if (Average(health) < 5){
-                    return [6,"Meditation can reduce stress and anxiety levels and help increase sleep quantity and quality"]
+                else if (performance){
+                    let pValue = Average(performance); //Calories burned 
+                        if( pValue < 500){
+                            return [0,"Adding more moderate-vigorous activity during the day can greatly imprve sleep quality. Try taking a walk in the sun!"]
+                        }
+                        else if (pValue > 2000){
+                            return [5,"Allow your body to rest and recover regularly, especially after vigorous exercise, and your sleep and overall health will improve"]
+                        } else return [7,"Good Job, your Sleep patterns indicate greatness"]
+                    
                 }
                 else{
-                    for (let hValue of health){ //Calories Burned 
-                        if( hValue < 6){
-                            return [5,"You're Sleep indicators are pretty good. Make sure you're sleeping at the right time and amount each day"]
-                        }
-                        else if (hValue > 11){
-                            return [5,"You're Sleep indicators are pretty good. Make sure you are controlling your alcohol consumption and eating healthy"]
-                        } else return [7,"Good Job, your Sleep quantity indicates greatness"]
+                    if(health == false){return "No Suggestion"}
+                    else if(Average(health) > 11){
+                        return [4,"Moderate Alchohol and Medication consumption can help rebalance sleep quantity"]
                     }
-                }
+                    else if (Average(health) < 5){
+                        return [6,"Meditation can reduce stress and anxiety levels and help increase sleep quantity and quality"]
+                    }
+                    else{
+                        for (let hValue of health){ //Calories Burned 
+                            if( hValue < 6){
+                                return [5,"You're Sleep indicators are pretty good. Make sure you're sleeping at the right time and amount each day"]
+                            }
+                            else if (hValue > 11){
+                                return [5,"You're Sleep indicators are pretty good. Make sure you are controlling your alcohol consumption and eating healthy"]
+                            } else return [7,"Good Job, your Sleep quantity indicates greatness"]
+                        }
+                    }
 
+                }
             }
 
         case 'Nutrition': // Calories Consumed 
@@ -84,6 +80,9 @@ export default function General1(data,card){
         // Sleep : 5
         // Eat more : 6
         // Target : 7
+        if(Average(nutrition)>1500 && Average(nutrition)<3500){
+            return [7,"Good Job, your Sleep patterns indicate greatness"]           
+        }else{
             if(health && performance){
                 let hValue = Average(health); //Sleep 
                     let pValue = Average(performance);//Calories Burned
@@ -134,6 +133,7 @@ export default function General1(data,card){
                 }
 
             }
+        }
         default: // Performance
         // Rest : 0
         // Meditation : 1
@@ -143,6 +143,9 @@ export default function General1(data,card){
         // healthy : 5
         // Portion Control : 6
         // Target : 7
+        if(Average(performance)>1500 && Average(performance)<3500){
+            return [7,"Good Job, your Sleep patterns indicate greatness"]           
+        }else{
             if(health && nutrition){
                 let hValue = Average(health); //Sleep 
                     let nValue = Average(nutrition); //Calories consumed
@@ -194,6 +197,6 @@ export default function General1(data,card){
                     }
                 }
             }
-    }
+    }}
 }
 };

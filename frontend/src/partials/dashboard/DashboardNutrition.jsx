@@ -29,10 +29,10 @@ function DashboardNutrition(props) {
   function Average(array){
     return array.reduce((a,b) => a + b, 0) / array.length
   }
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [calorieOver, setCalories ] = useState(false);
-  const [startDate, setstartDate ] = useState(getDiffTime('-', 25));
+  const [startDate, setstartDate ] = useState(getDiffTime('-', 50));
   const [endDate, setendDate ] = useState(localTime());
   const [Data, setData ] = useState();
   const [Date, setDate ] = useState();
@@ -59,7 +59,7 @@ function DashboardNutrition(props) {
           method: 'GET',
           headers: {
           "Content-Type": "application/json",
-          "userID" : "user1", 
+          "userID" : props.id, 
           "startDate" : startDate,
           "endDate": endDate, 
           "terraId": "596be094-5daa-4962-bd60-0177c9439cec",

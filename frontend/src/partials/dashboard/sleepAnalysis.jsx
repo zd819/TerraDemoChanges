@@ -64,7 +64,7 @@ function weeklyDates(data){
 
 
 function SleepAnalysis() {
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading ] = useState(true);
   const [REM, setREM] = useState();
   const [deepSleep, setdeepSleep] = useState();

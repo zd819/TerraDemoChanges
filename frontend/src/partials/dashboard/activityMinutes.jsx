@@ -62,7 +62,7 @@ function weeklyDates(data){
 
 function ActivityMinutes() {
 
-  const url = "http://localhost:8080/data";
+  const url = "https://752b-80-3-12-252.eu.ngrok.io/data";
   const [isLoading, setLoading] = useState(true);
   const [week1, setweek1] = useState();
   const [week2, setweek2] = useState();
