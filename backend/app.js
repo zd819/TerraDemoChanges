@@ -63,8 +63,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-// MONGO MONGO 
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const fs = require('fs');
 const credentials = '../keys/mongo.pem'
@@ -76,15 +74,6 @@ global.mongoClient = new MongoClient('mongodb+srv://cluster0.skkxj.mongodb.net/m
 
 global.usersDB;
 global.wearableDB;
-
-
-global.dataRequest = [];
-// 0 - Nothing going on rn
-// 1 - Processing
-// 2 - Process fulfilled
-// 3 - Error of somesort
-
-global.authError = [];
 
 
 module.exports = app;
